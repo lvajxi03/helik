@@ -29,14 +29,25 @@ class Application():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
-                keys = pygame.key.get_pressed()
-                if keys[pygame.K_q]:
-                    self.running = False
-            self.screen.fill("purple")
-
+                elif event.type == pygame.KEYDOWN:
+                    self.on_keydown(event.key)
+            self.on_paint()
             pygame.display.flip()
-
             self.clock.tick(60)
 
         # Eventually,
         pygame.quit()
+
+    def on_paint(self):
+        """
+        Paint event handler
+        """
+        self.screen.fill("purple")
+
+    def on_keydown(self, key):
+        """
+        Keydown event handler
+        :param key: key that was pressed
+        """
+        if key == pygame.K_q:
+            self.running = False
