@@ -35,9 +35,13 @@ class Board():
         Paint handler
         """
 
+    def on_timer(self, timer):
+        """
+        Timer handler
+        """
+
 
 class BoardAbout(Board):
     """
     About board
     """
-

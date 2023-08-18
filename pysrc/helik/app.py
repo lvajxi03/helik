@@ -5,8 +5,8 @@ App module
 """
 
 import pygame
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, APPLICATION_TITLE
+from helik.boards.menu import BoardMenu
 
 class Application():
     """
@@ -17,9 +17,11 @@ class Application():
         Application initializer
         """
         pygame.init()
-        self.screen = pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT), pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT))
+        pygame.display.set_caption(APPLICATION_TITLE)
         self.clock = pygame.time.Clock()
         self.running = True
+        self.menu = BoardMenu(self)
 
     def run(self):
         """
@@ -31,6 +33,8 @@ class Application():
                     self.running = False
                 elif event.type == pygame.KEYDOWN:
                     self.on_keydown(event.key)
+                elif event.type > pygame.USEREVENT:
+                    self.on_timer(event.type)
             self.on_paint()
             pygame.display.flip()
             self.clock.tick(60)
@@ -38,11 +42,14 @@ class Application():
         # Eventually,
         pygame.quit()
 
+    def on_timer(self, timer):
+        self.menu.on_timer(timer)
+
     def on_paint(self):
         """
         Paint event handler
         """
-        self.screen.fill("purple")
+        self.menu.on_paint()
 
     def on_keydown(self, key):
         """
