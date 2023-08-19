@@ -5,7 +5,10 @@ App module
 """
 
 import pygame
+import random
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, APPLICATION_TITLE
+from helik.htypes import BoardType
+from helik.boards.welcome import BoardWelcome
 from helik.boards.menu import BoardMenu
 
 class Application():
@@ -16,12 +19,24 @@ class Application():
         """
         Application initializer
         """
+        random.seed()
         pygame.init()
         self.screen = pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT))
+        self.buffer = pygame.Surface((ARENA_WIDTH, ARENA_HEIGHT))
         pygame.display.set_caption(APPLICATION_TITLE)
         self.clock = pygame.time.Clock()
         self.running = True
-        self.menu = BoardMenu(self)
+        self.boards = {
+            BoardType.WELCOME: BoardWelcome(self),
+            BoardType.MENU: BoardMenu(self)
+            }
+        self.board_id = BoardType.WELCOME
+
+    def change_board(self, newboard):
+        if newboard != self.board_id:
+            self.boards[self.board_id].deactivate()
+            self.board_id = newboard
+            self.boards[self.board_id].activate()
 
     def run(self):
         """
@@ -43,13 +58,14 @@ class Application():
         pygame.quit()
 
     def on_timer(self, timer):
-        self.menu.on_timer(timer)
+        self.boards[self.board_id].on_timer(timer)
 
     def on_paint(self):
         """
         Paint event handler
         """
-        self.menu.on_paint()
+        self.boards[self.board_id].on_paint()
+        self.screen.blit(self.buffer, (0, 0))
 
     def on_keydown(self, key):
         """
@@ -58,3 +74,6 @@ class Application():
         """
         if key == pygame.K_q:
             self.running = False
+        else:
+            self.change_board(BoardType.MENU)
+
