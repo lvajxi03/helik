@@ -23,6 +23,7 @@ class Application():
         pygame.init()
         self.screen = pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT))
         self.buffer = pygame.Surface((ARENA_WIDTH, ARENA_HEIGHT))
+        self.lang = "pl"
         pygame.display.set_caption(APPLICATION_TITLE)
         self.clock = pygame.time.Clock()
         self.running = True
@@ -75,5 +76,5 @@ class Application():
         if key == pygame.K_q:
             self.running = False
         else:
-            self.change_board(BoardType.MENU)
+            self.boards[self.board_id].on_keydown(key)
 

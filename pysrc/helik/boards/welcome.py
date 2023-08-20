@@ -7,7 +7,7 @@ Welcome board handler
 import random
 import pygame
 from helik.boards.standard import Board
-from helik.htypes import TimerType
+from helik.htypes import TimerType, BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 
 
@@ -42,6 +42,9 @@ class BoardWelcome(Board):
         """
         if timer == TimerType.WELCOME:
             self.generate_colors()
+
+    def on_keydown(self, key):
+        self.parent.change_board(BoardType.MENU)
 
     def generate_colors(self):
         """
