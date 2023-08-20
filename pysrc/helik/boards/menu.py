@@ -42,11 +42,7 @@ class BoardMenu(Board):
         """
         _, self.rect_pos = self.rectangles[self.menu_pos]
         self.rect_pos = self.rect_pos.inflate(40, 40)
-        # self.rect_pos.left -= 20
-        # self.rect_pos.top -= 20
-        # self.rect_pos.width += 40
-        # self.rect_pos.height += 40
-        
+
     def create_rectangles(self):
         """
         Create labels and rectangles based on locale
@@ -96,9 +92,13 @@ class BoardMenu(Board):
         if key == pygame.K_DOWN:
             if self.menu_pos < 6:
                 self.menu_pos += 1
+            else:
+                self.menu_pos = 0
         elif key == pygame.K_UP:
             if self.menu_pos > 0:
                 self.menu_pos -= 1
+            else:
+                self.menu_pos = 6
         elif key == pygame.K_RETURN:
             if self.menu_pos == 6:
                 self.parent.running = False

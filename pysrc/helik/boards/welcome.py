@@ -25,7 +25,15 @@ class BoardWelcome(Board):
             comp = random.randint(64, 255)
             self.colors.append(
                 pygame.Color(comp, comp, comp))
-        pygame.time.set_timer(TimerType.WELCOME, 100)
+        pygame.time.set_timer(TimerType.WELCOME, 40)
+        pygame.time.set_timer(TimerType.WELCOME_STOP, 5000)
+
+    def deactivate(self):
+        """
+        Board deactivate handler
+        """
+        pygame.time.set_timer(TimerType.WELCOME, 0)
+        pygame.time.set_timer(TimerType.WELCOME_STOP, 0)
 
     def on_paint(self):
         """
@@ -42,6 +50,8 @@ class BoardWelcome(Board):
         """
         if timer == TimerType.WELCOME:
             self.generate_colors()
+        if timer == TimerType.WELCOME_STOP:
+            self.parent.change_board(BoardType.MENU)
 
     def on_keydown(self, key):
         self.parent.change_board(BoardType.MENU)

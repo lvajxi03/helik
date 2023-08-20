@@ -52,7 +52,7 @@ class Application():
                 elif event.type > pygame.USEREVENT:
                     self.on_timer(event.type)
             self.on_paint()
-            pygame.display.flip()
+            pygame.display.update()
             self.clock.tick(60)
 
         # Eventually,
