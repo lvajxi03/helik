@@ -26,7 +26,7 @@ class BoardWelcome(Board):
             self.colors.append(
                 pygame.Color(comp, comp, comp))
         pygame.time.set_timer(TimerType.WELCOME, 40)
-        pygame.time.set_timer(TimerType.WELCOME_STOP, 5000)
+        pygame.time.set_timer(TimerType.WELCOME_STOP, 3000)
 
     def deactivate(self):
         """

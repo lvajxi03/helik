@@ -30,7 +30,7 @@ class BoardMenu(Board):
         self.r1.left, self.r1.top = 10, 10
         self.r2 = self.text2.get_rect()
         self.r2.left, self.r2.top = 15, 15        
-        self.color = pygame.Color(219, 219, 219)
+        self.color = pygame.Color(41, 34, 00)
         self.rectangles = []
         self.create_rectangles()
         self.status = pygame.Rect(0, ARENA_HEIGHT - 60, ARENA_WIDTH, 60)
@@ -50,7 +50,7 @@ class BoardMenu(Board):
         self.rectangles = []
         i = 0
         for pos in self.locale["menu"][self.parent.lang]:
-            label = self.fonts["menu"].render(pos, True, pygame.Color(32, 32, 32, a=256))
+            label = self.fonts["menu"].render(pos, True, pygame.Color(224, 224, 224, a=256))
             rect = label.get_rect()
             rect.left = 600
             rect.top = 100 + i * 80
