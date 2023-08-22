@@ -19,22 +19,22 @@ class BoardMenu(Board):
         super().__init__(parent)
         self.locale = locale[BoardType.MENU]
         self.fonts = {
-            "heading": pygame.font.Font('freesansbold.ttf', 256),
-            "menu": pygame.font.Font('freesansbold.ttf', 48)
+            "heading": pygame.font.Font('ehs.ttf', 164),
+            "menu": pygame.font.Font('ehs.ttf', 48)
             } 
         self.text1 = pygame.transform.rotate(self.fonts["heading"].render('HeliK!', True, pygame.Color(0, 0, 0, a=128)), 90)
         self.text2 = pygame.transform.rotate(self.fonts["heading"].render('HeliK!', True, pygame.Color(224, 223, 74, a=128)), 90)
         self.menu_pos = 0
         self.rect_pos = None
         self.r1 = self.text1.get_rect()
-        self.r1.left, self.r1.top = 10, 10
+        self.r1.left, self.r1.top = 210, 40
         self.r2 = self.text2.get_rect()
-        self.r2.left, self.r2.top = 15, 15        
-        self.color = pygame.Color(41, 34, 00)
+        self.r2.left, self.r2.top = 215, 45        
+        self.color = pygame.Color(76, 76, 76)
         self.rectangles = []
         self.create_rectangles()
         self.status = pygame.Rect(0, ARENA_HEIGHT - 60, ARENA_WIDTH, 60)
-        self.status_color = pygame.Color(32, 32, 32)
+        self.status_color = pygame.Color(23, 23, 23)
 
     def recalculate_pos(self):
         """
@@ -52,7 +52,7 @@ class BoardMenu(Board):
         for pos in self.locale["menu"][self.parent.lang]:
             label = self.fonts["menu"].render(pos, True, pygame.Color(224, 224, 224, a=256))
             rect = label.get_rect()
-            rect.left = 600
+            rect.left = 400
             rect.top = 100 + i * 80
             self.rectangles.append((label, rect))
             i += 1
