@@ -11,7 +11,7 @@ from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, APPLICATION_TITLE
 from helik.htypes import BoardType
 from helik.boards.welcome import BoardWelcome
 from helik.boards.menu import BoardMenu
-from helik.res import create_resources
+from helik.res import ResourceManager
 
 class Application():
     """
@@ -23,13 +23,7 @@ class Application():
         """
         random.seed()
         pygame.init()
-        self.surfaces = {
-            "screen": pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT), flags=pygame.SRCALPHA, depth=32, vsync=1),
-            "buffer": pygame.Surface((ARENA_WIDTH, ARENA_HEIGHT), pygame.SRCALPHA),
-            "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
-        }
-        self.resources = create_resources(files('helik.resources'))
-
+        self.res_man = ResourceManager(files('helik.resources'))
         self.lang = "pl"
         pygame.display.set_caption(APPLICATION_TITLE)
         self.clock = pygame.time.Clock()
@@ -73,7 +67,7 @@ class Application():
         Paint event handler
         """
         self.boards[self.board_id].on_paint()
-        self.surfaces["screen"].blit(self.surfaces["buffer"], (0, 0))
+        self.res_man.get("surfaces", "screen").blit(self.res_man.get("surfaces", "buffer"), (0, 0))
 
     def on_keydown(self, key):
         """

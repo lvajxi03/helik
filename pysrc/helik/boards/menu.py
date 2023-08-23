@@ -18,12 +18,8 @@ class BoardMenu(Board):
     def __init__(self, parent):
         super().__init__(parent)
         self.locale = locale[BoardType.MENU]
-        self.fonts = {
-            "heading": pygame.font.Font('ehs.ttf', 164),
-            "menu": pygame.font.Font('ehs.ttf', 48)
-            } 
-        self.text1 = pygame.transform.rotate(self.fonts["heading"].render('HeliK!', True, pygame.Color(0, 0, 0, a=128)), 90)
-        self.text2 = pygame.transform.rotate(self.fonts["heading"].render('HeliK!', True, pygame.Color(224, 223, 74, a=128)), 90)
+        self.text1 = pygame.transform.rotate(self.res_man.get("fonts", "heading").render('HeliK!', True, pygame.Color(0, 0, 0, a=128)), 90)
+        self.text2 = pygame.transform.rotate(self.res_man.get("fonts", "heading").render('HeliK!', True, pygame.Color(224, 223, 74, a=128)), 90)
         self.menu_pos = 0
         self.rect_pos = None
         self.r1 = self.text1.get_rect()
@@ -50,7 +46,7 @@ class BoardMenu(Board):
         self.rectangles = []
         i = 0
         for pos in self.locale["menu"][self.parent.lang]:
-            label = self.fonts["menu"].render(pos, True, pygame.Color(224, 224, 224, a=255))
+            label = self.res_man.get("fonts", "menu").render(pos, True, pygame.Color(224, 224, 224, a=255))
             rect = label.get_rect()
             rect.left = 400
             rect.top = 100 + i * 80
@@ -62,17 +58,17 @@ class BoardMenu(Board):
         """
         Paint event handler
         """
-        self.surfaces["buffer"].blit(self.resources["images"]["default-background"], (0, 0))
-        pygame.draw.rect(self.surfaces["status"], self.status_color, self.status)
-        self.surfaces["buffer"].blit(self.surfaces["status"], (0, ARENA_HEIGHT - 60))
-        self.surfaces["buffer"].blit(self.text1, self.r1)
-        self.surfaces["buffer"].blit(self.text2, self.r2)
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "default-background"), (0, 0))
+        pygame.draw.rect(self.res_man.get("surfaces", "status"), self.status_color, self.status)
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("surfaces", "status"), (0, ARENA_HEIGHT - 60))
+        self.res_man.get("surfaces", "buffer").blit(self.text1, self.r1)
+        self.res_man.get("surfaces", "buffer").blit(self.text2, self.r2)
         for re in self.rectangles:
             label, rect = re
-            self.surfaces["buffer"].blit(label, rect)
+            self.res_man.get("surfaces", "buffer").blit(label, rect)
         self.rect_pos_t = self.rect_pos.move(5, 5)
-        pygame.draw.rect(self.surfaces["buffer"], pygame.Color(48, 48, 48), self.rect_pos_t, width=5, border_radius=20)
-        pygame.draw.rect(self.surfaces["buffer"], pygame.Color(207, 229, 32), self.rect_pos, width=5, border_radius=20)
+        pygame.draw.rect(self.res_man.get("surfaces", "buffer"), pygame.Color(48, 48, 48), self.rect_pos_t, width=5, border_radius=20)
+        pygame.draw.rect(self.res_man.get("surfaces", "buffer"), pygame.Color(207, 229, 32), self.rect_pos, width=5, border_radius=20)
 
     def on_timer(self, timer):
         """
