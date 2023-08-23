@@ -40,7 +40,7 @@ class BoardWelcome(Board):
         Paint event handler
         """
         for i in range(0, ARENA_WIDTH // 40):
-            pygame.draw.rect(self.buffer,
+            pygame.draw.rect(self.surfaces["buffer"],
                              self.colors[i],
                              self.rectangles[i])
 

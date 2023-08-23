@@ -13,8 +13,7 @@ class Board():
         Class constructor
         """
         self.parent = parent
-        self.screen = parent.screen
-        self.buffer = parent.buffer
+        self.surfaces = self.parent.surfaces
         self.resources = parent.resources
 
     def activate(self):

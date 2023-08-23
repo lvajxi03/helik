@@ -33,8 +33,8 @@ class BoardMenu(Board):
         self.color = pygame.Color(76, 76, 76)
         self.rectangles = []
         self.create_rectangles()
-        self.status = pygame.Rect(0, ARENA_HEIGHT - 60, ARENA_WIDTH, 60)
-        self.status_color = pygame.Color(64, 64, 64, 128)
+        self.status = pygame.Rect(0, 0, ARENA_WIDTH, 60)
+        self.status_color = pygame.Color(128, 128, 128, 128)
 
     def recalculate_pos(self):
         """
@@ -62,16 +62,17 @@ class BoardMenu(Board):
         """
         Paint event handler
         """
-        self.buffer.blit(self.resources["images"]["default-background"], (0, 0))
-        pygame.draw.rect(self.buffer, self.status_color, self.status)
-        self.buffer.blit(self.text1, self.r1)
-        self.buffer.blit(self.text2, self.r2)
+        self.surfaces["buffer"].blit(self.resources["images"]["default-background"], (0, 0))
+        pygame.draw.rect(self.surfaces["status"], self.status_color, self.status)
+        self.surfaces["buffer"].blit(self.surfaces["status"], (0, ARENA_HEIGHT - 60))
+        self.surfaces["buffer"].blit(self.text1, self.r1)
+        self.surfaces["buffer"].blit(self.text2, self.r2)
         for re in self.rectangles:
             label, rect = re
-            self.buffer.blit(label, rect)
+            self.surfaces["buffer"].blit(label, rect)
         self.rect_pos_t = self.rect_pos.move(5, 5)
-        pygame.draw.rect(self.buffer, pygame.Color(48, 48, 48), self.rect_pos_t, width=5, border_radius=20)
-        pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32), self.rect_pos, width=5, border_radius=20)
+        pygame.draw.rect(self.surfaces["buffer"], pygame.Color(48, 48, 48), self.rect_pos_t, width=5, border_radius=20)
+        pygame.draw.rect(self.surfaces["buffer"], pygame.Color(207, 229, 32), self.rect_pos, width=5, border_radius=20)
 
     def on_timer(self, timer):
         """

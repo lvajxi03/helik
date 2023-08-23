@@ -23,10 +23,13 @@ class Application():
         """
         random.seed()
         pygame.init()
-        self.screen = pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT), flags=pygame.SRCALPHA, depth=32, vsync=1)
+        self.surfaces = {
+            "screen": pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT), flags=pygame.SRCALPHA, depth=32, vsync=1),
+            "buffer": pygame.Surface((ARENA_WIDTH, ARENA_HEIGHT), pygame.SRCALPHA),
+            "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
+        }
         self.resources = create_resources(files('helik.resources'))
 
-        self.buffer = pygame.Surface((ARENA_WIDTH, ARENA_HEIGHT), pygame.SRCALPHA)
         self.lang = "pl"
         pygame.display.set_caption(APPLICATION_TITLE)
         self.clock = pygame.time.Clock()
@@ -70,7 +73,7 @@ class Application():
         Paint event handler
         """
         self.boards[self.board_id].on_paint()
-        self.screen.blit(self.buffer, (0, 0))
+        self.surfaces["screen"].blit(self.surfaces["buffer"], (0, 0))
 
     def on_keydown(self, key):
         """
