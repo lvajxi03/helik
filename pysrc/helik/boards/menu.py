@@ -34,7 +34,7 @@ class BoardMenu(Board):
         self.rectangles = []
         self.create_rectangles()
         self.status = pygame.Rect(0, ARENA_HEIGHT - 60, ARENA_WIDTH, 60)
-        self.status_color = pygame.Color(23, 23, 23)
+        self.status_color = pygame.Color(64, 64, 64, 128)
 
     def recalculate_pos(self):
         """
@@ -50,7 +50,7 @@ class BoardMenu(Board):
         self.rectangles = []
         i = 0
         for pos in self.locale["menu"][self.parent.lang]:
-            label = self.fonts["menu"].render(pos, True, pygame.Color(224, 224, 224, a=256))
+            label = self.fonts["menu"].render(pos, True, pygame.Color(224, 224, 224, a=255))
             rect = label.get_rect()
             rect.left = 400
             rect.top = 100 + i * 80
@@ -62,7 +62,7 @@ class BoardMenu(Board):
         """
         Paint event handler
         """
-        self.buffer.fill(self.color)
+        self.buffer.blit(self.resources["images"]["default-background"], (0, 0))
         pygame.draw.rect(self.buffer, self.status_color, self.status)
         self.buffer.blit(self.text1, self.r1)
         self.buffer.blit(self.text2, self.r2)

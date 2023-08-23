@@ -63,4 +63,3 @@ class BoardWelcome(Board):
         for i in range(0, ARENA_WIDTH // 40):
             comp = random.randint(64, 255)
             self.colors[i] = pygame.Color(comp, comp, comp)
-            

@@ -15,6 +15,7 @@ class Board():
         self.parent = parent
         self.screen = parent.screen
         self.buffer = parent.buffer
+        self.resources = parent.resources
 
     def activate(self):
         """
