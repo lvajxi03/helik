@@ -10,6 +10,7 @@ from importlib.resources import files
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, APPLICATION_TITLE
 from helik.htypes import BoardType
 from helik.boards.welcome import BoardWelcome
+from helik.boards.about import BoardAbout
 from helik.boards.menu import BoardMenu
 from helik.res import ResourceManager
 
@@ -30,7 +31,8 @@ class Application():
         self.running = True
         self.boards = {
             BoardType.WELCOME: BoardWelcome(self),
-            BoardType.MENU: BoardMenu(self)
+            BoardType.MENU: BoardMenu(self),
+            BoardType.ABOUT: BoardAbout(self)
             }
         self.board_id = BoardType.WELCOME
 

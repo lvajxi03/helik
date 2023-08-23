@@ -10,6 +10,7 @@ from helik.boards.standard import Board
 from helik.htypes import TimerType, BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.locale import locale
+from helik.utils import menupos2board
 
 class BoardMenu(Board):
     """
@@ -99,4 +100,6 @@ class BoardMenu(Board):
         elif key == pygame.K_RETURN:
             if self.menu_pos == 6:
                 self.parent.running = False
+            bid = menupos2board(self.menu_pos)
+            self.parent.change_board(bid)
         self.recalculate_pos()
