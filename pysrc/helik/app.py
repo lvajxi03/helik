@@ -12,6 +12,11 @@ from helik.htypes import BoardType
 from helik.boards.welcome import BoardWelcome
 from helik.boards.about import BoardAbout
 from helik.boards.menu import BoardMenu
+from helik.boards.options import BoardOptions
+from helik.boards.hiscores import BoardHiscores
+from helik.boards.help import BoardHelp
+from helik.boards.settings import BoardSettings
+from helik.boards.game import BoardGame
 from helik.res import ResourceManager
 
 class Application():
@@ -32,7 +37,12 @@ class Application():
         self.boards = {
             BoardType.WELCOME: BoardWelcome(self),
             BoardType.MENU: BoardMenu(self),
-            BoardType.ABOUT: BoardAbout(self)
+            BoardType.ABOUT: BoardAbout(self),
+            BoardType.HISCORES: BoardHiscores(self),
+            BoardType.HELP: BoardHelp(self),
+            BoardType.OPTIONS: BoardOptions(self),
+            BoardType.SETTINGS: BoardSettings(self),
+            BoardType.GAME: BoardGame(self)
             }
         self.board_id = BoardType.WELCOME
 
@@ -50,8 +60,8 @@ class Application():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
-                elif event.type == pygame.KEYDOWN:
-                    self.on_keydown(event.key)
+                elif event.type == pygame.KEYUP:
+                    self.on_keyup(event.key)
                 elif event.type > pygame.USEREVENT:
                     self.on_timer(event.type)
             self.on_paint()
@@ -71,13 +81,10 @@ class Application():
         self.boards[self.board_id].on_paint()
         self.res_man.get("surfaces", "screen").blit(self.res_man.get("surfaces", "buffer"), (0, 0))
 
-    def on_keydown(self, key):
+    def on_keyup(self, key):
         """
-        Keydown event handler
-        :param key: key that was pressed
+        Key release handler
+        :param key: key code
         """
-        if key == pygame.K_q:
-            self.running = False
-        else:
-            self.boards[self.board_id].on_keydown(key)
+        self.boards[self.board_id].on_keyup(key)
 

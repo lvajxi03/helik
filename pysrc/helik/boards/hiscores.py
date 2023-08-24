@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
 
 """
-About board module
+Hiscores board handler
 """
 
-
 import pygame
-from helik.htypes import BoardType
 from helik.boards.standard import Board
-from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.htypes import BoardType
 
-class BoardAbout(Board):
+class BoardHiscores(Board):
     """
-    About board class
+    Hiscores board class
     """
     def __init__(self, parent):
         super().__init__(parent)
@@ -22,7 +21,6 @@ class BoardAbout(Board):
         Paint event handler
         """
         self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "default-background"), (0, 0))
-#        pygame.draw.rect(self.res_man.get("surfaces", "status"), self.status_color, self.status)
         self.res_man.get("surfaces", "buffer").blit(self.res_man.get("surfaces", "status"), (0, ARENA_HEIGHT - 60))
 
     def activate(self):

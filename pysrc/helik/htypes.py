@@ -28,13 +28,15 @@ class BoardType(enum.IntEnum):
 
 @enum.unique
 class GameType(enum.IntEnum):
-    INIT = 0
-    PREPARE = 1
-    PLAY = 2
-    PAUSED = 3
+    NONE = 0
+    INIT = 1
+    PREPARE = 2
+    PLAY = 3
+    PAUSED = 4
 
 
 @enum.unique
 class TimerType(enum.IntEnum):
     WELCOME = pygame.USEREVENT + 1
     WELCOME_STOP = pygame.USEREVENT + 2
+    PLAY_MOVE = pygame.USEREVENT + 3

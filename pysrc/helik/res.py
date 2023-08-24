@@ -22,9 +22,11 @@ class ResourceManager:
         """
         self.resources = {
             "images": {
-                "default-background": pygame.image.load(basepath.joinpath("back-default.jpg"))
+                "default-background": pygame.image.load(basepath.joinpath("back-default.jpg")),
+                "helik-small-left": pygame.image.load(basepath.joinpath("copter-white-left.png")),
+                "helik-small-right": pygame.image.load(basepath.joinpath("copter-white-right.png"))
             },
-            'fonts': {
+            "fonts": {
                 "heading": pygame.font.Font(basepath.joinpath('ehs.ttf'), 164),
                 "menu": pygame.font.Font(basepath.joinpath('ehs.ttf'), 48)
             },

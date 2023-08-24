@@ -25,9 +25,10 @@ class Board():
         Board deactivator
         """
 
-    def on_keydown(self, key):
+    def on_keyup(self, key):
         """
-        Keydown handler
+        Key release handler
+        :param key: key code
         """
 
     def on_paint(self):

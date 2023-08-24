@@ -84,8 +84,10 @@ class BoardMenu(Board):
         """
         """
 
-    def on_keydown(self, key):
+    def on_keyup(self, key):
         """
+        Key release event handler
+        :param key: kedy code
         """
         if key == pygame.K_DOWN:
             if self.menu_pos < 6:
@@ -102,4 +104,7 @@ class BoardMenu(Board):
                 self.parent.running = False
             bid = menupos2board(self.menu_pos)
             self.parent.change_board(bid)
+        elif key == pygame.K_q:
+            self.parent.running = False
+    
         self.recalculate_pos()

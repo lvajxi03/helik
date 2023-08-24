@@ -53,7 +53,11 @@ class BoardWelcome(Board):
         if timer == TimerType.WELCOME_STOP:
             self.parent.change_board(BoardType.MENU)
 
-    def on_keydown(self, key):
+    def on_keyup(self, key):
+        """
+        Key release event handler
+        :param key: kedy code
+        """
         self.parent.change_board(BoardType.MENU)
 
     def generate_colors(self):
