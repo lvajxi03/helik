@@ -6,6 +6,7 @@ All the resources
 
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.locale import locale
 
 
 class ResourceManager:
@@ -37,10 +38,67 @@ class ResourceManager:
                 "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
             }
         }
+        for ty in locale:
+             for name in locale[ty]:
+                if isinstance(locale[ty][name]["pl"], list):
+                    locale[ty][name]["label"] = {
+                        "pl": [],
+                        "en": []}
+                    for elem in locale[ty][name]["pl"]:
+                        label = pygame.transform.rotate(
+                            self.get(
+                                "fonts",
+                                locale[ty][name]["font"]).render(
+                                    elem,
+                                    True,
+                                    pygame.Color(locale[ty][name]["color"])),
+                            locale[ty][name]["rotate"])
+                        rect = label.get_rect()
+                        locale[ty][name]["label"]["pl"].append((label, rect))
+                        label = pygame.transform.rotate(
+                            self.get(
+                                "fonts",
+                                locale[ty][name]["font"]).render(
+                                    elem,
+                                    True,
+                                    pygame.Color(locale[ty][name]["color"])),
+                            locale[ty][name]["rotate"])
+                        rect = label.get_rect()
+                        locale[ty][name]["label"]["en"].append((label, rect))
+                else:
+                    locale[ty][name]["label"] = {}
+                    label = pygame.transform.rotate(
+                        self.get(
+                            "fonts",
+                            locale[ty][name]["font"]).render(
+                                locale[ty][name]["pl"],
+                                True,
+                                pygame.Color(
+                                    locale[ty][name]["color"])),
+                        locale[ty][name]["rotate"])
+                    rect = label.get_rect()
+                    locale[ty][name]["label"]["pl"] = (label, rect)
+                    label = pygame.transform.rotate(
+                        self.get(
+                            "fonts",
+                            locale[ty][name]["font"]).render(
+                                locale[ty][name]["en"],
+                                True,
+                                pygame.Color(
+                                    locale[ty][name]["color"])),
+                        locale[ty][name]["rotate"])
+                    rect = label.get_rect()
+                    locale[ty][name]["label"]["en"] = (label, rect)
 
     def get(self, section: str, subsection: str):
         try:
             return self.resources[section][subsection]
+        except KeyError:
+            return None
+
+    def get_label(self, board, name, lang):
+        try:
+            return locale[board][name]["label"][lang]
         except KeyError:
             return None
     # That's all Folks!

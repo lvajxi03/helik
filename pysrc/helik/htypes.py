@@ -33,6 +33,8 @@ class GameType(enum.IntEnum):
     PREPARE = 2
     PLAY = 3
     PAUSED = 4
+    KILLED = 5
+    GAMEOVER = 6
 
 
 @enum.unique

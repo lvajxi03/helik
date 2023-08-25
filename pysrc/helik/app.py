@@ -17,6 +17,7 @@ from helik.boards.hiscores import BoardHiscores
 from helik.boards.help import BoardHelp
 from helik.boards.settings import BoardSettings
 from helik.boards.game import BoardGame
+from helik.boards.quit import BoardQuit
 from helik.res import ResourceManager
 
 class Application():
@@ -42,7 +43,8 @@ class Application():
             BoardType.HELP: BoardHelp(self),
             BoardType.OPTIONS: BoardOptions(self),
             BoardType.SETTINGS: BoardSettings(self),
-            BoardType.GAME: BoardGame(self)
+            BoardType.GAME: BoardGame(self),
+            BoardType.QUIT: BoardQuit(self)
             }
         self.board_id = BoardType.WELCOME
 

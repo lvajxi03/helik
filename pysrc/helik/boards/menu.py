@@ -19,14 +19,8 @@ class BoardMenu(Board):
     def __init__(self, parent):
         super().__init__(parent)
         self.locale = locale[BoardType.MENU]
-        self.text1 = pygame.transform.rotate(self.res_man.get("fonts", "heading").render('HeliK!', True, pygame.Color(0, 0, 0, a=128)), 90)
-        self.text2 = pygame.transform.rotate(self.res_man.get("fonts", "heading").render('HeliK!', True, pygame.Color(224, 223, 74, a=128)), 90)
         self.menu_pos = 0
         self.rect_pos = None
-        self.r1 = self.text1.get_rect()
-        self.r1.left, self.r1.top = 210, 40
-        self.r2 = self.text2.get_rect()
-        self.r2.left, self.r2.top = 215, 45        
         self.color = pygame.Color(76, 76, 76)
         self.rectangles = []
         self.create_rectangles()
@@ -46,13 +40,22 @@ class BoardMenu(Board):
         """
         self.rectangles = []
         i = 0
-        for pos in self.locale["menu"][self.parent.lang]:
-            label = self.res_man.get("fonts", "menu").render(pos, True, pygame.Color(224, 224, 224, a=255))
-            rect = label.get_rect()
+        elems = self.res_man.get_label(BoardType.MENU, "menu", self.parent.lang)
+        for elem in elems:
+            label, rect = elem
             rect.left = 400
             rect.top = 100 + i * 80
             self.rectangles.append((label, rect))
             i += 1
+
+        # for pos in self.locale["menu"][self.parent.lang]:
+        #     label, rect = self.
+        #     label = self.res_man.get("fonts", "menu").render(pos, True, pygame.Color(224, 224, 224, a=255))
+        #     rect = label.get_rect()
+        #     rect.left = 400
+        #     rect.top = 100 + i * 80
+        #     self.rectangles.append((label, rect))
+        #     i += 1
         self.recalculate_pos()
         
     def on_paint(self):
@@ -62,13 +65,16 @@ class BoardMenu(Board):
         self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "default-background"), (0, 0))
         pygame.draw.rect(self.res_man.get("surfaces", "status"), self.status_color, self.status)
         self.res_man.get("surfaces", "buffer").blit(self.res_man.get("surfaces", "status"), (0, ARENA_HEIGHT - 60))
-        self.res_man.get("surfaces", "buffer").blit(self.text1, self.r1)
-        self.res_man.get("surfaces", "buffer").blit(self.text2, self.r2)
+        label, rect = self.res_man.get_label(BoardType.MENU, "title_shadow", "pl")
+        self.res_man.get("surfaces", "buffer").blit(label, (225, 55))
+        label, rect = self.res_man.get_label(BoardType.MENU, "title", "pl")
+        self.res_man.get("surfaces", "buffer").blit(label, (220, 50))
+        
         for re in self.rectangles:
             label, rect = re
             self.res_man.get("surfaces", "buffer").blit(label, rect)
         self.rect_pos_t = self.rect_pos.move(5, 5)
-        pygame.draw.rect(self.res_man.get("surfaces", "buffer"), pygame.Color(48, 48, 48), self.rect_pos_t, width=5, border_radius=20)
+        pygame.draw.rect(self.res_man.get("surfaces", "buffer"), pygame.Color(16, 16, 16), self.rect_pos_t, width=5, border_radius=20)
         pygame.draw.rect(self.res_man.get("surfaces", "buffer"), pygame.Color(207, 229, 32), self.rect_pos, width=5, border_radius=20)
 
     def on_timer(self, timer):
@@ -100,11 +106,8 @@ class BoardMenu(Board):
             else:
                 self.menu_pos = 6
         elif key == pygame.K_RETURN:
-            if self.menu_pos == 6:
-                self.parent.running = False
             bid = menupos2board(self.menu_pos)
             self.parent.change_board(bid)
         elif key == pygame.K_q:
-            self.parent.running = False
-    
+            self.parent.change_board(BoardType.QUIT)
         self.recalculate_pos()
