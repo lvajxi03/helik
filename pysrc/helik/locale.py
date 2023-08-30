@@ -93,5 +93,26 @@ locale = {
         }
     },
     BoardType.GAME: {
+        "1": {
+            "pl": "1",
+            "en": "1",
+            "font": "prepare",
+            "rotate": 0,
+            "color": "#e9df4a"
+            },
+        "2": {
+            "pl": "2",
+            "en": "2",
+            "font": "prepare",
+            "rotate": 0,
+            "color": "#e9df4a"
+            },
+        "3": {
+            "pl": "3",
+            "en": "3",
+            "font": "prepare",
+            "rotate": 0,
+            "color": "#e9df4a"
+            },
     }
 }

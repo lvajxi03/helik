@@ -6,6 +6,7 @@ All the resources
 
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.htypes import BoardType
 from helik.locale import locale
 
 
@@ -29,7 +30,8 @@ class ResourceManager:
             },
             "fonts": {
                 "heading": pygame.font.Font(basepath.joinpath('ehs.ttf'), 164),
-                "menu": pygame.font.Font(basepath.joinpath('ehs.ttf'), 48)
+                "menu": pygame.font.Font(basepath.joinpath('ehs.ttf'), 48),
+                "prepare": pygame.font.Font(basepath.joinpath('ehs.ttf'), 512)
             },
             "surfaces": {
                 "screen": pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT), flags=pygame.SRCALPHA, depth=32,
@@ -89,6 +91,13 @@ class ResourceManager:
                         locale[ty][name]["rotate"])
                     rect = label.get_rect()
                     locale[ty][name]["label"]["en"] = (label, rect)
+        # Quirks and hacks:
+        for l in ["1", "2", "3"]:
+            label, rect = self.get_label(BoardType.GAME, l, "pl")
+            rect = label.get_rect()
+            rect.center = (ARENA_WIDTH//2, ARENA_HEIGHT//2)
+            self.set_label(BoardType.GAME, l, "pl", (label, rect))
+            self.set_label(BoardType.GAME, l, "en", (label, rect))
 
     def get(self, section: str, subsection: str):
         try:
@@ -101,4 +110,19 @@ class ResourceManager:
             return locale[board][name]["label"][lang]
         except KeyError:
             return None
+
+    def set_label(self, board, name, lang, newval):
+        """
+        set_label is necessary for quirks and hacks
+        in `create_resources`
+        :param board: board type
+        :param name: label name
+        :param lang: current lang
+        :param newval: new tuple with label and its rect
+        """
+        try:
+            locale[board][name]["label"][lang] = newval
+        except KeyError:
+            return None
+
     # That's all Folks!

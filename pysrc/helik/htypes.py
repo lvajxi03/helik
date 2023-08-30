@@ -41,4 +41,8 @@ class GameType(enum.IntEnum):
 class TimerType(enum.IntEnum):
     WELCOME = pygame.USEREVENT + 1
     WELCOME_STOP = pygame.USEREVENT + 2
-    PLAY_MOVE = pygame.USEREVENT + 3
+    PREPARE = pygame.USEREVENT + 3
+    PREPARE_MINOR = pygame.USEREVENT + 4
+    PREPARE_STOP = pygame.USEREVENT + 5
+    PLAY_MOVE = pygame.USEREVENT + 6
+    PLAY_CHAIN = pygame.USEREVENT + 7
