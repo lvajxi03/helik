@@ -5,7 +5,7 @@ All the resources
 """
 
 import pygame
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
 from helik.htypes import BoardType
 from helik.locale import locale
 
@@ -26,7 +26,13 @@ class ResourceManager:
             "images": {
                 "default-background": pygame.image.load(basepath.joinpath("back-default.jpg")),
                 "helik-small-left": pygame.image.load(basepath.joinpath("copter-white-left.png")),
-                "helik-small-right": pygame.image.load(basepath.joinpath("copter-white-right.png"))
+                "helik-small-right": pygame.image.load(basepath.joinpath("copter-white-right.png")),
+                "line-0": pygame.image.load(basepath.joinpath("line-0.png")),
+                "wiezowiec-a": pygame.image.load(basepath.joinpath("wiezowiec-a.png"))
+            },
+            "colors": {
+                "status-color": pygame.Color(128, 128, 128, 128),
+                
             },
             "fonts": {
                 "heading": pygame.font.Font(basepath.joinpath('ehs.ttf'), 164),
@@ -40,6 +46,14 @@ class ResourceManager:
                 "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
             }
         }
+        # Objects:
+        # 1. Bottom objects
+        self.bottom_objects = []
+        for name in ["line-0", "wiezowiec-a"]:
+            obj = self.resources["images"][name]
+            rec = obj.get_rect()
+            rec.y = ARENA_HEIGHT - STATUS_HEIGHT - rec.h
+            self.bottom_objects.append((obj, rec))
         for ty in locale:
              for name in locale[ty]:
                 if isinstance(locale[ty][name]["pl"], list):
@@ -123,7 +137,7 @@ class ResourceManager:
         try:
             locale[board][name]["label"][lang] = newval
         except KeyError:
-            return None
+            pass
 
     def set_alpha(self, board, name, lang, alpha):
         try:

@@ -19,6 +19,7 @@ class ModePlay(Mode):
         Mode play class constructor
         """
         super().__init__(parent)
+        self.bottom_indices = [0, 0, 0, 0, 1, 0, 1, 1, 0, 1]
 
     def activate(self):
         """
@@ -46,5 +47,13 @@ class ModePlay(Mode):
         """
         Paint event handler
         """
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "default-background"), (0, 0))
+        self.res_man.get("surfaces", "buffer").blit(
+            self.res_man.get(
+                "images", "default-background"), (0, 0))
+        # Paint bottom objects
+        x = 0
+        for index in self.bottom_indices:
+            im, re = self.res_man.bottom_objects[index]
+            self.res_man.get("surfaces", "buffer").blit(im, (x, re.y))
+            x += re.w
         self.game.copter.on_paint()

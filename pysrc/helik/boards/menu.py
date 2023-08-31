@@ -8,7 +8,7 @@ import random
 import pygame
 from helik.boards.standard import Board
 from helik.htypes import TimerType, BoardType
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
 from helik.locale import locale
 from helik.utils import menupos2board
 
@@ -24,7 +24,7 @@ class BoardMenu(Board):
         self.color = pygame.Color(76, 76, 76)
         self.rectangles = []
         self.create_rectangles()
-        self.status = pygame.Rect(0, 0, ARENA_WIDTH, 60)
+        self.status = pygame.Rect(0, 0, ARENA_WIDTH, STATUS_HEIGHT)
         self.status_color = pygame.Color(128, 128, 128, 128)
 
     def recalculate_pos(self):
@@ -47,15 +47,6 @@ class BoardMenu(Board):
             rect.top = 100 + i * 80
             self.rectangles.append((label, rect))
             i += 1
-
-        # for pos in self.locale["menu"][self.parent.lang]:
-        #     label, rect = self.
-        #     label = self.res_man.get("fonts", "menu").render(pos, True, pygame.Color(224, 224, 224, a=255))
-        #     rect = label.get_rect()
-        #     rect.left = 400
-        #     rect.top = 100 + i * 80
-        #     self.rectangles.append((label, rect))
-        #     i += 1
         self.recalculate_pos()
         
     def on_paint(self):
@@ -63,8 +54,12 @@ class BoardMenu(Board):
         Paint event handler
         """
         self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "default-background"), (0, 0))
-        pygame.draw.rect(self.res_man.get("surfaces", "status"), self.status_color, self.status)
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("surfaces", "status"), (0, ARENA_HEIGHT - 60))
+        pygame.draw.rect(self.res_man.get(
+            "surfaces", "status"),
+                         self.res_man.get("colors", "status-color"), self.status)
+        self.res_man.get("surfaces", "buffer").blit(
+            self.res_man.get("surfaces", "status"),
+            (0, ARENA_HEIGHT - STATUS_HEIGHT))
         label, rect = self.res_man.get_label(BoardType.MENU, "title_shadow", "pl")
         self.res_man.get("surfaces", "buffer").blit(label, (225, 55))
         label, rect = self.res_man.get_label(BoardType.MENU, "title", "pl")

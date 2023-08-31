@@ -25,7 +25,7 @@ class Mode:
         """
         Deactivate event handler
         """
-        
+
     def on_paint(self):
         """
         Paint event handler

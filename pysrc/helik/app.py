@@ -4,9 +4,9 @@
 App module
 """
 
-import pygame
 import random
 from importlib.resources import files
+import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, APPLICATION_TITLE
 from helik.htypes import BoardType
 from helik.boards.welcome import BoardWelcome
@@ -81,7 +81,8 @@ class Application():
         Paint event handler
         """
         self.boards[self.board_id].on_paint()
-        self.res_man.get("surfaces", "screen").blit(self.res_man.get("surfaces", "buffer"), (0, 0))
+        self.res_man.get("surfaces", "screen").blit(
+            self.res_man.get("surfaces", "buffer"), (0, 0))
 
     def on_keyup(self, key):
         """
@@ -89,4 +90,3 @@ class Application():
         :param key: key code
         """
         self.boards[self.board_id].on_keyup(key)
-

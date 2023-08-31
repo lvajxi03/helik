@@ -37,7 +37,7 @@ class ModePrepare(Mode):
             self.timers[timer]()
         except KeyError:
             pass
-        
+
     def on_prepare(self):
         """
         Handle PREPARE timer
@@ -80,9 +80,11 @@ class ModePrepare(Mode):
         """
         Paint event handler
         """
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "default-background"), (0, 0))
+        self.res_man.get("surfaces", "buffer").blit(
+            self.res_man.get("images", "default-background"), (0, 0))
         try:
-            label, rect = self.res_man.get_label(BoardType.GAME, self.labels[self.index], self.arena.lang)
+            label, rect = self.res_man.get_label(
+                BoardType.GAME, self.labels[self.index], self.arena.lang)
             self.res_man.get("surfaces", "buffer").blit(label, rect)
         except KeyError:
             pass

@@ -31,8 +31,10 @@ locale = {
             "color": "#ffffff"
         },
         "menu": {
-            "pl": ["NOWA GRA", "OPCJE", "NAJLEPSZE WYNIKI", "USTAWIENIA", "POMOC", "O PROGRAMIE", "WYJSCIE"],
-            "en": ["NEW GAME", "OPTIONS", "HISCORES", "SETTINGS", "HELP", "ABOUT", "QUIT"],
+            "pl": ["NOWA GRA", "OPCJE", "NAJLEPSZE WYNIKI",
+                   "USTAWIENIA", "POMOC", "O PROGRAMIE", "WYJSCIE"],
+            "en": ["NEW GAME", "OPTIONS", "HISCORES", "SETTINGS",
+                   "HELP", "ABOUT", "QUIT"],
             "font": "menu",
             "rotate": 0,
             "color": "#fefefe"
