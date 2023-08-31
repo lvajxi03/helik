@@ -125,4 +125,17 @@ class ResourceManager:
         except KeyError:
             return None
 
+    def set_alpha(self, board, name, lang, alpha):
+        try:
+            rec = locale[board][name]["label"][lang]
+            if isinstance(rec, list):
+                for elem in list:
+                    lab, re = elem
+                    lab.set_alpha(alpha)
+            else:
+                lab, re = rec
+                lab.set_alpha(alpha)
+        except KeyError:
+            return None
+
     # That's all Folks!

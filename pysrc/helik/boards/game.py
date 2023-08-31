@@ -60,7 +60,6 @@ class BoardGame(Board):
         Activate event handler
         """
         self.change_mode(GameType.INIT)
-        pygame.time.set_timer(TimerType.PLAY_MOVE, 12)
 
     def deactivate(self):
         """
@@ -69,9 +68,9 @@ class BoardGame(Board):
 
     def on_paint(self):
         """
+        Paint event handler
         """
-        self.res_man.get("surfaces", "buffer").fill("#5b5b5b")
-        self.copter.on_paint()
+        self.modes[self.mode].on_paint()
 
     def on_keyup(self, key):
         """
