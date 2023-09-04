@@ -28,7 +28,8 @@ class ResourceManager:
                 "helik-small-left": pygame.image.load(basepath.joinpath("copter-white-left.png")),
                 "helik-small-right": pygame.image.load(basepath.joinpath("copter-white-right.png")),
                 "line-0": pygame.image.load(basepath.joinpath("line-0.png")),
-                "wiezowiec-a": pygame.image.load(basepath.joinpath("wiezowiec-a.png"))
+                "wiezowiec-a": pygame.image.load(basepath.joinpath("wiezowiec-a.png")),
+                "bullet-1": pygame.image.load(basepath.joinpath("bullet-1.png"))
             },
             "colors": {
                 "status-color": pygame.Color(128, 128, 128, 128),

@@ -31,10 +31,10 @@ class BoardSettings(Board):
         """
         """
 
-    def on_keydown(self, key):
+    def on_keyup(self, key):
         """
         # TODO
-        Keydown event handler
+        Key release event handler
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """

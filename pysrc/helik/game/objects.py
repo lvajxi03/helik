@@ -40,7 +40,7 @@ class Copter:
                 self.res_man.get("images", "helik-small-right"), (self.x, self.y))
         else:
             self.res_man.get("surfaces", "buffer").blit(
-                elf.res_man.get("images", "helik-small-left"), (self.x, self.y))
+                self.res_man.get("images", "helik-small-left"), (self.x, self.y))
 
     def on_keyup(self, key):
         """
