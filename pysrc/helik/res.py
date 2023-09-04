@@ -37,6 +37,7 @@ class ResourceManager:
             },
             "fonts": {
                 "heading": pygame.font.Font(basepath.joinpath('ehs.ttf'), 164),
+                "big-message": pygame.font.Font(basepath.joinpath('ehs.ttf'), 128),
                 "menu": pygame.font.Font(basepath.joinpath('ehs.ttf'), 48),
                 "prepare": pygame.font.Font(basepath.joinpath('ehs.ttf'), 512)
             },

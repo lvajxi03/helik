@@ -101,14 +101,14 @@ locale = {
             "font": "prepare",
             "rotate": 0,
             "color": "#e9df4a"
-            },
+        },
         "2": {
             "pl": "2",
             "en": "2",
             "font": "prepare",
             "rotate": 0,
             "color": "#e9df4a"
-            },
+        },
         "3": {
             "pl": "3",
             "en": "3",
@@ -116,5 +116,19 @@ locale = {
             "rotate": 0,
             "color": "#e9df4a"
             },
+        "paused": {
+            "pl": "GRA WSTRZYMANA",
+            "en": "GAME PAUSED",
+            "font": "big-message",
+            "color": "#e0df4a",
+            "rotate": 0
+        },
+        "continue": {
+            "pl": "NACISNIJ SPACJE BY KONTYNUOWAC",
+            "en": "PRESS SPACE TO CONTINUE",
+            "font": "menu",
+            "color": "#ffffff",
+            "rotate": 0
+        }
     }
 }

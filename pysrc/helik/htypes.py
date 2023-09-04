@@ -46,3 +46,11 @@ class TimerType(enum.IntEnum):
     PREPARE_STOP = pygame.USEREVENT + 5
     PLAY_MOVE = pygame.USEREVENT + 6
     PLAY_CHAIN = pygame.USEREVENT + 7
+
+
+@enum.unique
+class PlayOptionType(enum.IntEnum):
+    TRAINING = 0
+    EASY = 1
+    NORMAL = 2
+    HARD = 3

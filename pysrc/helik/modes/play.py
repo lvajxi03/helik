@@ -7,7 +7,7 @@ Mode play handler module
 
 import pygame
 from helik.modes.standard import Mode
-from helik.htypes import TimerType
+from helik.htypes import TimerType, GameType
 
 
 class ModePlay(Mode):
@@ -41,7 +41,10 @@ class ModePlay(Mode):
         Key release event handler
         :param key: key code
         """
-        self.game.copter.on_keyup(key)
+        if key == pygame.K_ESCAPE:
+            self.game.change_mode(GameType.PAUSED)
+        else:
+            self.game.copter.on_keyup(key)
 
     def on_paint(self):
         """

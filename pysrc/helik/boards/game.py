@@ -80,7 +80,7 @@ class BoardGame(Board):
         if key == pygame.K_q:
             self.parent.change_board(BoardType.MENU)
         else:
-            self.copter.on_keyup(key)
+            self.modes[self.mode].on_keyup(key)
 
     def on_timer(self, timer):
         """
