@@ -8,7 +8,7 @@ Game objects
 import enum
 import pygame
 from helik.htypes import TimerType
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
 
 
 @enum.unique
@@ -65,3 +65,56 @@ class Copter:
             else:
                 # TODO
                 self.y = -30
+
+
+class Movable:
+    """
+    Movable (buildings, etc) support class
+    """
+    def __init__(self, image, x):
+        self.image =  image
+        self.mask = pygame.mask.from_surface()
+        self.r = image.get_rect()
+        self.r.x = x
+        self.r.y = ARENA_HEIGHT - r.h - STATUS_HEIGHT
+        self.valid = True
+
+    def move(self, speed=1):
+        self.r.x -= speed
+        if self.r.x + self.r.w < 0:
+            self.valid = False
+        
+
+
+class FlyingObject:
+    """
+    Flying object handler class
+    """
+    def __init__(self, image, x):
+        self.image =  image
+        self.mask = pygame.mask.from_surface()
+        self.r = image.get_rect()
+        self.r.x = x
+        self.r.y = ARENA_HEIGHT - r.h - STATUS_HEIGHT
+        self.valid = True
+
+    def move(self):
+        """
+        Move object according to its policy
+        """
+        # Generic move:
+        self.r.x -= speed
+        if self.r.x + self.r.w < 0 or self.r.y + self.r.h < 0:
+            self.valid = False
+
+
+class TNT(FlyingObject):
+    """
+    TNT handler class
+    """
+    def __init__(self, image, x):
+        super().__init__(image, x)
+
+    def move(self):
+        """
+        """
