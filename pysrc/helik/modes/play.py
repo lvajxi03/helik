@@ -59,4 +59,6 @@ class ModePlay(Mode):
             im, re = self.res_man.bottom_objects[index]
             self.res_man.get("surfaces", "buffer").blit(im, (x, re.y))
             x += re.w
+
+        self.game.plane.on_paint(self.res_man.get("surfaces", "buffer"))
         self.game.copter.on_paint()

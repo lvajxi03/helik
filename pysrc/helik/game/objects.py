@@ -30,6 +30,8 @@ class Copter:
         self.x = 200
         self.y = 200
         self.direction = CopterDirection.RIGHT
+        self.images = [self.res_man.get("images", "helik-small-right"),
+                       self.res_man.get("images", "helik-small-left")]
 
     def on_paint(self):
         """
@@ -37,10 +39,10 @@ class Copter:
         """
         if self.direction == CopterDirection.RIGHT:
             self.res_man.get("surfaces", "buffer").blit(
-                self.res_man.get("images", "helik-small-right"), (self.x, self.y))
+                self.images[0], (self.x, self.y))
         else:
             self.res_man.get("surfaces", "buffer").blit(
-                self.res_man.get("images", "helik-small-left"), (self.x, self.y))
+                self.images[1], (self.x, self.y))
 
     def on_keyup(self, key):
         """
@@ -90,12 +92,12 @@ class FlyingObject:
     """
     Flying object handler class
     """
-    def __init__(self, image, x):
+    def __init__(self, image, x, y):
         self.image =  image
-        self.mask = pygame.mask.from_surface()
+        self.mask = pygame.mask.from_surface(self.image)
         self.r = image.get_rect()
         self.r.x = x
-        self.r.y = ARENA_HEIGHT - r.h - STATUS_HEIGHT
+        self.r.y = y
         self.valid = True
 
     def move(self):
@@ -107,13 +109,27 @@ class FlyingObject:
         if self.r.x + self.r.w < 0 or self.r.y + self.r.h < 0:
             self.valid = False
 
+    def on_paint(self, canvas):
+        """
+        Generic paint method
+        """
+        canvas.blit(self.image, self.r)
+
+
+class Plane(FlyingObject):
+    """
+    Plane handler class
+    """
+    def __init__(self, image, x, y):
+        super().__init__(image, x, y)
+
 
 class TNT(FlyingObject):
     """
     TNT handler class
     """
-    def __init__(self, image, x):
-        super().__init__(image, x)
+    def __init__(self, image, x, y):
+        super().__init__(image, x, y)
 
     def move(self):
         """
