@@ -123,6 +123,13 @@ locale = {
             "color": "#e0df4a",
             "rotate": 0
         },
+        "paused-shadow": {
+            "pl": "GRA WSTRZYMANA",
+            "en": "GAME PAUSED",
+            "font": "big-message",
+            "color": "#313131",
+            "rotate": 0
+        },
         "continue": {
             "pl": "NACISNIJ SPACJE BY KONTYNUOWAC",
             "en": "PRESS SPACE TO CONTINUE",

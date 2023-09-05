@@ -29,7 +29,9 @@ class ResourceManager:
                 "helik-small-right": pygame.image.load(basepath.joinpath("copter-white-right.png")),
                 "line-0": pygame.image.load(basepath.joinpath("line-0.png")),
                 "wiezowiec-a": pygame.image.load(basepath.joinpath("wiezowiec-a.png")),
-                "bullet-1": pygame.image.load(basepath.joinpath("bullet-1.png"))
+                "bullet-1": pygame.image.load(basepath.joinpath("bullet-1.png")),
+                "flag-pl": pygame.image.load(basepath.joinpath("flag_pl.png")),
+                "flag-en": pygame.image.load(basepath.joinpath("flag_en.png"))
             },
             "colors": {
                 "status-color": pygame.Color(128, 128, 128, 128),
@@ -46,7 +48,11 @@ class ResourceManager:
                                                   vsync=1),
                 "buffer": pygame.Surface((ARENA_WIDTH, ARENA_HEIGHT), pygame.SRCALPHA),
                 "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
-            }
+            },
+            "lang-rectangles": {
+                "pl": pygame.Rect(ARENA_WIDTH - 154, ARENA_HEIGHT - 58, 75, 56),
+                "en": pygame.Rect(ARENA_WIDTH - 77, ARENA_HEIGHT - 58, 75, 56)
+                }
         }
         # Objects:
         # 1. Bottom objects
@@ -73,6 +79,7 @@ class ResourceManager:
                             locale[ty][name]["rotate"])
                         rect = label.get_rect()
                         locale[ty][name]["label"]["pl"].append((label, rect))
+                    for elem in locale[ty][name]["en"]:
                         label = pygame.transform.rotate(
                             self.get(
                                 "fonts",
@@ -118,6 +125,17 @@ class ResourceManager:
     def get(self, section: str, subsection: str):
         try:
             return self.resources[section][subsection]
+        except KeyError:
+            return None
+
+    def get_section(self, section: str):
+        """
+        Get all section data from resources
+        :param section: section name
+        :return section data (dict) or None
+        """
+        try:
+            return self.resources[section]
         except KeyError:
             return None
 

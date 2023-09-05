@@ -60,9 +60,14 @@ class BoardMenu(Board):
         self.res_man.get("surfaces", "buffer").blit(
             self.res_man.get("surfaces", "status"),
             (0, ARENA_HEIGHT - STATUS_HEIGHT))
-        label, rect = self.res_man.get_label(BoardType.MENU, "title_shadow", "pl")
+
+        # Lang flags
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "flag-pl"), self.res_man.get("lang-rectangles", "pl"))
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "flag-en"), self.res_man.get("lang-rectangles", "en"))
+
+        label, rect = self.res_man.get_label(BoardType.MENU, "title_shadow", self.parent.lang)
         self.res_man.get("surfaces", "buffer").blit(label, (225, 55))
-        label, rect = self.res_man.get_label(BoardType.MENU, "title", "pl")
+        label, rect = self.res_man.get_label(BoardType.MENU, "title", self.parent.lang)
         self.res_man.get("surfaces", "buffer").blit(label, (220, 50))
         
         for re in self.rectangles:
@@ -79,7 +84,9 @@ class BoardMenu(Board):
 
     def activate(self):
         """
+        Activate board event handler
         """
+        self.create_rectangles()
 
     def deactivate(self):
         """
@@ -106,3 +113,21 @@ class BoardMenu(Board):
         elif key == pygame.K_q:
             self.parent.change_board(BoardType.QUIT)
         self.recalculate_pos()
+
+    def on_mouseup(self, button, pos):
+        """
+        Mouse up event handler
+        :param button: button number
+        :param pos: cursor position
+        """
+        ch_lang = False
+        if button == 1:
+            rects = self.res_man.get_section("lang-rectangles")
+            for lang in rects:
+                if rects[lang].collidepoint(pos):
+                    self.parent.lang = lang
+                    ch_lang = True
+                    self.create_rectangles()
+        if not ch_lang:
+            # TODO
+            pass

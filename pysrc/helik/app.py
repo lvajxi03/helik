@@ -31,7 +31,7 @@ class Application():
         random.seed()
         pygame.init()
         self.res_man = ResourceManager(files('helik.resources'))
-        self.lang = "pl"
+        self.lang = "en"
         pygame.display.set_caption(APPLICATION_TITLE)
         self.clock = pygame.time.Clock()
         self.running = True
@@ -64,6 +64,8 @@ class Application():
                     self.running = False
                 elif event.type == pygame.KEYUP:
                     self.on_keyup(event.key)
+                elif event.type == pygame.MOUSEBUTTONUP:
+                    self.on_mouseup(event.button, event.pos)
                 elif event.type > pygame.USEREVENT:
                     self.on_timer(event.type)
             self.on_paint()
@@ -73,7 +75,19 @@ class Application():
         # Eventually,
         pygame.quit()
 
+    def on_mouseup(self, button, pos):
+        """
+        Delegate mouse button up event
+        :param button: button number
+        :param pos: cursor position
+        """
+        self.boards[self.board_id].on_mouseup(button, pos)
+
     def on_timer(self, timer):
+        """
+        Delegate timer event
+        :param timer: timer identifier
+        """
         self.boards[self.board_id].on_timer(timer)
 
     def on_paint(self):

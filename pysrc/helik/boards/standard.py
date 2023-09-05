@@ -31,6 +31,13 @@ class Board():
         :param key: key code
         """
 
+    def on_mouseup(self, button, pos):
+        """
+        Mouse up event handler
+        :param button: button number
+        :param pos: cursor position
+        """
+
     def on_paint(self):
         """
         Paint handler
@@ -40,9 +47,3 @@ class Board():
         """
         Timer handler
         """
-
-
-class BoardAbout(Board):
-    """
-    About board
-    """
