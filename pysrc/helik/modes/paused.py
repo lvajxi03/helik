@@ -28,15 +28,15 @@ class ModePaused(Mode):
         self.res_man.get("surfaces", "buffer").blit(
             self.res_man.get(
                 "images", "default-background"), (0, 0))
-        label, rect = self.res_man.get_label(BoardType.GAME, "paused-shadow", "pl")
+        label, rect = self.res_man.get_label(BoardType.GAME, "paused-shadow", self.arena.lang)
         rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
         rect.x += 5
         rect.y += 5
         self.res_man.get("surfaces", "buffer").blit(label, rect)
-        label, rect = self.res_man.get_label(BoardType.GAME, "paused", "pl")
+        label, rect = self.res_man.get_label(BoardType.GAME, "paused", self.arena.lang)
         rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
         self.res_man.get("surfaces", "buffer").blit(label, rect)
-        label, rect = self.res_man.get_label(BoardType.GAME, "continue", "pl")
+        label, rect = self.res_man.get_label(BoardType.GAME, "continue", self.arena.lang)
         rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
         rect.y += 100
         self.res_man.get("surfaces", "buffer").blit(label, rect)
