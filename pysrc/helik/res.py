@@ -35,10 +35,10 @@ class ResourceManager:
             },
             "colors": {
                 "status-color": pygame.Color(128, 128, 128, 128),
-                
             },
             "fonts": {
                 "heading": pygame.font.Font(basepath.joinpath('ehs.ttf'), 164),
+                "heading2": pygame.font.Font(basepath.joinpath('ehs.ttf'), 96),
                 "big-message": pygame.font.Font(basepath.joinpath('ehs.ttf'), 128),
                 "menu": pygame.font.Font(basepath.joinpath('ehs.ttf'), 48),
                 "prepare": pygame.font.Font(basepath.joinpath('ehs.ttf'), 512)

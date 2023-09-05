@@ -31,7 +31,7 @@ locale = {
             "color": "#ffffff"
         },
         "menu": {
-            "pl": ["NOWA GRA", "OPCJE", "NAJLEPSZE WYNIKI",
+            "pl": ["NOWA GRA", "OPCJE", "NAJLEPSI",
                    "USTAWIENIA", "POMOC", "O PROGRAMIE", "WYJSCIE"],
             "en": ["NEW GAME", "OPTIONS", "HISCORES", "SETTINGS",
                    "HELP", "ABOUT", "QUIT"],
@@ -44,27 +44,48 @@ locale = {
         "title": {
             "pl": "O programie",
             "en": "About",
-            "font": "menu",
-            "rotate": 0,
+            "font": "heading2",
+            "rotate": 90,
             "color": "#e0df4a"
-            }
+        },
+        "title-shadow": {
+            "pl": "O programie",
+            "en": "About",
+            "font": "heading2",
+            "rotate": 90,
+            "color": "#313131"
+        }
     },
     BoardType.HELP: {
         "title": {
             "pl": "Pomoc",
             "en": "Help",
-            "font": "menu",
-            "rotate": 0,
+            "font": "heading2",
+            "rotate": 90,
             "color": "#e0df4a"
+        },
+        "title-shadow": {
+            "pl": "Pomoc",
+            "en": "HELP",
+            "font": "heading2",
+            "rotate": 90,
+            "color": "#313131"
         }
     },
     BoardType.HISCORES: {
         "title": {
-            "pl": "NAJLEPSZE WYNIKI",
+            "pl": "NAJLEPSI",
             "en": "HISCORES",
-            "font": "menu",
-            "rotate": 0,
+            "font": "heading2",
+            "rotate": 90,
             "color": "#e0df4a"
+        },
+        "title-shadow": {
+            "pl": "NAJLEPSI",
+            "en": "HISCORES",
+            "font": "heading2",
+            "rotate": 90,
+            "color": "#313131"
         }
     },
     BoardType.NEWSCORE: {
@@ -78,20 +99,34 @@ locale = {
     },
     BoardType.OPTIONS: {
         "title": {
-            "pl": "Opcje gry",
-            "en": "Game Options",
-            "font": "menu",
-            "rotate": 0,
+            "pl": "Opcje",
+            "en": "Options",
+            "font": "heading2",
+            "rotate": 90,
             "color": "#e0df4a"
+        },
+        "title-shadow": {
+            "pl": "Opcje",
+            "en": "Options",
+            "font": "heading2",
+            "rotate": 90,
+            "color": "#313131"
         }
     },
     BoardType.SETTINGS: {
         "title": {
             "pl": "Ustawienia",
             "en": "Settings",
-            "font": "menu",
-            "rotate": 0,
+            "font": "heading2",
+            "rotate": 90,
             "color": "#e0df4a"
+        },
+        "title-shadow": {
+            "pl": "Ustawienia",
+            "en": "Settings",
+            "font": "heading2",
+            "rotate": 90,
+            "color": "#313131"
         }
     },
     BoardType.GAME: {
