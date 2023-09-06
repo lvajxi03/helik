@@ -20,6 +20,7 @@ class ModePlay(Mode):
         Mode play class constructor
         """
         super().__init__(parent)
+        self.last_movable = 0
         self.movables = []
 
     def create_movables(self):
@@ -33,14 +34,17 @@ class ModePlay(Mode):
             m = Movable(im, x)
             x += re.w
             self.movables.append(m)
+        self.last_movable = len(self.movables) - 1
 
     def activate(self):
         """
         Activate event handler
         """
+        self.last_movable = 0
         self.create_movables()
+        self.last_movable = len(self.movables) - 1
         pygame.time.set_timer(TimerType.COPTER, 10)
-        pygame.time.set_timer(TimerType.MOVABLES, 1)
+        pygame.time.set_timer(TimerType.MOVABLES, 6)
 
     def deactivate(self):
         pygame.time.set_timer(TimerType.MOVABLES, 0)
@@ -57,13 +61,12 @@ class ModePlay(Mode):
         elif timer == TimerType.MOVABLES:
             for m in self.movables:
                 m.move()
-            m = self.movables[0]
-            if not m.valid:
-                last = self.movables[-1]
-                m.r.x = last.r.x + last.r.w
-                m.valid = True
-                self.movables = self.movables[1:]
-                self.movables.append(m)
+                if not m.valid:
+                    mlast = self.movables[self.last_movable]
+                    m.r.x = mlast.r.x + mlast.r.w
+                    m.valid = True
+                    self.last_movable += 1
+                    self.last_movable %= len(self.movables)
 
     def on_keyup(self, key):
         """
