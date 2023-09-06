@@ -39,7 +39,8 @@ class BoardGame(Board):
             GameType.KILLED: ModeKilled(self)
             }
         self.game_data = {
-            'points': 0
+            'points': 0,
+            'level': 0
             }
 
     def change_mode(self, newmode):
@@ -65,7 +66,6 @@ class BoardGame(Board):
     def deactivate(self):
         """
         """
-        pygame.time.set_timer(TimerType.PLAY_MOVE, 0)
 
     def on_paint(self):
         """

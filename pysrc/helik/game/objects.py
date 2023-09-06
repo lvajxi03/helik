@@ -61,7 +61,7 @@ class Copter:
         """
         Timer event handler
         """
-        if timer == TimerType.PLAY_MOVE:
+        if timer == TimerType.COPTER:
             if self.y <= ARENA_HEIGHT-60:
                 self.y += 1
             else:
@@ -75,10 +75,10 @@ class Movable:
     """
     def __init__(self, image, x):
         self.image =  image
-        self.mask = pygame.mask.from_surface()
+        self.mask = pygame.mask.from_surface(image)
         self.r = image.get_rect()
         self.r.x = x
-        self.r.y = ARENA_HEIGHT - r.h - STATUS_HEIGHT
+        self.r.y = ARENA_HEIGHT - self.r.h - STATUS_HEIGHT
         self.valid = True
 
     def move(self, speed=1):

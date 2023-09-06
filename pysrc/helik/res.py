@@ -56,7 +56,14 @@ class ResourceManager:
             "lang-rectangles": {
                 "pl": pygame.Rect(ARENA_WIDTH - 154, ARENA_HEIGHT - 58, 75, 56),
                 "en": pygame.Rect(ARENA_WIDTH - 77, ARENA_HEIGHT - 58, 75, 56)
-                }
+                },
+            "levels": [
+                [0, 0, 0, 1, 0, 1, 2, 1, 0, 1, 3, 1, 0, 2, 0, 1, 2],
+                [0, 0, 1, 2, 3, 2, 1, 0, 1, 2, 3, 2, 1, 0, 1, 2, 3],
+                [0, 1, 2, 3, 2, 1, 0, 1, 2, 3, 2, 1, 0, 1, 2, 3, 2],
+                [1, 2, 3, 2, 1, 2, 2, 3, 3, 2, 2, 1, 1, 2, 2, 3, 2],
+                [2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 3, 2, 2]
+                ]
         }
         # Objects:
         # 1. Bottom objects
@@ -66,6 +73,8 @@ class ResourceManager:
             rec = obj.get_rect()
             rec.y = ARENA_HEIGHT - STATUS_HEIGHT - rec.h
             self.bottom_objects.append((obj, rec))
+
+        # Labels
         for ty in locale:
              for name in locale[ty]:
                 if isinstance(locale[ty][name]["pl"], list):
@@ -130,6 +139,12 @@ class ResourceManager:
         try:
             return self.resources[section][subsection]
         except KeyError:
+            return None
+
+    def get_index(self, section, index: int):
+        try:
+            return self.resources[section][index]
+        except IndexError:
             return None
 
     def get_section(self, section: str):
