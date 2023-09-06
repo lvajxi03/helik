@@ -19,7 +19,7 @@ class ModePlay(Mode):
         Mode play class constructor
         """
         super().__init__(parent)
-        self.bottom_indices = [0, 0, 0, 0, 1, 0, 1, 1, 0, 1]
+        self.bottom_indices = [4, 0, 1, 2, 3, 0, 1, 1, 0, 1]
 
     def activate(self):
         """

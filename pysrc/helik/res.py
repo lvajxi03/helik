@@ -30,6 +30,9 @@ class ResourceManager:
                 "plane-small-left": pygame.image.load(basepath.joinpath("samolot.png")),
                 "line-0": pygame.image.load(basepath.joinpath("line-0.png")),
                 "wiezowiec-a": pygame.image.load(basepath.joinpath("wiezowiec-a.png")),
+                "wiezowiec-b": pygame.image.load(basepath.joinpath("wiezowiec-b.png")),
+                "fabryka-a": pygame.image.load(basepath.joinpath("fabryka-a.png")),
+                "dom-a": pygame.image.load(basepath.joinpath("dom-a.png")),
                 "bullet-1": pygame.image.load(basepath.joinpath("bullet-1.png")),
                 "flag-pl": pygame.image.load(basepath.joinpath("flag_pl.png")),
                 "flag-en": pygame.image.load(basepath.joinpath("flag_en.png"))
@@ -58,7 +61,7 @@ class ResourceManager:
         # Objects:
         # 1. Bottom objects
         self.bottom_objects = []
-        for name in ["line-0", "wiezowiec-a"]:
+        for name in ["line-0", "wiezowiec-a", "wiezowiec-b", "fabryka-a", "dom-a"]:
             obj = self.resources["images"][name]
             rec = obj.get_rect()
             rec.y = ARENA_HEIGHT - STATUS_HEIGHT - rec.h
