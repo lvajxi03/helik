@@ -34,6 +34,7 @@ class ResourceManager:
                 "fabryka-a": pygame.image.load(basepath.joinpath("fabryka-a.png")),
                 "dom-a": pygame.image.load(basepath.joinpath("dom-a.png")),
                 "bullet-1": pygame.image.load(basepath.joinpath("bullet-1.png")),
+                "bullet-2": pygame.image.load(basepath.joinpath("bullet-2.png")),
                 "flag-pl": pygame.image.load(basepath.joinpath("flag_pl.png")),
                 "flag-en": pygame.image.load(basepath.joinpath("flag_en.png"))
             },

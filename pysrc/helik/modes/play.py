@@ -91,5 +91,9 @@ class ModePlay(Mode):
             if movable.valid:
                 self.res_man.get("surfaces", "buffer").blit(movable.image, movable.r)
 
+        # TODO - remove obsolete paints
         self.game.plane.on_paint(self.res_man.get("surfaces", "buffer"))
+        self.res_man.get("surfaces", "buffer").blit(
+            self.res_man.get(
+                "images", "bullet-2"), (300, 300))
         self.game.copter.on_paint()
