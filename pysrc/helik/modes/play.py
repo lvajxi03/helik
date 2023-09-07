@@ -22,6 +22,8 @@ class ModePlay(Mode):
         super().__init__(parent)
         self.last_movable = 0
         self.movables = []
+        self.seconds = 0
+        self.mspeed = 30
 
     def create_movables(self):
         """
@@ -44,11 +46,13 @@ class ModePlay(Mode):
         self.create_movables()
         self.last_movable = len(self.movables) - 1
         pygame.time.set_timer(TimerType.COPTER, 10)
-        pygame.time.set_timer(TimerType.MOVABLES, 6)
+        pygame.time.set_timer(TimerType.MOVABLES, self.mspeed)
+        pygame.time.set_timer(TimerType.SECONDS, 1000)
 
     def deactivate(self):
         pygame.time.set_timer(TimerType.MOVABLES, 0)
         pygame.time.set_timer(TimerType.COPTER, 0)
+        pygame.time.set_timer(TimerType.SECONDS, 0)
 
     def on_timer(self, timer):
         """
@@ -67,6 +71,14 @@ class ModePlay(Mode):
                     m.valid = True
                     self.last_movable += 1
                     self.last_movable %= len(self.movables)
+        elif timer == TimerType.SECONDS:
+            self.seconds += 1
+            if self.seconds % 10 == 0:
+                self.mspeed -= 2
+                print(self.mspeed)
+                if self.mspeed > 0:
+                    pygame.time.set_timer(TimerType.MOVABLES, 0)
+                    pygame.time.set_timer(TimerType.MOVABLES, self.mspeed)
 
     def on_keyup(self, key):
         """
