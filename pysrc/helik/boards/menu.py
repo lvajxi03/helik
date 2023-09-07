@@ -54,9 +54,7 @@ class BoardMenu(Board):
         Paint event handler
         """
         self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "default-background"), (0, 0))
-        pygame.draw.rect(self.res_man.get(
-            "surfaces", "status"),
-                         self.res_man.get("colors", "status-color"), self.status)
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("surfaces", "status"), (0, ARENA_HEIGHT - 60))
         self.res_man.get("surfaces", "buffer").blit(
             self.res_man.get("surfaces", "status"),
             (0, ARENA_HEIGHT - STATUS_HEIGHT))

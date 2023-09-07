@@ -36,7 +36,8 @@ class ResourceManager:
                 "bullet-1": pygame.image.load(basepath.joinpath("bullet-1.png")),
                 "bullet-2": pygame.image.load(basepath.joinpath("bullet-2.png")),
                 "flag-pl": pygame.image.load(basepath.joinpath("flag_pl.png")),
-                "flag-en": pygame.image.load(basepath.joinpath("flag_en.png"))
+                "flag-en": pygame.image.load(basepath.joinpath("flag_en.png")),
+                "heart-a": pygame.image.load(basepath.joinpath("heart-a.png"))
             },
             "colors": {
                 "status-color": pygame.Color(128, 128, 128, 128),
@@ -135,6 +136,10 @@ class ResourceManager:
             rect.center = (ARENA_WIDTH//2, ARENA_HEIGHT//2)
             self.set_label(BoardType.GAME, l, "pl", (label, rect))
             self.set_label(BoardType.GAME, l, "en", (label, rect))
+
+        # Status:
+        pygame.draw.rect(self.get("surfaces", "status"),
+                         self.get("colors", "status-color"), (0, 0, ARENA_WIDTH, 60))
 
     def get(self, section: str, subsection: str):
         try:

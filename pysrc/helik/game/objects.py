@@ -98,6 +98,7 @@ class FlyingObject:
         self.r = image.get_rect()
         self.r.x = x
         self.r.y = y
+        self.base_y = y
         self.valid = True
 
     def move(self):
@@ -133,4 +134,6 @@ class TNT(FlyingObject):
 
     def move(self):
         """
+        Move object according to its policy
         """
+        self.r.x -= 1

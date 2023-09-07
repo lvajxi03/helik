@@ -9,7 +9,7 @@ import pygame
 from helik.modes.standard import Mode
 from helik.game.objects import Movable
 from helik.htypes import TimerType, GameType
-
+from helik.hdefs import ARENA_HEIGHT
 
 class ModePlay(Mode):
     """
@@ -85,6 +85,10 @@ class ModePlay(Mode):
         self.res_man.get("surfaces", "buffer").blit(
             self.res_man.get(
                 "images", "default-background"), (0, 0))
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("surfaces", "status"), (0, ARENA_HEIGHT - 60))
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "heart-a"), (10, ARENA_HEIGHT - 54))
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "heart-a"), (70, ARENA_HEIGHT - 54))
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "heart-a"), (130, ARENA_HEIGHT - 54))
         # Paint bottom objects
         x = 0
         for movable in self.movables:
