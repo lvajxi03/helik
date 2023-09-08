@@ -22,6 +22,9 @@ class ModePlay(Mode):
         super().__init__(parent)
         self.last_movable = 0
         self.movables = []
+        self.objects = []
+        self.bullets_from = []
+        self.bullets_to = []
         self.seconds = 0
         self.mspeed = 30
 
@@ -75,7 +78,6 @@ class ModePlay(Mode):
             self.seconds += 1
             if self.seconds % 10 == 0:
                 self.mspeed -= 2
-                print(self.mspeed)
                 if self.mspeed > 0:
                     pygame.time.set_timer(TimerType.MOVABLES, 0)
                     pygame.time.set_timer(TimerType.MOVABLES, self.mspeed)
@@ -98,9 +100,9 @@ class ModePlay(Mode):
             self.res_man.get(
                 "images", "default-background"), (0, 0))
         self.res_man.get("surfaces", "buffer").blit(self.res_man.get("surfaces", "status"), (0, ARENA_HEIGHT - 60))
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "heart-a"), (10, ARENA_HEIGHT - 54))
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "heart-a"), (70, ARENA_HEIGHT - 54))
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "heart-a"), (130, ARENA_HEIGHT - 54))
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "heart-b"), (10, ARENA_HEIGHT - 54))
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "heart-b"), (70, ARENA_HEIGHT - 54))
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "heart-b"), (130, ARENA_HEIGHT - 54))
         # Paint bottom objects
         x = 0
         for movable in self.movables:
