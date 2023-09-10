@@ -25,8 +25,9 @@ class Copter:
     Copter player class
     """
     def __init__(self, parent):
-        self.parent = parent
-        self.res_man = parent.parent.res_man
+        self.game = parent
+        self.res_man = self.game.arena.res_man
+        self.buffer = self.game.buffer
         self.x = 200
         self.y = 200
         self.direction = CopterDirection.RIGHT
@@ -80,12 +81,27 @@ class Movable:
         self.r.x = x
         self.r.y = ARENA_HEIGHT - self.r.h - STATUS_HEIGHT
         self.valid = True
+        if self.r.x > ARENA_WIDTH:
+            self.visible = False
+        else:
+            self.visible = True
 
     def move(self, speed=1):
         self.r.x -= speed
         if self.r.x + self.r.w < 0:
             self.valid = False
-        
+            self.visible = False
+        else:
+            self.valid = True
+            self.visible = True
+
+    def on_paint(self, canvas):
+        """
+        Paint event handler
+        :param canvas: surface to blit into
+        """
+        if self.visible:
+            canvas.blit(self.image, self.r)
 
 
 class FlyingObject:
@@ -100,6 +116,12 @@ class FlyingObject:
         self.r.y = y
         self.base_y = y
         self.valid = True
+        if self.r.x > ARENA_WIDTH:
+            self.visible = False
+        elif self.r.y < 0:
+            self.visible = False
+        else:
+            self.visible = True
 
     def move(self):
         """
@@ -109,12 +131,14 @@ class FlyingObject:
         self.r.x -= speed
         if self.r.x + self.r.w < 0 or self.r.y + self.r.h < 0:
             self.valid = False
+            self.visible = False
 
     def on_paint(self, canvas):
         """
         Generic paint method
         """
-        canvas.blit(self.image, self.r)
+        if self.visible:
+            canvas.blit(self.image, self.r)
 
 
 class Plane(FlyingObject):
@@ -124,6 +148,21 @@ class Plane(FlyingObject):
     def __init__(self, image, x, y):
         super().__init__(image, x, y)
 
+
+class BulletFrom(FlyingObject):
+    """
+    BulletFrom handler class
+    """
+    def __init__(self, image, x, y):
+        super().__init__(image, x, y)
+
+
+class BulletTo(FlyingObject):
+    """
+    BulletTo handler class
+    """
+    def __init__(self, image, x, y):
+        super().__init__(image, x, y)
 
 class TNT(FlyingObject):
     """

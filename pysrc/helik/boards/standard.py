@@ -12,8 +12,9 @@ class Board():
         """
         Class constructor
         """
-        self.parent = parent
-        self.res_man = self.parent.res_man
+        self.arena = parent
+        self.res_man = self.arena.res_man
+        self.buffer = self.res_man.get("surfaces", "buffer")
 
     def activate(self):
         """

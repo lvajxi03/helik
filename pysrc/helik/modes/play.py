@@ -26,7 +26,7 @@ class ModePlay(Mode):
         self.bullets_from = []
         self.bullets_to = []
         self.seconds = 0
-        self.mspeed = 30
+        self.mspeed = 21
 
     def create_movables(self):
         """
@@ -103,11 +103,15 @@ class ModePlay(Mode):
         self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "heart-b"), (10, ARENA_HEIGHT - 54))
         self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "heart-b"), (70, ARENA_HEIGHT - 54))
         self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "heart-b"), (130, ARENA_HEIGHT - 54))
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("digits", "0"), (200, ARENA_HEIGHT - 52))
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("digits", "1"), (235, ARENA_HEIGHT - 52))
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("digits", "2"), (270, ARENA_HEIGHT - 52))
+        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("digits", "3"), (305, ARENA_HEIGHT - 52))
         # Paint bottom objects
         x = 0
         for movable in self.movables:
-            if movable.valid:
-                self.res_man.get("surfaces", "buffer").blit(movable.image, movable.r)
+            if movable.visible:
+                movable.on_paint(self.res_man.get("surfaces", "buffer"))
 
         # TODO - remove obsolete paints
         self.game.plane.on_paint(self.res_man.get("surfaces", "buffer"))

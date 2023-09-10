@@ -20,15 +20,15 @@ class BoardHiscores(Board):
         """
         Paint event handler
         """
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "default-background"), (0, 0))
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("surfaces", "status"), (0, ARENA_HEIGHT - 60))
+        self.buffer.blit(self.res_man.get("images", "default-background"), (0, 0))
+        self.buffer.blit(self.res_man.get("surfaces", "status"), (0, ARENA_HEIGHT - 60))
 
         # Lang flags
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "flag-pl"), self.res_man.get("lang-rectangles", "pl"))
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "flag-en"), self.res_man.get("lang-rectangles", "en"))
-        l, r = self.res_man.get_label(BoardType.HISCORES, "title-shadow", self.parent.lang)
+        self.buffer.blit(self.res_man.get("images", "flag-pl"), self.res_man.get("lang-rectangles", "pl"))
+        self.buffer.blit(self.res_man.get("images", "flag-en"), self.res_man.get("lang-rectangles", "en"))
+        l, r = self.res_man.get_label(BoardType.HISCORES, "title-shadow", self.arena.lang)
         self.res_man.get("surfaces", "buffer").blit(l, (55, 45))
-        l, r = self.res_man.get_label(BoardType.HISCORES, "title", self.parent.lang)
+        l, r = self.res_man.get_label(BoardType.HISCORES, "title", self.arena.lang)
         self.res_man.get("surfaces", "buffer").blit(l, (50, 50))
 
     def activate(self):
@@ -45,7 +45,7 @@ class BoardHiscores(Board):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        self.parent.change_board(BoardType.MENU)
+        self.arena.change_board(BoardType.MENU)
 
     def on_mouseup(self, button, pos):
         """
@@ -58,9 +58,9 @@ class BoardHiscores(Board):
             rects = self.res_man.get_section("lang-rectangles")
             for lang in rects:
                 if rects[lang].collidepoint(pos):
-                    self.parent.lang = lang
+                    self.arena.lang = lang
                     ch_lang = True
                     # TODO: hiscores-related ops here
         if not ch_lang:
             # TODO
-            self.parent.change_board(BoardType.MENU)
+            self.arena.change_board(BoardType.MENU)

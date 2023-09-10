@@ -21,4 +21,4 @@ class BoardQuit(Board):
         """
         Activate board event handler
         """
-        self.parent.running = False
+        self.arena.running = False

@@ -40,7 +40,7 @@ class BoardMenu(Board):
         """
         self.rectangles = []
         i = 0
-        elems = self.res_man.get_label(BoardType.MENU, "menu", self.parent.lang)
+        elems = self.res_man.get_label(BoardType.MENU, "menu", self.arena.lang)
         for elem in elems:
             label, rect = elem
             rect.left = 400
@@ -60,12 +60,12 @@ class BoardMenu(Board):
             (0, ARENA_HEIGHT - STATUS_HEIGHT))
 
         # Lang flags
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "flag-pl"), self.res_man.get("lang-rectangles", "pl"))
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "flag-en"), self.res_man.get("lang-rectangles", "en"))
+        self.buffer.blit(self.res_man.get("images", "flag-pl"), self.res_man.get("lang-rectangles", "pl"))
+        self.buffer.blit(self.res_man.get("images", "flag-en"), self.res_man.get("lang-rectangles", "en"))
 
-        label, rect = self.res_man.get_label(BoardType.MENU, "title_shadow", self.parent.lang)
+        label, rect = self.res_man.get_label(BoardType.MENU, "title_shadow", self.arena.lang)
         self.res_man.get("surfaces", "buffer").blit(label, (225, 55))
-        label, rect = self.res_man.get_label(BoardType.MENU, "title", self.parent.lang)
+        label, rect = self.res_man.get_label(BoardType.MENU, "title", self.arena.lang)
         self.res_man.get("surfaces", "buffer").blit(label, (220, 50))
         
         for re in self.rectangles:
@@ -107,9 +107,9 @@ class BoardMenu(Board):
                 self.menu_pos = 6
         elif key == pygame.K_RETURN:
             bid = menupos2board(self.menu_pos)
-            self.parent.change_board(bid)
+            self.arena.change_board(bid)
         elif key == pygame.K_q:
-            self.parent.change_board(BoardType.QUIT)
+            self.arena.change_board(BoardType.QUIT)
         self.recalculate_pos()
 
     def on_mouseup(self, button, pos):
@@ -123,7 +123,7 @@ class BoardMenu(Board):
             rects = self.res_man.get_section("lang-rectangles")
             for lang in rects:
                 if rects[lang].collidepoint(pos):
-                    self.parent.lang = lang
+                    self.arena.lang = lang
                     ch_lang = True
                     self.create_rectangles()
         if not ch_lang:

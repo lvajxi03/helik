@@ -13,7 +13,7 @@ class Mode:
     """
     def __init__(self, game):
         self.game = game
-        self.arena = self.game.parent
+        self.arena = self.game.arena
         self.res_man = self.arena.res_man
 
     def activate(self):

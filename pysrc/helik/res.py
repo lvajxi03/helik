@@ -39,6 +39,12 @@ class ResourceManager:
                 "flag-en": pygame.image.load(basepath.joinpath("flag_en.png")),
                 "heart-b": pygame.image.load(basepath.joinpath("heart-b.png"))
             },
+            "digits": {
+                "0": pygame.image.load(basepath.joinpath("0.png")),
+                "1": pygame.image.load(basepath.joinpath("1.png")),
+                "2": pygame.image.load(basepath.joinpath("2.png")),
+                "3": pygame.image.load(basepath.joinpath("3.png")),
+            },
             "colors": {
                 "status-color": pygame.Color(128, 128, 128, 128),
             },

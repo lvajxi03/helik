@@ -79,7 +79,7 @@ class BoardGame(Board):
         :param key: key code
         """
         if key == pygame.K_q:
-            self.parent.change_board(BoardType.MENU)
+            self.arena.change_board(BoardType.MENU)
         else:
             self.modes[self.mode].on_keyup(key)
 
