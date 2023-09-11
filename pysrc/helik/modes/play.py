@@ -96,26 +96,23 @@ class ModePlay(Mode):
         """
         Paint event handler
         """
-        self.res_man.get("surfaces", "buffer").blit(
-            self.res_man.get(
-                "images", "default-background"), (0, 0))
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("surfaces", "status"), (0, ARENA_HEIGHT - 60))
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "heart-b"), (10, ARENA_HEIGHT - 54))
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "heart-b"), (70, ARENA_HEIGHT - 54))
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "heart-b"), (130, ARENA_HEIGHT - 54))
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("digits", "0"), (200, ARENA_HEIGHT - 52))
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("digits", "1"), (235, ARENA_HEIGHT - 52))
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("digits", "2"), (270, ARENA_HEIGHT - 52))
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("digits", "3"), (305, ARENA_HEIGHT - 52))
+        self.buffer.blit(self.res_man.get("images", "default-background"), (0, 0))
+        self.buffer.blit(self.res_man.get("surfaces", "status"), (0, ARENA_HEIGHT - 60))
+        self.buffer.blit(self.res_man.get("images", "heart-b"), (10, ARENA_HEIGHT - 54))
+        self.buffer.blit(self.res_man.get("images", "heart-b"), (70, ARENA_HEIGHT - 54))
+        self.buffer.blit(self.res_man.get("images", "heart-b"), (130, ARENA_HEIGHT - 54))
+        self.buffer.blit(self.res_man.get("digits", "0"), (200, ARENA_HEIGHT - 52))
+        self.buffer.blit(self.res_man.get("digits", "1"), (235, ARENA_HEIGHT - 52))
+        self.buffer.blit(self.res_man.get("digits", "2"), (270, ARENA_HEIGHT - 52))
+        self.buffer.blit(self.res_man.get("digits", "3"), (305, ARENA_HEIGHT - 52))
         # Paint bottom objects
         x = 0
         for movable in self.movables:
             if movable.visible:
-                movable.on_paint(self.res_man.get("surfaces", "buffer"))
+                movable.on_paint(self.buffer)
 
         # TODO - remove obsolete paints
-        self.game.plane.on_paint(self.res_man.get("surfaces", "buffer"))
-        self.res_man.get("surfaces", "buffer").blit(
-            self.res_man.get(
-                "images", "bullet-2"), (300, 300))
+        self.game.plane.on_paint(self.buffer)
+        self.buffer.blit(
+            self.res_man.get("images", "bullet-2"), (300, 300))
         self.game.copter.on_paint()

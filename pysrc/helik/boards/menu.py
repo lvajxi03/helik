@@ -24,8 +24,8 @@ class BoardMenu(Board):
         self.color = pygame.Color(76, 76, 76)
         self.rectangles = []
         self.create_rectangles()
-        self.status = pygame.Rect(0, 0, ARENA_WIDTH, STATUS_HEIGHT)
-        self.status_color = pygame.Color(128, 128, 128, 128)
+        # self.status = pygame.Rect(0, 0, ARENA_WIDTH, STATUS_HEIGHT)
+        # self.status_color = pygame.Color(128, 128, 128, 128)
 
     def recalculate_pos(self):
         """
@@ -53,10 +53,9 @@ class BoardMenu(Board):
         """
         Paint event handler
         """
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("images", "default-background"), (0, 0))
-        self.res_man.get("surfaces", "buffer").blit(self.res_man.get("surfaces", "status"), (0, ARENA_HEIGHT - 60))
-        self.res_man.get("surfaces", "buffer").blit(
-            self.res_man.get("surfaces", "status"),
+        self.buffer.blit(self.res_man.get("images", "default-background"), (0, 0))
+        self.buffer.blit(self.res_man.get("surfaces", "status"), (0, ARENA_HEIGHT - 60))
+        self.buffer.blit(self.res_man.get("surfaces", "status"),
             (0, ARENA_HEIGHT - STATUS_HEIGHT))
 
         # Lang flags
@@ -64,16 +63,16 @@ class BoardMenu(Board):
         self.buffer.blit(self.res_man.get("images", "flag-en"), self.res_man.get("lang-rectangles", "en"))
 
         label, rect = self.res_man.get_label(BoardType.MENU, "title_shadow", self.arena.lang)
-        self.res_man.get("surfaces", "buffer").blit(label, (225, 55))
+        self.buffer.blit(label, (225, 55))
         label, rect = self.res_man.get_label(BoardType.MENU, "title", self.arena.lang)
-        self.res_man.get("surfaces", "buffer").blit(label, (220, 50))
+        self.buffer.blit(label, (220, 50))
         
         for re in self.rectangles:
             label, rect = re
-            self.res_man.get("surfaces", "buffer").blit(label, rect)
+            self.buffer.blit(label, rect)
         self.rect_pos_t = self.rect_pos.move(5, 5)
-        pygame.draw.rect(self.res_man.get("surfaces", "buffer"), pygame.Color(16, 16, 16), self.rect_pos_t, width=5, border_radius=20)
-        pygame.draw.rect(self.res_man.get("surfaces", "buffer"), pygame.Color(207, 229, 32), self.rect_pos, width=5, border_radius=20)
+        pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16), self.rect_pos_t, width=5, border_radius=20)
+        pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32), self.rect_pos, width=5, border_radius=20)
 
     def on_timer(self, timer):
         """

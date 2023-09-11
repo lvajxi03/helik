@@ -80,12 +80,12 @@ class ModePrepare(Mode):
         """
         Paint event handler
         """
-        self.res_man.get("surfaces", "buffer").blit(
+        self.buffer.blit(
             self.res_man.get("images", "default-background"), (0, 0))
         try:
             label, rect = self.res_man.get_label(
                 BoardType.GAME, self.labels[self.index], self.arena.lang)
-            self.res_man.get("surfaces", "buffer").blit(label, rect)
+            self.buffer.blit(label, rect)
         except KeyError:
             pass
         

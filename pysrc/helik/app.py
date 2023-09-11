@@ -69,7 +69,7 @@ class Application():
                 elif event.type > pygame.USEREVENT:
                     self.on_timer(event.type)
             self.on_paint()
-            pygame.display.update()
+            pygame.display.flip()
             self.clock.tick(60)
 
         # Eventually,
@@ -95,8 +95,6 @@ class Application():
         Paint event handler
         """
         self.boards[self.board_id].on_paint()
-        self.res_man.get("surfaces", "screen").blit(
-            self.res_man.get("surfaces", "buffer"), (0, 0))
 
     def on_keyup(self, key):
         """

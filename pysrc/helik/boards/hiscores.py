@@ -27,9 +27,9 @@ class BoardHiscores(Board):
         self.buffer.blit(self.res_man.get("images", "flag-pl"), self.res_man.get("lang-rectangles", "pl"))
         self.buffer.blit(self.res_man.get("images", "flag-en"), self.res_man.get("lang-rectangles", "en"))
         l, r = self.res_man.get_label(BoardType.HISCORES, "title-shadow", self.arena.lang)
-        self.res_man.get("surfaces", "buffer").blit(l, (55, 45))
+        self.buffer.blit(l, (55, 45))
         l, r = self.res_man.get_label(BoardType.HISCORES, "title", self.arena.lang)
-        self.res_man.get("surfaces", "buffer").blit(l, (50, 50))
+        self.buffer.blit(l, (50, 50))
 
     def activate(self):
         """

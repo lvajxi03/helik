@@ -56,9 +56,8 @@ class ResourceManager:
                 "prepare": pygame.font.Font(basepath.joinpath('ehs.ttf'), 512)
             },
             "surfaces": {
-                "screen": pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT), flags=pygame.SRCALPHA, depth=32,
+                "buffer": pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT), flags=pygame.SRCALPHA, depth=32,
                                                   vsync=1),
-                "buffer": pygame.Surface((ARENA_WIDTH, ARENA_HEIGHT), pygame.SRCALPHA),
                 "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
             },
             "lang-rectangles": {
