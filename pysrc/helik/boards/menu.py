@@ -97,13 +97,9 @@ class BoardMenu(Board):
         if key == pygame.K_DOWN:
             if self.menu_pos < 6:
                 self.menu_pos += 1
-            else:
-                self.menu_pos = 0
         elif key == pygame.K_UP:
             if self.menu_pos > 0:
                 self.menu_pos -= 1
-            else:
-                self.menu_pos = 6
         elif key == pygame.K_RETURN:
             bid = menupos2board(self.menu_pos)
             self.arena.change_board(bid)

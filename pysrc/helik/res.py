@@ -44,6 +44,12 @@ class ResourceManager:
                 "1": pygame.image.load(basepath.joinpath("1.png")),
                 "2": pygame.image.load(basepath.joinpath("2.png")),
                 "3": pygame.image.load(basepath.joinpath("3.png")),
+                "4": pygame.image.load(basepath.joinpath("4.png")),
+                "5": pygame.image.load(basepath.joinpath("5.png")),
+                "6": pygame.image.load(basepath.joinpath("6.png")),
+                "7": pygame.image.load(basepath.joinpath("7.png")),
+                "8": pygame.image.load(basepath.joinpath("8.png")),
+                "9": pygame.image.load(basepath.joinpath("9.png")),
             },
             "colors": {
                 "status-color": pygame.Color(128, 128, 128, 128),

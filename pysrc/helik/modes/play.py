@@ -9,7 +9,8 @@ import pygame
 from helik.modes.standard import Mode
 from helik.game.objects import Movable
 from helik.htypes import TimerType, GameType
-from helik.hdefs import ARENA_HEIGHT
+from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
+from helik.gfx import blitnumber
 
 class ModePlay(Mode):
     """
@@ -101,10 +102,7 @@ class ModePlay(Mode):
         self.buffer.blit(self.res_man.get("images", "heart-b"), (10, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.get("images", "heart-b"), (70, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.get("images", "heart-b"), (130, ARENA_HEIGHT - 54))
-        self.buffer.blit(self.res_man.get("digits", "0"), (200, ARENA_HEIGHT - 52))
-        self.buffer.blit(self.res_man.get("digits", "1"), (235, ARENA_HEIGHT - 52))
-        self.buffer.blit(self.res_man.get("digits", "2"), (270, ARENA_HEIGHT - 52))
-        self.buffer.blit(self.res_man.get("digits", "3"), (305, ARENA_HEIGHT - 52))
+        blitnumber(self.buffer, self.seconds, 5, self.res_man.get_section("digits"), (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
         # Paint bottom objects
         x = 0
         for movable in self.movables:
