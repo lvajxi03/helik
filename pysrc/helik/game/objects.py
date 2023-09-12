@@ -33,6 +33,8 @@ class Copter:
         self.direction = CopterDirection.RIGHT
         self.images = [self.res_man.get("images", "helik-small-right"),
                        self.res_man.get("images", "helik-small-left")]
+        self.masks = [pygame.mask_from_surface(self.images[0]),
+                      pygame.mask_from_surface(self.images[0])]
 
     def on_paint(self):
         """
@@ -68,6 +70,13 @@ class Copter:
             else:
                 # TODO
                 self.y = -30
+
+    def collide(self, something):
+        """
+        Check if collided with something else
+        :param something: any object to collide
+        :return: True if collided, false otherwise
+        """
 
 
 class Movable:
