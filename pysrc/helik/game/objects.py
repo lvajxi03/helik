@@ -11,15 +11,6 @@ from helik.htypes import TimerType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
 
 
-@enum.unique
-class CopterDirection(enum.IntEnum):
-    """
-    Copter direction enum
-    """
-    LEFT = 0
-    RIGHT = 1
-
-
 class Copter:
     """
     Copter player class
@@ -30,33 +21,22 @@ class Copter:
         self.buffer = self.game.buffer
         self.x = 200
         self.y = 200
-        self.direction = CopterDirection.RIGHT
-        self.images = [self.res_man.get("images", "helik-small-right"),
-                       self.res_man.get("images", "helik-small-left")]
-        self.masks = [pygame.mask_from_surface(self.images[0]),
-                      pygame.mask_from_surface(self.images[0])]
+        self.image = self.res_man.get("images", "helik-small-right")
+        self.mask = pygame.mask.from_surface(self.image)
+
 
     def on_paint(self):
         """
         Paint event handler
         """
-        if self.direction == CopterDirection.RIGHT:
-            self.res_man.get("surfaces", "buffer").blit(
-                self.images[0], (self.x, self.y))
-        else:
-            self.res_man.get("surfaces", "buffer").blit(
-                self.images[1], (self.x, self.y))
+        self.buffer.blit(self.image, (self.x, self.y))
 
     def on_keyup(self, key):
         """
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_LEFT:
-            self.direction = CopterDirection.LEFT
-        elif key == pygame.K_RIGHT:
-            self.direction = CopterDirection.RIGHT
-        elif key == pygame.K_SPACE:
+        if key == pygame.K_SPACE:
             if self.y > 30:
                 self.y -= 30
 
@@ -132,12 +112,12 @@ class FlyingObject:
         else:
             self.visible = True
 
-    def move(self):
+    def move(self, speed=1):
         """
         Move object according to its policy
         """
         # Generic move:
-        self.r.x -= speed
+        self.r.x += speed
         if self.r.x + self.r.w < 0 or self.r.y + self.r.h < 0:
             self.valid = False
             self.visible = False
@@ -165,6 +145,11 @@ class BulletFrom(FlyingObject):
     def __init__(self, image, x, y):
         super().__init__(image, x, y)
 
+    def move(self, speed=1):
+        self.r.x += speed
+        if self.r.x > ARENA_WIDTH:
+            self.valid = False
+            self.visible = False
 
 class BulletTo(FlyingObject):
     """

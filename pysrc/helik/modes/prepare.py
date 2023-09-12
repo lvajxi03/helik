@@ -88,4 +88,3 @@ class ModePrepare(Mode):
             self.buffer.blit(label, rect)
         except KeyError:
             pass
-        

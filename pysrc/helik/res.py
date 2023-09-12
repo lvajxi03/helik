@@ -35,6 +35,7 @@ class ResourceManager:
                 "dom-a": pygame.image.load(basepath.joinpath("dom-a.png")),
                 "bullet-1": pygame.image.load(basepath.joinpath("bullet-1.png")),
                 "bullet-2": pygame.image.load(basepath.joinpath("bullet-2.png")),
+                "bullets-indicator": pygame.image.load(basepath.joinpath("bullets-indicator.png")),
                 "flag-pl": pygame.image.load(basepath.joinpath("flag_pl.png")),
                 "flag-en": pygame.image.load(basepath.joinpath("flag_en.png")),
                 "heart-b": pygame.image.load(basepath.joinpath("heart-b.png"))
@@ -52,7 +53,7 @@ class ResourceManager:
                 "9": pygame.image.load(basepath.joinpath("9.png")),
             },
             "colors": {
-                "status-color": pygame.Color(128, 128, 128, 128),
+                "status-color": pygame.Color(128, 128, 128, 64),
             },
             "fonts": {
                 "heading": pygame.font.Font(basepath.joinpath('ehs.ttf'), 164),
@@ -199,7 +200,7 @@ class ResourceManager:
         try:
             rec = locale[board][name]["label"][lang]
             if isinstance(rec, list):
-                for elem in list:
+                for elem in rec:
                     lab, re = elem
                     lab.set_alpha(alpha)
             else:

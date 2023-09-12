@@ -47,6 +47,7 @@ class TimerType(enum.IntEnum):
     COPTER = pygame.USEREVENT + 6
     MOVABLES = pygame.USEREVENT + 7
     SECONDS = pygame.USEREVENT + 8
+    BULLETS = pygame.USEREVENT + 9
 
 
 @enum.unique

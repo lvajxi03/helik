@@ -11,6 +11,7 @@ from helik.game.objects import Movable
 from helik.htypes import TimerType, GameType
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
 from helik.gfx import blitnumber
+from helik.game.utils import make_bullet_from
 
 class ModePlay(Mode):
     """
@@ -24,6 +25,7 @@ class ModePlay(Mode):
         self.last_movable = 0
         self.movables = []
         self.objects = []
+        self.bullets = 20
         self.bullets_from = []
         self.bullets_to = []
         self.seconds = 0
@@ -52,11 +54,13 @@ class ModePlay(Mode):
         pygame.time.set_timer(TimerType.COPTER, 10)
         pygame.time.set_timer(TimerType.MOVABLES, self.mspeed)
         pygame.time.set_timer(TimerType.SECONDS, 1000)
+        pygame.time.set_timer(TimerType.BULLETS, 5)
 
     def deactivate(self):
         pygame.time.set_timer(TimerType.MOVABLES, 0)
         pygame.time.set_timer(TimerType.COPTER, 0)
         pygame.time.set_timer(TimerType.SECONDS, 0)
+        pygame.time.set_timer(TimerType.BULLETS, 0)
 
     def on_timer(self, timer):
         """
@@ -75,6 +79,10 @@ class ModePlay(Mode):
                     m.valid = True
                     self.last_movable += 1
                     self.last_movable %= len(self.movables)
+        elif timer == TimerType.BULLETS:
+            for b in self.bullets_from:
+                b.move(8)
+                self.bullets_from = [x for x in self.bullets_from if x.valid]
         elif timer == TimerType.SECONDS:
             self.seconds += 1
             if self.seconds % 10 == 0:
@@ -90,8 +98,11 @@ class ModePlay(Mode):
         """
         if key == pygame.K_ESCAPE:
             self.game.change_mode(GameType.PAUSED)
-        else:
-            self.game.copter.on_keyup(key)
+        elif key == pygame.K_s:
+            if self.bullets > 0:
+                self.bullets_from.append(make_bullet_from(self.game.copter))
+                self.bullets -= 1
+        self.game.copter.on_keyup(key)
 
     def on_paint(self):
         """
@@ -103,6 +114,8 @@ class ModePlay(Mode):
         self.buffer.blit(self.res_man.get("images", "heart-b"), (70, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.get("images", "heart-b"), (130, ARENA_HEIGHT - 54))
         blitnumber(self.buffer, self.seconds, 5, self.res_man.get_section("digits"), (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
+        self.buffer.blit(self.res_man.get("images", "bullets-indicator"), (350, ARENA_HEIGHT - 54))
+        blitnumber(self.buffer, self.bullets, 3, self.res_man.get_section("digits"), (400, ARENA_HEIGHT - 54))
         # Paint bottom objects
         x = 0
         for movable in self.movables:
@@ -111,6 +124,9 @@ class ModePlay(Mode):
 
         # TODO - remove obsolete paints
         self.game.plane.on_paint(self.buffer)
-        self.buffer.blit(
-            self.res_man.get("images", "bullet-2"), (300, 300))
+
+
+        for bullet in self.bullets_from:
+            if bullet.visible:
+                bullet.on_paint(self.buffer)
         self.game.copter.on_paint()
