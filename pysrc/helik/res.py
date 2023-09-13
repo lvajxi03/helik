@@ -38,7 +38,8 @@ class ResourceManager:
                 "bullets-indicator": pygame.image.load(basepath.joinpath("bullets-indicator.png")),
                 "flag-pl": pygame.image.load(basepath.joinpath("flag_pl.png")),
                 "flag-en": pygame.image.load(basepath.joinpath("flag_en.png")),
-                "heart-b": pygame.image.load(basepath.joinpath("heart-b.png"))
+                "heart-b": pygame.image.load(basepath.joinpath("heart-b.png")),
+                "ammo-box": pygame.image.load(basepath.joinpath("ammo-box.png"))
             },
             "digits": {
                 "0": pygame.image.load(basepath.joinpath("0.png")),

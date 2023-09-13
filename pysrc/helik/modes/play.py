@@ -35,14 +35,14 @@ class ModePlay(Mode):
         """
         Create list of movables, according to a level
         """
-        self.movables = []
+        self.game.game_data['movables'] = []
         x = 0
         for index in self.res_man.get_index("levels", self.game.game_data['level']):
             im, re = self.res_man.bottom_objects[index]
             m = Movable(im, x)
             x += re.w
-            self.movables.append(m)
-        self.last_movable = len(self.movables) - 1
+            self.game.game_data['movables'].append(m)
+        self.game.game_data['last_movable'] = len(self.game.game_data['movables']) - 1
 
     def activate(self):
         """
@@ -71,14 +71,14 @@ class ModePlay(Mode):
             self.game.copter.on_timer(timer)
 
         elif timer == TimerType.MOVABLES:
-            for m in self.movables:
+            for m in self.game.game_data['movables']:
                 m.move()
                 if not m.valid:
-                    mlast = self.movables[self.last_movable]
+                    mlast = self.game.game_data['movables'][self.game.game_data['last_movable']]
                     m.r.x = mlast.r.x + mlast.r.w
                     m.valid = True
-                    self.last_movable += 1
-                    self.last_movable %= len(self.movables)
+                    self.game.game_data['last_movable'] += 1
+                    self.game.game_data['last_movable'] %= len(self.game.game_data['movables'])
         elif timer == TimerType.BULLETS:
             for b in self.bullets_from:
                 b.move(8)
@@ -114,11 +114,11 @@ class ModePlay(Mode):
         self.buffer.blit(self.res_man.get("images", "heart-b"), (70, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.get("images", "heart-b"), (130, ARENA_HEIGHT - 54))
         blitnumber(self.buffer, self.seconds, 5, self.res_man.get_section("digits"), (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
-        self.buffer.blit(self.res_man.get("images", "bullets-indicator"), (350, ARENA_HEIGHT - 54))
+        self.buffer.blit(self.res_man.get("images", "ammo-box"), (340, ARENA_HEIGHT - 54))
         blitnumber(self.buffer, self.bullets, 3, self.res_man.get_section("digits"), (400, ARENA_HEIGHT - 54))
         # Paint bottom objects
         x = 0
-        for movable in self.movables:
+        for movable in self.game.game_data['movables']:
             if movable.visible:
                 movable.on_paint(self.buffer)
 

@@ -38,9 +38,23 @@ class BoardGame(Board):
             GameType.PAUSED: ModePaused(self),
             GameType.KILLED: ModeKilled(self)
             }
+        self.game_data = {}
+
+    def init_new_game(self):
+        """
+        Initialize new game data
+        """
         self.game_data = {
             'points': 0,
-            'level': 0
+            'level': 0,
+            'lives': 3,
+            'movables': [],
+            'objects': [],
+            'bullets_from': [],
+            'bullets_to': [],
+            'seconds': 0,
+            'mspeed': 20,
+            'last_movable': 0
             }
 
     def change_mode(self, newmode):
@@ -61,6 +75,7 @@ class BoardGame(Board):
         """
         Activate event handler
         """
+        self.init_new_game()
         self.change_mode(GameType.INIT)
 
     def deactivate(self):
