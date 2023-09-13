@@ -16,6 +16,7 @@ from helik.modes.prepare import ModePrepare
 from helik.modes.play import ModePlay
 from helik.modes.paused import ModePaused
 from helik.modes.killed import ModeKilled
+from helik.game.data import GameData
 
 
 class BoardGame(Board):
@@ -30,6 +31,7 @@ class BoardGame(Board):
         self.mode = GameType.NONE
         self.copter = Copter(self)
         self.plane = Plane(self.res_man.get("images", "plane-small-left"), ARENA_WIDTH - 250, 100)
+        self.data = GameData()
         self.modes = {
             GameType.NONE: Mode(self),
             GameType.INIT: ModeInit(self),
@@ -37,24 +39,6 @@ class BoardGame(Board):
             GameType.PLAY: ModePlay(self),
             GameType.PAUSED: ModePaused(self),
             GameType.KILLED: ModeKilled(self)
-            }
-        self.game_data = {}
-
-    def init_new_game(self):
-        """
-        Initialize new game data
-        """
-        self.game_data = {
-            'points': 0,
-            'level': 0,
-            'lives': 3,
-            'movables': [],
-            'objects': [],
-            'bullets_from': [],
-            'bullets_to': [],
-            'seconds': 0,
-            'mspeed': 20,
-            'last_movable': 0
             }
 
     def change_mode(self, newmode):
@@ -75,7 +59,6 @@ class BoardGame(Board):
         """
         Activate event handler
         """
-        self.init_new_game()
         self.change_mode(GameType.INIT)
 
     def deactivate(self):

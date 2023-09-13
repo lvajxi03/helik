@@ -18,12 +18,12 @@ class ModeInit(Mode):
         :param parent: parent (game board) handle
         """
         super().__init__(parent)
+        self.data = self.game.data
 
     def activate(self):
         """
         Activate event handler
         """
-        self.game.game_data['points'] = 0
         self.game.change_mode(GameType.PREPARE)
 
     def deactivate(self):

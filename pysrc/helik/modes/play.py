@@ -22,37 +22,16 @@ class ModePlay(Mode):
         Mode play class constructor
         """
         super().__init__(parent)
-        self.last_movable = 0
-        self.movables = []
-        self.objects = []
-        self.bullets = 20
-        self.bullets_from = []
-        self.bullets_to = []
-        self.seconds = 0
-        self.mspeed = 21
-
-    def create_movables(self):
-        """
-        Create list of movables, according to a level
-        """
-        self.game.game_data['movables'] = []
-        x = 0
-        for index in self.res_man.get_index("levels", self.game.game_data['level']):
-            im, re = self.res_man.bottom_objects[index]
-            m = Movable(im, x)
-            x += re.w
-            self.game.game_data['movables'].append(m)
-        self.game.game_data['last_movable'] = len(self.game.game_data['movables']) - 1
+        self.data = self.game.data
+        # TODO: move to another mode?
+        self.data.new_level(self.res_man, 0)
 
     def activate(self):
         """
         Activate event handler
         """
-        self.last_movable = 0
-        self.create_movables()
-        self.last_movable = len(self.movables) - 1
         pygame.time.set_timer(TimerType.COPTER, 10)
-        pygame.time.set_timer(TimerType.MOVABLES, self.mspeed)
+        pygame.time.set_timer(TimerType.MOVABLES, self.data['mspeed'])
         pygame.time.set_timer(TimerType.SECONDS, 1000)
         pygame.time.set_timer(TimerType.BULLETS, 5)
 
@@ -71,25 +50,25 @@ class ModePlay(Mode):
             self.game.copter.on_timer(timer)
 
         elif timer == TimerType.MOVABLES:
-            for m in self.game.game_data['movables']:
+            for m in self.data['movables']:
                 m.move()
                 if not m.valid:
-                    mlast = self.game.game_data['movables'][self.game.game_data['last_movable']]
+                    mlast = self.data['movables'][self.data['last-movable']]
                     m.r.x = mlast.r.x + mlast.r.w
                     m.valid = True
-                    self.game.game_data['last_movable'] += 1
-                    self.game.game_data['last_movable'] %= len(self.game.game_data['movables'])
+                    self.data['last-movable'] += 1
+                    self.data['last-movable'] %= len(self.data['movables'])
         elif timer == TimerType.BULLETS:
-            for b in self.bullets_from:
+            for b in self.data['bullets-from']:
                 b.move(8)
-                self.bullets_from = [x for x in self.bullets_from if x.valid]
+                self.data['bullets-from'] = [x for x in self.data['bullets-from'] if x.valid]
         elif timer == TimerType.SECONDS:
-            self.seconds += 1
-            if self.seconds % 10 == 0:
-                self.mspeed -= 2
-                if self.mspeed > 0:
+            self.data['seconds'] += 1
+            if self.data['seconds'] % 10 == 0:
+                self.data['mspeed'] -= 2
+                if self.data['mspeed'] > 0:
                     pygame.time.set_timer(TimerType.MOVABLES, 0)
-                    pygame.time.set_timer(TimerType.MOVABLES, self.mspeed)
+                    pygame.time.set_timer(TimerType.MOVABLES, self.data['mspeed'])
 
     def on_keyup(self, key):
         """
@@ -99,9 +78,9 @@ class ModePlay(Mode):
         if key == pygame.K_ESCAPE:
             self.game.change_mode(GameType.PAUSED)
         elif key == pygame.K_s:
-            if self.bullets > 0:
-                self.bullets_from.append(make_bullet_from(self.game.copter))
-                self.bullets -= 1
+            if self.data['bullets-available'] > 0:
+                self.data['bullets-from'].append(make_bullet_from(self.game.copter))
+                self.data['bullets-available'] -= 1
         self.game.copter.on_keyup(key)
 
     def on_paint(self):
@@ -113,12 +92,11 @@ class ModePlay(Mode):
         self.buffer.blit(self.res_man.get("images", "heart-b"), (10, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.get("images", "heart-b"), (70, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.get("images", "heart-b"), (130, ARENA_HEIGHT - 54))
-        blitnumber(self.buffer, self.seconds, 5, self.res_man.get_section("digits"), (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
+        blitnumber(self.buffer, self.data['seconds'], 5, self.res_man.get_section("digits"), (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.get("images", "ammo-box"), (340, ARENA_HEIGHT - 54))
-        blitnumber(self.buffer, self.bullets, 3, self.res_man.get_section("digits"), (400, ARENA_HEIGHT - 54))
+        blitnumber(self.buffer, self.data['bullets-available'], 3, self.res_man.get_section("digits"), (400, ARENA_HEIGHT - 54))
         # Paint bottom objects
-        x = 0
-        for movable in self.game.game_data['movables']:
+        for movable in self.data['movables']:
             if movable.visible:
                 movable.on_paint(self.buffer)
 
@@ -126,7 +104,7 @@ class ModePlay(Mode):
         self.game.plane.on_paint(self.buffer)
 
 
-        for bullet in self.bullets_from:
+        for bullet in self.data['bullets-from']:
             if bullet.visible:
                 bullet.on_paint(self.buffer)
         self.game.copter.on_paint()
