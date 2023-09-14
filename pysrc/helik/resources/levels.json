@@ -1,0 +1,84 @@
+{
+    "levels": [
+	{
+	    "title": {
+		"pl": "1",
+		"en": "1"
+	    },
+	    "buildings": [
+	    ],
+	    "clouds": [
+	    ]
+	},
+	{
+	    "title": {
+		"pl": "2",
+		"en": "2"
+	    },
+	    "buildings": [
+	    ],
+	    "clouds": [
+	    ]	    
+	},
+	{
+	    "title": {
+		"pl": "3",
+		"en": "3"
+	    },
+	    "buildings": [
+	    ],
+	    "clouds": [
+	    ]	    
+	},
+	{
+	    "title": {
+		"pl": "4",
+		"en": "4"
+	    },
+	    "buildings": [
+	    ],
+	    "clouds": [
+	    ]	    
+	},
+	{
+	    "title": {
+		"pl": "5",
+		"en": "5"
+	    },
+	    "buildings": [
+	    ],
+	    "clouds": [
+	    ]	    
+	},
+	{
+	    "title": {
+		"pl": "6",
+		"en": "6"
+	    },
+	    "buildings": [
+	    ],
+	    "clouds": [
+	    ]	    
+	},
+	{
+	    "title": {
+		"pl": "7",
+		"en": "7"
+	    },
+	    "buildings": [
+	    ],
+	    "clouds": [
+	    ]	    
+	},
+	{
+	    "title": {
+		"pl": "ostatnim",
+		"en": "the last"
+	    },
+	    "buildings": [
+	    ],
+	    "clouds": [
+	    ]	    
+	}
+    ]
+}

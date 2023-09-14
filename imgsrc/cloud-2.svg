@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="52.071461mm"
+   height="24.223789mm"
+   viewBox="0 0 52.071461 24.223789"
+   version="1.1"
+   id="svg3264"
+   inkscape:version="1.2 (1:1.2.1+202207142221+cd75a1ee6d)"
+   sodipodi:docname="cloud-2.svg"
+   inkscape:export-filename="../pysrc/helik/resources/cloud-2.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview3266"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.71624579"
+     inkscape:cx="97.731813"
+     inkscape:cy="46.073569"
+     inkscape:window-width="1480"
+     inkscape:window-height="1005"
+     inkscape:window-x="78"
+     inkscape:window-y="105"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs3261" />
+  <g
+     inkscape:label="Warstwa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-78.874718,-136.38811)">
+    <path
+       style="fill:#7f7f7f;fill-opacity:0.513239;stroke:#a2a2a2;stroke-width:1.32292;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 88.966375,159.77218 35.984105,0.17632 c 7.31727,0.18704 7.88751,-12.74514 -3.23344,-12.13344 -0.90857,-13.11102 -16.86796,-13.63167 -20.69623,-4.88594 -5.723141,-4.97021 -10.522466,-0.26567 -12.456989,2.59669 -13.795547,-0.0566 -10.257866,15.61045 0.402554,14.24637 z"
+       id="path2687"
+       sodipodi:nodetypes="cccccc" />
+  </g>
+</svg>

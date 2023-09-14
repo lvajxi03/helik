@@ -170,3 +170,16 @@ class TNT(FlyingObject):
         Move object according to its policy
         """
         self.r.x -= 1
+
+class Cloud(FlyingObject):
+    """
+    Cloud class
+    """
+    def __init__(self,image, x, y):
+        super().__init__(image, x, y)
+
+    def move(self, speed=1):
+        """
+        Move cloud according to its policy
+        """
+        self.r.x -= speed

@@ -1,0 +1,9 @@
+{
+    "fonts": {
+	"heading": ["ehs.ttf", 164],
+	"heading-2": ["ehs.ttf", 96],
+	"big-message": ["ehs.ttf", 128],
+	"menu": ["ehs.ttf", 48],
+	"prepare": ["ehs.ttf", 512]
+    }
+}

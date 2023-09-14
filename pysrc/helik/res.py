@@ -4,6 +4,7 @@
 All the resources
 """
 
+import json
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
 from helik.htypes import BoardType
@@ -16,12 +17,39 @@ class ResourceManager:
     """
     def __init__(self, basepath):
         self.resources = {}
+        self.images = {}
+        self.digits = {}
+        self.clouds = []
+        self.buildings = {}
+        self.fonts = {}
         self.create_resources(basepath)
 
     def create_resources(self, basepath):
         """
         Load all resources
         """
+        # Fonts
+        f_name = basepath.joinpath("fonts.json")
+        try:
+            with open(f_name) as f_handle:
+                self.fonts = json.load(f_handle)["fonts"]
+                for name in self.fonts:
+                    dt = self.fonts[name]
+                    self.fonts[name] = pygame.font.Font(basepath.joinpath(dt[0]), dt[1])
+        except IOError:
+            pass
+        f_name = basepath.joinpath("images.json")
+        try:
+            with open(f_name) as f_handle:
+                data = json.load(f_handle)
+                for name in data["general"]:
+                    self.images[name] = pygame.image.load(basepath.joinpath(data["general"][name]))
+                for name in data["digits"]:
+                    self.digits[name] = pygame.image.load(basepath.joinpath(data["digits"][name]))
+                for name in data["clouds"]:
+                    self.clouds.append(pygame.image.load(basepath.joinpath(name)))
+        except IOError:
+            pass
         self.resources = {
             "images": {
                 "default-background": pygame.image.load(basepath.joinpath("back-default.jpg")),
@@ -41,27 +69,8 @@ class ResourceManager:
                 "heart-b": pygame.image.load(basepath.joinpath("heart-b.png")),
                 "ammo-box": pygame.image.load(basepath.joinpath("ammo-box.png"))
             },
-            "digits": {
-                "0": pygame.image.load(basepath.joinpath("0.png")),
-                "1": pygame.image.load(basepath.joinpath("1.png")),
-                "2": pygame.image.load(basepath.joinpath("2.png")),
-                "3": pygame.image.load(basepath.joinpath("3.png")),
-                "4": pygame.image.load(basepath.joinpath("4.png")),
-                "5": pygame.image.load(basepath.joinpath("5.png")),
-                "6": pygame.image.load(basepath.joinpath("6.png")),
-                "7": pygame.image.load(basepath.joinpath("7.png")),
-                "8": pygame.image.load(basepath.joinpath("8.png")),
-                "9": pygame.image.load(basepath.joinpath("9.png")),
-            },
             "colors": {
                 "status-color": pygame.Color(128, 128, 128, 64),
-            },
-            "fonts": {
-                "heading": pygame.font.Font(basepath.joinpath('ehs.ttf'), 164),
-                "heading2": pygame.font.Font(basepath.joinpath('ehs.ttf'), 96),
-                "big-message": pygame.font.Font(basepath.joinpath('ehs.ttf'), 128),
-                "menu": pygame.font.Font(basepath.joinpath('ehs.ttf'), 48),
-                "prepare": pygame.font.Font(basepath.joinpath('ehs.ttf'), 512)
             },
             "surfaces": {
                 "buffer": pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT), flags=pygame.SRCALPHA, depth=32,
@@ -98,47 +107,39 @@ class ResourceManager:
                         "en": []}
                     for elem in locale[ty][name]["pl"]:
                         label = pygame.transform.rotate(
-                            self.get(
-                                "fonts",
-                                locale[ty][name]["font"]).render(
-                                    elem,
-                                    True,
-                                    pygame.Color(locale[ty][name]["color"])),
+                            self.fonts[locale[ty][name]["font"]].render(
+                                elem,
+                                True,
+                                pygame.Color(locale[ty][name]["color"])),
                             locale[ty][name]["rotate"])
                         rect = label.get_rect()
                         locale[ty][name]["label"]["pl"].append((label, rect))
                     for elem in locale[ty][name]["en"]:
                         label = pygame.transform.rotate(
-                            self.get(
-                                "fonts",
-                                locale[ty][name]["font"]).render(
-                                    elem,
-                                    True,
-                                    pygame.Color(locale[ty][name]["color"])),
+                            self.fonts[locale[ty][name]["font"]].render(
+                                elem,
+                                True,
+                                pygame.Color(locale[ty][name]["color"])),
                             locale[ty][name]["rotate"])
                         rect = label.get_rect()
                         locale[ty][name]["label"]["en"].append((label, rect))
                 else:
                     locale[ty][name]["label"] = {}
                     label = pygame.transform.rotate(
-                        self.get(
-                            "fonts",
-                            locale[ty][name]["font"]).render(
-                                locale[ty][name]["pl"],
-                                True,
-                                pygame.Color(
-                                    locale[ty][name]["color"])),
+                        self.fonts[locale[ty][name]["font"]].render(
+                            locale[ty][name]["pl"],
+                            True,
+                            pygame.Color(
+                                locale[ty][name]["color"])),
                         locale[ty][name]["rotate"])
                     rect = label.get_rect()
                     locale[ty][name]["label"]["pl"] = (label, rect)
                     label = pygame.transform.rotate(
-                        self.get(
-                            "fonts",
-                            locale[ty][name]["font"]).render(
-                                locale[ty][name]["en"],
-                                True,
-                                pygame.Color(
-                                    locale[ty][name]["color"])),
+                      self.fonts[locale[ty][name]["font"]].render(
+                          locale[ty][name]["en"],
+                          True,
+                          pygame.Color(
+                              locale[ty][name]["color"])),
                         locale[ty][name]["rotate"])
                     rect = label.get_rect()
                     locale[ty][name]["label"]["en"] = (label, rect)

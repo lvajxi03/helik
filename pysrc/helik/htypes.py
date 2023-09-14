@@ -56,3 +56,4 @@ class PlayOptionType(enum.IntEnum):
     EASY = 1
     NORMAL = 2
     HARD = 3
+    EXTREME = 4

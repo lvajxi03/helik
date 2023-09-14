@@ -1,0 +1,41 @@
+{
+    "general": {
+        "default-background": "back-default.jpg",
+        "helik-small-left": "copter-white-left.png",
+        "helik-small-right": "copter-white-right.png",
+        "plane-small-left": "samolot.png",
+        "line-0": "line-0.png",
+        "wiezowiec-a": "wiezowiec-a.png",
+        "wiezowiec-b": "wiezowiec-b.png",
+        "fabryka-a": "fabryka-a.png",
+        "dom-a": "dom-a.png",
+        "bullet-1": "bullet-1.png",
+        "bullet-2": "bullet-2.png",
+        "bullets-indicator": "bullets-indicator.png",
+        "flag-pl": "flag_pl.png",
+        "flag-en": "flag_en.png",
+        "heart-b": "heart-b.png",
+        "ammo-box": "ammo-box.png"
+    },
+    "clouds": [
+        "cloud-1.png",
+        "cloud-2.png",
+        "cloud-3.png",
+        "cloud-4.png",
+        "cloud-5.png",
+        "cloud-6.png",
+        "cloud-7.png"
+    ],
+    "digits": {
+        "0": "0.png",
+        "1": "1.png",
+        "2": "2.png",
+        "3": "3.png",
+        "4": "4.png",
+        "5": "5.png",
+        "6": "6.png",
+        "7": "7.png",
+        "8": "8.png",
+        "9": "9.png"
+    }
+}

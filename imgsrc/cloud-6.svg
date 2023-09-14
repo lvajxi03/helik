@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="163.29692"
+   height="98.920692"
+   viewBox="0 0 43.205644 26.172767"
+   version="1.1"
+   id="svg978"
+   inkscape:version="1.2 (1:1.2.1+202207142221+cd75a1ee6d)"
+   sodipodi:docname="cloud-6.svg"
+   inkscape:export-filename="../pysrc/helik/resources/cloud-6.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview980"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="1.4324916"
+     inkscape:cx="-37.696557"
+     inkscape:cy="65.619932"
+     inkscape:window-width="1480"
+     inkscape:window-height="1005"
+     inkscape:window-x="100"
+     inkscape:window-y="127"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs975" />
+  <g
+     inkscape:label="Warstwa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-114.70688,-57.100184)">
+    <path
+       style="fill:#ffffff;fill-opacity:0.084694;stroke:#ffffff;stroke-width:1.32292;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 120.28361,68.548768 c -8.19663,2.82259 -5.01976,14.19452 0.93979,14.03986 l 30.61381,0.0228 c 5.52353,-1.40543 7.36451,-8.9122 2.969,-12.57819 -0.70509,-4.78908 -3.82702,-6.73604 -8.24108,-6.95328 0.10371,-2.86252 -2.49076,-6.31742 -7.71373,-3.54639 -6.75099,-3.89568 -11.45748,-0.85919 -11.80395,4.15187 -5.05289,-1.40665 -6.32287,1.27984 -6.76384,4.86333 z"
+       id="path309"
+       sodipodi:nodetypes="cccccccc" />
+  </g>
+</svg>

@@ -44,14 +44,14 @@ locale = {
         "title": {
             "pl": "O programie",
             "en": "About",
-            "font": "heading2",
+            "font": "heading-2",
             "rotate": 90,
             "color": "#e0df4a"
         },
         "title-shadow": {
             "pl": "O programie",
             "en": "About",
-            "font": "heading2",
+            "font": "heading-2",
             "rotate": 90,
             "color": "#313131"
         }
@@ -60,14 +60,14 @@ locale = {
         "title": {
             "pl": "Pomoc",
             "en": "Help",
-            "font": "heading2",
+            "font": "heading-2",
             "rotate": 90,
             "color": "#e0df4a"
         },
         "title-shadow": {
             "pl": "Pomoc",
             "en": "HELP",
-            "font": "heading2",
+            "font": "heading-2",
             "rotate": 90,
             "color": "#313131"
         }
@@ -76,14 +76,14 @@ locale = {
         "title": {
             "pl": "NAJLEPSI",
             "en": "HISCORES",
-            "font": "heading2",
+            "font": "heading-2",
             "rotate": 90,
             "color": "#e0df4a"
         },
         "title-shadow": {
             "pl": "NAJLEPSI",
             "en": "HISCORES",
-            "font": "heading2",
+            "font": "heading-2",
             "rotate": 90,
             "color": "#313131"
         }
@@ -101,14 +101,14 @@ locale = {
         "title": {
             "pl": "Opcje",
             "en": "Options",
-            "font": "heading2",
+            "font": "heading-2",
             "rotate": 90,
             "color": "#e0df4a"
         },
         "title-shadow": {
             "pl": "Opcje",
             "en": "Options",
-            "font": "heading2",
+            "font": "heading-2",
             "rotate": 90,
             "color": "#313131"
         }
@@ -117,14 +117,14 @@ locale = {
         "title": {
             "pl": "Ustawienia",
             "en": "Settings",
-            "font": "heading2",
+            "font": "heading-2",
             "rotate": 90,
             "color": "#e0df4a"
         },
         "title-shadow": {
             "pl": "Ustawienia",
             "en": "Settings",
-            "font": "heading2",
+            "font": "heading-2",
             "rotate": 90,
             "color": "#313131"
         }
