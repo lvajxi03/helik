@@ -30,7 +30,7 @@ class BoardGame(Board):
         super().__init__(parent)
         self.mode = GameType.NONE
         self.copter = Copter(self)
-        self.plane = Plane(self.res_man.get("images", "plane-small-left"), ARENA_WIDTH - 250, 100)
+        self.plane = Plane(self.res_man.images["plane-small-left"], ARENA_WIDTH - 250, 100)
         self.data = GameData()
         self.modes = {
             GameType.NONE: Mode(self),

@@ -81,7 +81,7 @@ class ModePrepare(Mode):
         Paint event handler
         """
         self.buffer.blit(
-            self.res_man.get("images", "default-background"), (0, 0))
+            self.res_man.images["default-background"], (0, 0))
         try:
             label, rect = self.res_man.get_label(
                 BoardType.GAME, self.labels[self.index], self.arena.lang)

@@ -21,7 +21,7 @@ class Copter:
         self.buffer = self.game.buffer
         self.x = 200
         self.y = 200
-        self.image = self.res_man.get("images", "helik-small-right")
+        self.image = self.res_man.images["helik-small-right"]
         self.mask = pygame.mask.from_surface(self.image)
 
 
@@ -93,6 +93,7 @@ class Movable:
             canvas.blit(self.image, self.r)
 
 
+        
 class FlyingObject:
     """
     Flying object handler class

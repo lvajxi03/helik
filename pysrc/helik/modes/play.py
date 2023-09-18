@@ -87,13 +87,13 @@ class ModePlay(Mode):
         """
         Paint event handler
         """
-        self.buffer.blit(self.res_man.get("images", "default-background"), (0, 0))
+        self.buffer.blit(self.res_man.images["default-background"], (0, 0))
         self.buffer.blit(self.res_man.get("surfaces", "status"), (0, ARENA_HEIGHT - 60))
-        self.buffer.blit(self.res_man.get("images", "heart-b"), (10, ARENA_HEIGHT - 54))
-        self.buffer.blit(self.res_man.get("images", "heart-b"), (70, ARENA_HEIGHT - 54))
-        self.buffer.blit(self.res_man.get("images", "heart-b"), (130, ARENA_HEIGHT - 54))
+        self.buffer.blit(self.res_man.images["heart-b"], (10, ARENA_HEIGHT - 54))
+        self.buffer.blit(self.res_man.images["heart-b"], (70, ARENA_HEIGHT - 54))
+        self.buffer.blit(self.res_man.images["heart-b"], (130, ARENA_HEIGHT - 54))
         blitnumber(self.buffer, self.data['seconds'], 5, self.res_man.digits, (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
-        self.buffer.blit(self.res_man.get("images", "bullets-indicator"), (340, ARENA_HEIGHT - 42))
+        self.buffer.blit(self.res_man.images["bullets-indicator"], (340, ARENA_HEIGHT - 42))
         blitnumber(self.buffer, self.data['bullets-available'], 3, self.res_man.digits, (400, ARENA_HEIGHT - 54))
         # Paint bottom objects
         for movable in self.data['movables']:

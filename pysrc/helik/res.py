@@ -51,24 +51,6 @@ class ResourceManager:
         except IOError:
             pass
         self.resources = {
-            "images": {
-                "default-background": pygame.image.load(basepath.joinpath("back-default.jpg")),
-                "helik-small-left": pygame.image.load(basepath.joinpath("copter-white-left.png")),
-                "helik-small-right": pygame.image.load(basepath.joinpath("copter-white-right.png")),
-                "plane-small-left": pygame.image.load(basepath.joinpath("samolot.png")),
-                "line-0": pygame.image.load(basepath.joinpath("line-0.png")),
-                "wiezowiec-a": pygame.image.load(basepath.joinpath("wiezowiec-a.png")),
-                "wiezowiec-b": pygame.image.load(basepath.joinpath("wiezowiec-b.png")),
-                "fabryka-a": pygame.image.load(basepath.joinpath("fabryka-a.png")),
-                "dom-a": pygame.image.load(basepath.joinpath("dom-a.png")),
-                "bullet-1": pygame.image.load(basepath.joinpath("bullet-1.png")),
-                "bullet-2": pygame.image.load(basepath.joinpath("bullet-2.png")),
-                "bullets-indicator": pygame.image.load(basepath.joinpath("bullets-indicator.png")),
-                "flag-pl": pygame.image.load(basepath.joinpath("flag_pl.png")),
-                "flag-en": pygame.image.load(basepath.joinpath("flag_en.png")),
-                "heart-b": pygame.image.load(basepath.joinpath("heart-b.png")),
-                "ammo-box": pygame.image.load(basepath.joinpath("ammo-box.png"))
-            },
             "colors": {
                 "status-color": pygame.Color(128, 128, 128, 64),
             },
@@ -93,7 +75,7 @@ class ResourceManager:
         # 1. Bottom objects
         self.bottom_objects = []
         for name in ["line-0", "wiezowiec-a", "wiezowiec-b", "fabryka-a", "dom-a"]:
-            obj = self.resources["images"][name]
+            obj = self.images[name]
             rec = obj.get_rect()
             rec.y = ARENA_HEIGHT - STATUS_HEIGHT - rec.h
             self.bottom_objects.append((obj, rec))
