@@ -21,7 +21,7 @@ class Copter:
         self.buffer = self.game.buffer
         self.x = 200
         self.y = 200
-        self.image = self.res_man.images["helik-small-right"]
+        self.image = self.res_man.images["helik-white"]
         self.mask = pygame.mask.from_surface(self.image)
 
 
@@ -48,8 +48,9 @@ class Copter:
             if self.y <= ARENA_HEIGHT-60:
                 self.y += 1
             else:
-                # TODO
-                self.y = -30
+                # TODO:
+                # Collision
+                pass
 
     def collide(self, something):
         """

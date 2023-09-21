@@ -21,7 +21,7 @@ class BoardSettings(Board):
         Paint event handler
         """
         self.buffer.blit(self.res_man.images["default-background"], (0, 0))
-        self.buffer.blit(self.res_man.get("surfaces", "status"), (0, ARENA_HEIGHT - 60))
+        self.buffer.blit(self.res_man.surfaces["status"], (0, ARENA_HEIGHT - 60))
 
         # Lang flags
         self.buffer.blit(self.res_man.images["flag-pl"], self.res_man.get("lang-rectangles", "pl"))

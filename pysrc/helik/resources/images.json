@@ -1,14 +1,10 @@
 {
     "general": {
+	"helik-white": "helik-white.png",
         "default-background": "back-default.jpg",
-        "helik-small-left": "copter-white-left.png",
-        "helik-small-right": "copter-white-right.png",
+	"plane-level": "plane-level.png",
         "plane-small-left": "samolot.png",
         "line-0": "line-0.png",
-        "wiezowiec-a": "wiezowiec-a.png",
-        "wiezowiec-b": "wiezowiec-b.png",
-        "fabryka-a": "fabryka-a.png",
-        "dom-a": "dom-a.png",
         "bullet-1": "bullet-1.png",
         "bullet-2": "bullet-2.png",
         "bullets-indicator": "bullets-indicator.png",
@@ -17,6 +13,17 @@
         "heart-b": "heart-b.png",
         "ammo-box": "ammo-box.png"
     },
+    "buildings": [
+	"house-a.png",
+	"house-b.png",
+	"house-c.png",
+	"skyscraper-a.png",
+	"skyscraper-b.png",
+	"skyscraper-c.png",
+	"factory-a.png",
+	"factory-b.png",
+	"factory-c.png"
+    ],
     "clouds": [
         "cloud-1.png",
         "cloud-2.png",

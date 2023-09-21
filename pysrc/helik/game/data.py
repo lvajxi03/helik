@@ -45,7 +45,7 @@ class GameData:
             'bullets-available': 20,
             'bullets-to': [],
             'seconds': 0,
-            'mspeed': 20,
+            'mspeed': 30,
             'last-movable': 0
         }
 
@@ -56,23 +56,7 @@ class GameData:
         :param level: new level
         """
         self['level'] = level
-        self['mspeed'] = 20 - self['option'] - self['level']
-        self.create_movables(resman, level)
+        self['mspeed'] = 20 - 3* self['option'] - 2 * self['level']
 
     def score(self):
         self.points += 1  # TODO: ?
-
-    def create_movables(self, resman, level):
-        """
-        Create movables according to the level
-        :param resman: resource manager handle
-        :param level: level number
-        """
-        self.data['movables'] = []
-        x = 0
-        for index in resman.get_index("levels", level):
-            im, re = resman.bottom_objects[index]
-            m = Movable(im, x)
-            x += re.w
-            self.data['movables'].append(m)
-        self.data['last-movable'] = len(self.data['movables']) - 1

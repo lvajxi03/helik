@@ -20,8 +20,11 @@ class ResourceManager:
         self.images = {}
         self.digits = {}
         self.clouds = []
-        self.buildings = {}
+        self.levels = []
+        self.colors = {}
+        self.buildings = []
         self.fonts = {}
+        self.surfaces = {}
         self.create_resources(basepath)
 
     def create_resources(self, basepath):
@@ -48,17 +51,27 @@ class ResourceManager:
                     self.digits[name] = pygame.image.load(basepath.joinpath(data["digits"][name]))
                 for name in data["clouds"]:
                     self.clouds.append(pygame.image.load(basepath.joinpath(name)))
+                for name in data["buildings"]:
+                    self.buildings.append(pygame.image.load(basepath.joinpath(name)))
+        except IOError as ioe:
+            print(str(ioe))
+
+        f_name = basepath.joinpath("colors.json")
+        try:
+            with open(f_name) as f_handle:
+                data = json.load(f_handle)
+                for name in data["colors"]:
+                    r = data["colors"][name]
+                    self.colors[name] = pygame.Color(r[0], r[1], r[2], r[3])
         except IOError:
             pass
+
+        self.surfaces = {
+            "buffer": pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT), flags=pygame.SRCALPHA, depth=32,
+                                              vsync=1),
+            "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
+        }
         self.resources = {
-            "colors": {
-                "status-color": pygame.Color(128, 128, 128, 64),
-            },
-            "surfaces": {
-                "buffer": pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT), flags=pygame.SRCALPHA, depth=32,
-                                                  vsync=1),
-                "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
-            },
             "lang-rectangles": {
                 "pl": pygame.Rect(ARENA_WIDTH - 154, ARENA_HEIGHT - 58, 75, 56),
                 "en": pygame.Rect(ARENA_WIDTH - 77, ARENA_HEIGHT - 58, 75, 56)
@@ -71,14 +84,14 @@ class ResourceManager:
                 [2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 3, 2, 2]
                 ]
         }
-        # Objects:
-        # 1. Bottom objects
-        self.bottom_objects = []
-        for name in ["line-0", "wiezowiec-a", "wiezowiec-b", "fabryka-a", "dom-a"]:
-            obj = self.images[name]
-            rec = obj.get_rect()
-            rec.y = ARENA_HEIGHT - STATUS_HEIGHT - rec.h
-            self.bottom_objects.append((obj, rec))
+        f_name = basepath.joinpath("levels.json")
+        try:
+            with open(f_name) as f_handle:
+                self.levels = json.load(f_handle)["levels"]
+        except IOError:
+            pass
+        except KeyError:
+            pass
 
         # Labels
         for ty in locale:
@@ -134,8 +147,8 @@ class ResourceManager:
             self.set_label(BoardType.GAME, l, "en", (label, rect))
 
         # Status:
-        pygame.draw.rect(self.get("surfaces", "status"),
-                         self.get("colors", "status-color"), (0, 0, ARENA_WIDTH, 60))
+        pygame.draw.rect(self.surfaces["status"],
+                         self.colors["status-color"], (0, 0, ARENA_WIDTH, 60))
 
     def get(self, section: str, subsection: str):
         try:
