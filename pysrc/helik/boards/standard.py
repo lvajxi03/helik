@@ -48,3 +48,9 @@ class Board():
         """
         Timer handler
         """
+
+    def on_update(self, delta):
+        """
+        Update event handler
+        :param delta: delta time from last frame
+        """

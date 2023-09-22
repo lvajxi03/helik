@@ -9,7 +9,7 @@ import pygame
 from helik.modes.standard import Mode
 from helik.game.level import Level
 from helik.htypes import TimerType, GameType
-from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
+from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT
 from helik.gfx import blitnumber
 
 
@@ -34,7 +34,7 @@ class ModePlay(Mode):
         Activate event handler
         """
         pygame.time.set_timer(TimerType.COPTER, 10)
-        pygame.time.set_timer(TimerType.MOVABLES, 30)
+        pygame.time.set_timer(TimerType.MOVABLES, 15)
         pygame.time.set_timer(TimerType.SECONDS, 1000)
         pygame.time.set_timer(TimerType.BULLETS, 5)
 
@@ -44,6 +44,9 @@ class ModePlay(Mode):
         pygame.time.set_timer(TimerType.SECONDS, 0)
         pygame.time.set_timer(TimerType.BULLETS, 0)
 
+    def on_update(self, delta):
+        self.level.move(delta)
+
     def on_timer(self, timer):
         """
         Timer event handler
@@ -52,19 +55,9 @@ class ModePlay(Mode):
         if timer == TimerType.COPTER:
             self.game.copter.on_timer(timer)
 
-        elif timer == TimerType.MOVABLES:
-            self.level.move(-1)
-        elif timer == TimerType.BULLETS:
-            for b in self.data['bullets-from']:
-                b.move(8)
-                self.data['bullets-from'] = [x for x in self.data['bullets-from'] if x.valid]
         elif timer == TimerType.SECONDS:
             self.data['seconds'] += 1
-            if self.data['seconds'] % 10 == 0:
-                self.data['mspeed'] -= 2
-                if self.data['mspeed'] > 0:
-                    pygame.time.set_timer(TimerType.MOVABLES, 0)
-                    pygame.time.set_timer(TimerType.MOVABLES, self.data['mspeed'])
+            self.data['points'] += 10
 
     def on_keyup(self, key):
         """
@@ -88,13 +81,16 @@ class ModePlay(Mode):
         self.buffer.blit(self.res_man.images["heart-b"], (10, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.images["heart-b"], (70, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.images["heart-b"], (130, ARENA_HEIGHT - 54))
-        blitnumber(self.buffer, self.data['seconds'], 5, self.res_man.digits, (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
+        blitnumber(self.buffer, self.data['points'], 5, self.res_man.digits, (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.images["bullets-indicator"], (340, ARENA_HEIGHT - 42))
         blitnumber(self.buffer, self.data['bullets-available'], 3, self.res_man.digits, (400, ARENA_HEIGHT - 54))
 
         self.level.on_paint(self.buffer)
 
-        for bullet in self.data['bullets-from']:
+        for bullet in self.level.bullets:
             if bullet.visible:
                 bullet.on_paint(self.buffer)
+
         self.game.copter.on_paint()
+
+        pygame.draw.line(self.buffer, pygame.Color(255, 255, 255), (0, ARENA_HEIGHT - STATUS_HEIGHT), (ARENA_WIDTH, ARENA_HEIGHT - STATUS_HEIGHT), width=2)

@@ -36,11 +36,11 @@ class Building:
         """
         return self.mask.overlap(other.mask, (other.x - self.x, other.y - self.y))
 
-    def move(self, speed=-1):
+    def move(self, speed=1):
         """
         Move building
         """
-        self.x += speed
+        self.x -= speed
         if self.x + self.w < 0:
             self.valid = False
             self.visible = False

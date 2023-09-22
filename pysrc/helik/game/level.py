@@ -55,10 +55,10 @@ class Level:
         Make new BulletFrom
         :param copter: copter instance handle
         """
-        bullet = Bullet(self.res_man.images["bullet-1"], copter.x + copter.w, copter.y + copter.h // 2)
+        bullet = Bullet(self.res_man.images["bullet"], copter.x + copter.w, copter.y + copter.h // 2)
         self.bullets.append(bullet)
 
-    def move(self, speed=-1):
+    def move(self, speed):
         """
         Move all the objects
         """
@@ -67,6 +67,9 @@ class Level:
 
         for cloud in self.clouds:
             cloud.move(speed)
+
+        for bullet in self.bullets:
+            bullet.move(speed)
 
     def on_paint(self, canvas):
         """

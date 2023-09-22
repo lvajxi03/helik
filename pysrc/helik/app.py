@@ -71,7 +71,7 @@ class Application():
             self.on_paint()
             pygame.display.flip()
             dt = self.clock.tick(60)
-            print(dt)
+            self.on_update(dt)
 
         # Eventually,
         pygame.quit()
@@ -103,3 +103,10 @@ class Application():
         :param key: key code
         """
         self.boards[self.board_id].on_keyup(key)
+
+    def on_update(self, delta):
+        """
+        Update event handler
+        :param delta: delta time from last frame
+        """
+        self.boards[self.board_id].on_update(delta/16)

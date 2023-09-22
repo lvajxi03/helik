@@ -82,5 +82,14 @@ class BoardGame(Board):
 
     def on_timer(self, timer):
         """
+        Timer event handler
+        :param timer: timer identifier
         """
         self.modes[self.mode].on_timer(timer)
+
+    def on_update(self, delta):
+        """
+        Update event handler
+        :param delta: delta time from last frame
+        """
+        self.modes[self.mode].on_update(delta)
