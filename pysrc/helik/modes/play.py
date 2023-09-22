@@ -7,12 +7,11 @@ Mode play handler module
 
 import pygame
 from helik.modes.standard import Mode
-from helik.game.objects import Movable
 from helik.game.level import Level
 from helik.htypes import TimerType, GameType
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
 from helik.gfx import blitnumber
-from helik.game.utils import make_bullet_from
+
 
 class ModePlay(Mode):
     """
@@ -28,13 +27,14 @@ class ModePlay(Mode):
         self.data.new_level(self.res_man, 0)
         self.level = Level(self.res_man, 0)
         self.level.create_buildings()
+        self.level.create_clouds()
 
     def activate(self):
         """
         Activate event handler
         """
         pygame.time.set_timer(TimerType.COPTER, 10)
-        pygame.time.set_timer(TimerType.MOVABLES, self.data['mspeed'])
+        pygame.time.set_timer(TimerType.MOVABLES, 30)
         pygame.time.set_timer(TimerType.SECONDS, 1000)
         pygame.time.set_timer(TimerType.BULLETS, 5)
 
@@ -53,7 +53,7 @@ class ModePlay(Mode):
             self.game.copter.on_timer(timer)
 
         elif timer == TimerType.MOVABLES:
-            self.level.move()
+            self.level.move(-1)
         elif timer == TimerType.BULLETS:
             for b in self.data['bullets-from']:
                 b.move(8)
@@ -75,7 +75,7 @@ class ModePlay(Mode):
             self.game.change_mode(GameType.PAUSED)
         elif key == pygame.K_s:
             if self.data['bullets-available'] > 0:
-                self.level.make_bullet_from(self.game.copter)
+                self.level.make_bullet(self.game.copter)
                 self.data['bullets-available'] -= 1
         self.game.copter.on_keyup(key)
 
@@ -88,14 +88,11 @@ class ModePlay(Mode):
         self.buffer.blit(self.res_man.images["heart-b"], (10, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.images["heart-b"], (70, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.images["heart-b"], (130, ARENA_HEIGHT - 54))
-        self.buffer.blit(self.res_man.images["plane-level"], (300, 300))
         blitnumber(self.buffer, self.data['seconds'], 5, self.res_man.digits, (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.images["bullets-indicator"], (340, ARENA_HEIGHT - 42))
         blitnumber(self.buffer, self.data['bullets-available'], 3, self.res_man.digits, (400, ARENA_HEIGHT - 54))
 
         self.level.on_paint(self.buffer)
-        self.game.plane.on_paint(self.buffer)
-
 
         for bullet in self.data['bullets-from']:
             if bullet.visible:

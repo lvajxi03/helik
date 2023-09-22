@@ -9,7 +9,7 @@ import pygame
 from helik.boards.standard import Board
 from helik.htypes import BoardType, TimerType, GameType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-from helik.game.objects import Copter, Plane
+from helik.game.copter import Copter
 from helik.modes.standard import Mode
 from helik.modes.init import ModeInit
 from helik.modes.prepare import ModePrepare
@@ -30,7 +30,6 @@ class BoardGame(Board):
         super().__init__(parent)
         self.mode = GameType.NONE
         self.copter = Copter(self)
-        self.plane = Plane(self.res_man.images["plane-small-left"], ARENA_WIDTH - 250, 100)
         self.data = GameData()
         self.modes = {
             GameType.NONE: Mode(self),

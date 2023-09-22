@@ -7,6 +7,7 @@ Copter handler module
 import enum
 import pygame
 from helik.hdefs import ARENA_HEIGHT, STATUS_HEIGHT
+from helik.htypes import TimerType
 
 
 @enum.unique

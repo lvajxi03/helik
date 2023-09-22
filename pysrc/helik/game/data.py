@@ -4,9 +4,6 @@
 Game data module
 """
 
-from helik.game.objects import Movable
-
-
 class GameData:
     """
     Main game data class

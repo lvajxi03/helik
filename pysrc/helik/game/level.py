@@ -6,6 +6,8 @@ Level handler module
 
 import pygame
 from helik.game.buildings import buildings_from_factory, Building
+from helik.game.clouds import clouds_from_factory, Cloud
+from helik.game.bullets import Bullet
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
 
 
@@ -26,21 +28,35 @@ class Level:
         self.image = None
         self.buildings = []
         self.clouds = []
-        self.bullets_from = []
+        self.bullets = []
         self.planes = []
+        # Buildings and clouds total widths:
+        self.b_width = 0
+        self.c_width = 0
 
     def create_buildings(self):
+        """
+        Create buildings for this given level
+        """
         buildings_data = self.res_man.levels[self.index]["buildings"]
         self.buildings = buildings_from_factory(self.res_man, buildings_data, self.res_man.levels[self.index]["buildings-amount"])
-        self.width = self.buildings[-1].x + self.buildings[-1].w
+        self.b_width = self.buildings[-1].x + self.buildings[-1].w
 
-    def make_bullet_from(self, copter):
+    def create_clouds(self):
+        """
+        Create clouds for this given level
+        """
+        clouds_data = self.res_man.levels[self.index]["clouds"]
+        self.clouds = clouds_from_factory(self.res_man, clouds_data, self.res_man.levels[self.index]["clouds-amount"])
+        self.c_width = self.clouds[-1].x + self.clouds[-1].w
+
+    def make_bullet(self, copter):
         """
         Make new BulletFrom
         :param copter: copter instance handle
         """
-        bullet = Bullet(self.res_man.images["bullet-1"], self.copter.x + self.copter.w, self.copter.y + self.copter.h // 2)
-        self.bullets_from.append(bullet)
+        bullet = Bullet(self.res_man.images["bullet-1"], copter.x + copter.w, copter.y + copter.h // 2)
+        self.bullets.append(bullet)
 
     def move(self, speed=-1):
         """
@@ -63,12 +79,12 @@ class Level:
 
         for cloud in self.clouds:
             if cloud.visible:
-                cloud.paint(canvas)
+                cloud.on_paint(canvas)
 
         for plane in self.planes:
             if plane.visible:
-                plane.paint(canvas)
+                plane.on_paint(canvas)
 
-        for bullet in self.bullets_from:
+        for bullet in self.bullets:
             if bullet.visible:
-                bullet.paint(canvas)
+                bullet.on_paint(canvas)

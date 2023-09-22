@@ -70,7 +70,8 @@ class Application():
                     self.on_timer(event.type)
             self.on_paint()
             pygame.display.flip()
-            self.clock.tick(60)
+            dt = self.clock.tick(60)
+            print(dt)
 
         # Eventually,
         pygame.quit()
