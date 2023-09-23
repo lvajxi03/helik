@@ -40,7 +40,7 @@ class Bullet:
         Move bullet
         """
         if self.valid:
-            self.x += 10*delta
+            self.x += 15*delta
             if self.x > ARENA_WIDTH:
                 self.valid = False
                 self.visible = False

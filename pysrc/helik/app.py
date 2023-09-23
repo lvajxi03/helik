@@ -19,6 +19,7 @@ from helik.boards.settings import BoardSettings
 from helik.boards.game import BoardGame
 from helik.boards.quit import BoardQuit
 from helik.res import ResourceManager
+from helik.config import Config
 
 class Application():
     """
@@ -31,10 +32,11 @@ class Application():
         random.seed()
         pygame.init()
         self.res_man = ResourceManager(files('helik.resources'))
-        self.lang = "en"
         pygame.display.set_caption(APPLICATION_TITLE)
         self.clock = pygame.time.Clock()
         self.running = True
+        self.config = Config()
+        self.config.read_default_config()
         self.boards = {
             BoardType.WELCOME: BoardWelcome(self),
             BoardType.MENU: BoardMenu(self),
@@ -70,10 +72,11 @@ class Application():
                     self.on_timer(event.type)
             self.on_paint()
             pygame.display.flip()
-            dt = self.clock.tick(60)
+            dt = self.clock.tick(50)
             self.on_update(dt)
 
         # Eventually,
+        self.config.save_default_config()
         pygame.quit()
 
     def on_mouseup(self, button, pos):
@@ -109,4 +112,4 @@ class Application():
         Update event handler
         :param delta: delta time from last frame
         """
-        self.boards[self.board_id].on_update(delta/16)
+        self.boards[self.board_id].on_update(delta/20)

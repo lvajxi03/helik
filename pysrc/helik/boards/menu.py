@@ -38,7 +38,7 @@ class BoardMenu(Board):
         """
         self.rectangles = []
         i = 0
-        elems = self.res_man.get_label(BoardType.MENU, "menu", self.arena.lang)
+        elems = self.res_man.get_label(BoardType.MENU, "menu", self.arena.config['lang'])
         for elem in elems:
             label, rect = elem
             rect.left = 400
@@ -58,9 +58,9 @@ class BoardMenu(Board):
         self.buffer.blit(self.res_man.images["flag-pl"], self.res_man.get("lang-rectangles", "pl"))
         self.buffer.blit(self.res_man.images["flag-en"], self.res_man.get("lang-rectangles", "en"))
 
-        label, rect = self.res_man.get_label(BoardType.MENU, "title_shadow", self.arena.lang)
+        label, rect = self.res_man.get_label(BoardType.MENU, "title_shadow", self.arena.config['lang'])
         self.buffer.blit(label, (225, 55))
-        label, rect = self.res_man.get_label(BoardType.MENU, "title", self.arena.lang)
+        label, rect = self.res_man.get_label(BoardType.MENU, "title", self.arena.config['lang'])
         self.buffer.blit(label, (220, 50))
         
         for re in self.rectangles:
@@ -114,7 +114,7 @@ class BoardMenu(Board):
             rects = self.res_man.get_section("lang-rectangles")
             for lang in rects:
                 if rects[lang].collidepoint(pos):
-                    self.arena.lang = lang
+                    self.arena.config['lang'] = lang
                     ch_lang = True
                     self.create_rectangles()
         if not ch_lang:

@@ -23,8 +23,6 @@ class ModePlay(Mode):
         """
         super().__init__(parent)
         self.data = self.game.data
-        # TODO: move to another mode?
-        self.data.new_level(self.res_man, 0)
         self.level = Level(self.res_man, 0)
         self.level.create_buildings()
         self.level.create_clouds()
@@ -34,12 +32,10 @@ class ModePlay(Mode):
         Activate event handler
         """
         pygame.time.set_timer(TimerType.COPTER, 10)
-        pygame.time.set_timer(TimerType.MOVABLES, 15)
         pygame.time.set_timer(TimerType.SECONDS, 1000)
         pygame.time.set_timer(TimerType.BULLETS, 5)
 
     def deactivate(self):
-        pygame.time.set_timer(TimerType.MOVABLES, 0)
         pygame.time.set_timer(TimerType.COPTER, 0)
         pygame.time.set_timer(TimerType.SECONDS, 0)
         pygame.time.set_timer(TimerType.BULLETS, 0)

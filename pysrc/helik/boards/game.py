@@ -16,7 +16,6 @@ from helik.modes.prepare import ModePrepare
 from helik.modes.play import ModePlay
 from helik.modes.paused import ModePaused
 from helik.modes.killed import ModeKilled
-from helik.game.data import GameData
 
 
 class BoardGame(Board):
@@ -30,7 +29,7 @@ class BoardGame(Board):
         super().__init__(parent)
         self.mode = GameType.NONE
         self.copter = Copter(self)
-        self.data = GameData()
+        self.data = {}
         self.modes = {
             GameType.NONE: Mode(self),
             GameType.INIT: ModeInit(self),
