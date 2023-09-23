@@ -25,14 +25,21 @@ class BoardWelcome(Board):
             comp = random.randint(64, 255)
             self.colors.append(
                 pygame.Color(comp, comp, comp))
-        pygame.time.set_timer(TimerType.WELCOME, 40)
+
+    def activate(self):
         pygame.time.set_timer(TimerType.WELCOME_STOP, 3000)
+
+    def on_update(self, delta):
+        """
+        Update event handler
+        :param delta: delta time from last frame
+        """
+        self.shuffle_colors()
 
     def deactivate(self):
         """
         Board deactivate handler
         """
-        pygame.time.set_timer(TimerType.WELCOME, 0)
         pygame.time.set_timer(TimerType.WELCOME_STOP, 0)
 
     def on_paint(self):
@@ -48,8 +55,6 @@ class BoardWelcome(Board):
         """
         Handle timer event(s)
         """
-        if timer == TimerType.WELCOME:
-            self.generate_colors()
         if timer == TimerType.WELCOME_STOP:
             self.arena.change_board(BoardType.MENU)
 
@@ -60,10 +65,10 @@ class BoardWelcome(Board):
         """
         self.arena.change_board(BoardType.MENU)
 
-    def generate_colors(self):
+    def shuffle_colors(self):
         """
-        Re-generate welcome screen colors
+        Shuffle welcome screen colors
         """
-        for i in range(0, ARENA_WIDTH // 40):
-            comp = random.randint(64, 255)
-            self.colors[i] = pygame.Color(comp, comp, comp)
+        c = self.colors.pop(0)
+        self.colors.append(c)
+        pygame.time.delay(50)

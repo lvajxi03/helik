@@ -60,6 +60,10 @@ class Application():
         """
         Main application loop
         """
+        # Activate initial board
+        self.boards[self.board_id].activate()
+
+        # Main application loop
         while self.running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

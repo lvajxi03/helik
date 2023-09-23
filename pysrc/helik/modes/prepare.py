@@ -20,7 +20,7 @@ class ModePrepare(Mode):
         """
         super().__init__(parent)
         self.timers = {
-            TimerType.PREPARE: self.on_prepare,
+            TimerType.SECONDS: self.on_prepare,
             TimerType.PREPARE_MINOR: self.on_prepare_minor,
             TimerType.PREPARE_STOP: self.on_prepare_stop
         }
@@ -50,7 +50,7 @@ class ModePrepare(Mode):
         Handle PREPARE_MINOR timer
         """
         self.alpha -= 5
-        self.res_man.set_alpha(BoardType.GAME, self.labels[self.index], self.arena.lang, self.alpha)
+        self.res_man.set_alpha(BoardType.GAME, self.labels[self.index], self.arena.config['lang'], self.alpha)
 
     def on_prepare_stop(self):
         """
@@ -64,7 +64,7 @@ class ModePrepare(Mode):
         """
         self.alpha = 255
         self.index = 0
-        pygame.time.set_timer(TimerType.PREPARE, 1000)
+        pygame.time.set_timer(TimerType.SECONDS, 1000)
         pygame.time.set_timer(TimerType.PREPARE_MINOR, 20)
         pygame.time.set_timer(TimerType.PREPARE_STOP, 3000)
 
@@ -72,7 +72,7 @@ class ModePrepare(Mode):
         """
         Deactivate event handler
         """
-        pygame.time.set_timer(TimerType.PREPARE, 0)
+        pygame.time.set_timer(TimerType.SECONDS, 0)
         pygame.time.set_timer(TimerType.PREPARE_MINOR, 0)
         pygame.time.set_timer(TimerType.PREPARE_STOP, 0)
 
@@ -84,7 +84,7 @@ class ModePrepare(Mode):
             self.res_man.images["default-background"], (0, 0))
         try:
             label, rect = self.res_man.get_label(
-                BoardType.GAME, self.labels[self.index], self.arena.lang)
+                BoardType.GAME, self.labels[self.index], self.arena.config['lang'])
             self.buffer.blit(label, rect)
         except KeyError:
             pass

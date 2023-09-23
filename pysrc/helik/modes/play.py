@@ -33,12 +33,10 @@ class ModePlay(Mode):
         """
         pygame.time.set_timer(TimerType.COPTER, 10)
         pygame.time.set_timer(TimerType.SECONDS, 1000)
-        pygame.time.set_timer(TimerType.BULLETS, 5)
 
     def deactivate(self):
         pygame.time.set_timer(TimerType.COPTER, 0)
         pygame.time.set_timer(TimerType.SECONDS, 0)
-        pygame.time.set_timer(TimerType.BULLETS, 0)
 
     def on_update(self, delta):
         self.level.move(delta)
@@ -52,8 +50,8 @@ class ModePlay(Mode):
             self.game.copter.on_timer(timer)
 
         elif timer == TimerType.SECONDS:
-            self.data['seconds'] += 1
-            self.data['points'] += 10
+            self.game.data['seconds'] += 1
+            self.game.data['points'] += 10
 
     def on_keyup(self, key):
         """

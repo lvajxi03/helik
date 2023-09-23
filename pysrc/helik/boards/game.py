@@ -29,7 +29,12 @@ class BoardGame(Board):
         super().__init__(parent)
         self.mode = GameType.NONE
         self.copter = Copter(self)
-        self.data = {}
+        self.data = {
+            'points': 0,
+            'option': 1,
+            'seconds': 0,
+            'bullets-available': 20
+        }
         self.modes = {
             GameType.NONE: Mode(self),
             GameType.INIT: ModeInit(self),

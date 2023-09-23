@@ -39,15 +39,11 @@ class GameType(enum.IntEnum):
 
 @enum.unique
 class TimerType(enum.IntEnum):
-    WELCOME = pygame.USEREVENT + 1
-    WELCOME_STOP = pygame.USEREVENT + 2
-    PREPARE = pygame.USEREVENT + 3
-    PREPARE_MINOR = pygame.USEREVENT + 4
-    PREPARE_STOP = pygame.USEREVENT + 5
-    COPTER = pygame.USEREVENT + 6
-    MOVABLES = pygame.USEREVENT + 7
-    SECONDS = pygame.USEREVENT + 8
-    BULLETS = pygame.USEREVENT + 9
+    WELCOME_STOP = pygame.USEREVENT + 1
+    PREPARE_MINOR = pygame.USEREVENT + 2
+    PREPARE_STOP = pygame.USEREVENT + 3
+    COPTER = pygame.USEREVENT + 4
+    SECONDS = pygame.USEREVENT + 5
 
 
 @enum.unique

@@ -27,9 +27,9 @@ class BoardOptions(Board):
         self.buffer.blit(self.res_man.images["flag-pl"], self.res_man.get("lang-rectangles", "pl"))
         self.buffer.blit(self.res_man.images["flag-en"], self.res_man.get("lang-rectangles", "en"))
 
-        l, _ = self.res_man.get_label(BoardType.OPTIONS, "title-shadow", self.arena.lang)
+        l, _ = self.res_man.get_label(BoardType.OPTIONS, "title-shadow", self.arena.config['lang'])
         self.buffer.blit(l, (55, 45))
-        l, _ = self.res_man.get_label(BoardType.OPTIONS, "title", self.arena.lang)
+        l, _ = self.res_man.get_label(BoardType.OPTIONS, "title", self.arena.config['lang'])
         self.buffer.blit(l, (50, 50))
 
     def activate(self):
@@ -60,7 +60,7 @@ class BoardOptions(Board):
             rects = self.res_man.get_section("lang-rectangles")
             for lang in rects:
                 if rects[lang].collidepoint(pos):
-                    self.arena.lang = lang
+                    self.arena.config['lang'] = lang
                     ch_lang = True
                     # TODO: options-related ops here
         if not ch_lang:

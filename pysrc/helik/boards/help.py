@@ -29,9 +29,9 @@ class BoardHelp(Board):
         self.buffer.blit(self.res_man.images["flag-pl"], self.res_man.get("lang-rectangles", "pl"))
         self.buffer.blit(self.res_man.images["flag-en"], self.res_man.get("lang-rectangles", "en"))
 
-        l, r = self.res_man.get_label(BoardType.HELP, "title-shadow", self.arena.lang)
+        l, r = self.res_man.get_label(BoardType.HELP, "title-shadow", self.arena.config['lang'])
         self.buffer.blit(l, (55, 45))
-        l, r = self.res_man.get_label(BoardType.HELP, "title", self.arena.lang)
+        l, r = self.res_man.get_label(BoardType.HELP, "title", self.arena.config['lang'])
         self.buffer.blit(l, (50, 50))
 
     def activate(self):
@@ -62,7 +62,7 @@ class BoardHelp(Board):
             rects = self.res_man.get_section("lang-rectangles")
             for lang in rects:
                 if rects[lang].collidepoint(pos):
-                    self.arena.lang = lang
+                    self.arena.config['lang'] = lang
                     ch_lang = True
         if not ch_lang:
             # TODO: help-related ops here
