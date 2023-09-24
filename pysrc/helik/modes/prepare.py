@@ -56,7 +56,7 @@ class ModePrepare(Mode):
         """
         Handle PREPARE_STOP timer
         """
-        self.game.change_mode(GameType.PLAY)
+        self.game.change_mode(GameType.NEWLEVEL)
 
     def activate(self):
         """

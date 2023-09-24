@@ -7,15 +7,17 @@ Game board for HeliK
 
 import pygame
 from helik.boards.standard import Board
-from helik.htypes import BoardType, TimerType, GameType
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.game.copter import Copter
-from helik.modes.standard import Mode
+from helik.game.level import Level
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.htypes import BoardType, TimerType, GameType
 from helik.modes.init import ModeInit
-from helik.modes.prepare import ModePrepare
-from helik.modes.play import ModePlay
-from helik.modes.paused import ModePaused
 from helik.modes.killed import ModeKilled
+from helik.modes.paused import ModePaused
+from helik.modes.play import ModePlay
+from helik.modes.prepare import ModePrepare
+from helik.modes.standard import Mode
+from helik.modes.newlevel import ModeNewLevel
 
 
 class BoardGame(Board):
@@ -31,9 +33,11 @@ class BoardGame(Board):
         self.copter = Copter(self)
         self.data = {
             'points': 0,
+            'level': -1,
             'option': 1,
             'seconds': 0,
-            'bullets-available': 20
+            'bullets-available': 20,
+            'lives': 5
         }
         self.modes = {
             GameType.NONE: Mode(self),
@@ -41,8 +45,15 @@ class BoardGame(Board):
             GameType.PREPARE: ModePrepare(self),
             GameType.PLAY: ModePlay(self),
             GameType.PAUSED: ModePaused(self),
-            GameType.KILLED: ModeKilled(self)
+            GameType.KILLED: ModeKilled(self),
+            GameType.NEWLEVEL: ModeNewLevel(self)
             }
+        self.collisions = []
+
+        self.level = None
+
+    def new_level(self):
+        self.level = Level(self.res_man, self.data['level'])
 
     def change_mode(self, newmode):
         """

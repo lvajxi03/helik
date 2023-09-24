@@ -15,7 +15,7 @@ from helik.gfx import blitnumber
 
 class ModePlay(Mode):
     """
-    Mode play handle class
+    Mode play handler class
     """
     def __init__(self, parent):
         """
@@ -23,41 +23,39 @@ class ModePlay(Mode):
         """
         super().__init__(parent)
         self.data = self.game.data
-        self.level = Level(self.res_man, 0)
-        self.level.create_buildings()
-        self.level.create_clouds()
 
     def activate(self):
         """
         Activate event handler
         """
-        pygame.time.set_timer(TimerType.COPTER, 10)
         pygame.time.set_timer(TimerType.SECONDS, 1000)
 
     def deactivate(self):
-        pygame.time.set_timer(TimerType.COPTER, 0)
         pygame.time.set_timer(TimerType.SECONDS, 0)
 
     def on_update(self, delta):
-        self.level.move(delta)
+        self.game.level.move(delta)
+        self.game.copter.move(delta)
 
         # Collisions!
-        for bullet in self.level.bullets:
+        for bullet in self.game.level.bullets:
             if bullet.valid:
-                for cloud in self.level.clouds:
+                for cloud in self.game.level.clouds:
                     if cloud.valid:
                         if cloud.collide(bullet):
                             bullet.valid = False
                             bullet.visible = False
                             cloud.valid = False
                             cloud.visible = False
-                for building in self.level.buildings:
+                            self.game.data['points'] += 1
+                for building in self.game.level.buildings:
                     if building.valid:
                         if building.collide(bullet):
                             bullet.valid = False
                             bullet.visible = False
                             building.valid = False
                             building.visible = False
+                            self.game.data['points'] += 1
 
     def on_timer(self, timer):
         """
@@ -80,7 +78,7 @@ class ModePlay(Mode):
             self.game.change_mode(GameType.PAUSED)
         elif key == pygame.K_s:
             if self.data['bullets-available'] > 0:
-                self.level.make_bullet(self.game.copter)
+                self.game.level.make_bullet(self.game.copter)
                 self.data['bullets-available'] -= 1
         self.game.copter.on_keyup(key)
 
@@ -90,18 +88,13 @@ class ModePlay(Mode):
         """
         self.buffer.blit(self.res_man.images["default-background"], (0, 0))
         self.buffer.blit(self.res_man.surfaces["status"], (0, ARENA_HEIGHT - 60))
-        self.buffer.blit(self.res_man.images["heart-b"], (10, ARENA_HEIGHT - 54))
-        self.buffer.blit(self.res_man.images["heart-b"], (70, ARENA_HEIGHT - 54))
-        self.buffer.blit(self.res_man.images["heart-b"], (130, ARENA_HEIGHT - 54))
+        for i in range(self.game.data['lives']):
+            self.buffer.blit(self.res_man.images["heart-b"], (10 + i * 60, ARENA_HEIGHT - 54))
         blitnumber(self.buffer, self.data['points'], 5, self.res_man.digits, (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.images["bullets-indicator"], (340, ARENA_HEIGHT - 42))
         blitnumber(self.buffer, self.data['bullets-available'], 3, self.res_man.digits, (400, ARENA_HEIGHT - 54))
 
-        self.level.on_paint(self.buffer)
-
-        for bullet in self.level.bullets:
-            if bullet.visible:
-                bullet.on_paint(self.buffer)
+        self.game.level.on_paint(self.buffer)
 
         self.game.copter.on_paint()
 

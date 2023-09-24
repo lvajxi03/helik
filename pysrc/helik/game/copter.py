@@ -55,26 +55,20 @@ class Copter:
                 elif self.y + self.h >= ARENA_HEIGHT - STATUS_HEIGHT - 30:
                     self.y = ARENA_HEIGHT - STATUS_HEIGHT - self.h
 
-    def on_timer(self, timer):
+    def move(self, delta):
         """
-        Timer event handler
+        Move the copter
+        :param delta: delta time from last frame
         """
-        if timer == TimerType.COPTER:
-            if self.direction == CopterDirection.DOWN:
-                if self.y < ARENA_HEIGHT - STATUS_HEIGHT:
-                    self.y += 1
-                else:
-                    # TODO: collision!
-                    pass
+        if self.direction == CopterDirection.DOWN:
+            if self.y < ARENA_HEIGHT - STATUS_HEIGHT:
+                self.y += 1
             else:
-                if self.y > 0:
-                    self.y -= 1
-                else:
-                    # TODO: collision!
-                    pass
-
-    def on_update(self, delta):
-        """
-        TODO
-        """
-        pass
+                # TODO: collision!
+                pass
+        else:
+            if self.y > 0:
+                self.y -= 1
+            else:
+                # TODO: collision!
+                pass

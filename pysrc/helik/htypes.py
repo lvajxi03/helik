@@ -31,10 +31,11 @@ class GameType(enum.IntEnum):
     NONE = 0
     INIT = 1
     PREPARE = 2
-    PLAY = 3
-    PAUSED = 4
-    KILLED = 5
-    GAMEOVER = 6
+    NEWLEVEL = 3
+    PLAY = 4
+    PAUSED = 5
+    KILLED = 6
+    GAMEOVER = 7
 
 
 @enum.unique
