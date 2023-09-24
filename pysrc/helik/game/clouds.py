@@ -46,6 +46,14 @@ class Cloud:
         """
         canvas.blit(self.image, (self.x, self.y))
 
+    def collide(self, other):
+        """
+        Check for collision between this object and the other
+        :param other: other object
+        :return: tuple of intersection or None
+        """
+        return self.mask.overlap(other.mask, (other.x - self.x, other.y - self.y))
+
 def clouds_from_factory(resman, clist: list, amount: int):
     """
     Populate a list of clouds for given level.

@@ -41,6 +41,24 @@ class ModePlay(Mode):
     def on_update(self, delta):
         self.level.move(delta)
 
+        # Collisions!
+        for bullet in self.level.bullets:
+            if bullet.valid:
+                for cloud in self.level.clouds:
+                    if cloud.valid:
+                        if cloud.collide(bullet):
+                            bullet.valid = False
+                            bullet.visible = False
+                            cloud.valid = False
+                            cloud.visible = False
+                for building in self.level.buildings:
+                    if building.valid:
+                        if building.collide(bullet):
+                            bullet.valid = False
+                            bullet.visible = False
+                            building.valid = False
+                            building.visible = False
+
     def on_timer(self, timer):
         """
         Timer event handler

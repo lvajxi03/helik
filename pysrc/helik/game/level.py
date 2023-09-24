@@ -63,13 +63,16 @@ class Level:
         Move all the objects
         """
         for building in self.buildings:
-            building.move(speed)
+            if building.valid:
+                building.move(speed)
 
         for cloud in self.clouds:
-            cloud.move(speed)
+            if cloud.valid:
+                cloud.move(speed)
 
         for bullet in self.bullets:
-            bullet.move(speed)
+            if bullet.valid:
+                bullet.move(speed)
 
     def on_paint(self, canvas):
         """
@@ -77,17 +80,17 @@ class Level:
         :param canvas: canvas to paint images into
         """
         for building in self.buildings:
-            if building.visible:
+            if building.visible and building.valid:
                 building.on_paint(canvas)
 
         for cloud in self.clouds:
-            if cloud.visible:
+            if cloud.visible and cloud.valid:
                 cloud.on_paint(canvas)
 
         for plane in self.planes:
-            if plane.visible:
+            if plane.visible and plane.valid:
                 plane.on_paint(canvas)
 
         for bullet in self.bullets:
-            if bullet.visible:
+            if bullet.visible and bullet.valid:
                 bullet.on_paint(canvas)
