@@ -25,18 +25,16 @@ class ModePaused(Mode):
         """
         Paint event handler
         """
-        self.buffer.blit(
-            self.res_man.get(
-                "images", "default-background"), (0, 0))
-        label, rect = self.res_man.get_label(BoardType.GAME, "paused-shadow", self.arena.lang)
+        self.buffer.blit(self.res_man.images["default-background"], (0, 0))
+        label, rect = self.res_man.get_label(BoardType.GAME, "paused-shadow", self.arena.config['lang'])
         rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
         rect.x += 5
         rect.y += 5
         self.buffer.blit(label, rect)
-        label, rect = self.res_man.get_label(BoardType.GAME, "paused", self.arena.lang)
+        label, rect = self.res_man.get_label(BoardType.GAME, "paused", self.arena.config['lang'])
         rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
         self.buffer.blit(label, rect)
-        label, rect = self.res_man.get_label(BoardType.GAME, "continue", self.arena.lang)
+        label, rect = self.res_man.get_label(BoardType.GAME, "continue", self.arena.config['lang'])
         rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
         rect.y += 100
         self.buffer.blit(label, rect)

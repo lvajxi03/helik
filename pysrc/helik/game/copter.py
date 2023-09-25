@@ -55,20 +55,20 @@ class Copter:
                 elif self.y + self.h >= ARENA_HEIGHT - STATUS_HEIGHT - 30:
                     self.y = ARENA_HEIGHT - STATUS_HEIGHT - self.h
 
-    def move(self, delta):
+    def move(self, delta) -> bool:
         """
         Move the copter
         :param delta: delta time from last frame
+        :return: True if collided to top or bottom, False otherwise
         """
         if self.direction == CopterDirection.DOWN:
             if self.y < ARENA_HEIGHT - STATUS_HEIGHT:
                 self.y += 1
             else:
-                # TODO: collision!
-                pass
+                return True
         else:
             if self.y > 0:
                 self.y -= 1
             else:
-                # TODO: collision!
-                pass
+                return True
+        return False

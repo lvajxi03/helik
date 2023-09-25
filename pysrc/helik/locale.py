@@ -86,6 +86,13 @@ locale = {
             "font": "heading-2",
             "rotate": 90,
             "color": "#313131"
+        },
+        "empty": {
+            "pl": "(niczego tu jeszcze nie ma)",
+            "en": "(so far nothing to see here)",
+            "font": "menu",
+            "rotate": 0,
+            "color": "#313131"
         }
     },
     BoardType.NEWSCORE: {

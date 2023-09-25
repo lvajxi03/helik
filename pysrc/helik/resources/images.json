@@ -43,5 +43,12 @@
         "7": "7.png",
         "8": "8.png",
         "9": "9.png"
-    }
+    },
+    "explosions": [
+	"expl-1.png",
+	"expl-2.png",
+	"expl-3.png",
+	"expl-4.png",
+	"expl-5.png"
+    ]
 }

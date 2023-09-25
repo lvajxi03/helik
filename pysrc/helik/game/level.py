@@ -94,3 +94,17 @@ class Level:
         for bullet in self.bullets:
             if bullet.visible and bullet.valid:
                 bullet.on_paint(canvas)
+
+    def rotate(self):
+        """
+        Rotate all game elements if not valid
+        """
+        self.bullets = [x for x in self.bullets if x.valid]
+        self.buildings = [x for x in self.buildings if x.valid]
+        self.clouds = [x for x in self.clouds if x.valid]
+        self.planes = [x for x in self.planes if x.valid]
+
+    def is_empty(self):
+        if len(self.buildings) == 0 and len(self.clouds) == 0 and len(self.planes) == 0:
+            return True
+        return False

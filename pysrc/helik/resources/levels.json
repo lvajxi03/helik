@@ -5,7 +5,7 @@
 		"pl": "1",
 		"en": "1"
 	    },
-	    "buildings-amount": 400,
+	    "buildings-amount": 9,
 	    "buildings": [
 		[0, 1],
 		[-1, 200],
@@ -51,7 +51,7 @@
 		[5, 1],
 		[-1, 100]
 	    ],
-	    "clouds-amount": 400,
+	    "clouds-amount": 9,
 	    "clouds": [
 		[-1, 300],
 		[0, 50],

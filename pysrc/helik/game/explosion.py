@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
 """
-Collision handler module
+Explosion handler module
 """
 
 
-class Collision:
+class Explosion:
     """
-    Collision handler class
+    Explosion handler class
     """
     def __init__(self, images: list, x, y):
         self.images = images
@@ -20,17 +20,19 @@ class Collision:
             r.center = (x, y)
             self.rects.append(r)
         self.max_frames = len(self.images)
+        self.valid = True
 
     def on_update(self, delta):
         """
         Update handler event
         """
         self.current += 1
-        self.current %= self.max_frames
+        if self.current >= self.max_frames:
+            self.valid = False
 
     def on_paint(self, canvas):
         """
         Paint event handler
-        :param canvas: canvas to paint the collision
+        :param canvas: canvas to paint the explosion
         """
         canvas.blit(self.images[self.current], self.rects[self.current])

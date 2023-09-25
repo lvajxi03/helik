@@ -25,6 +25,7 @@ class ResourceManager:
         self.buildings = []
         self.fonts = {}
         self.surfaces = {}
+        self.explosions = []
         self.create_resources(basepath)
 
     def create_resources(self, basepath):
@@ -53,6 +54,8 @@ class ResourceManager:
                     self.clouds.append(pygame.image.load(basepath.joinpath(name)))
                 for name in data["buildings"]:
                     self.buildings.append(pygame.image.load(basepath.joinpath(name)))
+                for name in data["explosions"]:
+                    self.explosions.append(pygame.image.load(basepath.joinpath(name)))
         except IOError as ioe:
             print(str(ioe))
 

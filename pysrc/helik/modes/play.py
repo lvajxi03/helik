@@ -11,6 +11,7 @@ from helik.game.level import Level
 from helik.htypes import TimerType, GameType
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT
 from helik.gfx import blitnumber
+from helik.game.explosion import Explosion
 
 
 class ModePlay(Mode):
@@ -23,6 +24,7 @@ class ModePlay(Mode):
         """
         super().__init__(parent)
         self.data = self.game.data
+        self.explosions = []
 
     def activate(self):
         """
@@ -36,40 +38,58 @@ class ModePlay(Mode):
     def on_update(self, delta):
         self.game.level.move(delta)
         self.game.copter.move(delta)
+        for explosion in self.explosions:
+            explosion.on_update(delta)
 
         # Bullet collisions
         for bullet in self.game.level.bullets:
             if bullet.valid:
                 for cloud in self.game.level.clouds:
                     if cloud.valid:
-                        if cloud.collide(bullet):
+                        col = cloud.collide(bullet)
+                        if col:
                             bullet.valid = False
                             bullet.visible = False
                             cloud.valid = False
                             cloud.visible = False
                             self.game.data['points'] += 1
+                            x, y = col
+                            self.explosions.append(Explosion(self.res_man.explosions, x + cloud.x, y + cloud.y))
+
                 for building in self.game.level.buildings:
                     if building.valid:
-                        if building.collide(bullet):
+                        col = building.collide(bullet)
+                        if col:
                             bullet.valid = False
                             bullet.visible = False
                             building.valid = False
                             building.visible = False
                             self.game.data['points'] += 1
+                            x, y = col
+                            self.explosions.append(Explosion(self.res_man.explosions, x + building.x, y + building.y))
 
         for cloud in self.game.level.clouds:
             if cloud.valid:
-                col = cloud.collide(copter)
+                col = cloud.collide(self.game.copter)
+                if col:
+                    self.game.change_mode(GameType.KILLED)
+
+        for building in self.game.level.buildings:
+            if building.valid:
+                col = building.collide(self.game.copter)
+                if col:
+                    self.game.change_mode(GameType.KILLED)
+
+        self.game.level.rotate()
+        if self.game.level.is_empty():
+            self.game.change_mode(GameType.NEWLEVEL)
 
     def on_timer(self, timer):
         """
         Timer event handler
         :param timer: timer type code
         """
-        if timer == TimerType.COPTER:
-            self.game.copter.on_timer(timer)
-
-        elif timer == TimerType.SECONDS:
+        if timer == TimerType.SECONDS:
             self.game.data['seconds'] += 1
             self.game.data['points'] += 10
 
@@ -101,5 +121,9 @@ class ModePlay(Mode):
         self.game.level.on_paint(self.buffer)
 
         self.game.copter.on_paint()
+
+        for explosion in self.explosions:
+            if explosion.valid:
+                explosion.on_paint(self.buffer)
 
         pygame.draw.line(self.buffer, pygame.Color(255, 255, 255), (0, ARENA_HEIGHT - STATUS_HEIGHT), (ARENA_WIDTH, ARENA_HEIGHT - STATUS_HEIGHT), width=2)
