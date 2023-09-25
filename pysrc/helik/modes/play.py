@@ -37,7 +37,7 @@ class ModePlay(Mode):
         self.game.level.move(delta)
         self.game.copter.move(delta)
 
-        # Collisions!
+        # Bullet collisions
         for bullet in self.game.level.bullets:
             if bullet.valid:
                 for cloud in self.game.level.clouds:
@@ -56,6 +56,10 @@ class ModePlay(Mode):
                             building.valid = False
                             building.visible = False
                             self.game.data['points'] += 1
+
+        for cloud in self.game.level.clouds:
+            if cloud.valid:
+                col = cloud.collide(copter)
 
     def on_timer(self, timer):
         """
