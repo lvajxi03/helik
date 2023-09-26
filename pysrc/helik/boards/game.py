@@ -34,7 +34,7 @@ class BoardGame(Board):
         self.data = {
             'points': 0,
             'level': -1,
-            'option': 1,
+            'option': 2,
             'seconds': 0,
             'bullets-available': 20,
             'lives': 5

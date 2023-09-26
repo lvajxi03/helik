@@ -31,9 +31,9 @@ locale = {
             "color": "#ffffff"
         },
         "menu": {
-            "pl": ["NOWA GRA", "OPCJE", "NAJLEPSI",
+            "pl": ["NOWA GRA", "OPCJE GRY", "NAJLEPSI",
                    "USTAWIENIA", "POMOC", "O PROGRAMIE", "WYJSCIE"],
-            "en": ["NEW GAME", "OPTIONS", "HISCORES", "SETTINGS",
+            "en": ["NEW GAME", "GAME OPTIONS", "HISCORES", "SETTINGS",
                    "HELP", "ABOUT", "QUIT"],
             "font": "menu",
             "rotate": 0,
@@ -106,18 +106,39 @@ locale = {
     },
     BoardType.OPTIONS: {
         "title": {
-            "pl": "Opcje",
-            "en": "Options",
-            "font": "heading-2",
+            "pl": "Opcje gry",
+            "en": "Game Options",
+            "font": "heading-3",
             "rotate": 90,
             "color": "#e0df4a"
         },
         "title-shadow": {
-            "pl": "Opcje",
-            "en": "Options",
-            "font": "heading-2",
+            "pl": "Opcje gry",
+            "en": "Game Options",
+            "font": "heading-3",
             "rotate": 90,
             "color": "#313131"
+        },
+        "header": {
+            "pl": "Wybierz tryb",
+            "en": "Choose your mode",
+            "font": "heading-3",
+            "rotate": 0,
+            "color": "#e0df4a"
+        },
+        "header-shadow": {
+            "pl": "Wybierz tryb",
+            "en": "Choose your mode",
+            "font": "heading-3",
+            "rotate": 0,
+            "color": "#313131"
+        },
+        "options": {
+            "pl": ["Treningowy", "Latwy", "Normalny", "Sredni", "Trudny", "Piekielny"],
+            "en": ["Training", "Easy", "Normal", "Medium", "Hard", "Hell no!"],
+            "font": "menu",
+            "rotate": 0,
+            "color": "#fefefe"
         }
     },
     BoardType.SETTINGS: {

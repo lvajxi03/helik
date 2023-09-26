@@ -26,6 +26,7 @@ class ResourceManager:
         self.fonts = {}
         self.surfaces = {}
         self.explosions = []
+        self.dirs = []
         self.create_resources(basepath)
 
     def create_resources(self, basepath):
@@ -56,6 +57,8 @@ class ResourceManager:
                     self.buildings.append(pygame.image.load(basepath.joinpath(name)))
                 for name in data["explosions"]:
                     self.explosions.append(pygame.image.load(basepath.joinpath(name)))
+                for name in data["dir"]:
+                    self.dirs.append(pygame.image.load(basepath.joinpath(name)))
         except IOError as ioe:
             print(str(ioe))
 
@@ -70,8 +73,9 @@ class ResourceManager:
             pass
 
         self.surfaces = {
-            "buffer": pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT), flags=pygame.SRCALPHA, depth=32,
+            "screen": pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT), flags=pygame.SRCALPHA, depth=32,
                                               vsync=1),
+            "buffer": pygame.Surface((ARENA_WIDTH, ARENA_HEIGHT), pygame.SRCALPHA),
             "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
         }
         self.resources = {
@@ -110,6 +114,7 @@ class ResourceManager:
                                 True,
                                 pygame.Color(locale[ty][name]["color"])),
                             locale[ty][name]["rotate"])
+                        pygame.image.save(label, f"{ty}-{name}-{elem}-pl.png")
                         rect = label.get_rect()
                         locale[ty][name]["label"]["pl"].append((label, rect))
                     for elem in locale[ty][name]["en"]:
@@ -119,6 +124,7 @@ class ResourceManager:
                                 True,
                                 pygame.Color(locale[ty][name]["color"])),
                             locale[ty][name]["rotate"])
+                        pygame.image.save(label, f"{ty}-{name}-{elem}-en.png")
                         rect = label.get_rect()
                         locale[ty][name]["label"]["en"].append((label, rect))
                 else:
@@ -130,6 +136,7 @@ class ResourceManager:
                             pygame.Color(
                                 locale[ty][name]["color"])),
                         locale[ty][name]["rotate"])
+                    pygame.image.save(label, f"{ty}-{name}-pl.png")
                     rect = label.get_rect()
                     locale[ty][name]["label"]["pl"] = (label, rect)
                     label = pygame.transform.rotate(
@@ -141,9 +148,11 @@ class ResourceManager:
                         locale[ty][name]["rotate"])
                     rect = label.get_rect()
                     locale[ty][name]["label"]["en"] = (label, rect)
+                    pygame.image.save(label, f"{ty}-{name}-en.png")
         # Quirks and hacks:
         for l in ["1", "2", "3"]:
             label, rect = self.get_label(BoardType.GAME, l, "pl")
+            pygame.image.save(label, f"{l}-pl.png")
             rect = label.get_rect()
             rect.center = (ARENA_WIDTH//2, ARENA_HEIGHT//2)
             self.set_label(BoardType.GAME, l, "pl", (label, rect))

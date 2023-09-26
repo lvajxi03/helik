@@ -88,7 +88,7 @@ class BoardMenu(Board):
     def on_keyup(self, key):
         """
         Key release event handler
-        :param key: kedy code
+        :param key: key code
         """
         if key == pygame.K_DOWN:
             if self.menu_pos < 6:

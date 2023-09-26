@@ -34,6 +34,15 @@ class Level:
         self.b_width = 0
         self.c_width = 0
 
+    def get_ready(self):
+        """
+        """
+
+    def rewind_by(self, dx: int):
+        """
+        Rewind buildings, planes, clouds etc by dx pixels to the right
+        """
+
     def create_buildings(self):
         """
         Create buildings for this given level

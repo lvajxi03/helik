@@ -103,6 +103,8 @@ class Application():
         Paint event handler
         """
         self.boards[self.board_id].on_paint()
+        b = pygame.transform.flip(self.res_man.surfaces["buffer"], False, True)
+        self.res_man.surfaces["screen"].blit(b, (0, 0))
 
     def on_keyup(self, key):
         """

@@ -58,7 +58,7 @@ class BoardHiscores(Board):
             rects = self.res_man.get_section("lang-rectangles")
             for lang in rects:
                 if rects[lang].collidepoint(pos):
-                    self.arena.lang = lang
+                    self.arena.config['lang'] = lang
                     ch_lang = True
                     # TODO: hiscores-related ops here
         if not ch_lang:

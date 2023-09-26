@@ -50,5 +50,15 @@
 	"expl-3.png",
 	"expl-4.png",
 	"expl-5.png"
-    ]
+    ],
+    "dir": [
+	"dir-0.png",
+	"dir-1.png",
+	"dir-2.png",
+	"dir-3.png",
+	"dir-4.png",
+	"dir-5.png",
+	"dir-6.png",
+	"dir-7.png"
+	]
 }
