@@ -8,7 +8,9 @@ import pygame
 from helik.game.buildings import buildings_from_factory, Building
 from helik.game.clouds import clouds_from_factory, Cloud
 from helik.game.bullets import Bullet
+from helik.game.dirc import DirChanger, get_dirc_images, dircs_from_factory
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
+from helik.htypes import DirCType
 
 
 class Level:
@@ -30,6 +32,7 @@ class Level:
         self.clouds = []
         self.bullets = []
         self.planes = []
+        self.dircs = []
         # Buildings and clouds total widths:
         self.b_width = 0
         self.c_width = 0
@@ -59,6 +62,13 @@ class Level:
         self.clouds = clouds_from_factory(self.res_man, clouds_data, self.res_man.levels[self.index]["clouds-amount"])
         self.c_width = self.clouds[-1].x + self.clouds[-1].w
 
+    def create_dircs(self):
+        """
+        TODO: stub
+        """
+        dircs_data = self.res_man.levels[self.index]["dircs"]
+        self.dircs = dircs_from_factory(self.res_man, dircs_data, self.res_man.levels[self.index]["dircs-amount"])
+
     def make_bullet(self, copter):
         """
         Make new BulletFrom
@@ -83,6 +93,10 @@ class Level:
             if bullet.valid:
                 bullet.move(speed)
 
+        for dirc in self.dircs:
+            if dirc.valid:
+                dirc.move(speed)
+
     def on_paint(self, canvas):
         """
         Paint event handler
@@ -104,6 +118,10 @@ class Level:
             if bullet.visible and bullet.valid:
                 bullet.on_paint(canvas)
 
+        for dirc in self.dircs:
+            if dirc.visible and dirc.valid:
+                dirc.on_paint(canvas)
+
     def rotate(self):
         """
         Rotate all game elements if not valid
@@ -112,6 +130,7 @@ class Level:
         self.buildings = [x for x in self.buildings if x.valid]
         self.clouds = [x for x in self.clouds if x.valid]
         self.planes = [x for x in self.planes if x.valid]
+        self.dircs = [x for x in self.dircs if x.valid]
 
     def is_empty(self):
         if len(self.buildings) == 0 and len(self.clouds) == 0 and len(self.planes) == 0:

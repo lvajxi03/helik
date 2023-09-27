@@ -20,9 +20,8 @@ class ModePrepare(Mode):
         """
         super().__init__(parent)
         self.timers = {
-            TimerType.SECONDS: self.on_prepare,
-            TimerType.PREPARE_MINOR: self.on_prepare_minor,
-            TimerType.PREPARE_STOP: self.on_prepare_stop
+            TimerType.SECOND: self.on_prepare,
+            TimerType.THIRD: self.on_prepare_stop
         }
         self.alpha = 255
         self.labels = ["3", "2", "1"]
@@ -38,19 +37,20 @@ class ModePrepare(Mode):
         except KeyError:
             pass
 
+    def on_update(self, delta):
+        """
+        Update event handler
+        :param delta: delta time from last frame
+        """
+        self.alpha -= 5
+        self.res_man.set_alpha(BoardType.GAME, self.labels[self.index], self.arena.config['lang'], self.alpha)
+
     def on_prepare(self):
         """
         Handle PREPARE timer
         """
         self.index += 1
         self.alpha = 255
-
-    def on_prepare_minor(self):
-        """
-        Handle PREPARE_MINOR timer
-        """
-        self.alpha -= 5
-        self.res_man.set_alpha(BoardType.GAME, self.labels[self.index], self.arena.config['lang'], self.alpha)
 
     def on_prepare_stop(self):
         """
@@ -64,17 +64,16 @@ class ModePrepare(Mode):
         """
         self.alpha = 255
         self.index = 0
-        pygame.time.set_timer(TimerType.SECONDS, 1000)
-        pygame.time.set_timer(TimerType.PREPARE_MINOR, 20)
-        pygame.time.set_timer(TimerType.PREPARE_STOP, 3000)
+        pygame.time.set_timer(TimerType.SECOND, 1000)
+        pygame.time.set_timer(TimerType.THIRD, 3000)
 
     def deactivate(self):
         """
         Deactivate event handler
         """
-        pygame.time.set_timer(TimerType.SECONDS, 0)
-        pygame.time.set_timer(TimerType.PREPARE_MINOR, 0)
-        pygame.time.set_timer(TimerType.PREPARE_STOP, 0)
+        pygame.time.set_timer(TimerType.FIRST, 0)
+        pygame.time.set_timer(TimerType.SECOND, 0)
+        pygame.time.set_timer(TimerType.THIRD, 0)
 
     def on_paint(self):
         """

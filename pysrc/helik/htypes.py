@@ -40,10 +40,10 @@ class GameType(enum.IntEnum):
 
 @enum.unique
 class TimerType(enum.IntEnum):
-    WELCOME_STOP = pygame.USEREVENT + 1
-    PREPARE_MINOR = pygame.USEREVENT + 2
-    PREPARE_STOP = pygame.USEREVENT + 3
-    SECONDS = pygame.USEREVENT + 4
+    FIRST = pygame.USEREVENT + 1
+    SECOND = pygame.USEREVENT + 2
+    THIRD = pygame.USEREVENT + 3
+
 
 
 @enum.unique
@@ -53,3 +53,9 @@ class PlayOptionType(enum.IntEnum):
     NORMAL = 2
     HARD = 3
     EXTREME = 4
+
+
+@enum.unique
+class DirCType(enum.IntEnum):
+    DOWN = 0
+    UP = 1

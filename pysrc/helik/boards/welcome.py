@@ -27,7 +27,7 @@ class BoardWelcome(Board):
                 pygame.Color(comp, comp, comp))
 
     def activate(self):
-        pygame.time.set_timer(TimerType.WELCOME_STOP, 3000)
+        pygame.time.set_timer(TimerType.FIRST, 3000)
 
     def on_update(self, delta):
         """
@@ -40,7 +40,7 @@ class BoardWelcome(Board):
         """
         Board deactivate handler
         """
-        pygame.time.set_timer(TimerType.WELCOME_STOP, 0)
+        pygame.time.set_timer(TimerType.FIRST, 0)
 
     def on_paint(self):
         """
@@ -55,7 +55,7 @@ class BoardWelcome(Board):
         """
         Handle timer event(s)
         """
-        if timer == TimerType.WELCOME_STOP:
+        if timer == TimerType.FIRST:
             self.arena.change_board(BoardType.MENU)
 
     def on_keyup(self, key):

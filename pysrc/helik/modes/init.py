@@ -24,6 +24,11 @@ class ModeInit(Mode):
         """
         Activate event handler
         """
+        self.data['points'] = 0
+        self.data['level'] = -1
+        self.data['seconds'] = 0
+        self.data['bullets-available'] = 20
+        self.data['lives'] = 5
         self.game.change_mode(GameType.PREPARE)
 
     def deactivate(self):

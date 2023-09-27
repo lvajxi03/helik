@@ -75,10 +75,6 @@ class BoardGame(Board):
         """
         self.change_mode(GameType.INIT)
 
-    def deactivate(self):
-        """
-        """
-
     def on_paint(self):
         """
         Paint event handler

@@ -25,15 +25,19 @@ class ModePlay(Mode):
         super().__init__(parent)
         self.data = self.game.data
         self.explosions = []
+        self.speed = 30
 
     def activate(self):
         """
         Activate event handler
         """
-        pygame.time.set_timer(TimerType.SECONDS, 1000)
+        pygame.time.set_timer(TimerType.SECOND, 1000)
+        pygame.time.set_timer(TimerType.FIRST, 200)
+        self.speed = 30 - self.data['level'] - 3 * self.data['option']
 
     def deactivate(self):
-        pygame.time.set_timer(TimerType.SECONDS, 0)
+        pygame.time.set_timer(TimerType.SECOND, 0)
+        pygame.time.set_timer(TimerType.FIRST, 0)
 
     def on_update(self, delta):
         self.game.level.move(delta)
@@ -68,17 +72,27 @@ class ModePlay(Mode):
                             x, y = col
                             self.explosions.append(Explosion(self.res_man.explosions, x + building.x, y + building.y))
 
+        # Cloud collisions
         for cloud in self.game.level.clouds:
             if cloud.valid:
                 col = cloud.collide(self.game.copter)
                 if col:
                     self.game.change_mode(GameType.KILLED)
 
+        # Building collisions
         for building in self.game.level.buildings:
             if building.valid:
                 col = building.collide(self.game.copter)
                 if col:
                     self.game.change_mode(GameType.KILLED)
+
+        # Dirc collisions
+        for dirc in self.game.level.dircs:
+            if dirc.valid:
+                if dirc.collide(self.game.copter):
+                    self.arena.dirc = dirc.dtype
+                    dirc.valid = False
+                    dirc.visible = False
 
         self.game.level.rotate()
         if self.game.level.is_empty():
@@ -89,9 +103,12 @@ class ModePlay(Mode):
         Timer event handler
         :param timer: timer type code
         """
-        if timer == TimerType.SECONDS:
+        if timer == TimerType.SECOND:
             self.game.data['seconds'] += 1
             self.game.data['points'] += 10
+        elif timer == TimerType.FIRST:
+            for dirc in self.game.level.dircs:
+                dirc.next()
 
     def on_keyup(self, key):
         """

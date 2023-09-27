@@ -8,7 +8,7 @@ import random
 from importlib.resources import files
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, APPLICATION_TITLE
-from helik.htypes import BoardType
+from helik.htypes import BoardType, DirCType
 from helik.boards.welcome import BoardWelcome
 from helik.boards.about import BoardAbout
 from helik.boards.menu import BoardMenu
@@ -49,6 +49,8 @@ class Application():
             BoardType.QUIT: BoardQuit(self)
             }
         self.board_id = BoardType.WELCOME
+        self.buffer = self.res_man.surfaces["buffer"]
+        self.dirc = DirCType.DOWN
 
     def change_board(self, newboard):
         if newboard != self.board_id:
@@ -103,7 +105,10 @@ class Application():
         Paint event handler
         """
         self.boards[self.board_id].on_paint()
-        b = pygame.transform.flip(self.res_man.surfaces["buffer"], False, True)
+        if self.dirc == DirCType.DOWN:
+            b = self.buffer
+        else:
+            b = pygame.transform.flip(self.buffer, False, True)
         self.res_man.surfaces["screen"].blit(b, (0, 0))
 
     def on_keyup(self, key):

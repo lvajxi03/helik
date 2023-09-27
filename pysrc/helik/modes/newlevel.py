@@ -26,17 +26,16 @@ class ModeNewLevel(Mode):
         Activate event handler
         """
         if self.game.data['level'] < 7:
-            self.game.data['level'] += 1            
+            self.game.data['level'] += 1
             self.game.level = Level(self.res_man, self.game.data['level'])
             self.game.level.create_buildings()
             self.game.level.create_clouds()
+            self.game.level.create_dircs()
             self.game.change_mode(GameType.PLAY)
         else:
             self.game.change_mode(GameType.GAMEOVER)
-
 
     def deactivate(self):
         """
         Deactivate event handler
         """
-        
