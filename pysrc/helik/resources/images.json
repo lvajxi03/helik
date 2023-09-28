@@ -1,6 +1,7 @@
 {
     "general": {
-	"helik-white": "helik-white.png",
+	"helik-down": "helik-down.png",
+	"helik-up": "helik-up.png",
         "default-background": "back-default.jpg",
 	"plane-level": "plane-level.png",
         "plane-small-left": "samolot.png",

@@ -5,7 +5,6 @@ DirChanger handler module
 """
 
 import math
-from itertools import cycle, islice
 import pygame
 from helik.hdefs import ARENA_WIDTH
 from helik.htypes import DirCType
@@ -15,7 +14,7 @@ def get_dirc_images(resman, dtype: DirCType):
     all = resman.dircs
     images = []
     if dtype == DirCType.UP:
-        images = [all[0], all[1], all[0], all[7]]
+        images = [all[0], all[0], all[0], all[0], all[0], all[0], all[0], all[1], all[1], all[1], all[1], all[1], all[1], all[0], all[0], all[0], all[0], all[0], all[0], all[0], all[7], all[7], all[7], all[7], all[7], all[7]]
     elif dtype == DirCType.DOWN:
         images = [all[4], all[5], all[4], all[3]]
     return images
@@ -25,14 +24,13 @@ class DirChanger:
     """
     DirChanger handler class
     """
-    def __init__(self, images: list, dtype: DirCType, x: int, y: int):
+    def __init__(self, images: list, x: int, y: int):
         """
         DirChanger instance constructor
         :param images: images of dirchanger animation
         :param x: x coordinate
         :param y: y coordinate
         """
-        self.dtype = dtype
         self.images = images
         self.x = x
         self.y = y
@@ -97,17 +95,7 @@ def dircs_from_factory(resman, dlist: list, amount: int):
     :return: list of dircs
     """
     dircs = []
-    gen = cycle(dlist)
-    de = list(islice(gen, amount))
-    for od in de:
-        if od[0] == 0:
-            # Direction: up
-            ims = get_dirc_images(resman, DirCType.UP)
-            dc = DirChanger(ims, DirCType.UP, od[1], od[2])
-            dircs.append(dc)
-        elif od[0] == 1:
-            # Direction: down
-            ims = get_dirc_images(resman, DirCType.DOWN)
-            dc = DirChanger(ims, DirCType.DOWN, od[1], od[2])
-            dircs.append(dc)
+    for od in dlist:
+        dc = DirChanger(resman.dircs, od[0], od[1])
+        dircs.append(dc)
     return dircs

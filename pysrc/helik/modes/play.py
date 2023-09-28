@@ -12,6 +12,7 @@ from helik.htypes import TimerType, GameType
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT
 from helik.gfx import blitnumber
 from helik.game.explosion import Explosion
+from helik.game.copter import CopterDirection
 
 
 class ModePlay(Mode):
@@ -32,18 +33,23 @@ class ModePlay(Mode):
         Activate event handler
         """
         pygame.time.set_timer(TimerType.SECOND, 1000)
-        pygame.time.set_timer(TimerType.FIRST, 200)
+        pygame.time.set_timer(TimerType.FIRST, 50)
         self.speed = 30 - self.data['level'] - 3 * self.data['option']
+        pygame.time.set_timer(TimerType.THIRD, self.speed)
 
     def deactivate(self):
         pygame.time.set_timer(TimerType.SECOND, 0)
         pygame.time.set_timer(TimerType.FIRST, 0)
 
-    def on_update(self, delta):
+    def update(self): #, delta):
+        delta = 1
         self.game.level.move(delta)
         self.game.copter.move(delta)
+
         for explosion in self.explosions:
             explosion.on_update(delta)
+
+    def on_update(self, delta):
 
         # Bullet collisions
         for bullet in self.game.level.bullets:
@@ -90,9 +96,9 @@ class ModePlay(Mode):
         for dirc in self.game.level.dircs:
             if dirc.valid:
                 if dirc.collide(self.game.copter):
-                    self.arena.dirc = dirc.dtype
                     dirc.valid = False
                     dirc.visible = False
+                    self.game.copter.toggle_direction()
 
         self.game.level.rotate()
         if self.game.level.is_empty():
@@ -109,6 +115,8 @@ class ModePlay(Mode):
         elif timer == TimerType.FIRST:
             for dirc in self.game.level.dircs:
                 dirc.next()
+        elif timer == TimerType.THIRD:
+            self.update()
 
     def on_keyup(self, key):
         """
@@ -134,6 +142,11 @@ class ModePlay(Mode):
         blitnumber(self.buffer, self.data['points'], 5, self.res_man.digits, (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.images["bullets-indicator"], (340, ARENA_HEIGHT - 42))
         blitnumber(self.buffer, self.data['bullets-available'], 3, self.res_man.digits, (400, ARENA_HEIGHT - 54))
+
+        if self.game.copter.direction == CopterDirection.DOWN:
+            self.buffer.blit(self.res_man.dircs[4], (ARENA_WIDTH - 350, ARENA_HEIGHT - 54))
+        else:
+            self.buffer.blit(self.res_man.dircs[0], (ARENA_WIDTH - 350, ARENA_HEIGHT - 54))
 
         self.game.level.on_paint(self.buffer)
 

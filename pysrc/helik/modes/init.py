@@ -29,6 +29,7 @@ class ModeInit(Mode):
         self.data['seconds'] = 0
         self.data['bullets-available'] = 20
         self.data['lives'] = 5
+        self.data['option'] = self.arena.config['option']
         self.game.change_mode(GameType.PREPARE)
 
     def deactivate(self):

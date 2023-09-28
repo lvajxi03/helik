@@ -72,9 +72,10 @@
 		[-1, 20],
 		[6, 5]
 	    ],
-	    "dircs-amount": 3,
 	    "dircs": [
-		[0, 1400, 400]
+		[1400, 400],
+		[2000, 550],
+		[2700, 200]
 		]
 	},
 	{
@@ -82,10 +83,15 @@
 		"pl": "2",
 		"en": "2"
 	    },
+	    "buildings-amount": 9,
 	    "buildings": [
 	    ],
+	    "clouds-amount": 9,
 	    "clouds": [
-	    ]	    
+	    ],
+	    "dircs": [
+	    ],
+	    "dircs-amount": 3
 	},
 	{
 	    "title": {

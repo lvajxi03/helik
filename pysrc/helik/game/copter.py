@@ -26,17 +26,36 @@ class Copter:
         self.arena = game.arena
         self.res_man = self.game.arena.res_man
         self.buffer = game.buffer
-        self.image = self.res_man.images["helik-white"]
-        self.mask = pygame.mask.from_surface(self.image)
+        self.images = [self.res_man.images["helik-down"],
+                       self.res_man.images["helik-up"]]
+        self.masks = [pygame.mask.from_surface(self.images[0]),
+                      pygame.mask.from_surface(self.images[1])]
+        self.mask = self.masks[self.direction]
         self.x, self.y = 200, 200
-        r = self.image.get_rect()
+        r = self.images[self.direction].get_rect()
+        self.w, self.h = r.w, r.h
+
+    def toggle_direction(self):
+        """
+        Toggle copter direction.
+        Happens every time a dir changer pill was consumed
+        """
+        print("Before:", self.direction)
+        if self.direction == CopterDirection.DOWN:
+            self.direction = CopterDirection.UP
+        else:
+            self.direction = CopterDirection.DOWN
+        print("After:", self.direction)
+
+        r = self.images[self.direction].get_rect()
+        self.mask = self.masks[self.direction]
         self.w, self.h = r.w, r.h
 
     def on_paint(self):
         """
         Paint event handler
         """
-        self.buffer.blit(self.image, (self.x, self.y))
+        self.buffer.blit(self.images[self.direction], (self.x, self.y))
 
     def on_keyup(self, key):
         """
