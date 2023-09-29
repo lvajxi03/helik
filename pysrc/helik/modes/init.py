@@ -28,7 +28,10 @@ class ModeInit(Mode):
         self.data['level'] = -1
         self.data['seconds'] = 0
         self.data['bullets-available'] = 20
-        self.data['lives'] = 5
+        if self.arena.config['option'] == 0:
+            self.data['lives'] = 0
+        else:
+            self.data['lives'] = 5 - self.arena.config['option'] + 1
         self.data['option'] = self.arena.config['option']
         self.game.change_mode(GameType.PREPARE)
 

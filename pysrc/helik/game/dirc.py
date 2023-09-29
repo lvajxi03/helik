@@ -87,7 +87,7 @@ class DirChanger:
         return self.masks[self.current].overlap(other.mask, (other.x - self.x, other.y - self.y))
 
 
-def dircs_from_factory(resman, dlist: list, amount: int):
+def dircs_from_factory(resman, dlist: list):
     """
     Populate a list of dir-changers for given level
     :param resman: ResourceManager handle

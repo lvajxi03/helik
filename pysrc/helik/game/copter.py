@@ -40,12 +40,10 @@ class Copter:
         Toggle copter direction.
         Happens every time a dir changer pill was consumed
         """
-        print("Before:", self.direction)
         if self.direction == CopterDirection.DOWN:
             self.direction = CopterDirection.UP
         else:
             self.direction = CopterDirection.DOWN
-        print("After:", self.direction)
 
         r = self.images[self.direction].get_rect()
         self.mask = self.masks[self.direction]

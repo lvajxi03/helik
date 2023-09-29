@@ -64,10 +64,9 @@ class Level:
 
     def create_dircs(self):
         """
-        TODO: stub
+        Create dircs for this given level
         """
-        dircs_data = self.res_man.levels[self.index]["dircs"]
-        self.dircs = dircs_from_factory(self.res_man, dircs_data, self.res_man.levels[self.index]["dircs-amount"])
+        self.dircs = dircs_from_factory(self.res_man, self.res_man.levels[self.index]["dircs"])
 
     def make_bullet(self, copter):
         """

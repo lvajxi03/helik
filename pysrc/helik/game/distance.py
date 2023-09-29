@@ -20,7 +20,7 @@ class Distance:
         """
         Move object according to its policy
         """
-        self.x += speed
+        self.x -= speed
         if self.x + self.w < 0:
             self.valid = False
 

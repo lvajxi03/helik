@@ -135,7 +135,7 @@ locale = {
         },
         "options": {
             "pl": ["Treningowy", "Latwy", "Normalny", "Sredni", "Trudny", "Piekielny"],
-            "en": ["Training", "Easy", "Normal", "Medium", "Hard", "Hell no!"],
+            "en": ["Training", "Easy", "Normal", "Medium", "Hard", "Hell yeah!"],
             "font": "menu",
             "rotate": 0,
             "color": "#fefefe"

@@ -1,28 +1,28 @@
 {
     "general": {
-	"helik-down": "helik-down.png",
-	"helik-up": "helik-up.png",
+        "helik-down": "helik-down.png",
+        "helik-up": "helik-up.png",
         "default-background": "back-default.jpg",
-	"plane-level": "plane-level.png",
+        "plane-level": "plane-level.png",
         "plane-small-left": "samolot.png",
         "line-0": "line-0.png",
         "bullet": "bullet.png",
         "bullets-indicator": "bullets-indicator.png",
         "flag-pl": "flag_pl.png",
         "flag-en": "flag_en.png",
-        "heart-b": "heart-b.png",
-        "ammo-box": "ammo-box.png"
+        "heart-yellow": "heart-yellow.png",
+        "heart-gray": "heart-gray.png"
     },
     "buildings": [
-	"house-a.png",
-	"house-b.png",
-	"house-c.png",
-	"skyscraper-a.png",
-	"skyscraper-b.png",
-	"skyscraper-c.png",
-	"factory-a.png",
-	"factory-b.png",
-	"factory-c.png"
+        "house-a.png",
+        "house-b.png",
+        "house-c.png",
+        "skyscraper-a.png",
+        "skyscraper-b.png",
+        "skyscraper-c.png",
+        "factory-a.png",
+        "factory-b.png",
+        "factory-c.png"
     ],
     "clouds": [
         "cloud-1.png",
@@ -46,20 +46,20 @@
         "9": "9.png"
     },
     "explosions": [
-	"expl-1.png",
-	"expl-2.png",
-	"expl-3.png",
-	"expl-4.png",
-	"expl-5.png"
+        "expl-1.png",
+        "expl-2.png",
+        "expl-3.png",
+        "expl-4.png",
+        "expl-5.png"
     ],
     "dirc": [
-	"dir-0.png",
-	"dir-1.png",
-	"dir-2.png",
-	"dir-3.png",
-	"dir-4.png",
-	"dir-5.png",
-	"dir-6.png",
-	"dir-7.png"
-	]
+        "dir-0.png",
+        "dir-1.png",
+        "dir-2.png",
+        "dir-3.png",
+        "dir-4.png",
+        "dir-5.png",
+        "dir-6.png",
+        "dir-7.png"
+        ]
 }

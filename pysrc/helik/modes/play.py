@@ -33,8 +33,8 @@ class ModePlay(Mode):
         Activate event handler
         """
         pygame.time.set_timer(TimerType.SECOND, 1000)
-        pygame.time.set_timer(TimerType.FIRST, 50)
-        self.speed = 30 - self.data['level'] - 3 * self.data['option']
+        pygame.time.set_timer(TimerType.FIRST, 150)
+        self.speed = 20 - self.data['level'] - 3 * self.data['option']
         pygame.time.set_timer(TimerType.THIRD, self.speed)
 
     def deactivate(self):
@@ -44,12 +44,12 @@ class ModePlay(Mode):
     def update(self): #, delta):
         delta = 1
         self.game.level.move(delta)
-        self.game.copter.move(delta)
 
         for explosion in self.explosions:
             explosion.on_update(delta)
 
     def on_update(self, delta):
+        self.game.copter.move(delta)
 
         # Bullet collisions
         for bullet in self.game.level.bullets:
@@ -137,8 +137,12 @@ class ModePlay(Mode):
         """
         self.buffer.blit(self.res_man.images["default-background"], (0, 0))
         self.buffer.blit(self.res_man.surfaces["status"], (0, ARENA_HEIGHT - 60))
-        for i in range(self.game.data['lives']):
-            self.buffer.blit(self.res_man.images["heart-b"], (10 + i * 60, ARENA_HEIGHT - 54))
+        lives = self.game.data['lives']
+        missing = 5 - lives
+        for i in range(lives):
+            self.buffer.blit(self.res_man.images["heart-yellow"], (10 + i * 60, ARENA_HEIGHT - 54))
+        for i in range(missing):
+            self.buffer.blit(self.res_man.images["heart-gray"], (10 + 60 * lives + i * 60, ARENA_HEIGHT - 54))
         blitnumber(self.buffer, self.data['points'], 5, self.res_man.digits, (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
         self.buffer.blit(self.res_man.images["bullets-indicator"], (340, ARENA_HEIGHT - 42))
         blitnumber(self.buffer, self.data['bullets-available'], 3, self.res_man.digits, (400, ARENA_HEIGHT - 54))
