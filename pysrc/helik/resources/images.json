@@ -61,5 +61,25 @@
         "dir-5.png",
         "dir-6.png",
         "dir-7.png"
-        ]
+    ]
+    "pl-plane-levels": [
+	"pl-plane-level-1.png",
+	"pl-plane-level-2.png",
+	"pl-plane-level-3.png",
+	"pl-plane-level-4.png",
+	"pl-plane-level-5.png",
+	"pl-plane-level-6.png",
+	"pl-plane-level-7.png",
+	"pl-plane-level-8.png"
+    ],
+    "en-plane-levels": [
+	"en-plane-level-1.png",
+	"en-plane-level-2.png",
+	"en-plane-level-3.png",
+	"en-plane-level-4.png",
+	"en-plane-level-5.png",
+	"en-plane-level-6.png",
+	"en-plane-level-7.png",
+	"en-plane-level-8.png"
+    ]
 }

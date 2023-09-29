@@ -27,6 +27,7 @@ class ResourceManager:
         self.surfaces = {}
         self.explosions = []
         self.dircs = []
+        self.plane_levels = {"pl": [], "en": []}
         self.create_resources(basepath)
 
     def create_resources(self, basepath):
