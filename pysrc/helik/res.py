@@ -60,6 +60,10 @@ class ResourceManager:
                     self.explosions.append(pygame.image.load(basepath.joinpath(name)))
                 for name in data["dirc"]:
                     self.dircs.append(pygame.image.load(basepath.joinpath(name)))
+                for name in data["pl-plane-levels"]:
+                    self.plane_levels["pl"].append(pygame.image.load(basepath.joinpath(name)))
+                for name in data["en-plane-levels"]:
+                    self.plane_levels["en"].append(pygame.image.load(basepath.joinpath(name)))
         except IOError as ioe:
             print(str(ioe))
 

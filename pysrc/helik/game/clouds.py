@@ -8,6 +8,7 @@ from itertools import cycle, islice
 import pygame
 from helik.hdefs import ARENA_WIDTH
 from helik.game.distance import Distance
+from helik.game.planes import Plane
 
 
 class Cloud:
@@ -54,17 +55,25 @@ class Cloud:
         """
         return self.mask.overlap(other.mask, (other.x - self.x, other.y - self.y))
 
-def clouds_from_factory(resman, clist: list, amount: int):
+def clouds_from_factory(resman, clist: list, amount: int, lang: str, levelidx: int):
     """
-    Populate a list of clouds for given level.
+    Populate a list of clouds for given level. Plus leading plane.
     :param resman: ResourceManager handle
     :param clist: clouds list (scenario)
-    :return: list of buildings
+    :param lang: language (2-chars) identifier
+    :param levelidx: level index
+    :return: list of clouds (and leading plane)
     """
     clouds = []
     x = ARENA_WIDTH
     gen = cycle(clist)
     ce = list(islice(gen, amount))
+    p = Plane(resman.plane_levels[lang][levelidx], x, 50)
+    clouds.append(p)
+    x += p.w
+    distance = Distance(x, 100)
+    clouds.append(distance)
+    x += distance.w
     for oc in ce:
         if oc[0] == -1:
             distance = Distance(x, oc[1])

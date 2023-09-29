@@ -29,7 +29,7 @@ class ModeNewLevel(Mode):
             self.game.data['level'] += 1
             self.game.level = Level(self.res_man, self.game.data['level'])
             self.game.level.create_buildings()
-            self.game.level.create_clouds()
+            self.game.level.create_clouds(self.arena.config['lang'])
             self.game.level.create_dircs()
             self.game.change_mode(GameType.PLAY)
         else:

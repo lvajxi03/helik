@@ -54,12 +54,17 @@ class Level:
         self.buildings = buildings_from_factory(self.res_man, buildings_data, self.res_man.levels[self.index]["buildings-amount"])
         self.b_width = self.buildings[-1].x + self.buildings[-1].w
 
-    def create_clouds(self):
+    def create_clouds(self, lang):
         """
         Create clouds for this given level
+        :param lang: language (2-chars) identifier
         """
         clouds_data = self.res_man.levels[self.index]["clouds"]
-        self.clouds = clouds_from_factory(self.res_man, clouds_data, self.res_man.levels[self.index]["clouds-amount"])
+        self.clouds = clouds_from_factory(self.res_man,
+                                          clouds_data,
+                                          self.res_man.levels[self.index]["clouds-amount"],
+                                          lang,
+                                          self.index)
         self.c_width = self.clouds[-1].x + self.clouds[-1].w
 
     def create_dircs(self):

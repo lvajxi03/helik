@@ -3,8 +3,6 @@
         "helik-down": "helik-down.png",
         "helik-up": "helik-up.png",
         "default-background": "back-default.jpg",
-        "plane-level": "plane-level.png",
-        "plane-small-left": "samolot.png",
         "line-0": "line-0.png",
         "bullet": "bullet.png",
         "bullets-indicator": "bullets-indicator.png",
@@ -61,7 +59,7 @@
         "dir-5.png",
         "dir-6.png",
         "dir-7.png"
-    ]
+    ],
     "pl-plane-levels": [
 	"pl-plane-level-1.png",
 	"pl-plane-level-2.png",
