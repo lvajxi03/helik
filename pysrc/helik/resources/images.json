@@ -9,7 +9,8 @@
         "flag-pl": "flag_pl.png",
         "flag-en": "flag_en.png",
         "heart-yellow": "heart-yellow.png",
-        "heart-gray": "heart-gray.png"
+        "heart-gray": "heart-gray.png",
+        "krzyk": "krzyk.png"
     },
     "buildings": [
         "house-a.png",

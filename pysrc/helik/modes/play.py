@@ -40,6 +40,7 @@ class ModePlay(Mode):
     def deactivate(self):
         pygame.time.set_timer(TimerType.SECOND, 0)
         pygame.time.set_timer(TimerType.FIRST, 0)
+        pygame.time.set_timer(TimerType.THIRD, 0)
 
     def update(self): #, delta):
         delta = 1
@@ -83,6 +84,10 @@ class ModePlay(Mode):
             if cloud.valid:
                 col = cloud.collide(self.game.copter)
                 if col:
+                    cloud.valid = False
+                    cloud.visible = False
+                    x, y = col
+                    self.explosions.append(Explosion(self.res_man.explosions, x + cloud.x, y + cloud.y))
                     self.game.change_mode(GameType.KILLED)
 
         # Building collisions
@@ -90,6 +95,10 @@ class ModePlay(Mode):
             if building.valid:
                 col = building.collide(self.game.copter)
                 if col:
+                    building.valid = False
+                    building.visible = False
+                    x, y = col
+                    self.explosions.append(Explosion(self.res_man.explosions, x + building.x, y + building.y))
                     self.game.change_mode(GameType.KILLED)
 
         # Dirc collisions
