@@ -32,6 +32,7 @@ class Level:
         self.clouds = []
         self.bullets = []
         self.planes = []
+        self.birds = []
         self.dircs = []
         # Buildings and clouds total widths:
         self.b_width = 0
@@ -62,9 +63,7 @@ class Level:
         clouds_data = self.res_man.levels[self.index]["clouds"]
         self.clouds = clouds_from_factory(self.res_man,
                                           clouds_data,
-                                          self.res_man.levels[self.index]["clouds-amount"],
-                                          lang,
-                                          self.index)
+                                          self.res_man.levels[self.index]["clouds-amount"])
         self.c_width = self.clouds[-1].x + self.clouds[-1].w
 
     def create_dircs(self):
@@ -137,6 +136,6 @@ class Level:
         self.dircs = [x for x in self.dircs if x.valid]
 
     def is_empty(self):
-        if len(self.buildings) == 0 and len(self.clouds) == 0 and len(self.planes) == 0:
+        if len(self.buildings) == 0 and len(self.clouds) == 0 and len(self.planes) == 0 and len(self.birds) == 0 and len(self.dircs) == 0:
             return True
         return False
