@@ -33,6 +33,7 @@ class ModeInit(Mode):
         else:
             self.data['lives'] = 5 - self.arena.config['option'] + 1
         self.data['option'] = self.arena.config['option']
+        self.game.explosions = []
         self.game.change_mode(GameType.PREPARE)
 
     def deactivate(self):

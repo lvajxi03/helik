@@ -69,7 +69,7 @@ class DirChanger:
             self.visible = False
         elif self.x < ARENA_WIDTH:
             self.visible = True
-        self.y = self.base_y + 30 * math.sin(self.x/30)
+        self.y = self.base_y + 50 * math.sin(self.x/15)
 
     def on_paint(self, canvas):
         """

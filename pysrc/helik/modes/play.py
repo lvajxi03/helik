@@ -25,7 +25,6 @@ class ModePlay(Mode):
         """
         super().__init__(parent)
         self.data = self.game.data
-        self.explosions = []
         self.speed = 30
 
     def activate(self):
@@ -46,7 +45,7 @@ class ModePlay(Mode):
         delta = 1
         self.game.level.move(delta)
 
-        for explosion in self.explosions:
+        for explosion in self.game.explosions:
             explosion.on_update(delta)
 
     def on_update(self, delta):
@@ -65,7 +64,7 @@ class ModePlay(Mode):
                             cloud.visible = False
                             self.game.data['points'] += 1
                             x, y = col
-                            self.explosions.append(Explosion(self.res_man.explosions, x + cloud.x, y + cloud.y))
+                            self.game.explosions.append(Explosion(self.res_man.explosions, x + cloud.x, y + cloud.y))
 
                 for building in self.game.level.buildings:
                     if building.valid:
@@ -77,7 +76,7 @@ class ModePlay(Mode):
                             building.visible = False
                             self.game.data['points'] += 1
                             x, y = col
-                            self.explosions.append(Explosion(self.res_man.explosions, x + building.x, y + building.y))
+                            self.game.explosions.append(Explosion(self.res_man.explosions, x + building.x, y + building.y))
 
         # Cloud collisions
         for cloud in self.game.level.clouds:
@@ -87,7 +86,7 @@ class ModePlay(Mode):
                     cloud.valid = False
                     cloud.visible = False
                     x, y = col
-                    self.explosions.append(Explosion(self.res_man.explosions, x + cloud.x, y + cloud.y))
+                    self.game.explosions.append(Explosion(self.res_man.explosions, x + cloud.x, y + cloud.y))
                     self.game.change_mode(GameType.KILLED)
 
         # Building collisions
@@ -98,7 +97,7 @@ class ModePlay(Mode):
                     building.valid = False
                     building.visible = False
                     x, y = col
-                    self.explosions.append(Explosion(self.res_man.explosions, x + building.x, y + building.y))
+                    self.game.explosions.append(Explosion(self.res_man.explosions, x + building.x, y + building.y))
                     self.game.change_mode(GameType.KILLED)
 
         # Dirc collisions
@@ -165,7 +164,7 @@ class ModePlay(Mode):
 
         self.game.copter.on_paint()
 
-        for explosion in self.explosions:
+        for explosion in self.game.explosions:
             if explosion.valid:
                 explosion.on_paint(self.buffer)
 

@@ -88,7 +88,7 @@ class BoardOptions(Board):
         :param key: key code
         """
         if key == pygame.K_DOWN:
-            if self.menu_pos < 6:
+            if self.menu_pos < 5:
                 self.menu_pos += 1
         elif key == pygame.K_UP:
             if self.menu_pos > 0:

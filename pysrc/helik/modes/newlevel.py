@@ -42,7 +42,7 @@ class ModeNewLevel(Mode):
             self.x = (ARENA_WIDTH -r.w) // 2
             self.y = (ARENA_HEIGHT - r.h) // 2
             self.w = r.w
-            pygame.time.set_timer(TimerType.THIRD, 5)
+            pygame.time.set_timer(TimerType.THIRD, 2)
         else:
             self.game.change_mode(GameType.GAMEOVER)
 

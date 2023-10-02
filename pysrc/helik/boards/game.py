@@ -48,7 +48,7 @@ class BoardGame(Board):
             GameType.KILLED: ModeKilled(self),
             GameType.NEWLEVEL: ModeNewLevel(self)
             }
-        self.collisions = []
+        self.explosions = []
 
         self.level = None
 
