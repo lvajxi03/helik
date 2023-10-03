@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "helik"
+version = "0.0.0"
+authors = [
+        {name = "Marcin Bielewicz", email = "marcin.bielewicz@gmail.com"},
+]
+
+urls = {'Homepage' = 'https://iostream.pl/helik-en'}
+description = "Flappycopter-like game"
+readme = "README.md"
+requires-python = ">= 3.11"
+keywords = ["copter", "game", "pygame"]
+license = { text = "GPL-3.0-or-later" }
+classifiers = [
+            "Development Status :: 4 - Beta",
+            "Programming Language :: Python :: 3",
+            "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+            "Operating System :: OS Independent",
+            "Topic :: Games/Entertainment :: Side-Scrolling/Arcade Games"
+]
+dependencies = [
+             "pygame"
+             ]
+
+[tool.setuptools]
+packages = ["helik", "helik.modes", "helik.boards", "helik.game", "helik.resources"]
+package-dir = {"" = "pysrc"}
+include-package-data = true
