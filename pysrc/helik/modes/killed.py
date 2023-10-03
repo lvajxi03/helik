@@ -8,7 +8,7 @@ Mode killed handler module
 import pygame
 from helik.modes.standard import Mode
 from helik.hdefs import ARENA_HEIGHT
-from helik.htypes import GameType, TimerType
+from helik.htypes import GameMode, TimerType
 
 
 class ModeKilled(Mode):
@@ -47,10 +47,10 @@ class ModeKilled(Mode):
             self.game.copter.y += 10
             if self.game.copter.y > ARENA_HEIGHT:
                 self.game.copter.y = self.previous_y
-                self.game.change_mode(GameType.PLAY)
+                self.game.change_mode(GameMode.PLAY)
 
     def on_paint(self):
         """
         Paint event handler
         """
-        self.game.modes[GameType.PLAY].on_paint()
+        self.game.modes[GameMode.PLAY].on_paint()

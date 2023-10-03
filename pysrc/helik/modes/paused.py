@@ -6,7 +6,7 @@ Mode paused handler module
 
 
 import pygame
-from helik.htypes import GameType, BoardType
+from helik.htypes import GameMode, BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.modes.standard import Mode
 
@@ -45,4 +45,4 @@ class ModePaused(Mode):
         :param key: key code
         """
         if key == pygame.K_SPACE:
-            self.game.change_mode(GameType.PLAY)
+            self.game.change_mode(GameMode.PLAY)

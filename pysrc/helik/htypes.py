@@ -18,7 +18,7 @@ class BoardType(enum.IntEnum):
     OPTIONS = 2
     GAME = 3
     HISCORES = 4
-    SETTINGS = 5    
+    SETTINGS = 5
     HELP = 6
     ABOUT = 7
     NEWSCORE = 8
@@ -27,7 +27,10 @@ class BoardType(enum.IntEnum):
 
 
 @enum.unique
-class GameType(enum.IntEnum):
+class GameMode(enum.IntEnum):
+    """
+    GameMode enum
+    """
     NONE = 0
     INIT = 1
     PREPARE = 2
@@ -40,19 +43,15 @@ class GameType(enum.IntEnum):
 
 @enum.unique
 class TimerType(enum.IntEnum):
+    """
+    TimerType enum
+    There are only like 7-8 user events available,
+    thus all the timers shall be reusable and have
+    weird names
+    """
     FIRST = pygame.USEREVENT + 1
     SECOND = pygame.USEREVENT + 2
     THIRD = pygame.USEREVENT + 3
-
-
-
-@enum.unique
-class PlayOptionType(enum.IntEnum):
-    TRAINING = 0
-    EASY = 1
-    NORMAL = 2
-    HARD = 3
-    EXTREME = 4
 
 
 @enum.unique

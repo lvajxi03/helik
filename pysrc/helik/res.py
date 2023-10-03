@@ -78,7 +78,8 @@ class ResourceManager:
             pass
 
         self.surfaces = {
-            "buffer": pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT), flags=pygame.SRCALPHA, depth=32,
+            "buffer": pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT),
+                                              flags=pygame.SRCALPHA, depth=32,
                                               vsync=1),
             "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
         }
@@ -106,7 +107,7 @@ class ResourceManager:
 
         # Labels
         for ty in locale:
-             for name in locale[ty]:
+            for name in locale[ty]:
                 if isinstance(locale[ty][name]["pl"], list):
                     locale[ty][name]["label"] = {
                         "pl": [],
@@ -220,6 +221,6 @@ class ResourceManager:
                 lab, re = rec
                 lab.set_alpha(alpha)
         except KeyError:
-            return None
+            pass
 
     # That's all Folks!

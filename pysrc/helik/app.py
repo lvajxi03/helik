@@ -7,7 +7,7 @@ App module
 import random
 from importlib.resources import files
 import pygame
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, APPLICATION_TITLE
+from helik.hdefs import APPLICATION_TITLE
 from helik.htypes import BoardType, DirCType
 from helik.boards.welcome import BoardWelcome
 from helik.boards.about import BoardAbout
@@ -53,6 +53,14 @@ class Application():
         self.dirc = DirCType.DOWN
 
     def change_board(self, newboard):
+        """
+        Change board to the other one.
+        Will change only if the other one is different.
+        Additional actions:
+        * .deactivate() method called for the current board
+        * .activate() method called for the new board
+        :param newboard: other board id
+        """
         if newboard != self.board_id:
             self.boards[self.board_id].deactivate()
             self.board_id = newboard

@@ -18,4 +18,3 @@ def blitnumber(target, number: int, width: int, digits: dict, at):
     for c in s:
         target.blit(digits[c], (x, y))
         x += 35
-    

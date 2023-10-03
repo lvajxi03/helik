@@ -8,7 +8,7 @@ New level mode handler module
 import pygame
 from helik.modes.standard import Mode
 from helik.game.level import Level
-from helik.htypes import GameType, TimerType
+from helik.htypes import GameMode, TimerType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 
 
@@ -44,7 +44,7 @@ class ModeNewLevel(Mode):
             self.w = r.w
             pygame.time.set_timer(TimerType.THIRD, 2)
         else:
-            self.game.change_mode(GameType.GAMEOVER)
+            self.game.change_mode(GameMode.GAMEOVER)
 
     def on_timer(self, timer):
         """
@@ -53,7 +53,7 @@ class ModeNewLevel(Mode):
         if timer == TimerType.THIRD:
             self.x -= 1
             if self.x + self.w <= 0:
-                self.game.change_mode(GameType.PLAY)
+                self.game.change_mode(GameMode.PLAY)
 
     def deactivate(self):
         """

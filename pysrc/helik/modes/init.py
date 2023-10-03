@@ -5,7 +5,7 @@ Init mode handler module
 """
 
 from helik.modes.standard import Mode
-from helik.htypes import GameType
+from helik.htypes import GameMode
 
 
 class ModeInit(Mode):
@@ -34,7 +34,7 @@ class ModeInit(Mode):
             self.data['lives'] = 5 - self.arena.config['option'] + 1
         self.data['option'] = self.arena.config['option']
         self.game.explosions = []
-        self.game.change_mode(GameType.PREPARE)
+        self.game.change_mode(GameMode.PREPARE)
 
     def deactivate(self):
         """

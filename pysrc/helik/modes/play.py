@@ -8,7 +8,7 @@ Mode play handler module
 import pygame
 from helik.modes.standard import Mode
 from helik.game.level import Level
-from helik.htypes import TimerType, GameType
+from helik.htypes import TimerType, GameMode
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT
 from helik.gfx import blitnumber
 from helik.game.explosion import Explosion
@@ -87,7 +87,7 @@ class ModePlay(Mode):
                     cloud.visible = False
                     x, y = col
                     self.game.explosions.append(Explosion(self.res_man.explosions, x + cloud.x, y + cloud.y))
-                    self.game.change_mode(GameType.KILLED)
+                    self.game.change_mode(GameMode.KILLED)
 
         # Building collisions
         for building in self.game.level.buildings:
@@ -98,7 +98,7 @@ class ModePlay(Mode):
                     building.visible = False
                     x, y = col
                     self.game.explosions.append(Explosion(self.res_man.explosions, x + building.x, y + building.y))
-                    self.game.change_mode(GameType.KILLED)
+                    self.game.change_mode(GameMode.KILLED)
 
         # Dirc collisions
         for dirc in self.game.level.dircs:
@@ -110,7 +110,7 @@ class ModePlay(Mode):
 
         self.game.level.rotate()
         if self.game.level.is_empty():
-            self.game.change_mode(GameType.NEWLEVEL)
+            self.game.change_mode(GameMode.NEWLEVEL)
 
     def on_timer(self, timer):
         """
@@ -132,7 +132,7 @@ class ModePlay(Mode):
         :param key: key code
         """
         if key == pygame.K_ESCAPE:
-            self.game.change_mode(GameType.PAUSED)
+            self.game.change_mode(GameMode.PAUSED)
         elif key == pygame.K_s:
             if self.data['bullets-available'] > 0:
                 self.game.level.make_bullet(self.game.copter)

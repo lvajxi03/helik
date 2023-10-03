@@ -10,7 +10,7 @@ from helik.boards.standard import Board
 from helik.game.copter import Copter
 from helik.game.level import Level
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-from helik.htypes import BoardType, TimerType, GameType
+from helik.htypes import BoardType, TimerType, GameMode
 from helik.modes.init import ModeInit
 from helik.modes.killed import ModeKilled
 from helik.modes.paused import ModePaused
@@ -29,7 +29,7 @@ class BoardGame(Board):
         Game board constructor
         """
         super().__init__(parent)
-        self.mode = GameType.NONE
+        self.mode = GameMode.NONE
         self.copter = Copter(self)
         self.data = {
             'points': 0,
@@ -40,13 +40,13 @@ class BoardGame(Board):
             'lives': 5
         }
         self.modes = {
-            GameType.NONE: Mode(self),
-            GameType.INIT: ModeInit(self),
-            GameType.PREPARE: ModePrepare(self),
-            GameType.PLAY: ModePlay(self),
-            GameType.PAUSED: ModePaused(self),
-            GameType.KILLED: ModeKilled(self),
-            GameType.NEWLEVEL: ModeNewLevel(self)
+            GameMode.NONE: Mode(self),
+            GameMode.INIT: ModeInit(self),
+            GameMode.PREPARE: ModePrepare(self),
+            GameMode.PLAY: ModePlay(self),
+            GameMode.PAUSED: ModePaused(self),
+            GameMode.KILLED: ModeKilled(self),
+            GameMode.NEWLEVEL: ModeNewLevel(self)
             }
         self.explosions = []
 
@@ -73,7 +73,7 @@ class BoardGame(Board):
         """
         Activate event handler
         """
-        self.change_mode(GameType.INIT)
+        self.change_mode(GameMode.INIT)
 
     def on_paint(self):
         """

@@ -7,7 +7,7 @@ Mode prepare handler module
 
 import pygame
 from helik.modes.standard import Mode
-from helik.htypes import TimerType, BoardType, GameType
+from helik.htypes import TimerType, BoardType, GameMode
 
 
 class ModePrepare(Mode):
@@ -56,7 +56,7 @@ class ModePrepare(Mode):
         """
         Handle PREPARE_STOP timer
         """
-        self.game.change_mode(GameType.NEWLEVEL)
+        self.game.change_mode(GameMode.NEWLEVEL)
 
     def activate(self):
         """
