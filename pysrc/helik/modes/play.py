@@ -32,7 +32,7 @@ class ModePlay(Mode):
         Activate event handler
         """
         pygame.time.set_timer(TimerType.SECOND, 1000)
-        pygame.time.set_timer(TimerType.FIRST, 150)
+        pygame.time.set_timer(TimerType.FIRST, 250)
         self.speed = 20 - self.data['level'] - 3 * self.data['option']
         pygame.time.set_timer(TimerType.THIRD, self.speed)
 
@@ -64,8 +64,9 @@ class ModePlay(Mode):
                             cloud.visible = False
                             self.game.data['points'] += 1
                             x, y = col
-                            self.game.explosions.append(Explosion(self.res_man.explosions, x + cloud.x, y + cloud.y))
-
+                            self.game.explosions.append(
+                                Explosion(
+                                    self.res_man.explosions, x + cloud.x, y + cloud.y))
                 for building in self.game.level.buildings:
                     if building.valid:
                         col = building.collide(bullet)
@@ -76,7 +77,22 @@ class ModePlay(Mode):
                             building.visible = False
                             self.game.data['points'] += 1
                             x, y = col
-                            self.game.explosions.append(Explosion(self.res_man.explosions, x + building.x, y + building.y))
+                            self.game.explosions.append(
+                                Explosion(
+                                    self.res_man.explosions, x + building.x, y + building.y))
+                for bird in self.game.level.birds:
+                    if bird.valid:
+                        col = bird.collide(bullet)
+                        if col:
+                            bird.valid = False
+                            bird.visible = False
+                            bullet.valid = False
+                            bullet.visible = False
+                            self.game.data['points'] += 1
+                            x, y = col
+                            self.game.explosions.append(
+                                Explosion(
+                                    self.res_man.explosions, x + bird.x, y + bird.y))
 
         # Cloud collisions
         for cloud in self.game.level.clouds:
@@ -86,7 +102,9 @@ class ModePlay(Mode):
                     cloud.valid = False
                     cloud.visible = False
                     x, y = col
-                    self.game.explosions.append(Explosion(self.res_man.explosions, x + cloud.x, y + cloud.y))
+                    self.game.explosions.append(
+                        Explosion(
+                            self.res_man.explosions, x + cloud.x, y + cloud.y))
                     self.game.change_mode(GameMode.KILLED)
 
         # Building collisions
@@ -97,7 +115,9 @@ class ModePlay(Mode):
                     building.valid = False
                     building.visible = False
                     x, y = col
-                    self.game.explosions.append(Explosion(self.res_man.explosions, x + building.x, y + building.y))
+                    self.game.explosions.append(
+                        Explosion(
+                            self.res_man.explosions, x + building.x, y + building.y))
                     self.game.change_mode(GameMode.KILLED)
 
         # Dirc collisions
@@ -112,6 +132,19 @@ class ModePlay(Mode):
         if self.game.level.is_empty():
             self.game.change_mode(GameMode.NEWLEVEL)
 
+        # Birds collisions
+        for bird in self.game.level.birds:
+            if bird.valid:
+                col = bird.collide(self.game.copter)
+                if col:
+                    bird.valid = False
+                    bird.visible = False
+                    x, y = col
+                    self.game.explosions.append(
+                        Explosion(
+                            self.res_man.explosions, x + bird.x, y + bird.y))
+                    self.game.change_mode(GameMode.KILLED)
+
     def on_timer(self, timer):
         """
         Timer event handler
@@ -123,6 +156,8 @@ class ModePlay(Mode):
         elif timer == TimerType.FIRST:
             for dirc in self.game.level.dircs:
                 dirc.next()
+            for bird in self.game.level.birds:
+                bird.next()
         elif timer == TimerType.THIRD:
             self.update()
 
@@ -150,10 +185,15 @@ class ModePlay(Mode):
         for i in range(lives):
             self.buffer.blit(self.res_man.images["heart-yellow"], (10 + i * 60, ARENA_HEIGHT - 54))
         for i in range(missing):
-            self.buffer.blit(self.res_man.images["heart-gray"], (10 + 60 * lives + i * 60, ARENA_HEIGHT - 54))
-        blitnumber(self.buffer, self.data['points'], 5, self.res_man.digits, (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
-        self.buffer.blit(self.res_man.images["bullets-indicator"], (340, ARENA_HEIGHT - 42))
-        blitnumber(self.buffer, self.data['bullets-available'], 3, self.res_man.digits, (400, ARENA_HEIGHT - 54))
+            self.buffer.blit(
+                self.res_man.images["heart-gray"],
+                (10 + 60 * lives + i * 60, ARENA_HEIGHT - 54))
+        blitnumber(self.buffer, self.data['points'], 5,
+                   self.res_man.digits, (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
+        self.buffer.blit(self.res_man.images["bullets-indicator"],
+                         (340, ARENA_HEIGHT - 42))
+        blitnumber(self.buffer, self.data['bullets-available'],
+                   3, self.res_man.digits, (400, ARENA_HEIGHT - 54))
 
         if self.game.copter.direction == CopterDirection.DOWN:
             self.buffer.blit(self.res_man.dircs[4], (ARENA_WIDTH - 350, ARENA_HEIGHT - 54))
@@ -168,4 +208,7 @@ class ModePlay(Mode):
             if explosion.valid:
                 explosion.on_paint(self.buffer)
 
-        pygame.draw.line(self.buffer, pygame.Color(255, 255, 255), (0, ARENA_HEIGHT - STATUS_HEIGHT), (ARENA_WIDTH, ARENA_HEIGHT - STATUS_HEIGHT), width=2)
+        pygame.draw.line(self.buffer,
+                         pygame.Color(255, 255, 255),
+                         (0, ARENA_HEIGHT - STATUS_HEIGHT),
+                         (ARENA_WIDTH, ARENA_HEIGHT - STATUS_HEIGHT), width=2)

@@ -46,7 +46,7 @@ class BoardMenu(Board):
             self.rectangles.append((label, rect))
             i += 1
         self.recalculate_pos()
-        
+
     def on_paint(self):
         """
         Paint event handler
@@ -58,11 +58,8 @@ class BoardMenu(Board):
         self.buffer.blit(self.res_man.images["flag-pl"], self.res_man.get("lang-rectangles", "pl"))
         self.buffer.blit(self.res_man.images["flag-en"], self.res_man.get("lang-rectangles", "en"))
 
-        label, rect = self.res_man.get_label(BoardType.MENU, "title_shadow", self.arena.config['lang'])
-        self.buffer.blit(label, (225, 55))
-        label, rect = self.res_man.get_label(BoardType.MENU, "title", self.arena.config['lang'])
-        self.buffer.blit(label, (220, 50))
-        
+        self.buffer.blit(self.res_man.images["helik-main"], (225, 45))
+
         for re in self.rectangles:
             label, rect = re
             self.buffer.blit(label, rect)
@@ -70,20 +67,11 @@ class BoardMenu(Board):
         pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16), self.rect_pos_t, width=5, border_radius=20)
         pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32), self.rect_pos, width=5, border_radius=20)
 
-    def on_timer(self, timer):
-        """
-        Handle timer event(s)
-        """
-
     def activate(self):
         """
         Activate board event handler
         """
         self.create_rectangles()
-
-    def deactivate(self):
-        """
-        """
 
     def on_keyup(self, key):
         """

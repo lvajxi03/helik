@@ -4,6 +4,7 @@
 All the resources
 """
 
+import sys
 import json
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
@@ -27,6 +28,7 @@ class ResourceManager:
         self.surfaces = {}
         self.explosions = []
         self.dircs = []
+        self.birds = []
         self.plane_levels = {"pl": [], "en": []}
         self.create_resources(basepath)
 
@@ -37,7 +39,7 @@ class ResourceManager:
         # Fonts
         f_name = basepath.joinpath("fonts.json")
         try:
-            with open(f_name) as f_handle:
+            with open(f_name, encoding="utf-8") as f_handle:
                 self.fonts = json.load(f_handle)["fonts"]
                 for name in self.fonts:
                     dt = self.fonts[name]
@@ -46,7 +48,7 @@ class ResourceManager:
             pass
         f_name = basepath.joinpath("images.json")
         try:
-            with open(f_name) as f_handle:
+            with open(f_name, encoding="utf-8") as f_handle:
                 data = json.load(f_handle)
                 for name in data["general"]:
                     self.images[name] = pygame.image.load(basepath.joinpath(data["general"][name]))
@@ -64,12 +66,15 @@ class ResourceManager:
                     self.plane_levels["pl"].append(pygame.image.load(basepath.joinpath(name)))
                 for name in data["en-plane-levels"]:
                     self.plane_levels["en"].append(pygame.image.load(basepath.joinpath(name)))
-        except IOError as ioe:
-            print(str(ioe))
+                for name in data["birds"]:
+                    self.birds.append(pygame.image.load(basepath.joinpath(name)))
+        except IOError:
+            print("Cannot load assets!")
+            sys.exit(1)
 
         f_name = basepath.joinpath("colors.json")
         try:
-            with open(f_name) as f_handle:
+            with open(f_name, encoding="utf-8") as f_handle:
                 data = json.load(f_handle)
                 for name in data["colors"]:
                     r = data["colors"][name]
@@ -87,18 +92,11 @@ class ResourceManager:
             "lang-rectangles": {
                 "pl": pygame.Rect(ARENA_WIDTH - 154, ARENA_HEIGHT - 58, 75, 56),
                 "en": pygame.Rect(ARENA_WIDTH - 77, ARENA_HEIGHT - 58, 75, 56)
-                },
-            "levels": [
-                [0, 0, 0, 1, 0, 1, 2, 1, 0, 1, 3, 1, 0, 2, 0, 1, 2],
-                [0, 0, 1, 2, 3, 2, 1, 0, 1, 2, 3, 2, 1, 0, 1, 2, 3],
-                [0, 1, 2, 3, 2, 1, 0, 1, 2, 3, 2, 1, 0, 1, 2, 3, 2],
-                [1, 2, 3, 2, 1, 2, 2, 3, 3, 2, 2, 1, 1, 2, 2, 3, 2],
-                [2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 3, 2, 2]
-                ]
+                }
         }
         f_name = basepath.joinpath("levels.json")
         try:
-            with open(f_name) as f_handle:
+            with open(f_name, encoding="utf-8") as f_handle:
                 self.levels = json.load(f_handle)["levels"]
         except IOError:
             pass

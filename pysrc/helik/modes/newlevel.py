@@ -35,8 +35,9 @@ class ModeNewLevel(Mode):
             self.game.data['level'] += 1
             self.game.level = Level(self.res_man, self.game.data['level'])
             self.game.level.create_buildings()
-            self.game.level.create_clouds(self.arena.config['lang'])
+            self.game.level.create_clouds()
             self.game.level.create_dircs()
+            self.game.level.create_birds()
             self.image = self.res_man.plane_levels[self.arena.config["lang"]][self.game.data['level']]
             r = self.image.get_rect()
             self.x = (ARENA_WIDTH -r.w) // 2

@@ -11,6 +11,7 @@ from helik.game.bullets import Bullet
 from helik.game.dirc import DirChanger, get_dirc_images, dircs_from_factory
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
 from helik.htypes import DirCType
+from helik.game.birds import Bird
 
 
 class Level:
@@ -34,9 +35,7 @@ class Level:
         self.planes = []
         self.birds = []
         self.dircs = []
-        # Buildings and clouds total widths:
-        self.b_width = 0
-        self.c_width = 0
+        self.birds = []
 
     def get_ready(self):
         """
@@ -53,24 +52,31 @@ class Level:
         """
         buildings_data = self.res_man.levels[self.index]["buildings"]
         self.buildings = buildings_from_factory(self.res_man, buildings_data, self.res_man.levels[self.index]["buildings-amount"])
-        self.b_width = self.buildings[-1].x + self.buildings[-1].w
 
-    def create_clouds(self, lang):
+    def create_clouds(self):
         """
         Create clouds for this given level
-        :param lang: language (2-chars) identifier
         """
         clouds_data = self.res_man.levels[self.index]["clouds"]
         self.clouds = clouds_from_factory(self.res_man,
                                           clouds_data,
                                           self.res_man.levels[self.index]["clouds-amount"])
-        self.c_width = self.clouds[-1].x + self.clouds[-1].w
 
     def create_dircs(self):
         """
         Create dircs for this given level
         """
         self.dircs = dircs_from_factory(self.res_man, self.res_man.levels[self.index]["dircs"])
+
+    def create_birds(self):
+        """
+        Create birds for this given level
+        TODO.
+        """
+        birds_data = self.res_man.levels[self.index]["birds"]
+        for bdata in birds_data:
+            bird = Bird(bdata[0], bdata[1], self.res_man.birds, bdata[2])
+            self.birds.append(bird)
 
     def make_bullet(self, copter):
         """
@@ -100,6 +106,10 @@ class Level:
             if dirc.valid:
                 dirc.move(speed)
 
+        for bird in self.birds:
+            if bird.valid:
+                bird.move(speed)
+
     def on_paint(self, canvas):
         """
         Paint event handler
@@ -125,6 +135,10 @@ class Level:
             if dirc.visible and dirc.valid:
                 dirc.on_paint(canvas)
 
+        for bird in self.birds:
+            if bird.visible and bird.valid:
+                bird.on_paint(canvas)
+
     def rotate(self):
         """
         Rotate all game elements if not valid
@@ -134,8 +148,13 @@ class Level:
         self.clouds = [x for x in self.clouds if x.valid]
         self.planes = [x for x in self.planes if x.valid]
         self.dircs = [x for x in self.dircs if x.valid]
+        self.birds = [x for x in self.birds if x.valid]
 
     def is_empty(self):
-        if len(self.buildings) == 0 and len(self.clouds) == 0 and len(self.planes) == 0 and len(self.birds) == 0 and len(self.dircs) == 0:
+        if len(self.buildings) == 0 \
+        and len(self.clouds) == 0 \
+        and len(self.planes) == 0 \
+        and len(self.birds) == 0 \
+        and len(self.dircs) == 0:
             return True
         return False

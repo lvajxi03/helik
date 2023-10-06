@@ -90,10 +90,9 @@ class Config:
         try:
             if len(self.data['hiscores']) < 10:
                 return True
-            else:
-                last = self.data['hiscores'][-1]
-                if last[1] < points:
-                    return True
+            last = self.data['hiscores'][-1]
+            if last[1] < points:
+                return True
         except KeyError:
             pass
         return False

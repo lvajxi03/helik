@@ -9,8 +9,7 @@ import pygame
 from helik.boards.standard import Board
 from helik.game.copter import Copter
 from helik.game.level import Level
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-from helik.htypes import BoardType, TimerType, GameMode
+from helik.htypes import BoardType, GameMode
 from helik.modes.init import ModeInit
 from helik.modes.killed import ModeKilled
 from helik.modes.paused import ModePaused
@@ -53,6 +52,9 @@ class BoardGame(Board):
         self.level = None
 
     def new_level(self):
+        """
+        Initialize new level data
+        """
         self.level = Level(self.res_man, self.data['level'])
 
     def change_mode(self, newmode):

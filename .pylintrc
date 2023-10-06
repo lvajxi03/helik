@@ -1,0 +1,13 @@
+[MASTER]
+init-hook='import sys; sys.path.append("pysrc")'
+
+[BASIC]
+good-names = x, y, r, dt, dx, dy, fh, fn, i, j, w, h
+
+[MESSAGES-CONTROL]
+disable =
+    too-many-lines,
+    too-many-instance-attributes,
+    too-many-statements,
+    too-many-branches,
+    import-error

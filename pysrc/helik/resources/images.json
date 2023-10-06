@@ -12,7 +12,8 @@
         "heart-gray": "heart-gray.png",
         "krzyk": "krzyk.png",
 	"pl-get-ready": "pl-plane-get-ready.png",
-	"en-get-ready": "en-plane-get-ready.png"
+	"en-get-ready": "en-plane-get-ready.png",
+	"helik-main": "helik-main.png"
     },
     "buildings": [
         "house-a.png",
@@ -82,5 +83,17 @@
 	"en-plane-level-6.png",
 	"en-plane-level-7.png",
 	"en-plane-level-8.png"
+    ],
+    "birds": [
+	"bird-1.png",
+	"bird-2.png",
+	"bird-3.png",
+	"bird-4.png",
+	"bird-5.png",
+	"bird-6.png",
+	"bird-7.png",
+	"bird-8.png",
+	"bird-9.png",
+	"bird-10.png"
     ]
 }
