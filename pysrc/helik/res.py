@@ -18,7 +18,10 @@ class ResourceManager:
     """
     def __init__(self, basepath):
         self.resources = {}
-        self.images = {}
+        self.images = {
+            "general": {},
+            "big": {}
+        }
         self.digits = {}
         self.clouds = []
         self.levels = []
@@ -68,6 +71,8 @@ class ResourceManager:
                     self.plane_levels["en"].append(pygame.image.load(basepath.joinpath(name)))
                 for name in data["birds"]:
                     self.birds.append(pygame.image.load(basepath.joinpath(name)))
+                for name in data["big"]:
+                    self.images["big"][name] = pygame.image.load(basepath.joinpath(name))
         except IOError:
             print("Cannot load assets!")
             sys.exit(1)
@@ -117,7 +122,6 @@ class ResourceManager:
                                 True,
                                 pygame.Color(locale[ty][name]["color"])),
                             locale[ty][name]["rotate"])
-                        pygame.image.save(label, f"{ty}-{name}-{elem}-pl.png")
                         rect = label.get_rect()
                         locale[ty][name]["label"]["pl"].append((label, rect))
                     for elem in locale[ty][name]["en"]:
@@ -127,7 +131,6 @@ class ResourceManager:
                                 True,
                                 pygame.Color(locale[ty][name]["color"])),
                             locale[ty][name]["rotate"])
-                        pygame.image.save(label, f"{ty}-{name}-{elem}-en.png")
                         rect = label.get_rect()
                         locale[ty][name]["label"]["en"].append((label, rect))
                 else:
@@ -139,7 +142,6 @@ class ResourceManager:
                             pygame.Color(
                                 locale[ty][name]["color"])),
                         locale[ty][name]["rotate"])
-                    pygame.image.save(label, f"{ty}-{name}-pl.png")
                     rect = label.get_rect()
                     locale[ty][name]["label"]["pl"] = (label, rect)
                     label = pygame.transform.rotate(
@@ -151,11 +153,9 @@ class ResourceManager:
                         locale[ty][name]["rotate"])
                     rect = label.get_rect()
                     locale[ty][name]["label"]["en"] = (label, rect)
-                    pygame.image.save(label, f"{ty}-{name}-en.png")
         # Quirks and hacks:
         for l in ["1", "2", "3"]:
             label, rect = self.get_label(BoardType.GAME, l, "pl")
-            pygame.image.save(label, f"{l}-pl.png")
             rect = label.get_rect()
             rect.center = (ARENA_WIDTH//2, ARENA_HEIGHT//2)
             self.set_label(BoardType.GAME, l, "pl", (label, rect))
