@@ -9,27 +9,6 @@ from helik.htypes import BoardType
 
 locale = {
     BoardType.MENU: {
-        "title": {
-            "pl": "HeliK!",
-            "en": "HeliK!",
-            "font": "heading",
-            "rotate": 90,
-            "color": "#e0df4a"
-        },
-        "title_shadow": {
-            "pl": "HeliK!",
-            "en": "HeliK!",
-            "font": "heading",
-            "rotate": 90,
-            "color": "#313131"
-        },
-        "status": {
-            "pl": "UZYJ KLAWISZY KURSORA I ENTER, ABY WYBRAC OPCJE LUB Q ABY WYJSC",
-            "en": "USE CURSOR KEYS AND ENTER TO SELECT AN OPTON OR Q TO QUIT",
-            "font": "menu",
-            "rotate": 0,
-            "color": "#ffffff"
-        },
         "menu": {
             "pl": ["NOWA GRA", "OPCJE GRY", "NAJLEPSI",
                    "USTAWIENIA", "POMOC", "O PROGRAMIE", "WYJSCIE"],

@@ -13,7 +13,8 @@
         "krzyk": "krzyk.png",
 	"pl-get-ready": "pl-plane-get-ready.png",
 	"en-get-ready": "en-plane-get-ready.png",
-	"helik-main": "helik-main.png"
+	"helik-main": "helik-main.png",
+	"pl-status-1": "pl-status-1.png"
     },
     "buildings": [
         "house-a.png",

@@ -53,12 +53,13 @@ class BoardMenu(Board):
         """
         self.buffer.blit(self.res_man.images["default-background"], (0, 0))
         self.buffer.blit(self.res_man.surfaces["status"], (0, ARENA_HEIGHT - STATUS_HEIGHT))
+        self.buffer.blit(self.res_man.images["pl-status-1"], ((ARENA_WIDTH - 892 - 160) // 2, ARENA_HEIGHT - 50))
 
         # Lang flags
         self.buffer.blit(self.res_man.images["flag-pl"], self.res_man.get("lang-rectangles", "pl"))
         self.buffer.blit(self.res_man.images["flag-en"], self.res_man.get("lang-rectangles", "en"))
 
-        self.buffer.blit(self.res_man.images["helik-main"], (225, 45))
+        self.buffer.blit(self.res_man.images["helik-main"], (215, 45))
 
         for re in self.rectangles:
             label, rect = re
