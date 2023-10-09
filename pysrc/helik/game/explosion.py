@@ -22,7 +22,7 @@ class Explosion:
         self.max_frames = len(self.images)
         self.valid = True
 
-    def on_update(self, delta):
+    def on_update(self, _):
         """
         Update handler event
         """

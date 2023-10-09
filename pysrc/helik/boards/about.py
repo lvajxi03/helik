@@ -8,7 +8,7 @@ About board module
 import pygame
 from helik.htypes import BoardType
 from helik.boards.standard import Board
-from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
+from helik.hdefs import ARENA_HEIGHT
 
 class BoardAbout(Board):
     """
@@ -31,14 +31,6 @@ class BoardAbout(Board):
         self.buffer.blit(l, (55, 45))
         l, r = self.res_man.get_label(BoardType.ABOUT, "title", self.arena.config['lang'])
         self.buffer.blit(l, (50, 50))
-
-    def activate(self):
-        """
-        """
-
-    def deactivate(self):
-        """
-        """
 
     def on_keyup(self, key):
         """

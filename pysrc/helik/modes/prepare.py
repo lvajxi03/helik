@@ -7,7 +7,8 @@ Mode prepare handler module
 
 import pygame
 from helik.modes.standard import Mode
-from helik.htypes import TimerType, BoardType, GameMode
+from helik.htypes import TimerType, GameMode
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 
 
 class ModePrepare(Mode):
@@ -24,8 +25,9 @@ class ModePrepare(Mode):
             TimerType.THIRD: self.on_prepare_stop
         }
         self.alpha = 255
-        self.labels = ["3", "2", "1"]
         self.index = 0
+        self.rect = self.res_man.images["big"][0].get_rect()
+        self.rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
 
     def on_timer(self, timer):
         """
@@ -43,7 +45,7 @@ class ModePrepare(Mode):
         :param delta: delta time from last frame
         """
         self.alpha -= 5
-        self.res_man.set_alpha(BoardType.GAME, self.labels[self.index], self.arena.config['lang'], self.alpha)
+        self.res_man.images["big"][self.index].set_alpha(self.alpha)
 
     def on_prepare(self):
         """
@@ -81,9 +83,4 @@ class ModePrepare(Mode):
         """
         self.buffer.blit(
             self.res_man.images["default-background"], (0, 0))
-        try:
-            label, rect = self.res_man.get_label(
-                BoardType.GAME, self.labels[self.index], self.arena.config['lang'])
-            self.buffer.blit(label, rect)
-        except KeyError:
-            pass
+        self.buffer.blit(self.res_man.images["big"][self.index], self.rect)

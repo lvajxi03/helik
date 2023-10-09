@@ -4,8 +4,6 @@
 Standard game mode
 """
 
-import pygame
-
 
 class Mode:
     """

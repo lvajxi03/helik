@@ -4,10 +4,9 @@
 Menu board handler
 """
 
-import random
 import pygame
 from helik.boards.standard import Board
-from helik.htypes import TimerType, BoardType
+from helik.htypes import BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
 from helik.locale import locale
 

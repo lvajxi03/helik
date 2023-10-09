@@ -20,7 +20,7 @@ class ResourceManager:
         self.resources = {}
         self.images = {
             "general": {},
-            "big": {}
+            "big": []
         }
         self.digits = {}
         self.clouds = []
@@ -72,7 +72,7 @@ class ResourceManager:
                 for name in data["birds"]:
                     self.birds.append(pygame.image.load(basepath.joinpath(name)))
                 for name in data["big"]:
-                    self.images["big"][name] = pygame.image.load(basepath.joinpath(name))
+                    self.images["big"].append(pygame.image.load(basepath.joinpath(name)))
         except IOError:
             print("Cannot load assets!")
             sys.exit(1)
@@ -153,14 +153,6 @@ class ResourceManager:
                         locale[ty][name]["rotate"])
                     rect = label.get_rect()
                     locale[ty][name]["label"]["en"] = (label, rect)
-        # Quirks and hacks:
-        for l in ["1", "2", "3"]:
-            label, rect = self.get_label(BoardType.GAME, l, "pl")
-            rect = label.get_rect()
-            rect.center = (ARENA_WIDTH//2, ARENA_HEIGHT//2)
-            self.set_label(BoardType.GAME, l, "pl", (label, rect))
-            self.set_label(BoardType.GAME, l, "en", (label, rect))
-
         # Status:
         pygame.draw.rect(self.surfaces["status"],
                          self.colors["status-color"], (0, 0, ARENA_WIDTH, 60))
@@ -205,19 +197,6 @@ class ResourceManager:
         """
         try:
             locale[board][name]["label"][lang] = newval
-        except KeyError:
-            pass
-
-    def set_alpha(self, board, name, lang, alpha):
-        try:
-            rec = locale[board][name]["label"][lang]
-            if isinstance(rec, list):
-                for elem in rec:
-                    lab, re = elem
-                    lab.set_alpha(alpha)
-            else:
-                lab, re = rec
-                lab.set_alpha(alpha)
         except KeyError:
             pass
 

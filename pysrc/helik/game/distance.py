@@ -28,9 +28,8 @@ class Distance:
         """
         No paint
         """
-        pass
 
-    def collide(self, other):
+    def collide(self, _):
         """
         No collision
         """

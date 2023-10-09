@@ -7,7 +7,6 @@ Mode play handler module
 
 import pygame
 from helik.modes.standard import Mode
-from helik.game.level import Level
 from helik.htypes import TimerType, GameMode
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT
 from helik.gfx import blitnumber

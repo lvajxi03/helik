@@ -62,7 +62,7 @@ class Bird:
         """
         Move bird
         """
-        self.x -= 1
+        self.x -= speed
         r  = self.frames[self.frame]
         if self.x + r.w < 0:
             self.valid = False

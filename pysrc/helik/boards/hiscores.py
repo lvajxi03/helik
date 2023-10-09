@@ -6,7 +6,7 @@ Hiscores board handler
 
 import pygame
 from helik.boards.standard import Board
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.hdefs import ARENA_HEIGHT
 from helik.htypes import BoardType
 
 class BoardHiscores(Board):
@@ -30,14 +30,6 @@ class BoardHiscores(Board):
         self.buffer.blit(l, (55, 45))
         l, r = self.res_man.get_label(BoardType.HISCORES, "title", self.arena.config['lang'])
         self.buffer.blit(l, (50, 50))
-
-    def activate(self):
-        """
-        """
-
-    def deactivate(self):
-        """
-        """
 
     def on_keyup(self, key):
         """

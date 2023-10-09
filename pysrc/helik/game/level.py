@@ -5,12 +5,11 @@ Level handler module
 """
 
 import pygame
-from helik.game.buildings import buildings_from_factory, Building
-from helik.game.clouds import clouds_from_factory, Cloud
+from helik.game.buildings import buildings_from_factory
+from helik.game.clouds import clouds_from_factory
 from helik.game.bullets import Bullet
-from helik.game.dirc import DirChanger, get_dirc_images, dircs_from_factory
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
-from helik.htypes import DirCType
+from helik.game.dirc import get_dirc_images, dircs_from_factory
+from helik.hdefs import ARENA_WIDTH
 from helik.game.birds import Bird
 
 
@@ -120,7 +119,7 @@ class Level:
 
         for cloud in self.clouds:
             if cloud.valid:
-                cloud.move(speed)
+                cloud.move(1.5*speed)
 
         for bullet in self.bullets:
             if bullet.valid:
@@ -132,7 +131,7 @@ class Level:
 
         for bird in self.birds:
             if bird.valid:
-                bird.move(speed)
+                bird.move(2*speed)
 
     def on_paint(self, canvas):
         """
