@@ -1,11 +1,11 @@
 # HeliK -- Makefile
 
 CC := g++
-CXXFLAGS := -Iinclude -std=c++11 -Wall
+CXXFLAGS := -Iinclude -std=c++11 -Wall -Wextra
 LDFLAGS :=
 EXE := HeliK
 
-OBJS := obj/main.o obj/app.o
+OBJS := obj/main.o obj/app.o obj/board.o
 
 .PHONY: all clean
 

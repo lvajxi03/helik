@@ -37,11 +37,17 @@ class ModePlay(Mode):
         pygame.time.set_timer(TimerType.THIRD, self.speed)
 
     def deactivate(self):
+        """
+        Deactivate event handler
+        """
         pygame.time.set_timer(TimerType.SECOND, 0)
         pygame.time.set_timer(TimerType.FIRST, 0)
         pygame.time.set_timer(TimerType.THIRD, 0)
 
-    def update(self): #, delta):
+    def move_board(self):
+        """
+        Move board according to current speed
+        """
         delta = 1
         self.game.level.move(delta)
 
@@ -49,6 +55,10 @@ class ModePlay(Mode):
             explosion.on_update(delta)
 
     def on_update(self, delta):
+        """
+        Update event handler
+        :param delta: delta time between two frames
+        """
         self.game.copter.move(delta)
 
         # Bullet collisions
@@ -159,7 +169,7 @@ class ModePlay(Mode):
             for bird in self.game.level.birds:
                 bird.next()
         elif timer == TimerType.THIRD:
-            self.update()
+            self.move_board()
 
     def on_keyup(self, key):
         """

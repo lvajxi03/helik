@@ -41,10 +41,34 @@ class Level:
         """
         """
 
-    def rewind_by(self, dx: int):
+    def rewind(self):
         """
-        Rewind buildings, planes, clouds etc by dx pixels to the right
+        Rewind buildings, planes, clouds etc to the right
+        (behind right window edge)
         """
+        xf = []
+        if len(self.buildings) > 0:
+            xf.append(self.buildings[0].x)
+        if len(self.clouds) > 0:
+            xf.append(self.clouds[0].x)
+        if len(self.birds) > 0:
+            xf.append(self.birds[0].x)
+        if len(self.dircs) > 0:
+            xf.append(self.dircs[0].x)
+        if len(xf) > 0:
+            xfd = ARENA_WIDTH - min(xf)
+        else:
+            xfd = ARENA_WIDTH
+
+        # Rewind everything:
+        for building in self.buildings:
+            building.x += xfd
+        for cloud in self.clouds:
+            cloud.x += xfd
+        for bird in self.birds:
+            bird.x += xfd
+        for dirc in self.dircs:
+            dirc.x += xfd
 
     def create_buildings(self):
         """

@@ -27,14 +27,19 @@ class ModeKilled(Mode):
         Activate event handler
         """
         self.previous_y = self.game.copter.y
-        pygame.time.set_timer(TimerType.FIRST, 5)
+        pygame.time.set_timer(TimerType.FIRST, 11)
 
     def deactivate(self):
+        """
+        Deactivate event handler
+        """
         pygame.time.set_timer(TimerType.SECOND, 0)
 
     def on_update(self, delta):
-        self.game.level.move(delta)
-
+        """
+        Update event handler
+        :param delta: delta time between two frames
+        """
         for explosion in self.game.explosions:
             explosion.on_update(delta)
 
@@ -44,9 +49,10 @@ class ModeKilled(Mode):
         :param timer: timer type code
         """
         if timer == TimerType.FIRST:
-            self.game.copter.y += 10
+            self.game.copter.y += 3
             if self.game.copter.y > ARENA_HEIGHT:
                 self.game.copter.y = self.previous_y
+                self.game.level.rewind()
                 self.game.change_mode(GameMode.PLAY)
 
     def on_paint(self):

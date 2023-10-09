@@ -10,7 +10,22 @@ from helik.boards.standard import Board
 from helik.htypes import TimerType, BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
 from helik.locale import locale
-from helik.utils import menupos2board
+
+
+def menupos2board(menu_pos: int) -> BoardType:
+    """
+    Calculate board id from menu pos
+    :param menu_pos: menu position number
+    :return: board id
+    """
+    ids = [BoardType.GAME, BoardType.OPTIONS, BoardType.HISCORES,
+           BoardType.SETTINGS, BoardType.HELP, BoardType.ABOUT,
+           BoardType.QUIT]
+    try:
+        return ids[menu_pos]
+    except IndexError:
+        return BoardType.QUIT # Because, erm, why not? ;)
+
 
 class BoardMenu(Board):
     """
