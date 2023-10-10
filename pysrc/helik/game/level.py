@@ -8,7 +8,7 @@ import pygame
 from helik.game.buildings import buildings_from_factory
 from helik.game.clouds import clouds_from_factory
 from helik.game.bullets import Bullet
-from helik.game.dirc import get_dirc_images, dircs_from_factory
+from helik.game.dirc import dircs_from_factory
 from helik.hdefs import ARENA_WIDTH
 from helik.game.birds import Bird
 

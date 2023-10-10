@@ -10,16 +10,6 @@ from helik.hdefs import ARENA_WIDTH
 from helik.htypes import DirCType
 
 
-def get_dirc_images(resman, dtype: DirCType):
-    all = resman.dircs
-    images = []
-    if dtype == DirCType.UP:
-        images = [all[0], all[0], all[0], all[0], all[0], all[0], all[0], all[1], all[1], all[1], all[1], all[1], all[1], all[0], all[0], all[0], all[0], all[0], all[0], all[0], all[7], all[7], all[7], all[7], all[7], all[7]]
-    elif dtype == DirCType.DOWN:
-        images = [all[4], all[5], all[4], all[3]]
-    return images
-
-
 class DirChanger:
     """
     DirChanger handler class

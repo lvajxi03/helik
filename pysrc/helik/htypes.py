@@ -56,5 +56,9 @@ class TimerType(enum.IntEnum):
 
 @enum.unique
 class DirCType(enum.IntEnum):
+    """
+    DirCType enum
+    Tells you what's the copter direction right now.
+    """
     DOWN = 0
     UP = 1

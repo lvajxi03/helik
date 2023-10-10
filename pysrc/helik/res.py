@@ -7,7 +7,7 @@ All the resources
 import sys
 import json
 import pygame
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType
 from helik.locale import locale
 
@@ -38,6 +38,7 @@ class ResourceManager:
     def create_resources(self, basepath):
         """
         Load all resources
+        :basepath: root dir of all resources
         """
         # Fonts
         f_name = basepath.joinpath("fonts.json")
