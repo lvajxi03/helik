@@ -106,7 +106,7 @@ class Level:
         Make new BulletFrom
         :param copter: copter instance handle
         """
-        bullet = Bullet(self.res_man.images["bullet"], copter.x + copter.w, copter.y + copter.h // 2)
+        bullet = Bullet(self.res_man.images["rocket-1"], copter.x + copter.w, copter.y + copter.h // 2)
         self.bullets.append(bullet)
 
     def move(self, speed):
@@ -119,11 +119,11 @@ class Level:
 
         for cloud in self.clouds:
             if cloud.valid:
-                cloud.move(1.5*speed)
+                cloud.move(2 * speed)
 
         for bullet in self.bullets:
             if bullet.valid:
-                bullet.move(speed)
+                bullet.move(20 * speed)
 
         for dirc in self.dircs:
             if dirc.valid:
@@ -131,20 +131,20 @@ class Level:
 
         for bird in self.birds:
             if bird.valid:
-                bird.move(2*speed)
+                bird.move(2.5 * speed)
 
     def on_paint(self, canvas):
         """
         Paint event handler
         :param canvas: canvas to paint images into
         """
-        for building in self.buildings:
-            if building.visible and building.valid:
-                building.on_paint(canvas)
-
         for cloud in self.clouds:
             if cloud.visible and cloud.valid:
                 cloud.on_paint(canvas)
+
+        for building in self.buildings:
+            if building.visible and building.valid:
+                building.on_paint(canvas)
 
         for plane in self.planes:
             if plane.visible and plane.valid:

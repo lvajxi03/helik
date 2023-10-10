@@ -35,12 +35,13 @@ class Bullet:
         """
         return self.mask.overlap(other.mask, (other.x - self.x, other.y - self.y))
 
-    def move(self, delta=1):
+    def move(self, speed):
         """
         Move bullet
+        :param speed: distance to move per frame
         """
         if self.valid:
-            self.x += 15*delta
+            self.x += speed
             if self.x > ARENA_WIDTH:
                 self.valid = False
                 self.visible = False

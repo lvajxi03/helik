@@ -5,16 +5,17 @@
         "default-background": "back-default.jpg",
         "line-0": "line-0.png",
         "bullet": "bullet.png",
+        "rocket-1": "rocket-1.png",
         "bullets-indicator": "bullets-indicator.png",
         "flag-pl": "flag_pl.png",
         "flag-en": "flag_en.png",
         "heart-yellow": "heart-yellow.png",
         "heart-gray": "heart-gray.png",
         "krzyk": "krzyk.png",
-	"pl-get-ready": "pl-plane-get-ready.png",
-	"en-get-ready": "en-plane-get-ready.png",
-	"helik-main": "helik-main.png",
-	"pl-status-1": "pl-status-1.png"
+        "pl-get-ready": "pl-plane-get-ready.png",
+        "en-get-ready": "en-plane-get-ready.png",
+        "helik-main": "helik-main.png",
+        "pl-status-1": "pl-status-1.png"
     },
     "buildings": [
         "house-a.png",
@@ -66,40 +67,40 @@
         "dir-7.png"
     ],
     "pl-plane-levels": [
-	"pl-plane-level-1.png",
-	"pl-plane-level-2.png",
-	"pl-plane-level-3.png",
-	"pl-plane-level-4.png",
-	"pl-plane-level-5.png",
-	"pl-plane-level-6.png",
-	"pl-plane-level-7.png",
-	"pl-plane-level-8.png"
+        "pl-plane-level-1.png",
+        "pl-plane-level-2.png",
+        "pl-plane-level-3.png",
+        "pl-plane-level-4.png",
+        "pl-plane-level-5.png",
+        "pl-plane-level-6.png",
+        "pl-plane-level-7.png",
+        "pl-plane-level-8.png"
     ],
     "en-plane-levels": [
-	"en-plane-level-1.png",
-	"en-plane-level-2.png",
-	"en-plane-level-3.png",
-	"en-plane-level-4.png",
-	"en-plane-level-5.png",
-	"en-plane-level-6.png",
-	"en-plane-level-7.png",
-	"en-plane-level-8.png"
+        "en-plane-level-1.png",
+        "en-plane-level-2.png",
+        "en-plane-level-3.png",
+        "en-plane-level-4.png",
+        "en-plane-level-5.png",
+        "en-plane-level-6.png",
+        "en-plane-level-7.png",
+        "en-plane-level-8.png"
     ],
     "birds": [
-	"bird-1.png",
-	"bird-2.png",
-	"bird-3.png",
-	"bird-4.png",
-	"bird-5.png",
-	"bird-6.png",
-	"bird-7.png",
-	"bird-8.png",
-	"bird-9.png",
-	"bird-10.png"
+        "bird-1.png",
+        "bird-2.png",
+        "bird-3.png",
+        "bird-4.png",
+        "bird-5.png",
+        "bird-6.png",
+        "bird-7.png",
+        "bird-8.png",
+        "bird-9.png",
+        "bird-10.png"
     ],
     "big": [
-	"b1.png",
-	"b2.png",
-	"b3.png"
-	]
+        "b1.png",
+        "b2.png",
+        "b3.png"
+        ]
 }

@@ -63,19 +63,6 @@ class ModePlay(Mode):
         # Bullet collisions
         for bullet in self.game.level.bullets:
             if bullet.valid:
-                for cloud in self.game.level.clouds:
-                    if cloud.valid:
-                        col = cloud.collide(bullet)
-                        if col:
-                            bullet.valid = False
-                            bullet.visible = False
-                            cloud.valid = False
-                            cloud.visible = False
-                            self.game.data['points'] += 1
-                            x, y = col
-                            self.game.explosions.append(
-                                Explosion(
-                                    self.res_man.explosions, x + cloud.x, y + cloud.y))
                 for building in self.game.level.buildings:
                     if building.valid:
                         col = building.collide(bullet)
