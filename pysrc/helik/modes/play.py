@@ -11,7 +11,7 @@ from helik.htypes import TimerType, GameMode
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT
 from helik.gfx import blitnumber
 from helik.game.explosion import Explosion
-from helik.game.copter import CopterDirection
+from helik.game.player import PlayerDirection
 
 
 class ModePlay(Mode):
@@ -34,6 +34,7 @@ class ModePlay(Mode):
         pygame.time.set_timer(TimerType.FIRST, 250)
         self.speed = 20 - self.data['level'] - 3 * self.data['option']
         pygame.time.set_timer(TimerType.THIRD, self.speed)
+        pygame.time.set_timer(TimerType.FOURTH, 10)
 
     def deactivate(self):
         """
@@ -42,6 +43,7 @@ class ModePlay(Mode):
         pygame.time.set_timer(TimerType.SECOND, 0)
         pygame.time.set_timer(TimerType.FIRST, 0)
         pygame.time.set_timer(TimerType.THIRD, 0)
+        pygame.time.set_timer(TimerType.FOURTH, 0)
 
     def move_board(self):
         """
@@ -58,7 +60,7 @@ class ModePlay(Mode):
         Update event handler
         :param delta: delta time between two frames
         """
-        self.game.copter.move(delta)
+        self.game.player.move(delta)
 
         # Bullet collisions
         for bullet in self.game.level.bullets:
@@ -93,7 +95,7 @@ class ModePlay(Mode):
         # Cloud collisions
         for cloud in self.game.level.clouds:
             if cloud.valid:
-                col = cloud.collide(self.game.copter)
+                col = cloud.collide(self.game.player)
                 if col:
                     cloud.valid = False
                     cloud.visible = False
@@ -106,7 +108,7 @@ class ModePlay(Mode):
         # Building collisions
         for building in self.game.level.buildings:
             if building.valid:
-                col = building.collide(self.game.copter)
+                col = building.collide(self.game.player)
                 if col:
                     building.valid = False
                     building.visible = False
@@ -119,10 +121,10 @@ class ModePlay(Mode):
         # Dirc collisions
         for dirc in self.game.level.dircs:
             if dirc.valid:
-                if dirc.collide(self.game.copter):
+                if dirc.collide(self.game.player):
                     dirc.valid = False
                     dirc.visible = False
-                    self.game.copter.toggle_direction()
+                    self.game.player.toggle_direction()
 
         self.game.level.rotate()
         if self.game.level.is_empty():
@@ -131,7 +133,7 @@ class ModePlay(Mode):
         # Birds collisions
         for bird in self.game.level.birds:
             if bird.valid:
-                col = bird.collide(self.game.copter)
+                col = bird.collide(self.game.player)
                 if col:
                     bird.valid = False
                     bird.visible = False
@@ -156,6 +158,8 @@ class ModePlay(Mode):
                 bird.next()
         elif timer == TimerType.THIRD:
             self.move_board()
+        elif timer == TimerType.FOURTH:
+            self.game.level.move_buildings()
 
     def on_keyup(self, key):
         """
@@ -166,9 +170,9 @@ class ModePlay(Mode):
             self.game.change_mode(GameMode.PAUSED)
         elif key == pygame.K_s:
             if self.data['bullets-available'] > 0:
-                self.game.level.make_bullet(self.game.copter)
+                self.game.level.make_bullet(self.game.player)
                 self.data['bullets-available'] -= 1
-        self.game.copter.on_keyup(key)
+        self.game.player.on_keyup(key)
 
     def on_paint(self):
         """
@@ -191,14 +195,13 @@ class ModePlay(Mode):
         blitnumber(self.buffer, self.data['bullets-available'],
                    3, self.res_man.digits, (400, ARENA_HEIGHT - 54))
 
-        if self.game.copter.direction == CopterDirection.DOWN:
+        if self.game.player.direction == PlayerDirection.DOWN:
             self.buffer.blit(self.res_man.dircs[4], (ARENA_WIDTH - 350, ARENA_HEIGHT - 54))
         else:
             self.buffer.blit(self.res_man.dircs[0], (ARENA_WIDTH - 350, ARENA_HEIGHT - 54))
 
         self.game.level.on_paint(self.buffer)
-
-        self.game.copter.on_paint()
+        self.game.player.on_paint()
 
         for explosion in self.game.explosions:
             if explosion.valid:

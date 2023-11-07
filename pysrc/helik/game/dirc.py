@@ -34,7 +34,7 @@ class DirChanger:
             self.masks.append(m)
 
         self.w = self.rects[0].w
-        self.h = self.rects[1].h
+        self.h = self.rects[0].h
         if self.x > ARENA_WIDTH:
             self.visible = False
         else:
@@ -44,7 +44,7 @@ class DirChanger:
 
     def next(self):
         """
-        Switch to next frame
+        Switch to a next frame
         """
         self.current += 1
         self.current %= len(self.images)
@@ -70,8 +70,8 @@ class DirChanger:
 
     def collide(self, other):
         """
-        Check for collision between this object and the other
-        :param other: other object
+        Check for collision between this object and the other one
+        :param other: the other object
         :return tuple of intersection or None
         """
         return self.masks[self.current].overlap(other.mask, (other.x - self.x, other.y - self.y))

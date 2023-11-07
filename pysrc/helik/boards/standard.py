@@ -15,6 +15,7 @@ class Board():
         self.arena = parent
         self.res_man = self.arena.res_man
         self.buffer = self.res_man.surfaces["buffer"]
+        self.images = self.res_man.images
 
     def activate(self):
         """

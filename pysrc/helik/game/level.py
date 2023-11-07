@@ -35,6 +35,9 @@ class Level:
         self.birds = []
         self.dircs = []
         self.birds = []
+        # New approach?
+        self.lane_upper = []
+        self.lane_lower = []
 
     def get_ready(self):
         """
@@ -69,12 +72,24 @@ class Level:
         for dirc in self.dircs:
             dirc.x += xfd
 
+    def create_lane_upper(self):
+        """
+        Upper lane contains mostly clouds, ammos,
+        """
+        pass
+
+    def create_lane_lower(self):
+        pass
+
     def create_buildings(self):
         """
         Create buildings for this given level
         """
         buildings_data = self.res_man.levels[self.index]["buildings"]
-        self.buildings = buildings_from_factory(self.res_man, buildings_data, self.res_man.levels[self.index]["buildings-amount"])
+        self.buildings = buildings_from_factory(
+            self.res_man,
+            buildings_data,
+            self.res_man.levels[self.index]["buildings-amount"])
 
     def create_clouds(self):
         """
@@ -113,17 +128,13 @@ class Level:
         """
         Move all the objects
         """
-        for building in self.buildings:
-            if building.valid:
-                building.move(speed)
-
         for cloud in self.clouds:
             if cloud.valid:
-                cloud.move(2 * speed)
+                cloud.move(speed)
 
         for bullet in self.bullets:
             if bullet.valid:
-                bullet.move(20 * speed)
+                bullet.move(8 * speed)
 
         for dirc in self.dircs:
             if dirc.valid:
@@ -131,7 +142,16 @@ class Level:
 
         for bird in self.birds:
             if bird.valid:
-                bird.move(2.5 * speed)
+                bird.move(speed)
+
+    def move_buildings(self, speed=1):
+        """
+        Move buildings according to their speed
+        :param speed: speed of buildings
+        """
+        for building in self.buildings:
+            if building.valid:
+                building.move(speed)
 
     def on_paint(self, canvas):
         """

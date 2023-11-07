@@ -20,7 +20,9 @@ class ResourceManager:
         self.resources = {}
         self.images = {
             "general": {},
-            "big": []
+            "big": [],
+            "ammos": [],
+            "vehicles": []
         }
         self.digits = {}
         self.clouds = []
@@ -74,8 +76,13 @@ class ResourceManager:
                     self.birds.append(pygame.image.load(basepath.joinpath(name)))
                 for name in data["big"]:
                     self.images["big"].append(pygame.image.load(basepath.joinpath(name)))
-        except IOError:
+                for name in data["ammos"]:
+                    self.images["ammos"].append(pygame.image.load(basepath.joinpath(name)))
+                for name in data["vehicles"]:
+                    self.images["vehicles"].append(pygame.image.load(basepath.joinpath(name)))
+        except IOError as ioe:
             print("Cannot load assets!")
+            print(str(ioe))
             sys.exit(1)
 
         f_name = basepath.joinpath("colors.json")

@@ -7,7 +7,7 @@ Game board for HeliK
 
 import pygame
 from helik.boards.standard import Board
-from helik.game.copter import Copter
+from helik.game.player import Player
 from helik.game.level import Level
 from helik.htypes import BoardType, GameMode
 from helik.modes.init import ModeInit
@@ -17,6 +17,7 @@ from helik.modes.play import ModePlay
 from helik.modes.prepare import ModePrepare
 from helik.modes.standard import Mode
 from helik.modes.newlevel import ModeNewLevel
+from helik.modes.selectplayer import SelectPlayer
 
 
 class BoardGame(Board):
@@ -29,7 +30,7 @@ class BoardGame(Board):
         """
         super().__init__(parent)
         self.mode = GameMode.NONE
-        self.copter = Copter(self)
+        self.player = None
         self.data = {
             'points': 0,
             'level': -1,
@@ -40,6 +41,7 @@ class BoardGame(Board):
         }
         self.modes = {
             GameMode.NONE: Mode(self),
+            GameMode.SELECTPLAYER: SelectPlayer(self),
             GameMode.INIT: ModeInit(self),
             GameMode.PREPARE: ModePrepare(self),
             GameMode.PLAY: ModePlay(self),

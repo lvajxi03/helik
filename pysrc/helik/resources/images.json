@@ -15,8 +15,17 @@
         "pl-get-ready": "pl-plane-get-ready.png",
         "en-get-ready": "en-plane-get-ready.png",
         "helik-main": "helik-main.png",
-        "pl-status-1": "pl-status-1.png"
+        "pl-status-1": "pl-status-1.png",
+        "viewport": "viewport.png"
     },
+    "vehicles": [
+        "helik-down.png",
+        "helik-up.png",
+        "airship-down.png",
+        "airship-up.png",
+        "balloon-down.png",
+        "balloon-up.png"
+    ],
     "buildings": [
         "house-a.png",
         "house-b.png",
@@ -65,6 +74,11 @@
         "dir-5.png",
         "dir-6.png",
         "dir-7.png"
+    ],
+    "ammos": [
+        "roc-0.png",
+        "roc-1.png",
+        "roc-2.png"
     ],
     "pl-plane-levels": [
         "pl-plane-level-1.png",

@@ -33,12 +33,13 @@ class GameMode(enum.IntEnum):
     """
     NONE = 0
     INIT = 1
-    PREPARE = 2
-    NEWLEVEL = 3
-    PLAY = 4
-    PAUSED = 5
-    KILLED = 6
-    GAMEOVER = 7
+    SELECTPLAYER = 2
+    PREPARE = 3
+    NEWLEVEL = 4
+    PLAY = 5
+    PAUSED = 6
+    KILLED = 7
+    GAMEOVER = 8
 
 
 @enum.unique
@@ -52,6 +53,8 @@ class TimerType(enum.IntEnum):
     FIRST = pygame.USEREVENT + 1
     SECOND = pygame.USEREVENT + 2
     THIRD = pygame.USEREVENT + 3
+    FOURTH = pygame.USEREVENT + 5
+    FIFTH = pygame.USEREVENT + 6
 
 
 @enum.unique

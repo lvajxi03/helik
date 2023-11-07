@@ -26,7 +26,7 @@ class ModeKilled(Mode):
         """
         Activate event handler
         """
-        self.previous_y = self.game.copter.y
+        self.previous_y = self.game.player.y
         pygame.time.set_timer(TimerType.FIRST, 11)
 
     def deactivate(self):
@@ -49,9 +49,9 @@ class ModeKilled(Mode):
         :param timer: timer type code
         """
         if timer == TimerType.FIRST:
-            self.game.copter.y += 3
-            if self.game.copter.y > ARENA_HEIGHT:
-                self.game.copter.y = self.previous_y
+            self.game.player.y += 3
+            if self.game.player.y > ARENA_HEIGHT:
+                self.game.player.y = self.previous_y
                 self.game.level.rewind()
                 self.game.change_mode(GameMode.PLAY)
 

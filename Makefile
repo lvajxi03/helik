@@ -1,8 +1,8 @@
 # HeliK -- Makefile
 
 CC := g++
-CXXFLAGS := -Iinclude -std=c++11 -Wall -Wextra
-LDFLAGS :=
+CXXFLAGS := $(pkg-config --cflags SDL2) -Iinclude -std=c++11 -Wall -Wextra
+LDFLAGS :=  $(pkg-config --libs SDL2) -static-libgcc -static-libstdc++ -Wl,-Bstatic -lstdc++ --static
 EXE := HeliK
 
 OBJS := obj/main.o obj/app.o obj/board.o

@@ -157,6 +157,13 @@ locale = {
             "font": "menu",
             "color": "#ffffff",
             "rotate": 0
+        },
+        "select-player": {
+            "pl": "Wybierz pojazd",
+            "en": "Select your vehicle",
+            "font": "menu",
+            "color": "#ffffff",
+            "rotate": 0
         }
     }
 }
