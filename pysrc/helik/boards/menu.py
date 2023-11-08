@@ -95,12 +95,15 @@ class BoardMenu(Board):
         """
         if key == pygame.K_DOWN:
             if self.menu_pos < 6:
+                self.res_man.play("arrow")
                 self.menu_pos += 1
         elif key == pygame.K_UP:
             if self.menu_pos > 0:
                 self.menu_pos -= 1
+                self.res_man.play("arrow")
         elif key == pygame.K_RETURN:
             bid = menupos2board(self.menu_pos)
+            self.res_man.play("closing-tape")
             self.arena.change_board(bid)
         elif key == pygame.K_q:
             self.arena.change_board(BoardType.QUIT)
@@ -119,6 +122,7 @@ class BoardMenu(Board):
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
                     ch_lang = True
+                    self.res_man.play("arrow")
                     self.create_rectangles()
         if not ch_lang:
             # TODO

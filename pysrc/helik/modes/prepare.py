@@ -64,6 +64,7 @@ class ModePrepare(Mode):
         """
         Activate event handler
         """
+        self.res_man.play("countdown")
         self.alpha = 255
         self.index = 0
         pygame.time.set_timer(TimerType.SECOND, 1000)

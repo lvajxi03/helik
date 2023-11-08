@@ -90,9 +90,11 @@ class BoardOptions(Board):
         if key == pygame.K_DOWN:
             if self.menu_pos < 5:
                 self.menu_pos += 1
+                self.res_man.play("arrow")
         elif key == pygame.K_UP:
             if self.menu_pos > 0:
                 self.menu_pos -= 1
+                self.res_man.play("arrow")
         elif key == pygame.K_RETURN:
             self.option = self.menu_pos
             self.arena.config['option'] = self.menu_pos

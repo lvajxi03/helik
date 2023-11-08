@@ -26,6 +26,7 @@ class ModeKilled(Mode):
         """
         Activate event handler
         """
+        self.res_man.play("failed")
         self.previous_y = self.game.player.y
         pygame.time.set_timer(TimerType.FIRST, 11)
 

@@ -30,6 +30,7 @@ class ModePlay(Mode):
         """
         Activate event handler
         """
+        self.res_man.play("music-3")
         pygame.time.set_timer(TimerType.SECOND, 1000)
         pygame.time.set_timer(TimerType.FIRST, 250)
         self.speed = 20 - self.data['level'] - 3 * self.data['option']
@@ -170,6 +171,7 @@ class ModePlay(Mode):
             self.game.change_mode(GameMode.PAUSED)
         elif key == pygame.K_s:
             if self.data['bullets-available'] > 0:
+                self.res_man.play("popup")
                 self.game.level.make_bullet(self.game.player)
                 self.data['bullets-available'] -= 1
         self.game.player.on_keyup(key)

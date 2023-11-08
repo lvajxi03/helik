@@ -5,6 +5,7 @@ All the resources
 """
 
 import sys
+import os
 import json
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
@@ -36,6 +37,24 @@ class ResourceManager:
         self.birds = []
         self.plane_levels = {"pl": [], "en": []}
         self.create_resources(basepath)
+        self.sounds = {}
+        self.load_sounds(basepath)
+
+    def load_sounds(self, basepath):
+        """
+        Load all sounds
+        :basepath: root dir of all resources
+        """
+        f_name = basepath.joinpath("sounds.json")
+        try:
+            with open(f_name, encoding="utf-8") as f_handle:
+                js = json.load(f_handle)
+                bp = basepath.joinpath("sounds")
+                for fn in js:
+                    print(bp.joinpath(js[fn]))
+                    self.sounds[fn] = pygame.mixer.Sound(bp.joinpath(js[fn]))
+        except IOError:
+            pass
 
     def create_resources(self, basepath):
         """
@@ -207,5 +226,10 @@ class ResourceManager:
             locale[board][name]["label"][lang] = newval
         except KeyError:
             pass
+
+    def play(self, sname: str):
+        if sname in self.sounds:
+            #  TODO? is it needed, really? self.sounds[sname].stop()
+            self.sounds[sname].play()
 
     # That's all Folks!
