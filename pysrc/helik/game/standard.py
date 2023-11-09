@@ -9,6 +9,9 @@ import enum
 
 @enum.unique
 class GameObjectType(enum.IntEnum):
+    """
+    Game object type enum
+    """
     DISTANCE = 0
     BUILDING = 1
     CLOUD = 2

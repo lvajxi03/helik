@@ -15,6 +15,7 @@ class Mode:
         self.buffer = self.game.buffer
         self.res_man = self.arena.res_man
         self.images = self.res_man.images
+        self.audio = self.game.audio
 
     def activate(self):
         """

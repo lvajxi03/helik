@@ -65,3 +65,13 @@ class DirCType(enum.IntEnum):
     """
     DOWN = 0
     UP = 1
+
+@enum.unique
+class SoundPlayState(enum.IntEnum):
+    """
+    SoundPlayState enum
+    Tells you what state is the particular sound object
+    """
+    STOPPED = 0
+    PLAYING = 1
+    PAUSED = 2

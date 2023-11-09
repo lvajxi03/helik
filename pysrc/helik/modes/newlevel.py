@@ -32,7 +32,7 @@ class ModeNewLevel(Mode):
         Activate event handler
         """
         if self.game.data['level'] < 7:
-            self.res_man.play("game-begin")
+            self.audio.play_sound("game-begin")
             self.game.data['level'] += 1
             self.game.level = Level(self.res_man, self.game.data['level'])
             self.game.level.create_buildings()

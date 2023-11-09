@@ -9,7 +9,7 @@ import pygame
 from helik.boards.standard import Board
 from helik.game.player import Player
 from helik.game.level import Level
-from helik.htypes import BoardType, GameMode
+from helik.htypes import BoardType, GameMode, SoundPlayState
 from helik.modes.init import ModeInit
 from helik.modes.killed import ModeKilled
 from helik.modes.paused import ModePaused
@@ -39,6 +39,7 @@ class BoardGame(Board):
             'bullets-available': 20,
             'lives': 5
         }
+        self.music_state = SoundPlayState.STOPPED
         self.modes = {
             GameMode.NONE: Mode(self),
             GameMode.SELECTPLAYER: SelectPlayer(self),
@@ -79,6 +80,13 @@ class BoardGame(Board):
         """
         self.change_mode(GameMode.INIT)
 
+    def deactivate(self):
+        """
+        Deactivate event handler
+        """
+        self.music_state = SoundPlayState.STOPPED
+        self.audio.stop_music()
+
     def on_paint(self):
         """
         Paint event handler
@@ -91,6 +99,7 @@ class BoardGame(Board):
         :param key: key code
         """
         if key == pygame.K_q:
+            self.audio.stop_music()
             self.arena.change_board(BoardType.MENU)
         else:
             self.modes[self.mode].on_keyup(key)

@@ -34,16 +34,6 @@ class SelectPlayer(Mode):
             x += ARENA_WIDTH // 4
             self.rects.append(r)
 
-    def activate(self):
-        """
-        Activate event handler
-        """
-
-    def deactivate(self):
-        """
-        Deactivate event handler
-        """
-
     def on_paint(self):
         """
         Paint event handler
@@ -63,11 +53,11 @@ class SelectPlayer(Mode):
         if key == pygame.K_LEFT:
             if self.viewpos > 0:
                 self.viewpos -= 1
-                self.res_man.play("arrow")
+                self.audio.play_sound("arrow")
         elif key == pygame.K_RIGHT:
             if self.viewpos < len(self.images["vehicles"]) - 1:
                 self.viewpos += 1
-                self.res_man.play("arrow")
+                self.audio.play_sound("arrow")
         elif key == pygame.K_RETURN:
             self.game.player = Player(self.game, self.viewpos)
             self.game.change_mode(GameMode.PREPARE)

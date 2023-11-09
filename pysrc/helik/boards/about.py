@@ -5,18 +5,15 @@ About board module
 """
 
 
-import pygame
 from helik.htypes import BoardType
 from helik.boards.standard import Board
 from helik.hdefs import ARENA_HEIGHT
+
 
 class BoardAbout(Board):
     """
     About board class
     """
-    def __init__(self, parent):
-        super().__init__(parent)
-
     def on_paint(self):
         """
         Paint event handler

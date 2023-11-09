@@ -7,7 +7,6 @@ DirChanger handler module
 import math
 import pygame
 from helik.hdefs import ARENA_WIDTH
-from helik.htypes import DirCType
 
 
 class DirChanger:

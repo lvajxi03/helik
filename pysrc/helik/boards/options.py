@@ -10,6 +10,7 @@ from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType
 from helik.locale import locale
 
+
 class BoardOptions(Board):
     """
     Options board class
@@ -20,6 +21,7 @@ class BoardOptions(Board):
         self.option = 0
         self.menu_pos = 0
         self.rect_pos = None
+        self.rect_pos_t = None
         self.color = pygame.Color(76, 76, 76)
         self.rectangles = []
         self.create_rectangles()
@@ -67,8 +69,10 @@ class BoardOptions(Board):
             self.buffer.blit(label, rect)
 
         self.rect_pos_t = self.rect_pos.move(5, 5)
-        pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16), self.rect_pos_t, width=5, border_radius=20)
-        pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32), self.rect_pos, width=5, border_radius=20)
+        pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16),
+                         self.rect_pos_t, width=5, border_radius=20)
+        pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32),
+                         self.rect_pos, width=5, border_radius=20)
 
     def activate(self):
         """
@@ -78,10 +82,6 @@ class BoardOptions(Board):
         self.menu_pos = self.option
         self.create_rectangles()
 
-    def deactivate(self):
-        """
-        """
-
     def on_keyup(self, key):
         """
         Key release event handler
@@ -90,11 +90,11 @@ class BoardOptions(Board):
         if key == pygame.K_DOWN:
             if self.menu_pos < 5:
                 self.menu_pos += 1
-                self.res_man.play("arrow")
+                self.audio.play_sound("arrow")
         elif key == pygame.K_UP:
             if self.menu_pos > 0:
                 self.menu_pos -= 1
-                self.res_man.play("arrow")
+                self.audio.play_sound("arrow")
         elif key == pygame.K_RETURN:
             self.option = self.menu_pos
             self.arena.config['option'] = self.menu_pos

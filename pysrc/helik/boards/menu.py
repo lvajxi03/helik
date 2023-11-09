@@ -35,6 +35,7 @@ class BoardMenu(Board):
         self.locale = locale[BoardType.MENU]
         self.menu_pos = 0
         self.rect_pos = None
+        self.rect_pos_t = None
         self.color = pygame.Color(76, 76, 76)
         self.rectangles = []
         self.create_rectangles()
@@ -67,7 +68,8 @@ class BoardMenu(Board):
         """
         self.buffer.blit(self.res_man.images["default-background"], (0, 0))
         self.buffer.blit(self.res_man.surfaces["status"], (0, ARENA_HEIGHT - STATUS_HEIGHT))
-        self.buffer.blit(self.res_man.images["pl-status-1"], ((ARENA_WIDTH - 892 - 160) // 2, ARENA_HEIGHT - 50))
+        self.buffer.blit(self.res_man.images["pl-status-1"],
+                         ((ARENA_WIDTH - 892 - 160) // 2, ARENA_HEIGHT - 50))
 
         # Lang flags
         self.buffer.blit(self.res_man.images["flag-pl"], self.res_man.get("lang-rectangles", "pl"))
@@ -79,8 +81,10 @@ class BoardMenu(Board):
             label, rect = re
             self.buffer.blit(label, rect)
         self.rect_pos_t = self.rect_pos.move(5, 5)
-        pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16), self.rect_pos_t, width=5, border_radius=20)
-        pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32), self.rect_pos, width=5, border_radius=20)
+        pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16),
+                         self.rect_pos_t, width=5, border_radius=20)
+        pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32),
+                         self.rect_pos, width=5, border_radius=20)
 
     def activate(self):
         """
@@ -95,15 +99,15 @@ class BoardMenu(Board):
         """
         if key == pygame.K_DOWN:
             if self.menu_pos < 6:
-                self.res_man.play("arrow")
+                self.audio.play_sound("arrow")
                 self.menu_pos += 1
         elif key == pygame.K_UP:
             if self.menu_pos > 0:
                 self.menu_pos -= 1
-                self.res_man.play("arrow")
+                self.audio.play_sound("arrow")
         elif key == pygame.K_RETURN:
             bid = menupos2board(self.menu_pos)
-            self.res_man.play("closing-tape")
+            self.audio.play_sound("closing-tape")
             self.arena.change_board(bid)
         elif key == pygame.K_q:
             self.arena.change_board(BoardType.QUIT)
@@ -122,7 +126,7 @@ class BoardMenu(Board):
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
                     ch_lang = True
-                    self.res_man.play("arrow")
+                    self.audio.play_sound("arrow")
                     self.create_rectangles()
         if not ch_lang:
             # TODO

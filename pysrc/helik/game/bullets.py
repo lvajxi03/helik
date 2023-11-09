@@ -5,7 +5,6 @@ Bullets handler module
 """
 
 import pygame
-from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT
 
 
 class Bullet:

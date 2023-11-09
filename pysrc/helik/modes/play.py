@@ -7,7 +7,7 @@ Mode play handler module
 
 import pygame
 from helik.modes.standard import Mode
-from helik.htypes import TimerType, GameMode
+from helik.htypes import TimerType, GameMode, SoundPlayState
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT
 from helik.gfx import blitnumber
 from helik.game.explosion import Explosion
@@ -30,7 +30,10 @@ class ModePlay(Mode):
         """
         Activate event handler
         """
-        self.res_man.play("music-3")
+        if self.audio.music_state == SoundPlayState.PAUSED:
+            self.audio.unpause_music()
+        elif self.game.music_state == SoundPlayState.STOPPED:
+            self.audio.play_music("music-3")
         pygame.time.set_timer(TimerType.SECOND, 1000)
         pygame.time.set_timer(TimerType.FIRST, 250)
         self.speed = 20 - self.data['level'] - 3 * self.data['option']
@@ -41,6 +44,7 @@ class ModePlay(Mode):
         """
         Deactivate event handler
         """
+        self.audio.pause_music()
         pygame.time.set_timer(TimerType.SECOND, 0)
         pygame.time.set_timer(TimerType.FIRST, 0)
         pygame.time.set_timer(TimerType.THIRD, 0)
@@ -171,7 +175,7 @@ class ModePlay(Mode):
             self.game.change_mode(GameMode.PAUSED)
         elif key == pygame.K_s:
             if self.data['bullets-available'] > 0:
-                self.res_man.play("popup")
+                self.audio.play_sound("popup")
                 self.game.level.make_bullet(self.game.player)
                 self.data['bullets-available'] -= 1
         self.game.player.on_keyup(key)

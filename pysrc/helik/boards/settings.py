@@ -4,7 +4,7 @@
 Settings board handler
 """
 
-import pygame
+
 from helik.boards.standard import Board
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType
@@ -13,9 +13,6 @@ class BoardSettings(Board):
     """
     Settings board class
     """
-    def __init__(self, parent):
-        super().__init__(parent)
-
     def on_paint(self):
         """
         Paint event handler
@@ -31,14 +28,6 @@ class BoardSettings(Board):
         self.buffer.blit(l, (55, 45))
         l, r = self.res_man.get_label(BoardType.SETTINGS, "title", self.arena.config['lang'])
         self.buffer.blit(l, (50, 50))
-
-    def activate(self):
-        """
-        """
-
-    def deactivate(self):
-        """
-        """
 
     def on_keyup(self, key):
         """

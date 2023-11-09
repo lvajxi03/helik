@@ -15,18 +15,15 @@ class ModePaused(Mode):
     """
     Mode paused handle class
     """
-    def __init__(self, parent):
-        """
-        Mode paused class constructor
-        """
-        super().__init__(parent)
-
     def on_paint(self):
         """
         Paint event handler
         """
         self.buffer.blit(self.res_man.images["default-background"], (0, 0))
-        label, rect = self.res_man.get_label(BoardType.GAME, "paused-shadow", self.arena.config['lang'])
+        label, rect = self.res_man.get_label(
+            BoardType.GAME,
+            "paused-shadow",
+            self.arena.config['lang'])
         rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
         rect.x += 5
         rect.y += 5

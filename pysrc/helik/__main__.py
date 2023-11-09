@@ -4,7 +4,7 @@
 Entry point for Helik package
 """
 
-from helik.app import Application
+from helik.arena import Application
 
 
 if __name__ == "__main__":

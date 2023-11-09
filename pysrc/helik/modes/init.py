@@ -35,8 +35,3 @@ class ModeInit(Mode):
         self.data['option'] = self.arena.config['option']
         self.game.explosions = []
         self.game.change_mode(GameMode.SELECTPLAYER)
-
-    def deactivate(self):
-        """
-        Deactivate event handler
-        """

@@ -27,7 +27,7 @@ class Config:
         :return: configuration dictionary
         """
         try:
-            with open(fn) as fh:
+            with open(fn, encoding="utf-8") as fh:
                 data = json.load(fh)
                 self.data.update(data)
                 if not isinstance(self.data['hiscores'], list):
@@ -51,7 +51,7 @@ class Config:
         :param fn: filename
         """
         try:
-            with open(fn, "w") as fh:
+            with open(fn, "w", encoding="utf-8") as fh:
                 json.dump(self.data, fh)
         except IOError:
             pass
@@ -104,4 +104,3 @@ class Config:
         :param points: new winners' points
         """
         self.data['hiscores'].append((nick, points))
-

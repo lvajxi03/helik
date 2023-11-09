@@ -20,6 +20,8 @@ from helik.boards.game import BoardGame
 from helik.boards.quit import BoardQuit
 from helik.res import ResourceManager
 from helik.config import Config
+from helik.media.audio import AudioController
+
 
 class Application():
     """
@@ -33,6 +35,7 @@ class Application():
         pygame.init()
         pygame.mixer.init()
         self.res_man = ResourceManager(files('helik.resources'))
+        self.audio = AudioController(files('helik.resources'))
         pygame.display.set_caption(APPLICATION_TITLE)
         self.clock = pygame.time.Clock()
         self.running = True

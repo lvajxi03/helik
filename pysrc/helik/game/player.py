@@ -11,6 +11,9 @@ from helik.hdefs import ARENA_HEIGHT, STATUS_HEIGHT
 
 @enum.unique
 class PlayerDirection(enum.IntEnum):
+    """
+    Player direction enum
+    """
     DOWN = 0
     UP = 1
 

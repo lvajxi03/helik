@@ -5,11 +5,9 @@ All the resources
 """
 
 import sys
-import os
 import json
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-from helik.htypes import BoardType
 from helik.locale import locale
 
 
@@ -17,6 +15,7 @@ class ResourceManager:
     """
     Resource Manager class
     """
+
     def __init__(self, basepath):
         self.resources = {}
         self.images = {
@@ -37,24 +36,6 @@ class ResourceManager:
         self.birds = []
         self.plane_levels = {"pl": [], "en": []}
         self.create_resources(basepath)
-        self.sounds = {}
-        self.load_sounds(basepath)
-
-    def load_sounds(self, basepath):
-        """
-        Load all sounds
-        :basepath: root dir of all resources
-        """
-        f_name = basepath.joinpath("sounds.json")
-        try:
-            with open(f_name, encoding="utf-8") as f_handle:
-                js = json.load(f_handle)
-                bp = basepath.joinpath("sounds")
-                for fn in js:
-                    print(bp.joinpath(js[fn]))
-                    self.sounds[fn] = pygame.mixer.Sound(bp.joinpath(js[fn]))
-        except IOError:
-            pass
 
     def create_resources(self, basepath):
         """
@@ -115,16 +96,18 @@ class ResourceManager:
             pass
 
         self.surfaces = {
-            "buffer": pygame.display.set_mode((ARENA_WIDTH, ARENA_HEIGHT),
-                                              flags=pygame.SRCALPHA, depth=32,
-                                              vsync=1),
+            "buffer": pygame.display.set_mode(
+                (ARENA_WIDTH, ARENA_HEIGHT),
+                flags=pygame.SRCALPHA | pygame.FULLSCREEN | pygame.NOFRAME,
+                depth=32,
+                vsync=1),
             "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
         }
         self.resources = {
             "lang-rectangles": {
                 "pl": pygame.Rect(ARENA_WIDTH - 154, ARENA_HEIGHT - 58, 75, 56),
                 "en": pygame.Rect(ARENA_WIDTH - 77, ARENA_HEIGHT - 58, 75, 56)
-                }
+            }
         }
         f_name = basepath.joinpath("levels.json")
         try:
@@ -172,11 +155,11 @@ class ResourceManager:
                     rect = label.get_rect()
                     locale[ty][name]["label"]["pl"] = (label, rect)
                     label = pygame.transform.rotate(
-                      self.fonts[locale[ty][name]["font"]].render(
-                          locale[ty][name]["en"],
-                          True,
-                          pygame.Color(
-                              locale[ty][name]["color"])),
+                        self.fonts[locale[ty][name]["font"]].render(
+                            locale[ty][name]["en"],
+                            True,
+                            pygame.Color(
+                                locale[ty][name]["color"])),
                         locale[ty][name]["rotate"])
                     rect = label.get_rect()
                     locale[ty][name]["label"]["en"] = (label, rect)
@@ -226,10 +209,5 @@ class ResourceManager:
             locale[board][name]["label"][lang] = newval
         except KeyError:
             pass
-
-    def play(self, sname: str):
-        if sname in self.sounds:
-            #  TODO? is it needed, really? self.sounds[sname].stop()
-            self.sounds[sname].play()
 
     # That's all Folks!

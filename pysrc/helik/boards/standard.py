@@ -16,6 +16,7 @@ class Board():
         self.res_man = self.arena.res_man
         self.buffer = self.res_man.surfaces["buffer"]
         self.images = self.res_man.images
+        self.audio = self.arena.audio
 
     def activate(self):
         """

@@ -4,7 +4,7 @@
 Hiscores board handler
 """
 
-import pygame
+
 from helik.boards.standard import Board
 from helik.hdefs import ARENA_HEIGHT
 from helik.htypes import BoardType
@@ -13,9 +13,6 @@ class BoardHiscores(Board):
     """
     Hiscores board class
     """
-    def __init__(self, parent):
-        super().__init__(parent)
-
     def on_paint(self):
         """
         Paint event handler

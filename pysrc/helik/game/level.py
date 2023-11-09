@@ -4,7 +4,7 @@
 Level handler module
 """
 
-import pygame
+
 from helik.game.buildings import buildings_from_factory
 from helik.game.clouds import clouds_from_factory
 from helik.game.bullets import Bullet
@@ -39,10 +39,6 @@ class Level:
         self.lane_upper = []
         self.lane_lower = []
 
-    def get_ready(self):
-        """
-        """
-
     def rewind(self):
         """
         Rewind buildings, planes, clouds etc to the right
@@ -76,10 +72,11 @@ class Level:
         """
         Upper lane contains mostly clouds, ammos,
         """
-        pass
 
     def create_lane_lower(self):
-        pass
+        """
+        Lower lane contains buildings, coins, etc.
+        """
 
     def create_buildings(self):
         """
@@ -121,7 +118,8 @@ class Level:
         Make new BulletFrom
         :param copter: copter instance handle
         """
-        bullet = Bullet(self.res_man.images["rocket-1"], copter.x + copter.w, copter.y + copter.h // 2)
+        bullet = Bullet(self.res_man.images["rocket-1"],
+                        copter.x + copter.w, copter.y + copter.h // 2)
         self.bullets.append(bullet)
 
     def move(self, speed):
@@ -194,6 +192,10 @@ class Level:
         self.birds = [x for x in self.birds if x.valid]
 
     def is_empty(self):
+        """
+        Check if level is empty (no opbjects to collide)
+        :return: True if empty, False otherwise
+        """
         if len(self.buildings) == 0 \
         and len(self.clouds) == 0 \
         and len(self.planes) == 0 \
