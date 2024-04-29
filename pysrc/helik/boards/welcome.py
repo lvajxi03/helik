@@ -72,3 +72,11 @@ class BoardWelcome(Board):
         c = self.colors.pop(0)
         self.colors.append(c)
         pygame.time.delay(50)
+
+    def on_mouseup(self, button, pos):
+        """
+        Mouse up event handler
+        :param button: button number
+        :param pos: cursor position
+        """
+        self.arena.change_board(BoardType.MENU)

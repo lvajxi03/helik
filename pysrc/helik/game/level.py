@@ -5,12 +5,13 @@ Level handler module
 """
 
 
-from helik.game.buildings import buildings_from_factory
-from helik.game.clouds import clouds_from_factory
+from helik.game.buildings import building_from_image
+from helik.game.clouds import cloud_from_image
 from helik.game.bullets import Bullet
-from helik.game.dirc import dircs_from_factory
+from helik.game.dirc import dirc_from_images
 from helik.hdefs import ARENA_WIDTH
 from helik.game.birds import Bird
+from helik.htypes import GameObjectType
 
 
 class Level:
@@ -38,7 +39,29 @@ class Level:
         # New approach?
         self.lane_upper = []
         self.lane_lower = []
+        self.lanes = []
 
+    def create_lane(self, objects: list, multiplier: int):
+        """
+        Create new lane and append to lane list
+        :param objects: list of objects for specific lane
+        :param multiplier: how many times shall the objects be repeated
+        """
+        if multiplier > 0:
+            lane = []
+            x = 0
+            for i in range(multiplier):
+                for obj in objects:
+                    if obj[0] == GameObjectType.NONE:
+                        # Empty space
+                        x += obj[1]
+                    elif obj[0] == GameObjectType.BUILDING:
+                        pass
+
+    def rewind_lane_upper(self):
+        """
+        Rewind objects
+        """
     def rewind(self):
         """
         Rewind buildings, planes, clouds etc to the right

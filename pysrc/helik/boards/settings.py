@@ -17,16 +17,16 @@ class BoardSettings(Board):
         """
         Paint event handler
         """
-        self.buffer.blit(self.res_man.images["default-background"], (0, 0))
-        self.buffer.blit(self.res_man.surfaces["status"], (0, ARENA_HEIGHT - 60))
+        self.buffer.blit(self.resman.images["default-background"], (0, 0))
+        self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - 60))
 
         # Lang flags
-        self.buffer.blit(self.res_man.images["flag-pl"], self.res_man.get("lang-rectangles", "pl"))
-        self.buffer.blit(self.res_man.images["flag-en"], self.res_man.get("lang-rectangles", "en"))
+        self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
+        self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
 
-        l, r = self.res_man.get_label(BoardType.SETTINGS, "title-shadow", self.arena.config['lang'])
+        l, r = self.resman.get_label(BoardType.SETTINGS, "title-shadow", self.arena.config['lang'])
         self.buffer.blit(l, (55, 45))
-        l, r = self.res_man.get_label(BoardType.SETTINGS, "title", self.arena.config['lang'])
+        l, r = self.resman.get_label(BoardType.SETTINGS, "title", self.arena.config['lang'])
         self.buffer.blit(l, (50, 50))
 
     def on_keyup(self, key):
@@ -46,7 +46,7 @@ class BoardSettings(Board):
         """
         ch_lang = False
         if button == 1:
-            rects = self.res_man.get_section("lang-rectangles")
+            rects = self.resman.rectangles["lang-rectangles"]
             for lang in rects:
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang

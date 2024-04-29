@@ -18,12 +18,7 @@ class ResourceManager:
 
     def __init__(self, basepath):
         self.resources = {}
-        self.images = {
-            "general": {},
-            "big": [],
-            "ammos": [],
-            "vehicles": []
-        }
+        self.images = {}
         self.digits = {}
         self.clouds = []
         self.levels = []
@@ -34,8 +29,131 @@ class ResourceManager:
         self.explosions = []
         self.dircs = []
         self.birds = []
-        self.plane_levels = {"pl": [], "en": []}
-        self.create_resources(basepath)
+        self.level_planes = {}
+        self.surfaces = {
+            "buffer": pygame.display.set_mode(
+                (ARENA_WIDTH, ARENA_HEIGHT),
+                flags=pygame.SRCALPHA | pygame.FULLSCREEN | pygame.NOFRAME,
+                depth=32,
+                vsync=1),
+            "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
+        }
+        self.rectangles = {
+            "lang-rectangles": {
+                "pl": pygame.Rect(ARENA_WIDTH - 154, ARENA_HEIGHT - 58, 75, 56),
+                "en": pygame.Rect(ARENA_WIDTH - 77, ARENA_HEIGHT - 58, 75, 56)
+            }
+        }
+        self.load_resources(basepath)
+
+    def load_colors(self, basepath):
+        self.colors = {}
+        f_name = basepath.joinpath("colors.json")
+        try:
+            with open(f_name, encoding="utf-8") as f_handle:
+                data = json.load(f_handle)
+                for name in data["colors"]:
+                    r = data["colors"][name]
+                    self.colors[name] = pygame.Color(r[0], r[1], r[2], r[3])
+        except IOError:
+            pass
+
+    def load_labels(self, basepath):
+        self.labels = {}
+        pa = basepath.joinpath("images").joinpath("labels")
+        f_path = pa.joinpath("labels.json")
+        try:
+            with open(f_path, encoding="utf-8") as f_handle:
+                data = json.load(f_handle)
+                for lang in data:
+                    print(lang)
+                    if lang not in self.labels:
+                        self.labels[lang] = {}
+                    values = data[lang]
+                    for key in values:
+                        value = values[key]
+                        if type(value) is list:
+                            self.labels[lang][key] = []
+                            for elem in value:
+                                img = pygame.image.load(pa.joinpath(lang).joinpath(key).joinpath(elem))
+                                rect = img.get_rect()
+                                self.labels[lang][key].append((img, rect))
+                        elif type(value) is str:
+                            img = pygame.image.load(pa.joinpath(lang).joinpath(value))
+                            rect = img.get_rect()
+                            self.labels[lang][key] = (img, rect)
+                        elif type(value) is dict:
+                            self.labels[lang][key] = {}
+                            for elem in value:
+                                img = pygame.image.load(pa.joinpath(lang).joinpath(key).joinpath(value[elem]))
+                                rect = img.get_rect()
+                                self.labels[lang][key][elem] = (img, rect)
+        except IOError as ioe:
+            print(str(ioe))
+            sys.exit(1)
+
+    def load_level_planes(self, basepath):
+        self.level_planes = {}
+        pa = basepath.joinpath("images").joinpath("level-planes")
+        f_path = pa.joinpath("level-planes.json")
+        try:
+            with open(f_path, encoding="utf-8") as f_handle:
+                data = json.load(f_handle)
+                for key in data:
+                    values = data[key]
+                    if type(values) is list:
+                        if key not in self.level_planes:
+                            self.level_planes[key] = []
+                        for value in values:
+                            self.level_planes[key].append(pygame.image.load(pa.joinpath(key).joinpath(value)))
+                    elif type(values) is str:
+                        self.level_planes[key] = pygame.image.load(pa.joinpath(values))
+        except IOError as ioe:
+            print(str(ioe))
+
+    def load_colorsv(self, basepath):
+        f_name = basepath.joinpath("colors.json")
+        try:
+            with open(f_name, encoding="utf-8") as f_handle:
+                data = json.load(f_handle)
+                for name in data["colors"]:
+                    r = data["colors"][name]
+                    self.colors[name] = pygame.Color(r[0], r[1], r[2], r[3])
+        except IOError:
+            pass
+
+    def load_resources(self, basepath):
+        self.load_images(basepath)
+        self.load_colorsv(basepath)
+        self.load_fonts(basepath)
+        self.load_level_planes(basepath)
+        self.load_labels(basepath)
+        self.load_labelsv()
+
+    def load_images(self, basepath):
+        """
+        Load all the images
+        """
+        self.images = {}  # Clear existing images
+        pa = basepath.joinpath("images")
+        f_path = pa.joinpath("images.json")
+        try:
+            with open(f_path, encoding="utf-8") as f_handle:
+                data = json.load(f_handle)
+                for key in data:
+                    value = data[key]
+                    if type(value) is list:
+                        self.images[key] = []
+                        for elem in value:
+                            self.images[key].append(pygame.image.load(pa.joinpath(key).joinpath(elem)))
+                    elif type(value) is dict:
+                        self.images[key] = {}
+                        for elem in value:
+                            self.images[key][elem] = pygame.image.load(pa.joinpath(key).joinpath(value[elem]))
+                    elif type(value) is str:
+                        self.images[key] = pygame.image.load(pa.joinpath(value))
+        except IOError as ioe:
+            print(str(ioe))
 
     def create_resources(self, basepath):
         """
@@ -85,30 +203,6 @@ class ResourceManager:
             print(str(ioe))
             sys.exit(1)
 
-        f_name = basepath.joinpath("colors.json")
-        try:
-            with open(f_name, encoding="utf-8") as f_handle:
-                data = json.load(f_handle)
-                for name in data["colors"]:
-                    r = data["colors"][name]
-                    self.colors[name] = pygame.Color(r[0], r[1], r[2], r[3])
-        except IOError:
-            pass
-
-        self.surfaces = {
-            "buffer": pygame.display.set_mode(
-                (ARENA_WIDTH, ARENA_HEIGHT),
-                flags=pygame.SRCALPHA | pygame.FULLSCREEN | pygame.NOFRAME,
-                depth=32,
-                vsync=1),
-            "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
-        }
-        self.resources = {
-            "lang-rectangles": {
-                "pl": pygame.Rect(ARENA_WIDTH - 154, ARENA_HEIGHT - 58, 75, 56),
-                "en": pygame.Rect(ARENA_WIDTH - 77, ARENA_HEIGHT - 58, 75, 56)
-            }
-        }
         f_name = basepath.joinpath("levels.json")
         try:
             with open(f_name, encoding="utf-8") as f_handle:
@@ -118,6 +212,19 @@ class ResourceManager:
         except KeyError:
             pass
 
+    def load_fonts(self, basepath):
+        # Fonts
+        f_name = basepath.joinpath("fonts.json")
+        try:
+            with open(f_name, encoding="utf-8") as f_handle:
+                self.fonts = json.load(f_handle)["fonts"]
+                for name in self.fonts:
+                    dt = self.fonts[name]
+                    self.fonts[name] = pygame.font.Font(basepath.joinpath(dt[0]), dt[1])
+        except IOError:
+            pass
+
+    def load_labelsv(self):
         # Labels
         for ty in locale:
             for name in locale[ty]:
@@ -134,6 +241,7 @@ class ResourceManager:
                             locale[ty][name]["rotate"])
                         rect = label.get_rect()
                         locale[ty][name]["label"]["pl"].append((label, rect))
+                        pygame.image.save(label, f"pl-{elem}-{ty}-{name}.png")
                     for elem in locale[ty][name]["en"]:
                         label = pygame.transform.rotate(
                             self.fonts[locale[ty][name]["font"]].render(
@@ -142,6 +250,7 @@ class ResourceManager:
                                 pygame.Color(locale[ty][name]["color"])),
                             locale[ty][name]["rotate"])
                         rect = label.get_rect()
+                        pygame.image.save(label, f"en-{elem}-{ty}-{name}.png")
                         locale[ty][name]["label"]["en"].append((label, rect))
                 else:
                     locale[ty][name]["label"] = {}
@@ -154,6 +263,7 @@ class ResourceManager:
                         locale[ty][name]["rotate"])
                     rect = label.get_rect()
                     locale[ty][name]["label"]["pl"] = (label, rect)
+                    pygame.image.save(label, f"pl-{ty}-{name}.png")
                     label = pygame.transform.rotate(
                         self.fonts[locale[ty][name]["font"]].render(
                             locale[ty][name]["en"],
@@ -162,6 +272,7 @@ class ResourceManager:
                                 locale[ty][name]["color"])),
                         locale[ty][name]["rotate"])
                     rect = label.get_rect()
+                    pygame.image.save(label, f"en-{ty}-{name}.png")
                     locale[ty][name]["label"]["en"] = (label, rect)
         # Status:
         pygame.draw.rect(self.surfaces["status"],

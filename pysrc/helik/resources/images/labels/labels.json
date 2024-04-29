@@ -1,0 +1,65 @@
+{
+  "pl": {
+    "menu-items": [
+      "menu-1-pl.png",
+      "menu-2-pl.png",
+      "menu-3-pl.png",
+      "menu-4-pl.png",
+      "menu-5-pl.png",
+      "menu-6-pl.png",
+      "menu-7-pl.png"
+    ],
+    "about": {
+      "title": "about-title-pl.png"
+    }
+  },
+  "en": {
+    "menu-items": [
+      "menu-1-en.png",
+      "menu-2-en.png",
+      "menu-3-en.png",
+      "menu-4-en.png",
+      "menu-5-en.png",
+      "menu-6-en.png",
+      "menu-7-en.png"
+    ],
+    "menu": {
+      "menu-title": "menu-title.png"
+    },
+    "about": {
+      "title": "about-title-en.png"
+    },
+    "help": {
+      "help-title": "help-title-en.png"
+    },
+    "hiscores": {
+      "hiscores-title": "hiscores-title-en.png",
+      "hiscores-empty": "hiscores-empty-en.png"
+    },
+    "newscore": {
+      "newscore-title": "newscore-title-en.png"
+    },
+    "options": {
+      "options-title": "options-title-en.png",
+      "options-header": "options-header-en.png"
+    },
+    "options-items": [
+      "option-1-en.png",
+      "option-2-en.png",
+      "option-3-en.png",
+      "option-4-en.png",
+      "option-5-en.png",
+      "option-6-en.png"
+    ],
+    "settings": {
+      "settings-title": "settings-title-en.png"
+    },
+    "game": {
+      "paused": "game-paused-en.png",
+      "continue": "game-continue-en.png"
+    },
+    "player": {
+      "select-player": "select-player-en.png"
+    }
+  }
+}

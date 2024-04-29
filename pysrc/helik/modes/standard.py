@@ -13,8 +13,8 @@ class Mode:
         self.game = game
         self.arena = self.game.arena
         self.buffer = self.game.buffer
-        self.res_man = self.arena.res_man
-        self.images = self.res_man.images
+        self.resman = self.arena.resman
+        self.images = self.resman.images
         self.audio = self.game.audio
 
     def activate(self):

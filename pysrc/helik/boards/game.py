@@ -58,7 +58,7 @@ class BoardGame(Board):
         """
         Initialize new level data
         """
-        self.level = Level(self.res_man, self.data['level'])
+        self.level = Level(self.resman, self.data['level'])
 
     def change_mode(self, newmode):
         """

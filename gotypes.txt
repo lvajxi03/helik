@@ -1,0 +1,11 @@
+# Game Object Types
+
+0 = Distance
+1 = Building
+2 = Cloud
+3 = Ammo
+4 = DirC
+5 = Heart
+6 = Clock
+7 = Bird
+8 = Bullet

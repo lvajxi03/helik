@@ -26,7 +26,7 @@ class ModePrepare(Mode):
         }
         self.alpha = 255
         self.index = 0
-        self.rect = self.res_man.images["big"][0].get_rect()
+        self.rect = self.resman.images["big"][0].get_rect()
         self.rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
 
     def on_timer(self, timer):
@@ -45,7 +45,7 @@ class ModePrepare(Mode):
         :param delta: delta time from last frame
         """
         self.alpha -= 5
-        self.res_man.images["big"][self.index].set_alpha(self.alpha)
+        self.resman.images["big"][self.index].set_alpha(self.alpha)
 
     def on_prepare(self):
         """
@@ -83,5 +83,5 @@ class ModePrepare(Mode):
         Paint event handler
         """
         self.buffer.blit(
-            self.res_man.images["default-background"], (0, 0))
-        self.buffer.blit(self.res_man.images["big"][self.index], self.rect)
+            self.resman.images["default-background"], (0, 0))
+        self.buffer.blit(self.resman.images["big"][self.index], self.rect)

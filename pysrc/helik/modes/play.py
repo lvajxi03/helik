@@ -38,7 +38,7 @@ class ModePlay(Mode):
         pygame.time.set_timer(TimerType.FIRST, 250)
         self.speed = 20 - self.data['level'] - 3 * self.data['option']
         pygame.time.set_timer(TimerType.THIRD, self.speed)
-        pygame.time.set_timer(TimerType.FOURTH, 10)
+        pygame.time.set_timer(TimerType.FOURTH, int(self.speed * 1.5))
 
     def deactivate(self):
         """

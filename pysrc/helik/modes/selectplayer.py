@@ -24,6 +24,7 @@ class SelectPlayer(Mode):
         self.rects = []
         self.view_x = 0
         self.view_y = 0
+        print(self.images["vehicles"])
         self.vehicles = [self.images["vehicles"][0],
                        self.images["vehicles"][2],
                        self.images["vehicles"][4]]
@@ -38,7 +39,7 @@ class SelectPlayer(Mode):
         """
         Paint event handler
         """
-        self.buffer.blit(self.res_man.images["default-background"], (0, 0))
+        self.buffer.blit(self.resman.images["default-background"], (0, 0))
         for i in range(len(self.rects)):
             self.buffer.blit(self.vehicles[i], self.rects[i])
         r = self.images["viewport"].get_rect()

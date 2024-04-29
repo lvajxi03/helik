@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-App module
+Arena module
 """
 
 import random
@@ -23,7 +23,7 @@ from helik.config import Config
 from helik.media.audio import AudioController
 
 
-class Application():
+class Application:
     """
     Helik application
     """
@@ -34,7 +34,7 @@ class Application():
         random.seed()
         pygame.init()
         pygame.mixer.init()
-        self.res_man = ResourceManager(files('helik.resources'))
+        self.resman = ResourceManager(files('helik.resources'))
         self.audio = AudioController(files('helik.resources'))
         pygame.display.set_caption(APPLICATION_TITLE)
         self.clock = pygame.time.Clock()
@@ -53,8 +53,9 @@ class Application():
             BoardType.QUIT: BoardQuit(self)
             }
         self.board_id = BoardType.WELCOME
-        self.buffer = self.res_man.surfaces["buffer"]
+        # self.buffer = self.res_man.surfaces["buffer"]
         self.dirc = DirCType.DOWN
+        # self.imageman.load_images()
 
     def change_board(self, newboard):
         """
@@ -130,4 +131,4 @@ class Application():
         Update event handler
         :param delta: delta time from last frame
         """
-        self.boards[self.board_id].on_update(delta/20)
+        self.boards[self.board_id].on_update(delta)

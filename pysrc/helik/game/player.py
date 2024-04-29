@@ -26,10 +26,10 @@ class Player:
         self.game = game
         self.direction = PlayerDirection.DOWN
         self.arena = game.arena
-        self.res_man = self.game.arena.res_man
+        self.resman = self.game.arena.resman
         self.buffer = game.buffer
-        self.images = [self.res_man.images["vehicles"][2 * index],
-                       self.res_man.images["vehicles"][2 * index + 1]]
+        self.images = [self.resman.images["vehicles"][2 * index],
+                       self.resman.images["vehicles"][2 * index + 1]]
         self.masks = [pygame.mask.from_surface(self.images[0]),
                       pygame.mask.from_surface(self.images[1])]
         self.mask = self.masks[self.direction]
