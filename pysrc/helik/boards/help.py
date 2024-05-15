@@ -7,7 +7,7 @@ Help board handler
 
 from helik.htypes import BoardType
 from helik.boards.standard import Board
-from helik.hdefs import ARENA_HEIGHT
+from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
 
 
 class BoardHelp(Board):
@@ -29,6 +29,9 @@ class BoardHelp(Board):
         self.buffer.blit(l, (55, 45))
         l, r = self.resman.get_label(BoardType.HELP, "title", self.arena.config['lang'])
         self.buffer.blit(l, (50, 50))
+
+        l, r = self.resman.labels[self.arena.config["lang"]]["general"]["status-line-no-select"]
+        self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))
 
     def on_keyup(self, key):
         """

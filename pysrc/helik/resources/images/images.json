@@ -78,6 +78,7 @@
         "airship-down.png",
         "airship-up.png"
     ],
+    "big-left-arrow": "big-left-arrow.png",
     "default-background": "back-default.jpg",
     "line-0": "line-0.png",
     "bullet": "bullet.png",

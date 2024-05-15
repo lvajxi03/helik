@@ -7,7 +7,7 @@ About board module
 
 from helik.htypes import BoardType
 from helik.boards.standard import Board
-from helik.hdefs import ARENA_HEIGHT
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 
 
 class BoardAbout(Board):
@@ -24,10 +24,12 @@ class BoardAbout(Board):
         # Lang flags
         self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
         self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
-        l, r = self.resman.get_label(BoardType.ABOUT, "title-shadow", self.arena.config['lang'])
+
+        l, _ = self.resman.labels[self.arena.config["lang"]]["about"]["title"]
         self.buffer.blit(l, (55, 45))
-        l, r = self.resman.get_label(BoardType.ABOUT, "title", self.arena.config['lang'])
-        self.buffer.blit(l, (50, 50))
+
+        l, r = self.resman.labels[self.arena.config["lang"]]["general"]["status-line-no-select"]
+        self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))
 
     def on_keyup(self, key):
         """

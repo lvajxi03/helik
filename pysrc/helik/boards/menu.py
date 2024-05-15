@@ -67,8 +67,8 @@ class BoardMenu(Board):
         """
         self.buffer.blit(self.resman.images["default-background"], (0, 0))
         self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - STATUS_HEIGHT))
-        self.buffer.blit(self.resman.images["pl-status-1"],
-                         ((ARENA_WIDTH - 892 - 160) // 2, ARENA_HEIGHT - 50))
+        #self.buffer.blit(self.resman.images["pl-status-1"],
+#                         ((ARENA_WIDTH - 892 - 160) // 2, ARENA_HEIGHT - 50))
 
         # Lang flags
         self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
@@ -76,6 +76,9 @@ class BoardMenu(Board):
 
         l, _ = self.resman.labels[self.arena.config['lang']]["menu"]["menu-title"]
         self.buffer.blit(l, (215, 45))
+
+        l, r = self.resman.labels[self.arena.config["lang"]]["menu"]["status-line"]
+        self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))
 
         for re in self.rectangles:
             label, rect = re

@@ -62,6 +62,9 @@ class BoardOptions(Board):
         l, _ = self.resman.labels[self.arena.config['lang']]["options"]["options-title"]
         self.buffer.blit(l, (275, 95))
 
+        l, r = self.resman.labels[self.arena.config["lang"]]["general"]["status-line-select"]
+        self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))
+
         for re in self.rectangles:
             label, rect = re
             self.buffer.blit(label, rect)
@@ -111,12 +114,22 @@ class BoardOptions(Board):
         """
         ch_lang = False
         if button == 1:
-            rects = self.resman.get_section("lang-rectangles")
+            rects = self.resman.rectangles["lang-rectangles"]
             for lang in rects:
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
                     ch_lang = True
+                    self.audio.play_sound("arrow")
                     self.create_rectangles()
         if not ch_lang:
-            # TODO
+            tpos = -1
+            for elem in self.rectangles:
+                _, rect = elem
+                tpos += 1
+                if rect.collidepoint(pos):
+                    self.menu_pos = tpos
+                    self.option = tpos
+                    self.arena.config['option'] = self.menu_pos
+                    self.recalculate_pos()
+                    self.audio.play_sound("closing-tape")
             self.arena.change_board(BoardType.MENU)

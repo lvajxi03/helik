@@ -1,5 +1,9 @@
 {
   "pl": {
+    "general": {
+      "status-line-select": "status-line-select-pl.png",
+      "status-line-no-select": "status-line-no-select-pl.png"
+    },
     "menu-items": [
       "menu-1-pl.png",
       "menu-2-pl.png",
@@ -9,11 +13,22 @@
       "menu-6-pl.png",
       "menu-7-pl.png"
     ],
+    "menu": {
+      "menu-title": "menu-title.png",
+      "status-line": "status-line-menu-pl.png"
+    },
     "about": {
       "title": "about-title-pl.png"
+    },
+    "options": {
+      "options-title": "options-title-pl.png"
     }
   },
   "en": {
+    "general": {
+      "status-line-select": "status-line-select-en.png",
+      "status-line-no-select": "status-line-no-select-pl.png"
+    },
     "menu-items": [
       "menu-1-en.png",
       "menu-2-en.png",
@@ -24,7 +39,8 @@
       "menu-7-en.png"
     ],
     "menu": {
-      "menu-title": "menu-title.png"
+      "menu-title": "menu-title.png",
+      "status-line": "status-line-menu-en.png"
     },
     "about": {
       "title": "about-title-en.png"

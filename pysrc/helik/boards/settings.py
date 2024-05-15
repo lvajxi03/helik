@@ -29,6 +29,9 @@ class BoardSettings(Board):
         l, r = self.resman.get_label(BoardType.SETTINGS, "title", self.arena.config['lang'])
         self.buffer.blit(l, (50, 50))
 
+        l, r = self.resman.labels[self.arena.config["lang"]]["general"]["status-line-select"]
+        self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))
+
     def on_keyup(self, key):
         """
         # TODO

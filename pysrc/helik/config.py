@@ -20,7 +20,7 @@ class Config:
             "lastnick": ""
             }
 
-    def read_config(self, fn: str) -> dict:
+    def read_config(self, fn: str):
         """
         Read app configuration from a file
         :param fn: filename
@@ -37,7 +37,7 @@ class Config:
         except json.decoder.JSONDecodeError:
             pass
 
-    def read_default_config(self) -> dict:
+    def read_default_config(self) :
         """
         Read default configuration from a file
         :return: configuration dictionary
