@@ -8,8 +8,6 @@ import pygame
 from helik.boards.standard import Board
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType
-from helik.locale import locale
-
 
 class BoardOptions(Board):
     """
@@ -17,7 +15,6 @@ class BoardOptions(Board):
     """
     def __init__(self, parent):
         super().__init__(parent)
-        self.locale = locale[BoardType.MENU]
         self.option = 0
         self.menu_pos = 0
         self.rect_pos = None
@@ -39,8 +36,7 @@ class BoardOptions(Board):
         """
         self.rectangles = []
         i = 0
-        elems = self.resman.get_label(BoardType.OPTIONS, "options", self.arena.config['lang'])
-        for elem in elems:
+        for elem in self.resman.labels[self.arena.config['lang']]["options-items"]:
             label, rect = elem
             rect.left = 400
             rect.top = 100 + i * 80

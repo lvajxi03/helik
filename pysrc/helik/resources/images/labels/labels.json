@@ -1,8 +1,17 @@
 {
   "pl": {
+    "player": {
+      "select-player": "select-player-pl.png"
+    },
     "general": {
       "status-line-select": "status-line-select-pl.png",
       "status-line-no-select": "status-line-no-select-pl.png"
+    },
+    "settings": {
+      "settings-title": "settings-title-pl.png"
+    },
+    "help": {
+      "help-title": "help-title-pl.png"
     },
     "menu-items": [
       "menu-1-pl.png",
@@ -17,12 +26,23 @@
       "menu-title": "menu-title.png",
       "status-line": "status-line-menu-pl.png"
     },
+    "hiscores": {
+      "hiscores-title": "hiscores-title-pl.png"
+    },
     "about": {
       "title": "about-title-pl.png"
     },
     "options": {
       "options-title": "options-title-pl.png"
-    }
+    },
+    "options-items": [
+      "option-1-pl.png",
+      "option-2-pl.png",
+      "option-3-pl.png",
+      "option-4-pl.png",
+      "option-5-pl.png",
+      "option-6-pl.png"
+    ]
   },
   "en": {
     "general": {

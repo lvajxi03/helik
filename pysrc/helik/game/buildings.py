@@ -16,12 +16,15 @@ class Building(ImageGameObject):
         super().__init__(x, y, GameObjectType.BUILDING, image)
 
 
-def building_from_image(x, image):
+def building_from_image(image, x, y=-1):
     """
     Create a building via its image
-    :param x: x coordinate
     :param image: building image
+    :param x: x coordinate
+    :param y: y coordinate, if < 0 then aligned to bottom edge
+    :return: Building object
     """
     w, h = image.get_size()
-    y = ARENA_HEIGHT - h
+    if y < 0:
+        y = ARENA_HEIGHT - h - 60
     return Building(x, y, image)

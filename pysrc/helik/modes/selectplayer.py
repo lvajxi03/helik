@@ -46,6 +46,9 @@ class SelectPlayer(Mode):
         r.center = ((self.viewpos + 1) * ARENA_WIDTH // 4, ARENA_HEIGHT // 2)
         self.buffer.blit(self.images["viewport"], r)
 
+        l, _ = self.resman.labels[self.arena.config["lang"]]["player"]["select-player"]
+        self.buffer.blit(l, (450, 250))
+
     def on_keyup(self, key):
         """
         Key release event handler

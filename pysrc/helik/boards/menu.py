@@ -8,8 +8,6 @@ import pygame
 from helik.boards.standard import Board
 from helik.htypes import BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
-from helik.locale import locale
-
 
 def menupos2board(menu_pos: int) -> BoardType:
     """
@@ -32,7 +30,6 @@ class BoardMenu(Board):
     """
     def __init__(self, parent):
         super().__init__(parent)
-        self.locale = locale[BoardType.MENU]
         self.menu_pos = 0
         self.rect_pos = None
         self.rect_pos_t = None

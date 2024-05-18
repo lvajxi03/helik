@@ -50,8 +50,9 @@
     ],
     "ammo": [
         "roc-0.png",
-        "roc-1.png",
-        "roc-2.png"
+        "roc-2.png",
+        "roc-0.png",
+        "roc-1.png"
     ],
     "birds": [
         "bird-1.png",

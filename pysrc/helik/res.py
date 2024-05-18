@@ -7,8 +7,7 @@ All the resources
 import sys
 import json
 import pygame
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-from helik.locale import locale
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, LEVELNO
 
 
 class ResourceManager:
@@ -17,18 +16,16 @@ class ResourceManager:
     """
 
     def __init__(self, basepath):
+        """
+        Create ResourceManager instance
+        :param basepath: root directory of all resources
+        """
         self.resources = {}
         self.images = {}
         self.digits = {}
-        self.clouds = []
         self.levels = []
         self.colors = {}
-        self.buildings = []
-        self.fonts = {}
         self.surfaces = {}
-        self.explosions = []
-        self.dircs = []
-        self.birds = []
         self.level_planes = {}
         self.surfaces = {
             "buffer": pygame.display.set_mode(
@@ -46,19 +43,46 @@ class ResourceManager:
         }
         self.load_resources(basepath)
 
-    def load_colors(self, basepath):
-        self.colors = {}
-        f_name = basepath.joinpath("colors.json")
-        try:
-            with open(f_name, encoding="utf-8") as f_handle:
-                data = json.load(f_handle)
-                for name in data["colors"]:
-                    r = data["colors"][name]
-                    self.colors[name] = pygame.Color(r[0], r[1], r[2], r[3])
-        except IOError:
-            pass
+    def load_resources(self, basepath):
+        """
+        Load all resources
+        :param basepath: root directory of all resources
+        """
+        self.load_images(basepath)
+        self.load_digits(basepath)
+        self.load_colors(basepath)
+        self.load_level_planes(basepath)
+        self.load_labels(basepath)
+        self.load_levels(basepath)
+
+    def load_digits(self, basepath):
+        """
+        Load digits -- surfaces to produce numbers
+        :param basepath: root directory of all resources
+        """
+        pa = basepath.joinpath("images").joinpath("digits")
+        for i in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+            fn = f"{i}.png"
+            self.digits[i] = pygame.image.load(pa.joinpath(fn))
+        print(self.digits)
+
+    def load_levels(self, basepath):
+        """
+        :param basepath: root directory of all resources
+        Load levels data from resorces
+        """
+        pa = basepath.joinpath("levels")
+        for i in range(LEVELNO):
+            f_path = pa.joinpath(f"{i}.json")
+            with open(f_path, encoding="utf-8") as f_handle:
+                d = json.load(f_handle)
+                self.levels.append(d)
 
     def load_labels(self, basepath):
+        """
+        Load labels from resources
+        :param basepath: root directory of all resources
+        """
         self.labels = {}
         pa = basepath.joinpath("images").joinpath("labels")
         f_path = pa.joinpath("labels.json")
@@ -111,7 +135,7 @@ class ResourceManager:
         except IOError as ioe:
             print(str(ioe))
 
-    def load_colorsv(self, basepath):
+    def load_colors(self, basepath):
         f_name = basepath.joinpath("colors.json")
         try:
             with open(f_name, encoding="utf-8") as f_handle:
@@ -121,14 +145,6 @@ class ResourceManager:
                     self.colors[name] = pygame.Color(r[0], r[1], r[2], r[3])
         except IOError:
             pass
-
-    def load_resources(self, basepath):
-        self.load_images(basepath)
-        self.load_colorsv(basepath)
-        self.load_fonts(basepath)
-        self.load_level_planes(basepath)
-        self.load_labels(basepath)
-        self.load_labelsv()
 
     def load_images(self, basepath):
         """
@@ -155,170 +171,4 @@ class ResourceManager:
         except IOError as ioe:
             print(str(ioe))
 
-    def create_resources(self, basepath):
-        """
-        Load all resources
-        :basepath: root dir of all resources
-        """
-        # Fonts
-        f_name = basepath.joinpath("fonts.json")
-        try:
-            with open(f_name, encoding="utf-8") as f_handle:
-                self.fonts = json.load(f_handle)["fonts"]
-                for name in self.fonts:
-                    dt = self.fonts[name]
-                    self.fonts[name] = pygame.font.Font(basepath.joinpath(dt[0]), dt[1])
-        except IOError:
-            pass
-        f_name = basepath.joinpath("images.json")
-        try:
-            with open(f_name, encoding="utf-8") as f_handle:
-                data = json.load(f_handle)
-                for name in data["general"]:
-                    self.images[name] = pygame.image.load(basepath.joinpath(data["general"][name]))
-                for name in data["digits"]:
-                    self.digits[name] = pygame.image.load(basepath.joinpath(data["digits"][name]))
-                for name in data["clouds"]:
-                    self.clouds.append(pygame.image.load(basepath.joinpath(name)))
-                for name in data["buildings"]:
-                    self.buildings.append(pygame.image.load(basepath.joinpath(name)))
-                for name in data["explosions"]:
-                    self.explosions.append(pygame.image.load(basepath.joinpath(name)))
-                for name in data["dirc"]:
-                    self.dircs.append(pygame.image.load(basepath.joinpath(name)))
-                for name in data["pl-plane-levels"]:
-                    self.plane_levels["pl"].append(pygame.image.load(basepath.joinpath(name)))
-                for name in data["en-plane-levels"]:
-                    self.plane_levels["en"].append(pygame.image.load(basepath.joinpath(name)))
-                for name in data["birds"]:
-                    self.birds.append(pygame.image.load(basepath.joinpath(name)))
-                for name in data["big"]:
-                    self.images["big"].append(pygame.image.load(basepath.joinpath(name)))
-                for name in data["ammos"]:
-                    self.images["ammos"].append(pygame.image.load(basepath.joinpath(name)))
-                for name in data["vehicles"]:
-                    self.images["vehicles"].append(pygame.image.load(basepath.joinpath(name)))
-        except IOError as ioe:
-            print("Cannot load assets!")
-            print(str(ioe))
-            sys.exit(1)
-
-        f_name = basepath.joinpath("levels.json")
-        try:
-            with open(f_name, encoding="utf-8") as f_handle:
-                self.levels = json.load(f_handle)["levels"]
-        except IOError:
-            pass
-        except KeyError:
-            pass
-
-    def load_fonts(self, basepath):
-        # Fonts
-        f_name = basepath.joinpath("fonts.json")
-        try:
-            with open(f_name, encoding="utf-8") as f_handle:
-                self.fonts = json.load(f_handle)["fonts"]
-                for name in self.fonts:
-                    dt = self.fonts[name]
-                    self.fonts[name] = pygame.font.Font(basepath.joinpath(dt[0]), dt[1])
-        except IOError:
-            pass
-
-    def load_labelsv(self):
-        # Labels
-        for ty in locale:
-            for name in locale[ty]:
-                if isinstance(locale[ty][name]["pl"], list):
-                    locale[ty][name]["label"] = {
-                        "pl": [],
-                        "en": []}
-                    for elem in locale[ty][name]["pl"]:
-                        label = pygame.transform.rotate(
-                            self.fonts[locale[ty][name]["font"]].render(
-                                elem,
-                                True,
-                                pygame.Color(locale[ty][name]["color"])),
-                            locale[ty][name]["rotate"])
-                        rect = label.get_rect()
-                        locale[ty][name]["label"]["pl"].append((label, rect))
-                        pygame.image.save(label, f"pl-{elem}-{ty}-{name}.png")
-                    for elem in locale[ty][name]["en"]:
-                        label = pygame.transform.rotate(
-                            self.fonts[locale[ty][name]["font"]].render(
-                                elem,
-                                True,
-                                pygame.Color(locale[ty][name]["color"])),
-                            locale[ty][name]["rotate"])
-                        rect = label.get_rect()
-                        pygame.image.save(label, f"en-{elem}-{ty}-{name}.png")
-                        locale[ty][name]["label"]["en"].append((label, rect))
-                else:
-                    locale[ty][name]["label"] = {}
-                    label = pygame.transform.rotate(
-                        self.fonts[locale[ty][name]["font"]].render(
-                            locale[ty][name]["pl"],
-                            True,
-                            pygame.Color(
-                                locale[ty][name]["color"])),
-                        locale[ty][name]["rotate"])
-                    rect = label.get_rect()
-                    locale[ty][name]["label"]["pl"] = (label, rect)
-                    pygame.image.save(label, f"pl-{ty}-{name}.png")
-                    label = pygame.transform.rotate(
-                        self.fonts[locale[ty][name]["font"]].render(
-                            locale[ty][name]["en"],
-                            True,
-                            pygame.Color(
-                                locale[ty][name]["color"])),
-                        locale[ty][name]["rotate"])
-                    rect = label.get_rect()
-                    pygame.image.save(label, f"en-{ty}-{name}.png")
-                    locale[ty][name]["label"]["en"] = (label, rect)
-        # Status:
-        pygame.draw.rect(self.surfaces["status"],
-                         self.colors["status-color"], (0, 0, ARENA_WIDTH, 60))
-
-    def get(self, section: str, subsection: str):
-        try:
-            return self.resources[section][subsection]
-        except KeyError:
-            return None
-
-    def get_index(self, section, index: int):
-        try:
-            return self.resources[section][index]
-        except IndexError:
-            return None
-
-    def get_section(self, section: str):
-        """
-        Get all section data from resources
-        :param section: section name
-        :return section data (dict) or None
-        """
-        try:
-            return self.resources[section]
-        except KeyError:
-            return None
-
-    def get_label(self, board, name, lang):
-        try:
-            return locale[board][name]["label"][lang]
-        except KeyError:
-            return None
-
-    def set_label(self, board, name, lang, newval):
-        """
-        set_label is necessary for quirks and hacks
-        in `create_resources`
-        :param board: board type
-        :param name: label name
-        :param lang: current lang
-        :param newval: new tuple with label and its rect
-        """
-        try:
-            locale[board][name]["label"][lang] = newval
-        except KeyError:
-            pass
-
-    # That's all Folks!
+        # That's all Folks!

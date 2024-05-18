@@ -23,10 +23,9 @@ class BoardHiscores(Board):
         # Lang flags
         self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
         self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
-        l, r = self.resman.get_label(BoardType.HISCORES, "title-shadow", self.arena.config['lang'])
+
+        l, _ = self.resman.labels[self.arena.config["lang"]]["hiscores"]["hiscores-title"]
         self.buffer.blit(l, (55, 45))
-        l, r = self.resman.get_label(BoardType.HISCORES, "title", self.arena.config['lang'])
-        self.buffer.blit(l, (50, 50))
 
         l, r = self.resman.labels[self.arena.config["lang"]]["general"]["status-line-no-select"]
         self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))

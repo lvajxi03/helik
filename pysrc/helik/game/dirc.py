@@ -24,12 +24,12 @@ class DirChanger(ImageListGameObject):
         super().__init__(x, y, images)
 
 
-def dirc_from_images(x, y, images: list):
+def dirc_from_images(images: list, x, y):
     """
     Create DirChanger object from a list of images
+    :param images: list of images with DirChanger drawn there
     :param x: x coordinate of upper left corner
     :param y: y coordinate of upper left corner
-    :param images: list of images with DirChanger drawn there
     :return: DirChanger object
     """
     return DirChanger(x, y, images)

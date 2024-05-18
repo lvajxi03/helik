@@ -81,7 +81,7 @@ class ImageGameObject(GameObject):
         """
         Paint event handler
         """
-        canvas.blit(self.image, self.x, self.y)
+        canvas.blit(self.image, (self.x, self.y))
 
     def move(self, speed):
         """
