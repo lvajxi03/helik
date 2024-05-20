@@ -111,6 +111,7 @@ class ResourceManager:
                                 rect = img.get_rect()
                                 self.labels[lang][key][elem] = (img, rect)
         except IOError as ioe:
+            print(str(ioe))
             sys.exit(1)
 
     def load_level_planes(self, basepath):

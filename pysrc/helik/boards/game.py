@@ -7,7 +7,6 @@ Game board for HeliK
 
 import pygame
 from helik.boards.standard import Board
-from helik.game.player import Player
 from helik.game.level import Level
 from helik.htypes import BoardType, GameMode, SoundPlayState
 from helik.modes.init import ModeInit
@@ -18,6 +17,7 @@ from helik.modes.prepare import ModePrepare
 from helik.modes.standard import Mode
 from helik.modes.newlevel import ModeNewLevel
 from helik.modes.selectplayer import SelectPlayer
+from helik.modes.gameover import ModeGameOver
 
 
 class BoardGame(Board):
@@ -48,7 +48,8 @@ class BoardGame(Board):
             GameMode.PLAY: ModePlay(self),
             GameMode.PAUSED: ModePaused(self),
             GameMode.KILLED: ModeKilled(self),
-            GameMode.NEWLEVEL: ModeNewLevel(self)
+            GameMode.NEWLEVEL: ModeNewLevel(self),
+            GameMode.GAMEOVER: ModeGameOver(self),
             }
         self.explosions = []
 

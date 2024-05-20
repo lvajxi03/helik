@@ -45,8 +45,10 @@ class SelectPlayer(Mode):
         r.center = ((self.viewpos + 1) * ARENA_WIDTH // 4, ARENA_HEIGHT // 2)
         self.buffer.blit(self.images["viewport"], r)
 
-        l, _ = self.resman.labels[self.arena.config["lang"]]["player"]["select-player"]
-        self.buffer.blit(l, (450, 250))
+        l, r = self.resman.labels[self.arena.config["lang"]]["player"]["select-player"]
+        r.x = (ARENA_WIDTH - r.w) // 2
+        r.y = (ARENA_HEIGHT // 2 - r.h) // 2
+        self.buffer.blit(l, r)
 
     def on_mouseup(self, button, pos):
         """
