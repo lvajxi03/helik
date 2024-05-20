@@ -117,15 +117,20 @@ class BoardOptions(Board):
                     ch_lang = True
                     self.audio.play_sound("arrow")
                     self.create_rectangles()
-        if not ch_lang:
-            tpos = -1
-            for elem in self.rectangles:
-                _, rect = elem
-                tpos += 1
-                if rect.collidepoint(pos):
-                    self.menu_pos = tpos
-                    self.option = tpos
-                    self.arena.config['option'] = self.menu_pos
-                    self.recalculate_pos()
-                    self.audio.play_sound("closing-tape")
-            self.arena.change_board(BoardType.MENU)
+            if not ch_lang:
+                tpos = -1
+                for elem in self.rectangles:
+                    _, rect = elem
+                    tpos += 1
+                    if rect.collidepoint(pos):
+                        self.menu_pos = tpos
+                        self.option = tpos
+                        self.arena.config['option'] = self.menu_pos
+                        self.recalculate_pos()
+                        self.audio.play_sound("closing-tape")
+                self.arena.change_board(BoardType.MENU)
+        elif button == 4:
+            self.on_keyup(pygame.K_UP)
+        elif button == 5:
+            self.on_keyup(pygame.K_DOWN)
+

@@ -117,3 +117,11 @@ class BoardGame(Board):
         :param delta: delta time from last frame
         """
         self.modes[self.mode].on_update(delta)
+
+    def on_mouseup(self, button, pos):
+        """
+        Mouse up event handler
+        :param button: button number
+        :param pos: cursor position
+        """
+        self.modes[self.mode].on_mouseup(button, pos)

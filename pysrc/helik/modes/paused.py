@@ -19,22 +19,15 @@ class ModePaused(Mode):
         """
         Paint event handler
         """
-        self.buffer.blit(self.res_man.images["default-background"], (0, 0))
-        label, rect = self.res_man.get_label(
-            BoardType.GAME,
-            "paused-shadow",
-            self.arena.config['lang'])
-        rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
-        rect.x += 5
-        rect.y += 5
-        self.buffer.blit(label, rect)
-        label, rect = self.res_man.get_label(BoardType.GAME, "paused", self.arena.config['lang'])
-        rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
-        self.buffer.blit(label, rect)
-        label, rect = self.res_man.get_label(BoardType.GAME, "continue", self.arena.config['lang'])
-        rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
-        rect.y += 100
-        self.buffer.blit(label, rect)
+        self.buffer.blit(self.resman.images["default-background"], (0, 0))
+        im, r = self.resman.labels[self.arena.config["lang"]]["game"]["paused"]
+        r.x = (ARENA_WIDTH - r.w ) // 2
+        r.y = (ARENA_HEIGHT // 2 - r.h) // 2
+        self.buffer.blit(im, r)
+        im, r = self.resman.labels[self.arena.config["lang"]]["game"]["continue"]
+        r.x = (ARENA_WIDTH - r.w) // 2
+        r.y = (3 * ARENA_HEIGHT // 2 - r.h) // 2
+        self.buffer.blit(im, r)
 
     def on_keyup(self, key):
         """
@@ -43,3 +36,12 @@ class ModePaused(Mode):
         """
         if key == pygame.K_SPACE:
             self.game.change_mode(GameMode.PLAY)
+
+    def on_mouseup(self, button, pos):
+        """
+        Mouse up event handler
+        :param button: button number
+        :param pos: cursor position
+        """
+        if button == 1:
+            self.on_keyup(pygame.K_SPACE)

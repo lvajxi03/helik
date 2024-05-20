@@ -64,9 +64,6 @@ class BoardMenu(Board):
         """
         self.buffer.blit(self.resman.images["default-background"], (0, 0))
         self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - STATUS_HEIGHT))
-        #self.buffer.blit(self.resman.images["pl-status-1"],
-#                         ((ARENA_WIDTH - 892 - 160) // 2, ARENA_HEIGHT - 50))
-
         # Lang flags
         self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
         self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
@@ -128,14 +125,18 @@ class BoardMenu(Board):
                     ch_lang = True
                     self.audio.play_sound("arrow")
                     self.create_rectangles()
-        if not ch_lang:
-            tpos = -1
-            for elem in self.rectangles:
-                _, rect = elem
-                tpos += 1
-                if rect.collidepoint(pos):
-                    self.menu_pos = tpos
-                    self.recalculate_pos()
-                    bid = menupos2board(self.menu_pos)
-                    self.audio.play_sound("closing-tape")
-                    self.arena.change_board(bid)
+            if not ch_lang:
+                tpos = -1
+                for elem in self.rectangles:
+                    _, rect = elem
+                    tpos += 1
+                    if rect.collidepoint(pos):
+                        self.menu_pos = tpos
+                        self.recalculate_pos()
+                        bid = menupos2board(self.menu_pos)
+                        self.audio.play_sound("closing-tape")
+                        self.arena.change_board(bid)
+        elif button == 4:
+            self.on_keyup(pygame.K_UP)
+        elif button == 5:
+            self.on_keyup(pygame.K_DOWN)

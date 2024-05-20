@@ -51,22 +51,13 @@ class ModePlay(Mode):
         pygame.time.set_timer(TimerType.THIRD, 0)
         pygame.time.set_timer(TimerType.FOURTH, 0)
 
-    def move_board(self):
-        """
-        Move board according to current speed
-        """
-        delta = 1
-        self.game.level.move()
-
-        for explosion in self.game.explosions:
-            explosion.on_update(delta)
-
     def on_update(self, delta):
         """
         Update event handler
         :param delta: delta time between two frames
         """
         self.game.player.move(delta)
+        self.game.level.move()
 
         # Bullet collisions (buildings, birds)
         for bullet in self.game.level.bullets:
@@ -115,8 +106,22 @@ class ModePlay(Mode):
                         obj.valid = False
                         self.game.data['bullets-available'] += 1
 
+        for ex in self.game.explosions:
+            ex.on_update(0)
+
+        self.game.explosions = [x for x in self.game.explosions if x.valid]
+        self.game.level.bullets = [x for x in self.game.level.bullets if x.valid]
+
         if self.game.level.is_empty():
             self.game.change_mode(GameMode.NEWLEVEL)
+
+        if (self.game.player.h + self.game.player.y >= ARENA_HEIGHT - STATUS_HEIGHT) or \
+                (self.game.player.y < 0):
+            ex = Explosion(self.resman.images["explosions"],
+                           self.game.player.x + self.game.player.w // 2,
+                           self.game.player.y + self.game.player.h)
+            self.game.explosions.append(ex)
+            self.game.change_mode(GameMode.KILLED)
 
     def on_timer(self, timer):
         """
@@ -145,6 +150,19 @@ class ModePlay(Mode):
                 self.game.level.make_bullet(self.game.player)
                 self.data['bullets-available'] -= 1
         self.game.player.on_keyup(key)
+
+    def on_mouseup(self, button, pos):
+        """
+        Mouse up event handler
+        :param button: button number
+        :param pos: cursor position
+        """
+        if button == 1:
+            self.on_keyup(pygame.K_s)
+        elif button == 4:
+            self.on_keyup(pygame.K_SPACE)
+        elif button == 2:
+            self.on_keyup(pygame.K_ESCAPE)
 
     def on_paint(self):
         """

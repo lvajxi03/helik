@@ -52,7 +52,7 @@ class ModeKilled(Mode):
         if timer == TimerType.FIRST:
             self.game.player.y += 3
             if self.game.player.y > ARENA_HEIGHT:
-                self.game.player.y = self.previous_y
+                self.game.player.y = (ARENA_HEIGHT - self.game.player.h) // 2
                 self.game.level.rewind()
                 self.game.change_mode(GameMode.PLAY)
 

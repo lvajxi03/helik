@@ -49,3 +49,10 @@ class Mode:
         Update event handler
         :param delta: delta time from last frame
         """
+
+    def on_mouseup(self, button, pos):
+        """
+        Mouse up event handler
+        :param button: button number
+        :param pos: cursor position
+        """

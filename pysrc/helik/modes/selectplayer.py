@@ -48,6 +48,28 @@ class SelectPlayer(Mode):
         l, _ = self.resman.labels[self.arena.config["lang"]]["player"]["select-player"]
         self.buffer.blit(l, (450, 250))
 
+    def on_mouseup(self, button, pos):
+        """
+        Mouse up event handler
+        :param button: button number
+        :param pos: cursor position
+        """
+        selected = False
+        if button == 1:
+            vpos = -1
+            for r in self.rects:
+                vpos += 1
+                if r.collidepoint(pos):
+                    selected = True
+                    self.viewpos = vpos
+                    self.on_keyup(pygame.K_RETURN)
+            if not selected:
+                self.on_keyup(pygame.K_ESCAPE)
+        elif button == 4:
+            self.on_keyup(pygame.K_LEFT)
+        elif button == 5:
+            self.on_keyup(pygame.K_RIGHT)
+
     def on_keyup(self, key):
         """
         Key release event handler
@@ -58,7 +80,7 @@ class SelectPlayer(Mode):
                 self.viewpos -= 1
                 self.audio.play_sound("arrow")
         elif key == pygame.K_RIGHT:
-            if self.viewpos < len(self.images["vehicles"]) - 1:
+            if self.viewpos < len(self.vehicles) - 1:
                 self.viewpos += 1
                 self.audio.play_sound("arrow")
         elif key == pygame.K_RETURN:

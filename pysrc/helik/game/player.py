@@ -64,15 +64,9 @@ class Player:
         """
         if key == pygame.K_SPACE:
             if self.direction == PlayerDirection.DOWN:
-                if self.y > 30:
-                    self.y -= 30
-                elif self.y <= 30:
-                    self.y = 0
+                self.y -= 30
             else:
-                if self.y + self.h < ARENA_HEIGHT - STATUS_HEIGHT - 30:
-                    self.y += 30
-                elif self.y + self.h >= ARENA_HEIGHT - STATUS_HEIGHT - 30:
-                    self.y = ARENA_HEIGHT - STATUS_HEIGHT - self.h
+                self.y += 30
 
     def move(self, delta) -> bool:
         """
