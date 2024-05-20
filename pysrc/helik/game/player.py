@@ -26,10 +26,10 @@ class Player:
         self.game = game
         self.direction = PlayerDirection.DOWN
         self.arena = game.arena
-        self.res_man = self.game.arena.res_man
+        self.resman = self.game.arena.resman
         self.buffer = game.buffer
-        self.images = [self.res_man.images["vehicles"][2 * index],
-                       self.res_man.images["vehicles"][2 * index + 1]]
+        self.images = [self.resman.images["vehicles"][2 * index],
+                       self.resman.images["vehicles"][2 * index + 1]]
         self.masks = [pygame.mask.from_surface(self.images[0]),
                       pygame.mask.from_surface(self.images[1])]
         self.mask = self.masks[self.direction]
@@ -64,15 +64,9 @@ class Player:
         """
         if key == pygame.K_SPACE:
             if self.direction == PlayerDirection.DOWN:
-                if self.y > 30:
-                    self.y -= 30
-                elif self.y <= 30:
-                    self.y = 0
+                self.y -= 30
             else:
-                if self.y + self.h < ARENA_HEIGHT - STATUS_HEIGHT - 30:
-                    self.y += 30
-                elif self.y + self.h >= ARENA_HEIGHT - STATUS_HEIGHT - 30:
-                    self.y = ARENA_HEIGHT - STATUS_HEIGHT - self.h
+                self.y += 30
 
     def move(self, delta) -> bool:
         """

@@ -4,17 +4,17 @@
 Distance handler class
 """
 
+from helik.game.objects import GameObjectType, GameObject
 
-class Distance:
+
+class Distance(GameObject):
     """
     Empty distance flying object.
     Useful when you need fake object between two real ones.
     """
     def __init__(self, x, w):
-        self.x = x
+        super().__init__(x, 0)
         self.w = w
-        self.valid = True
-        self.visible = False
 
     def move(self, speed=1):
         """
@@ -23,14 +23,3 @@ class Distance:
         self.x -= speed
         if self.x + self.w < 0:
             self.valid = False
-
-    def on_paint(self, canvas):
-        """
-        No paint
-        """
-
-    def collide(self, _):
-        """
-        No collision
-        """
-        return None

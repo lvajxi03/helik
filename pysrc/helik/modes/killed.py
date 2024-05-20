@@ -52,9 +52,18 @@ class ModeKilled(Mode):
         if timer == TimerType.FIRST:
             self.game.player.y += 3
             if self.game.player.y > ARENA_HEIGHT:
-                self.game.player.y = self.previous_y
-                self.game.level.rewind()
-                self.game.change_mode(GameMode.PLAY)
+                if self.arena.config['option'] > 0:
+                    if self.game.data['lives'] > 1:
+                        self.game.data['lives'] -= 1
+                        self.game.player.y = (ARENA_HEIGHT - self.game.player.h) // 2
+                        self.game.level.rewind()
+                        self.game.change_mode(GameMode.PLAY)
+                    else:
+                        self.game.change_mode(GameMode.GAMEOVER)
+                else:
+                    self.game.player.y = (ARENA_HEIGHT - self.game.player.h) // 2
+                    self.game.level.rewind()
+                    self.game.change_mode(GameMode.PLAY)
 
     def on_paint(self):
         """

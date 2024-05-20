@@ -7,7 +7,6 @@ Game board for HeliK
 
 import pygame
 from helik.boards.standard import Board
-from helik.game.player import Player
 from helik.game.level import Level
 from helik.htypes import BoardType, GameMode, SoundPlayState
 from helik.modes.init import ModeInit
@@ -18,6 +17,7 @@ from helik.modes.prepare import ModePrepare
 from helik.modes.standard import Mode
 from helik.modes.newlevel import ModeNewLevel
 from helik.modes.selectplayer import SelectPlayer
+from helik.modes.gameover import ModeGameOver
 
 
 class BoardGame(Board):
@@ -48,7 +48,8 @@ class BoardGame(Board):
             GameMode.PLAY: ModePlay(self),
             GameMode.PAUSED: ModePaused(self),
             GameMode.KILLED: ModeKilled(self),
-            GameMode.NEWLEVEL: ModeNewLevel(self)
+            GameMode.NEWLEVEL: ModeNewLevel(self),
+            GameMode.GAMEOVER: ModeGameOver(self),
             }
         self.explosions = []
 
@@ -58,7 +59,7 @@ class BoardGame(Board):
         """
         Initialize new level data
         """
-        self.level = Level(self.res_man, self.data['level'])
+        self.level = Level(self.resman, self.data['level'])
 
     def change_mode(self, newmode):
         """
@@ -117,3 +118,11 @@ class BoardGame(Board):
         :param delta: delta time from last frame
         """
         self.modes[self.mode].on_update(delta)
+
+    def on_mouseup(self, button, pos):
+        """
+        Mouse up event handler
+        :param button: button number
+        :param pos: cursor position
+        """
+        self.modes[self.mode].on_mouseup(button, pos)

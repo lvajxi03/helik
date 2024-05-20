@@ -12,6 +12,7 @@ from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT
 from helik.gfx import blitnumber
 from helik.game.explosion import Explosion
 from helik.game.player import PlayerDirection
+from helik.htypes import GameObjectType
 
 
 class ModePlay(Mode):
@@ -38,7 +39,7 @@ class ModePlay(Mode):
         pygame.time.set_timer(TimerType.FIRST, 250)
         self.speed = 20 - self.data['level'] - 3 * self.data['option']
         pygame.time.set_timer(TimerType.THIRD, self.speed)
-        pygame.time.set_timer(TimerType.FOURTH, 10)
+        pygame.time.set_timer(TimerType.FOURTH, int(self.speed * 1.5))
 
     def deactivate(self):
         """
@@ -50,103 +51,77 @@ class ModePlay(Mode):
         pygame.time.set_timer(TimerType.THIRD, 0)
         pygame.time.set_timer(TimerType.FOURTH, 0)
 
-    def move_board(self):
-        """
-        Move board according to current speed
-        """
-        delta = 1
-        self.game.level.move(delta)
-
-        for explosion in self.game.explosions:
-            explosion.on_update(delta)
-
     def on_update(self, delta):
         """
         Update event handler
         :param delta: delta time between two frames
         """
         self.game.player.move(delta)
+        self.game.level.move()
 
-        # Bullet collisions
+        # Bullet collisions (buildings, birds)
         for bullet in self.game.level.bullets:
             if bullet.valid:
-                for building in self.game.level.buildings:
-                    if building.valid:
-                        col = building.collide(bullet)
+                for lane in self.game.level.lanes:
+                    for obj in lane.objects:
+                        # Buildings and birds:
+                        if obj.go_type in [GameObjectType.BUILDING, GameObjectType.BIRD]:
+                            col = obj.collide(bullet)
+                            if col:
+                                bullet.valid = False
+                                bullet.visible = False
+                                obj.valid = False
+                                obj.visible = False
+                                self.game.data["points"] += 1
+                                x, y = col
+                                ex = Explosion(self.resman.images["explosions"],
+                                               x + obj.x,
+                                               y + obj.y)
+                                self.game.explosions.append(ex)
+
+        # Regular collisions (buildings, clouds, birds)
+        for lane in self.game.level.lanes:
+            for obj in lane.objects:
+                if obj.go_type in [GameObjectType.BUILDING, GameObjectType.BIRD, GameObjectType.CLOUD]:
+                    if obj.valid:
+                        col = obj.collide(self.game.player)
                         if col:
-                            bullet.valid = False
-                            bullet.visible = False
-                            building.valid = False
-                            building.visible = False
-                            self.game.data['points'] += 1
-                            x, y = col
-                            self.game.explosions.append(
-                                Explosion(
-                                    self.res_man.explosions, x + building.x, y + building.y))
-                for bird in self.game.level.birds:
-                    if bird.valid:
-                        col = bird.collide(bullet)
-                        if col:
-                            bird.valid = False
-                            bird.visible = False
-                            bullet.valid = False
-                            bullet.visible = False
-                            self.game.data['points'] += 1
-                            x, y = col
-                            self.game.explosions.append(
-                                Explosion(
-                                    self.res_man.explosions, x + bird.x, y + bird.y))
+                            obj.valid = False
+                            obj.visible = False
+                            self.game.change_mode(GameMode.KILLED)
+                elif obj.go_type == GameObjectType.DIRC:
+                    if obj.collide(self.game.player):
+                        obj.valid = False
+                        obj.visible = False
+                        self.game.player.toggle_direction()
+                elif obj.go_type == GameObjectType.HEART:
+                    if obj.collide(self.game.player):
+                        obj.visible = False
+                        obj.valid = False
+                        if self.game.data['lives'] < 4:
+                            self.game.data['lives'] += 1
+                elif obj.go_type == GameObjectType.AMMO:
+                    if obj.collide(self.game.player):
+                        obj.visible = False
+                        obj.valid = False
+                        self.game.data['bullets-available'] += 1
 
-        # Cloud collisions
-        for cloud in self.game.level.clouds:
-            if cloud.valid:
-                col = cloud.collide(self.game.player)
-                if col:
-                    cloud.valid = False
-                    cloud.visible = False
-                    x, y = col
-                    self.game.explosions.append(
-                        Explosion(
-                            self.res_man.explosions, x + cloud.x, y + cloud.y))
-                    self.game.change_mode(GameMode.KILLED)
+        for ex in self.game.explosions:
+            ex.on_update(0)
 
-        # Building collisions
-        for building in self.game.level.buildings:
-            if building.valid:
-                col = building.collide(self.game.player)
-                if col:
-                    building.valid = False
-                    building.visible = False
-                    x, y = col
-                    self.game.explosions.append(
-                        Explosion(
-                            self.res_man.explosions, x + building.x, y + building.y))
-                    self.game.change_mode(GameMode.KILLED)
+        self.game.explosions = [x for x in self.game.explosions if x.valid]
+        self.game.level.bullets = [x for x in self.game.level.bullets if x.valid]
 
-        # Dirc collisions
-        for dirc in self.game.level.dircs:
-            if dirc.valid:
-                if dirc.collide(self.game.player):
-                    dirc.valid = False
-                    dirc.visible = False
-                    self.game.player.toggle_direction()
-
-        self.game.level.rotate()
         if self.game.level.is_empty():
             self.game.change_mode(GameMode.NEWLEVEL)
 
-        # Birds collisions
-        for bird in self.game.level.birds:
-            if bird.valid:
-                col = bird.collide(self.game.player)
-                if col:
-                    bird.valid = False
-                    bird.visible = False
-                    x, y = col
-                    self.game.explosions.append(
-                        Explosion(
-                            self.res_man.explosions, x + bird.x, y + bird.y))
-                    self.game.change_mode(GameMode.KILLED)
+        if (self.game.player.h + self.game.player.y >= ARENA_HEIGHT - STATUS_HEIGHT) or \
+                (self.game.player.y < 0):
+            ex = Explosion(self.resman.images["explosions"],
+                           self.game.player.x + self.game.player.w // 2,
+                           self.game.player.y + self.game.player.h)
+            self.game.explosions.append(ex)
+            self.game.change_mode(GameMode.KILLED)
 
     def on_timer(self, timer):
         """
@@ -156,15 +131,11 @@ class ModePlay(Mode):
         if timer == TimerType.SECOND:
             self.game.data['seconds'] += 1
             self.game.data['points'] += 10
-        elif timer == TimerType.FIRST:
-            for dirc in self.game.level.dircs:
-                dirc.next()
-            for bird in self.game.level.birds:
-                bird.next()
+
         elif timer == TimerType.THIRD:
-            self.move_board()
+            self.game.level.move()
         elif timer == TimerType.FOURTH:
-            self.game.level.move_buildings()
+            pass
 
     def on_keyup(self, key):
         """
@@ -180,31 +151,44 @@ class ModePlay(Mode):
                 self.data['bullets-available'] -= 1
         self.game.player.on_keyup(key)
 
+    def on_mouseup(self, button, pos):
+        """
+        Mouse up event handler
+        :param button: button number
+        :param pos: cursor position
+        """
+        if button == 1:
+            self.on_keyup(pygame.K_s)
+        elif button == 4:
+            self.on_keyup(pygame.K_SPACE)
+        elif button == 2:
+            self.on_keyup(pygame.K_ESCAPE)
+
     def on_paint(self):
         """
         Paint event handler
         """
-        self.buffer.blit(self.res_man.images["default-background"], (0, 0))
-        self.buffer.blit(self.res_man.surfaces["status"], (0, ARENA_HEIGHT - 60))
+        self.buffer.blit(self.resman.images["default-background"], (0, 0))
+        self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - 60))
         lives = self.game.data['lives']
         missing = 5 - lives
         for i in range(lives):
-            self.buffer.blit(self.res_man.images["heart-yellow"], (10 + i * 60, ARENA_HEIGHT - 54))
+            self.buffer.blit(self.resman.images["heart-yellow"], (10 + i * 60, ARENA_HEIGHT - 54))
         for i in range(missing):
             self.buffer.blit(
-                self.res_man.images["heart-gray"],
+                self.resman.images["heart-gray"],
                 (10 + 60 * lives + i * 60, ARENA_HEIGHT - 54))
         blitnumber(self.buffer, self.data['points'], 5,
-                   self.res_man.digits, (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
-        self.buffer.blit(self.res_man.images["bullets-indicator"],
+                   self.resman.digits, (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
+        self.buffer.blit(self.resman.images["bullets-indicator"],
                          (340, ARENA_HEIGHT - 42))
         blitnumber(self.buffer, self.data['bullets-available'],
-                   3, self.res_man.digits, (400, ARENA_HEIGHT - 54))
+                   3, self.resman.digits, (400, ARENA_HEIGHT - 54))
 
         if self.game.player.direction == PlayerDirection.DOWN:
-            self.buffer.blit(self.res_man.dircs[4], (ARENA_WIDTH - 350, ARENA_HEIGHT - 54))
+            self.buffer.blit(self.resman.images["dirc"][4], (ARENA_WIDTH - 350, ARENA_HEIGHT - 54))
         else:
-            self.buffer.blit(self.res_man.dircs[0], (ARENA_WIDTH - 350, ARENA_HEIGHT - 54))
+            self.buffer.blit(self.resman.images["dirc"][0], (ARENA_WIDTH - 350, ARENA_HEIGHT - 54))
 
         self.game.level.on_paint(self.buffer)
         self.game.player.on_paint()

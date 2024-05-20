@@ -66,6 +66,7 @@ class DirCType(enum.IntEnum):
     DOWN = 0
     UP = 1
 
+
 @enum.unique
 class SoundPlayState(enum.IntEnum):
     """
@@ -75,3 +76,19 @@ class SoundPlayState(enum.IntEnum):
     STOPPED = 0
     PLAYING = 1
     PAUSED = 2
+
+
+@enum.unique
+class GameObjectType(enum.IntEnum):
+    """
+    GameObjectType enum
+    Tells you what to create from json level data
+    """
+    NONE = 0
+    BUILDING = 1
+    CLOUD = 2
+    DIRC = 3
+    AMMO = 4
+    HEART = 5
+    BIRD = 6
+    BULLET = 7

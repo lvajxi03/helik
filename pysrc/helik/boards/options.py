@@ -8,8 +8,6 @@ import pygame
 from helik.boards.standard import Board
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType
-from helik.locale import locale
-
 
 class BoardOptions(Board):
     """
@@ -17,7 +15,6 @@ class BoardOptions(Board):
     """
     def __init__(self, parent):
         super().__init__(parent)
-        self.locale = locale[BoardType.MENU]
         self.option = 0
         self.menu_pos = 0
         self.rect_pos = None
@@ -39,8 +36,7 @@ class BoardOptions(Board):
         """
         self.rectangles = []
         i = 0
-        elems = self.res_man.get_label(BoardType.OPTIONS, "options", self.arena.config['lang'])
-        for elem in elems:
+        for elem in self.resman.labels[self.arena.config['lang']]["options-items"]:
             label, rect = elem
             rect.left = 400
             rect.top = 100 + i * 80
@@ -52,17 +48,18 @@ class BoardOptions(Board):
         """
         Paint event handler
         """
-        self.buffer.blit(self.res_man.images["default-background"], (0, 0))
-        self.buffer.blit(self.res_man.surfaces["status"], (0, ARENA_HEIGHT - 60))
+        self.buffer.blit(self.resman.images["default-background"], (0, 0))
+        self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - 60))
 
         # Lang flags
-        self.buffer.blit(self.res_man.images["flag-pl"], self.res_man.get("lang-rectangles", "pl"))
-        self.buffer.blit(self.res_man.images["flag-en"], self.res_man.get("lang-rectangles", "en"))
+        self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
+        self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
 
-        l, _ = self.res_man.get_label(BoardType.OPTIONS, "title-shadow", self.arena.config['lang'])
+        l, _ = self.resman.labels[self.arena.config['lang']]["options"]["options-title"]
         self.buffer.blit(l, (275, 95))
-        l, _ = self.res_man.get_label(BoardType.OPTIONS, "title", self.arena.config['lang'])
-        self.buffer.blit(l, (270, 90))
+
+        l, r = self.resman.labels[self.arena.config["lang"]]["general"]["status-line-select"]
+        self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))
 
         for re in self.rectangles:
             label, rect = re
@@ -113,12 +110,27 @@ class BoardOptions(Board):
         """
         ch_lang = False
         if button == 1:
-            rects = self.res_man.get_section("lang-rectangles")
+            rects = self.resman.rectangles["lang-rectangles"]
             for lang in rects:
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
                     ch_lang = True
+                    self.audio.play_sound("arrow")
                     self.create_rectangles()
-        if not ch_lang:
-            # TODO
-            self.arena.change_board(BoardType.MENU)
+            if not ch_lang:
+                tpos = -1
+                for elem in self.rectangles:
+                    _, rect = elem
+                    tpos += 1
+                    if rect.collidepoint(pos):
+                        self.menu_pos = tpos
+                        self.option = tpos
+                        self.arena.config['option'] = self.menu_pos
+                        self.recalculate_pos()
+                        self.audio.play_sound("closing-tape")
+                self.arena.change_board(BoardType.MENU)
+        elif button == 4:
+            self.on_keyup(pygame.K_UP)
+        elif button == 5:
+            self.on_keyup(pygame.K_DOWN)
+

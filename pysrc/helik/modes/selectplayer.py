@@ -38,12 +38,39 @@ class SelectPlayer(Mode):
         """
         Paint event handler
         """
-        self.buffer.blit(self.res_man.images["default-background"], (0, 0))
+        self.buffer.blit(self.resman.images["default-background"], (0, 0))
         for i in range(len(self.rects)):
             self.buffer.blit(self.vehicles[i], self.rects[i])
         r = self.images["viewport"].get_rect()
         r.center = ((self.viewpos + 1) * ARENA_WIDTH // 4, ARENA_HEIGHT // 2)
         self.buffer.blit(self.images["viewport"], r)
+
+        l, r = self.resman.labels[self.arena.config["lang"]]["player"]["select-player"]
+        r.x = (ARENA_WIDTH - r.w) // 2
+        r.y = (ARENA_HEIGHT // 2 - r.h) // 2
+        self.buffer.blit(l, r)
+
+    def on_mouseup(self, button, pos):
+        """
+        Mouse up event handler
+        :param button: button number
+        :param pos: cursor position
+        """
+        selected = False
+        if button == 1:
+            vpos = -1
+            for r in self.rects:
+                vpos += 1
+                if r.collidepoint(pos):
+                    selected = True
+                    self.viewpos = vpos
+                    self.on_keyup(pygame.K_RETURN)
+            if not selected:
+                self.on_keyup(pygame.K_ESCAPE)
+        elif button == 4:
+            self.on_keyup(pygame.K_LEFT)
+        elif button == 5:
+            self.on_keyup(pygame.K_RIGHT)
 
     def on_keyup(self, key):
         """
@@ -55,7 +82,7 @@ class SelectPlayer(Mode):
                 self.viewpos -= 1
                 self.audio.play_sound("arrow")
         elif key == pygame.K_RIGHT:
-            if self.viewpos < len(self.images["vehicles"]) - 1:
+            if self.viewpos < len(self.vehicles) - 1:
                 self.viewpos += 1
                 self.audio.play_sound("arrow")
         elif key == pygame.K_RETURN:

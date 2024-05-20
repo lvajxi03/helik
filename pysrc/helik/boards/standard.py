@@ -4,7 +4,7 @@
 Standard boards for Helik
 """
 
-class Board():
+class Board:
     """
     Generic board class for Helik
     """
@@ -13,9 +13,9 @@ class Board():
         Class constructor
         """
         self.arena = parent
-        self.res_man = self.arena.res_man
-        self.buffer = self.res_man.surfaces["buffer"]
-        self.images = self.res_man.images
+        self.resman = self.arena.resman
+        self.buffer = self.resman.surfaces["buffer"]
+        self.images = self.resman.images
         self.audio = self.arena.audio
 
     def activate(self):

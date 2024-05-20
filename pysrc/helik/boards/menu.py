@@ -8,8 +8,6 @@ import pygame
 from helik.boards.standard import Board
 from helik.htypes import BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
-from helik.locale import locale
-
 
 def menupos2board(menu_pos: int) -> BoardType:
     """
@@ -23,7 +21,7 @@ def menupos2board(menu_pos: int) -> BoardType:
     try:
         return ids[menu_pos]
     except IndexError:
-        return BoardType.QUIT # Because, erm, why not? ;)
+        return BoardType.QUIT  # Because, erm, why not? ;)
 
 
 class BoardMenu(Board):
@@ -32,7 +30,6 @@ class BoardMenu(Board):
     """
     def __init__(self, parent):
         super().__init__(parent)
-        self.locale = locale[BoardType.MENU]
         self.menu_pos = 0
         self.rect_pos = None
         self.rect_pos_t = None
@@ -53,8 +50,7 @@ class BoardMenu(Board):
         """
         self.rectangles = []
         i = 0
-        elems = self.res_man.get_label(BoardType.MENU, "menu", self.arena.config['lang'])
-        for elem in elems:
+        for elem in self.resman.labels[self.arena.config['lang']]["menu-items"]:
             label, rect = elem
             rect.left = 400
             rect.top = 100 + i * 80
@@ -66,16 +62,17 @@ class BoardMenu(Board):
         """
         Paint event handler
         """
-        self.buffer.blit(self.res_man.images["default-background"], (0, 0))
-        self.buffer.blit(self.res_man.surfaces["status"], (0, ARENA_HEIGHT - STATUS_HEIGHT))
-        self.buffer.blit(self.res_man.images["pl-status-1"],
-                         ((ARENA_WIDTH - 892 - 160) // 2, ARENA_HEIGHT - 50))
-
+        self.buffer.blit(self.resman.images["default-background"], (0, 0))
+        self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - STATUS_HEIGHT))
         # Lang flags
-        self.buffer.blit(self.res_man.images["flag-pl"], self.res_man.get("lang-rectangles", "pl"))
-        self.buffer.blit(self.res_man.images["flag-en"], self.res_man.get("lang-rectangles", "en"))
+        self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
+        self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
 
-        self.buffer.blit(self.res_man.images["helik-main"], (215, 45))
+        l, _ = self.resman.labels[self.arena.config['lang']]["menu"]["menu-title"]
+        self.buffer.blit(l, (215, 45))
+
+        l, r = self.resman.labels[self.arena.config["lang"]]["menu"]["status-line"]
+        self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))
 
         for re in self.rectangles:
             label, rect = re
@@ -121,13 +118,25 @@ class BoardMenu(Board):
         """
         ch_lang = False
         if button == 1:
-            rects = self.res_man.get_section("lang-rectangles")
+            rects = self.resman.rectangles["lang-rectangles"]
             for lang in rects:
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
                     ch_lang = True
                     self.audio.play_sound("arrow")
                     self.create_rectangles()
-        if not ch_lang:
-            # TODO
-            pass
+            if not ch_lang:
+                tpos = -1
+                for elem in self.rectangles:
+                    _, rect = elem
+                    tpos += 1
+                    if rect.collidepoint(pos):
+                        self.menu_pos = tpos
+                        self.recalculate_pos()
+                        bid = menupos2board(self.menu_pos)
+                        self.audio.play_sound("closing-tape")
+                        self.arena.change_board(bid)
+        elif button == 4:
+            self.on_keyup(pygame.K_UP)
+        elif button == 5:
+            self.on_keyup(pygame.K_DOWN)
