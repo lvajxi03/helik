@@ -12,8 +12,16 @@ class Bullet(ImageGameObject):
     """
     Bullet handler class
     """
-    def __init__(self, x, y, image):
+    def __init__(self, image, x, y):
+        """
+        Create bullet object
+        :param image: bullet image
+        :param x: x coordinate
+        :param y: y coordinate
+        """
         super().__init__(x, y, GameObjectType.BULLET, image)
+        self.valid = True
+        self.visible = True
 
     def move(self, speed):
         """

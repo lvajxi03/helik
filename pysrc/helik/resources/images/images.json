@@ -10,6 +10,16 @@
         "building-8.png",
         "building-9.png"
     ],
+    "hearts": [
+        "heart-0.png",
+        "heart-1.png",
+        "heart-2.png",
+        "heart-3.png",
+        "heart-4.png",
+        "heart-5.png",
+        "heart-6.png",
+        "heart-7.png"
+    ],
     "clouds": [
         "cloud-1.png",
         "cloud-2.png",

@@ -84,7 +84,7 @@ class Level:
             lane.paint(canvas)
 
         for bullet in self.bullets:
-            bullet.paint(canvas)
+            bullet.on_paint(canvas)
 
     def is_empty(self):
         """

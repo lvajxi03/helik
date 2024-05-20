@@ -7,21 +7,7 @@ Standard and abstract game objects
 import enum
 import pygame
 from helik.hdefs import ARENA_WIDTH
-
-@enum.unique
-class GameObjectType(enum.IntEnum):
-    """
-    Game object type enum
-    """
-    DISTANCE = 0
-    BUILDING = 1
-    CLOUD = 2
-    AMMO = 3
-    DIRC = 4
-    HEART = 5
-    CLOCK = 6
-    BIRD = 7
-    BULLET = 8
+from helik.htypes import GameObjectType
 
 
 class GameObject:
@@ -114,15 +100,20 @@ class ImageListGameObject(ImageGameObject):
         self.masks = [pygame.mask.from_surface(image) for image in self.images]
         self.current = 0
         self.max_frame = len(self.images)
+        # Internal counter
+        self.ic = 0
 
     def next(self):
         """
         Calculate next frame
         """
-        self.current += 1
-        self.current %= self.max_frame
-        self.image = self.images[self.current]
-        self.mask = self.masks[self.current]
-        self.w = self.rects[self.current].w
-        self.h = self.rects[self.current].h
+        self.ic += 1
+        if self.ic == 7:
+            self.current += 1
+            self.current %= self.max_frame
+            self.image = self.images[self.current]
+            self.mask = self.masks[self.current]
+            self.w = self.rects[self.current].w
+            self.h = self.rects[self.current].h
+            self.ic = 0
 

@@ -91,3 +91,4 @@ class GameObjectType(enum.IntEnum):
     AMMO = 4
     HEART = 5
     BIRD = 6
+    BULLET = 7

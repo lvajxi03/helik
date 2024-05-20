@@ -4,13 +4,14 @@
 Lane module
 """
 
-from helik.hdefs import ARENA_HEIGHT
+from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
 from helik.htypes import GameObjectType
 from helik.game.buildings import building_from_image
 from helik.game.clouds import cloud_from_image
 from helik.game.dirc import dirc_from_images
 from helik.game.ammo import ammo_from_images
 from helik.game.heart import heart_from_images
+from helik.game.objects import ImageListGameObject
 
 
 class Lane:
@@ -30,7 +31,7 @@ class Lane:
 
         if multiplier < 1:
             multiplier = 1
-        x = 0
+        x = ARENA_WIDTH
         # Create objects
         for i in range(multiplier):
             for ar in data["objects"]:
@@ -48,40 +49,42 @@ class Lane:
                         x += w
                     elif ar[0] == GameObjectType.CLOUD:
                         im = resman.images["clouds"][ar[1]]
-                        w, _ = im.get_size()
+                        w, h = im.get_size()
                         if self.bottom:
-                            self.objects.append(cloud_from_image(im, x, ARENA_HEIGHT - ar[2]))
+                            self.objects.append(cloud_from_image(im, x, ARENA_HEIGHT - h - 60 - ar[2]))
                         else:
                             self.objects.append(cloud_from_image(im, x, ar[2]))
                         x += w
                     elif ar[0] == GameObjectType.DIRC:
                         ims = resman.images["dirc"]
-                        w, _ = ims[0].get_size()
+                        w, h = ims[0].get_size()
                         if self.bottom:
-                            self.objects.append(dirc_from_images(ims, x, ARENA_HEIGHT - ar[2]))
+                            self.objects.append(dirc_from_images(ims, x, ARENA_HEIGHT - h - 60 - ar[1]))
                         else:
-                            self.objects.append(dirc_from_images(ims, x, ar[2]))
+                            self.objects.append(dirc_from_images(ims, x, ar[1]))
                         x += w
                     elif ar[0] == GameObjectType.AMMO:
                         ims = resman.images["ammo"]
-                        w, _ = ims[0].get_size()
+                        w, h = ims[0].get_size()
                         if self.bottom:
-                            self.objects.append(ammo_from_images(ims, x, ARENA_HEIGHT - ar[2]))
+                            self.objects.append(ammo_from_images(ims, x, ARENA_HEIGHT - h - 60 - ar[1]))
                         else:
-                            self.objects.append(ammo_from_images(ims, x, ar[2]))
+                            self.objects.append(ammo_from_images(ims, x, ar[1]))
+                        x += w
                     elif ar[0] == GameObjectType.HEART:
                         ims = resman.images["hearts"]
-                        w, _ = ims[0].get_size()
+                        w, h = ims[0].get_size()
                         if self.bottom:
-                            self.objects.append(heart_from_images(ims, x, ARENA_HEIGHT - ar[2]))
+                            self.objects.append(heart_from_images(ims, x, ARENA_HEIGHT - h - 60 - ar[1]))
                         else:
-                            self.objects.append(heart_from_images(ims, x, ar[2]))
+                            self.objects.append(heart_from_images(ims, x, ar[1]))
+                        x += w
                     elif ar[0] == GameObjectType.BIRD:
                         pass
-                except IndexError:
+                except IndexError as ie:
                     # Skip invalid and incomplete objects
                     pass
-                except KeyError:
+                except KeyError as ke:
                     pass
 
     def __len__(self):
@@ -97,6 +100,8 @@ class Lane:
 
     def move(self):
         for obj in self.objects:
+            if issubclass(type(obj), ImageListGameObject):
+                obj.next()
             obj.move(self.speed)
 
         self.objects = [x for x in self.objects if x.valid]

@@ -31,7 +31,6 @@ class ModeNewLevel(Mode):
         """
         Activate event handler
         """
-        print("c")
         if self.game.data['level'] < 7:
             self.audio.play_sound("game-begin")
             self.game.data['level'] += 1
@@ -40,7 +39,6 @@ class ModeNewLevel(Mode):
                                     self.arena.config['option'])
             self.image = self.resman.level_planes[
                 self.arena.config["lang"]][self.game.data['level']]
-            print(self.image)
             r = self.image.get_rect()
             self.x = (ARENA_WIDTH -r.w) // 2
             self.y = (ARENA_HEIGHT - r.h) // 2

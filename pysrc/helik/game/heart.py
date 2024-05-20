@@ -24,4 +24,4 @@ def heart_from_images(images, x, y):
     :param y: y coordinate
     :return Heart object
     """
-
+    return Heart(x, y, images)

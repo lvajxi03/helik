@@ -64,7 +64,6 @@ class ResourceManager:
         for i in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
             fn = f"{i}.png"
             self.digits[i] = pygame.image.load(pa.joinpath(fn))
-        print(self.digits)
 
     def load_levels(self, basepath):
         """
@@ -90,7 +89,6 @@ class ResourceManager:
             with open(f_path, encoding="utf-8") as f_handle:
                 data = json.load(f_handle)
                 for lang in data:
-                    print(lang)
                     if lang not in self.labels:
                         self.labels[lang] = {}
                     values = data[lang]
@@ -113,7 +111,6 @@ class ResourceManager:
                                 rect = img.get_rect()
                                 self.labels[lang][key][elem] = (img, rect)
         except IOError as ioe:
-            print(str(ioe))
             sys.exit(1)
 
     def load_level_planes(self, basepath):
@@ -133,7 +130,7 @@ class ResourceManager:
                     elif type(values) is str:
                         self.level_planes[key] = pygame.image.load(pa.joinpath(values))
         except IOError as ioe:
-            print(str(ioe))
+            pass
 
     def load_colors(self, basepath):
         f_name = basepath.joinpath("colors.json")
@@ -169,6 +166,6 @@ class ResourceManager:
                     elif type(value) is str:
                         self.images[key] = pygame.image.load(pa.joinpath(value))
         except IOError as ioe:
-            print(str(ioe))
+            pass
 
         # That's all Folks!

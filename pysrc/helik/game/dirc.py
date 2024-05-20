@@ -21,7 +21,7 @@ class DirChanger(ImageListGameObject):
         :param y: y coordinate
         :param images: images of dirchanger animation
         """
-        super().__init__(x, y, images)
+        super().__init__(x, y, GameObjectType.DIRC, images)
 
 
 def dirc_from_images(images: list, x, y):

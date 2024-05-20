@@ -12,6 +12,7 @@ from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT
 from helik.gfx import blitnumber
 from helik.game.explosion import Explosion
 from helik.game.player import PlayerDirection
+from helik.htypes import GameObjectType
 
 
 class ModePlay(Mode):
@@ -67,87 +68,55 @@ class ModePlay(Mode):
         """
         self.game.player.move(delta)
 
-        # # Bullet collisions
-        # for bullet in self.game.level.bullets:
-        #     if bullet.valid:
-        #         for building in self.game.level.buildings:
-        #             if building.valid:
-        #                 col = building.collide(bullet)
-        #                 if col:
-        #                     bullet.valid = False
-        #                     bullet.visible = False
-        #                     building.valid = False
-        #                     building.visible = False
-        #                     self.game.data['points'] += 1
-        #                     x, y = col
-        #                     self.game.explosions.append(
-        #                         Explosion(
-        #                             self.resman.explosions, x + building.x, y + building.y))
-        #         for bird in self.game.level.birds:
-        #             if bird.valid:
-        #                 col = bird.collide(bullet)
-        #                 if col:
-        #                     bird.valid = False
-        #                     bird.visible = False
-        #                     bullet.valid = False
-        #                     bullet.visible = False
-        #                     self.game.data['points'] += 1
-        #                     x, y = col
-        #                     self.game.explosions.append(
-        #                         Explosion(
-        #                             self.resman.explosions, x + bird.x, y + bird.y))
-        #
-        #
-        # # Cloud collisions
-        # for cloud in self.game.level.clouds:
-        #     if cloud.valid:
-        #         col = cloud.collide(self.game.player)
-        #         if col:
-        #             cloud.valid = False
-        #             cloud.visible = False
-        #             x, y = col
-        #             self.game.explosions.append(
-        #                 Explosion(
-        #                     self.resman.explosions, x + cloud.x, y + cloud.y))
-        #             self.game.change_mode(GameMode.KILLED)
-        #
-        # # Building collisions
-        # for building in self.game.level.buildings:
-        #     if building.valid:
-        #         col = building.collide(self.game.player)
-        #         if col:
-        #             building.valid = False
-        #             building.visible = False
-        #             x, y = col
-        #             self.game.explosions.append(
-        #                 Explosion(
-        #                     self.resman.explosions, x + building.x, y + building.y))
-        #             self.game.change_mode(GameMode.KILLED)
-        #
-        # # Dirc collisions
-        # for dirc in self.game.level.dircs:
-        #     if dirc.valid:
-        #         if dirc.collide(self.game.player):
-        #             dirc.valid = False
-        #             dirc.visible = False
-        #             self.game.player.toggle_direction()
-        #
-        # self.game.level.rotate()
-        # if self.game.level.is_empty():
-        #     self.game.change_mode(GameMode.NEWLEVEL)
-        #
-        # # Birds collisions
-        # for bird in self.game.level.birds:
-        #     if bird.valid:
-        #         col = bird.collide(self.game.player)
-        #         if col:
-        #             bird.valid = False
-        #             bird.visible = False
-        #             x, y = col
-        #             self.game.explosions.append(
-        #                 Explosion(
-        #                     self.resman.explosions, x + bird.x, y + bird.y))
-        #             self.game.change_mode(GameMode.KILLED)
+        # Bullet collisions (buildings, birds)
+        for bullet in self.game.level.bullets:
+            if bullet.valid:
+                for lane in self.game.level.lanes:
+                    for obj in lane.objects:
+                        # Buildings and birds:
+                        if obj.go_type in [GameObjectType.BUILDING, GameObjectType.BIRD]:
+                            col = obj.collide(bullet)
+                            if col:
+                                bullet.valid = False
+                                bullet.visible = False
+                                obj.valid = False
+                                obj.visible = False
+                                self.game.data["points"] += 1
+                                x, y = col
+                                ex = Explosion(self.resman.images["explosions"],
+                                               x + obj.x,
+                                               y + obj.y)
+                                self.game.explosions.append(ex)
+
+        # Regular collisions (buildings, clouds, birds)
+        for lane in self.game.level.lanes:
+            for obj in lane.objects:
+                if obj.go_type in [GameObjectType.BUILDING, GameObjectType.BIRD, GameObjectType.CLOUD]:
+                    if obj.valid:
+                        col = obj.collide(self.game.player)
+                        if col:
+                            obj.valid = False
+                            obj.visible = False
+                            self.game.change_mode(GameMode.KILLED)
+                elif obj.go_type == GameObjectType.DIRC:
+                    if obj.collide(self.game.player):
+                        obj.valid = False
+                        obj.visible = False
+                        self.game.player.toggle_direction()
+                elif obj.go_type == GameObjectType.HEART:
+                    if obj.collide(self.game.player):
+                        obj.visible = False
+                        obj.valid = False
+                        if self.game.data['lives'] < 4:
+                            self.game.data['lives'] += 1
+                elif obj.go_type == GameObjectType.AMMO:
+                    if obj.collide(self.game.player):
+                        obj.visible = False
+                        obj.valid = False
+                        self.game.data['bullets-available'] += 1
+
+        if self.game.level.is_empty():
+            self.game.change_mode(GameMode.NEWLEVEL)
 
     def on_timer(self, timer):
         """
@@ -158,18 +127,10 @@ class ModePlay(Mode):
             self.game.data['seconds'] += 1
             self.game.data['points'] += 10
 
-        # elif timer == TimerType.FIRST:
-        #     for dirc in self.game.level.dircs:
-        #         dirc.next()
-        #     for bird in self.game.level.birds:
-        #         bird.next()
         elif timer == TimerType.THIRD:
-            for lane in self.game.level.lanes:
-                lane.move()
-            # self.move_board()
+            self.game.level.move()
         elif timer == TimerType.FOURTH:
             pass
-            #self.game.level.move_buildings()
 
     def on_keyup(self, key):
         """

@@ -24,7 +24,6 @@ class SelectPlayer(Mode):
         self.rects = []
         self.view_x = 0
         self.view_y = 0
-        print(self.images["vehicles"])
         self.vehicles = [self.images["vehicles"][0],
                        self.images["vehicles"][2],
                        self.images["vehicles"][4]]
