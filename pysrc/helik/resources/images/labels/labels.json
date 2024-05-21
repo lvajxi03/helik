@@ -11,7 +11,8 @@
       "settings-title": "settings-title-pl.png"
     },
     "game": {
-      "gameover": "gameover-pl.png"
+      "gameover": "gameover-pl.png",
+      "gameover-2": "gameover-2-pl.png"
     },
     "help": {
       "help-title": "help-title-pl.png"
@@ -96,7 +97,8 @@
     "game": {
       "paused": "game-paused-en.png",
       "continue": "game-continue-en.png",
-      "gameover": "gameover-en.png"
+      "gameover": "gameover-en.png",
+      "gameover-2": "gameover-2-en.png"
     },
     "player": {
       "select-player": "select-player-en.png"

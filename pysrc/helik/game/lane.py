@@ -11,6 +11,7 @@ from helik.game.clouds import cloud_from_image
 from helik.game.dirc import dirc_from_images
 from helik.game.ammo import ammo_from_images
 from helik.game.heart import heart_from_images
+from helik.game.birds import bird_from_images
 from helik.game.objects import ImageListGameObject
 
 
@@ -33,6 +34,8 @@ class Lane:
             multiplier = 1
         x = ARENA_WIDTH
         # Create objects
+
+        fb = 0  # bird's frame
         for i in range(multiplier):
             for ar in data["objects"]:
                 try:
@@ -80,7 +83,14 @@ class Lane:
                             self.objects.append(heart_from_images(ims, x, ar[1]))
                         x += w
                     elif ar[0] == GameObjectType.BIRD:
-                        pass
+                        ims = resman.images["birds"]
+                        w, h = ims[0].get_size()
+                        if self.bottom:
+                            self.objects.append(bird_from_images(ims, x, ARENA_HEIGHT - h - 60 - ar[1], fb))
+                        else:
+                            self.objects.append(bird_from_images(ims, x, ar[1], fb))
+                        x += w
+                        fb += 1
                 except IndexError as ie:
                     # Skip invalid and incomplete objects
                     pass

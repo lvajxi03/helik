@@ -4,11 +4,10 @@
 Birds handler module
 """
 
-import pygame
-from helik.hdefs import ARENA_WIDTH
+from helik.game.objects import ImageListGameObject, GameObjectType
 
 
-class Bird:
+class Bird(ImageListGameObject):
     """
     Bird handler class
     """
@@ -19,53 +18,17 @@ class Bird:
         :param y: y coordinate
         :param images: bird's images
         """
-        self.x = x
-        self.y = y
-        self.frames = []
-        self.images = images
-        self.frame = frame
-        self.frame %= len(self.images)
-        self.masks = []
-        for img in self.images:
-            r = img.get_rect()
-            self.frames.append(r)
-            mask = pygame.mask.from_surface(img)
-            self.masks.append(mask)
-        self.valid = True
-        if self.x > ARENA_WIDTH:
-            self.visible = False
-        else:
-            self.visible = True
+        super().__init__(x, y, GameObjectType.BIRD, images)
+        self.current = frame
+        self.current %= len(self.images)
 
-    def on_paint(self, canvas):
-        """
-        Paint event handler
-        """
-        canvas.blit(self.images[self.frame], (self.x, self.y))
 
-    def collide(self, other):
-        """
-        Check if the bird collides with the other object
-        :param other: other object
-        :return: True if collides, False otherwise
-        """
-        return self.masks[self.frame].overlap(other.mask, (other.x - self.x, other.y - self.y))
-
-    def next(self):
-        """
-        Change bird's frame
-        """
-        self.frame += 1
-        self.frame %= len(self.images)
-
-    def move(self, speed=1):
-        """
-        Move bird
-        """
-        self.x -= speed
-        r  = self.frames[self.frame]
-        if self.x + r.w < 0:
-            self.valid = False
-            self.visible = False
-        elif self.x < ARENA_WIDTH:
-            self.visible = True
+def bird_from_images(images, x, y, frame=0):
+    """
+    Create Bird object from imagelist
+    :param images: bird image list
+    :param x: x coordinate
+    :param y: y coordinate
+    :param frame: current frame
+    """
+    return Bird(x, y, images, frame)

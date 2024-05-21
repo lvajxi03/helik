@@ -30,6 +30,10 @@ class ModeGameOver(Mode):
         r.x = (ARENA_WIDTH - r.w) // 2
         r.y = (ARENA_HEIGHT -r.h) // 2
         self.buffer.blit(l, r)
+        l, r = self.resman.labels[self.arena.config['lang']]["game"]["gameover-2"]
+        r.x = (ARENA_WIDTH - r.w) // 2
+        r.y = (ARENA_HEIGHT - r.h) // 2 + 70
+        self.buffer.blit(l, r)
 
     def on_keyup(self, key):
         """

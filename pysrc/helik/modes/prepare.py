@@ -44,7 +44,7 @@ class ModePrepare(Mode):
         Update event handler
         :param delta: delta time from last frame
         """
-        self.alpha -= 5
+        self.alpha -= 2
         self.resman.images["big"][self.index].set_alpha(self.alpha)
 
     def on_prepare(self):

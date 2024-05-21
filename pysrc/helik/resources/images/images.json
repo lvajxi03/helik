@@ -89,7 +89,6 @@
         "airship-down.png",
         "airship-up.png"
     ],
-    "big-left-arrow": "big-left-arrow.png",
     "default-background": "back-default.jpg",
     "line-0": "line-0.png",
     "bullet": "bullet.png",
@@ -99,8 +98,9 @@
     "flag-en": "flag_en.png",
     "heart-yellow": "heart-yellow.png",
     "heart-gray": "heart-gray.png",
-    "krzyk": "krzyk.png",
     "helik-main": "helik-main.png",
-    "pl-status-1": "pl-status-1.png",
-    "viewport": "viewport.png"
+    "viewport": "viewport.png",
+    "checkbox-checked": "checkbox-checked.png",
+    "checkbox-unchecked": "checkbox-unchecked.png",
+    "cursor": "cursor.png"
 }

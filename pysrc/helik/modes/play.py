@@ -8,7 +8,7 @@ Mode play handler module
 import pygame
 from helik.modes.standard import Mode
 from helik.htypes import TimerType, GameMode, SoundPlayState
-from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT
+from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT, SPEED
 from helik.gfx import blitnumber
 from helik.game.explosion import Explosion
 from helik.game.player import PlayerDirection
@@ -25,7 +25,7 @@ class ModePlay(Mode):
         """
         super().__init__(parent)
         self.data = self.game.data
-        self.speed = 30
+        self.speed = SPEED
 
     def activate(self):
         """
@@ -35,9 +35,10 @@ class ModePlay(Mode):
             self.audio.unpause_music()
         elif self.game.music_state == SoundPlayState.STOPPED:
             self.audio.play_music("music-3")
+        self.speed -=  self.arena.config['option']
         pygame.time.set_timer(TimerType.SECOND, 1000)
         pygame.time.set_timer(TimerType.FIRST, 250)
-        self.speed = 20 - self.data['level'] - 3 * self.data['option']
+        # self.speed = 30 - 2 * self.data['option']
         pygame.time.set_timer(TimerType.THIRD, self.speed)
         pygame.time.set_timer(TimerType.FOURTH, int(self.speed * 1.5))
 
@@ -51,12 +52,11 @@ class ModePlay(Mode):
         pygame.time.set_timer(TimerType.THIRD, 0)
         pygame.time.set_timer(TimerType.FOURTH, 0)
 
-    def on_update(self, delta):
+    def game_update(self):
         """
-        Update event handler
-        :param delta: delta time between two frames
+        Game objects update
         """
-        self.game.player.move(delta)
+        self.game.player.move(1)
         self.game.level.move()
 
         # Bullet collisions (buildings, birds)
@@ -133,7 +133,7 @@ class ModePlay(Mode):
             self.game.data['points'] += 10
 
         elif timer == TimerType.THIRD:
-            self.game.level.move()
+            self.game_update()
         elif timer == TimerType.FOURTH:
             pass
 

@@ -6,7 +6,7 @@ Copter handler module
 
 import enum
 import pygame
-from helik.hdefs import ARENA_HEIGHT, STATUS_HEIGHT
+from helik.hdefs import ARENA_HEIGHT, STATUS_HEIGHT, JUMP
 
 
 @enum.unique
@@ -36,6 +36,7 @@ class Player:
         self.x, self.y = 200, 200
         r = self.images[self.direction].get_rect()
         self.w, self.h = r.w, r.h
+        self.jump = JUMP[self.arena.config['option']]
 
     def toggle_direction(self):
         """
@@ -64,9 +65,9 @@ class Player:
         """
         if key == pygame.K_SPACE:
             if self.direction == PlayerDirection.DOWN:
-                self.y -= 30
+                self.y -= self.jump
             else:
-                self.y += 30
+                self.y += self.jump
 
     def move(self, delta) -> bool:
         """
