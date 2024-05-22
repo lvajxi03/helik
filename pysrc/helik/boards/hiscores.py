@@ -8,6 +8,7 @@ Hiscores board handler
 from helik.boards.standard import Board
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType
+from helik.gfx import blitnumber
 
 class BoardHiscores(Board):
     """
@@ -29,6 +30,16 @@ class BoardHiscores(Board):
 
         l, r = self.resman.labels[self.arena.config["lang"]]["general"]["status-line-no-select"]
         self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))
+
+        if len(self.arena.config['hiscores']) == 0:
+            pass
+        else:
+            for i in range (1, 11):
+                blitnumber(self.buffer,
+                           f"{i}",
+                           0,
+                           self.resman.digits,
+                           (200, 50 + i * 58))
 
     def on_keyup(self, key):
         """
@@ -52,5 +63,4 @@ class BoardHiscores(Board):
                     self.arena.config['lang'] = lang
                     ch_lang = True
         if not ch_lang:
-            # TODO: about-related ops here
             self.arena.change_board(BoardType.MENU)

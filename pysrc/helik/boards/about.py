@@ -53,5 +53,4 @@ class BoardAbout(Board):
                     self.arena.config['lang'] = lang
                     ch_lang = True
         if not ch_lang:
-            # TODO: about-related ops here
             self.arena.change_board(BoardType.MENU)

@@ -35,7 +35,7 @@ class Application:
         pygame.init()
         pygame.mixer.init()
         self.resman = ResourceManager(files('helik.resources'))
-        self.audio = AudioController(files('helik.resources'))
+        self.audio = AudioController(self, files('helik.resources'))
         pygame.display.set_caption(APPLICATION_TITLE)
         self.clock = pygame.time.Clock()
         self.running = True

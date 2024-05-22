@@ -13,12 +13,14 @@ class AudioController:
     """
     Audio controller handler class
     """
-    def __init__(self, basepath):
+    def __init__(self, parent, basepath):
         """
         Audio controller class constructor
+        :param parent: arena instance handle
         :param basepath: Path-like object - root of all resources
         """
         self.sounds = {}
+        self.arena = parent
         self.music_state = SoundPlayState.STOPPED
         bp = basepath.joinpath("sounds")
         fn = basepath.joinpath("sounds.json")
@@ -38,8 +40,9 @@ class AudioController:
         Sound is played one time only
         :param sound: sound key name in sounds library
         """
-        if sound in self.sounds:
-            self.sfx_channel.play(self.sounds[sound])
+        if self.arena.config["sound"] == 1:
+            if sound in self.sounds:
+                self.sfx_channel.play(self.sounds[sound])
 
     def play_music(self, music: str):
         """
@@ -47,10 +50,11 @@ class AudioController:
         Music is played infinitely.
         :param music: music key name in sounds library.
         """
-        if music in self.sounds:
-            self.stop_music()
-            self.music_state = SoundPlayState.PLAYING
-            self.music_channel.play(self.sounds[music], loops=-1)
+        if self.arena.config["music"] == 1:
+            if music in self.sounds:
+                self.stop_music()
+                self.music_state = SoundPlayState.PLAYING
+                self.music_channel.play(self.sounds[music], loops=-1)
 
     def stop_music(self):
         """

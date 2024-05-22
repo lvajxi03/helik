@@ -8,7 +8,9 @@
       "status-line-no-select": "status-line-no-select-pl.png"
     },
     "settings": {
-      "settings-title": "settings-title-pl.png"
+      "settings-title": "settings-title-pl.png",
+      "setting-music": "setting-music-pl.png",
+      "setting-sound": "setting-sound-pl.png"
     },
     "game": {
       "gameover": "gameover-pl.png",
@@ -92,7 +94,9 @@
       "option-6-en.png"
     ],
     "settings": {
-      "settings-title": "settings-title-en.png"
+      "settings-title": "settings-title-en.png",
+      "setting-music": "setting-music-en.png",
+      "setting-sound": "setting-sound-en.png"
     },
     "game": {
       "paused": "game-paused-en.png",

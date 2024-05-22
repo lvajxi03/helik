@@ -29,6 +29,10 @@ class BoardMenu(Board):
     Menu board
     """
     def __init__(self, parent):
+        """
+        Create menu object
+        :param parent: parent object handle
+        """
         super().__init__(parent)
         self.menu_pos = 0
         self.rect_pos = None

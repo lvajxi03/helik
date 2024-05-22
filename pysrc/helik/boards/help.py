@@ -33,7 +33,6 @@ class BoardHelp(Board):
 
     def on_keyup(self, key):
         """
-        # TODO
         Key release event handler
         Key code does not matter. Always return to main menu
         :param key: any key pressed
@@ -54,5 +53,4 @@ class BoardHelp(Board):
                     self.arena.config['lang'] = lang
                     ch_lang = True
         if not ch_lang:
-            # TODO: about-related ops here
             self.arena.change_board(BoardType.MENU)

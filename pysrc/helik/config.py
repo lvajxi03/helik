@@ -17,7 +17,9 @@ class Config:
             "lang": "en",
             "option": 1,
             "hiscores": [],
-            "lastnick": ""
+            "lastnick": "",
+            "sound": 1,
+            "music": 1
             }
 
     def read_config(self, fn: str):
@@ -32,6 +34,13 @@ class Config:
                 self.data.update(data)
                 if not isinstance(self.data['hiscores'], list):
                     self.data['hiscores'] = []
+                if len(self.data['hiscores']) == 0:
+                    i = 0
+                    for name in ["AAA", "BBB", "CCC", "DDD", "EEE", "FFF", "GGG", "HHH", "III", 'JJJ']:
+                        self.data['hiscores'].append((name, i * 10 + 2))
+                        i += 1
+                self.data['hiscores'].sort(key=lambda a: a[1], reverse=True)
+                self.data['hiscores'] = self.data['hiscores'][:10]
         except IOError:
             pass
         except json.decoder.JSONDecodeError:
