@@ -35,7 +35,7 @@ class ModePlay(Mode):
             self.audio.unpause_music()
         elif self.game.music_state == SoundPlayState.STOPPED:
             self.audio.play_music("music-3")
-        self.speed -=  self.arena.config['option']
+        self.speed = SPEED - self.arena.config['option']
         pygame.time.set_timer(TimerType.SECOND, 1000)
         pygame.time.set_timer(TimerType.FIRST, 250)
         # self.speed = 30 - 2 * self.data['option']

@@ -133,4 +133,3 @@ class BoardOptions(Board):
             self.on_keyup(pygame.K_UP)
         elif button == 5:
             self.on_keyup(pygame.K_DOWN)
-

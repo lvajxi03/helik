@@ -3,6 +3,9 @@
     "player": {
       "select-player": "select-player-pl.png"
     },
+    "control": {
+      "keyboard": "keyboard-pl.png"
+    },
     "general": {
       "status-line-select": "status-line-select-pl.png",
       "status-line-no-select": "status-line-no-select-pl.png"
@@ -106,6 +109,9 @@
     },
     "player": {
       "select-player": "select-player-en.png"
+    },
+    "control": {
+      "keyboard": "keyboard-en.png"
     }
   }
 }

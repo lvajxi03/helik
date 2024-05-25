@@ -40,7 +40,11 @@ class ModeGameOver(Mode):
         Key release event handler
         :param key: key code
         """
-        self.game.arena.change_board(BoardType.HISCORES)
+        # self.game.arena.change_board(BoardType.HISCORES)
+        if self.arena.config.is_hiscore(self.game.data['points']):
+            self.game.arena.change_board(BoardType.NEWSCORE)
+        else:
+            self.game.arena.change_board(BoardType.HISCORES)
 
     def on_mouseup(self, button, pos):
         """
@@ -48,4 +52,4 @@ class ModeGameOver(Mode):
         :param button: button number
         :param pos: cursor position
         """
-        self.game.arena.change_board(BoardType.HISCORES)
+        self.on_keyup(pygame.K_RETURN)

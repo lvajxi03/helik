@@ -17,6 +17,7 @@ from helik.boards.hiscores import BoardHiscores
 from helik.boards.help import BoardHelp
 from helik.boards.settings import BoardSettings
 from helik.boards.game import BoardGame
+from helik.boards.newscore import BoardNewScore
 from helik.boards.quit import BoardQuit
 from helik.res import ResourceManager
 from helik.config import Config
@@ -50,6 +51,7 @@ class Application:
             BoardType.OPTIONS: BoardOptions(self),
             BoardType.SETTINGS: BoardSettings(self),
             BoardType.GAME: BoardGame(self),
+            BoardType.NEWSCORE: BoardNewScore(self),
             BoardType.QUIT: BoardQuit(self)
             }
         self.board_id = BoardType.WELCOME
