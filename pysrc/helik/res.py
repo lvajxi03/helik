@@ -30,7 +30,7 @@ class ResourceManager:
         self.surfaces = {
             "buffer": pygame.display.set_mode(
                 (ARENA_WIDTH, ARENA_HEIGHT),
-                flags=pygame.SRCALPHA | pygame.FULLSCREEN | pygame.NOFRAME,
+                # flags=pygame.SRCALPHA | pygame.FULLSCREEN | pygame.NOFRAME,
                 depth=32,
                 vsync=1),
             "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
