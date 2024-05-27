@@ -49,8 +49,9 @@ class BoardNewScore(Board):
         self.r2 = pygame.Rect(margin_x - 20 + self.x * 52, margin_y - 10 + self.y * 52, 55, 65)
         self.r3 = pygame.Rect(margin_x - 20, margin_y - 12 + 5 * 52, 8*52 + 20, 65)
         self.r3a = pygame.Rect(margin_x - 15, margin_y - 7 + 5 * 52, 8 * 52 + 20, 65)
-        self.r4 = pygame.Rect(margin_x - 20 + self.x * 4*52, margin_y - 15 + 6 * 52, 4 * 52 + 20, 65)
-        self.r4a = pygame.Rect(margin_x - 15 + self.x * 4*52, margin_y - 10 + 6 * 52, 4 * 52 + 20, 65)
+
+        self.r4 = pygame.Rect(margin_x - 20, margin_y - 12 + 6 * 52, 8 * 52 + 20, 65)
+        self.r4a = pygame.Rect(margin_x - 15, margin_y - 7 + 6 * 52, 8 * 52 + 20, 65)
 
     def on_paint(self):
         """
@@ -98,11 +99,8 @@ class BoardNewScore(Board):
                 self.y += 1
                 if self.y < 5:
                     self.old_x = self.x
-                elif self.y == 5:
+                elif self.y == 5 or self.y == 6:
                     self.x = 0
-                elif self.y == 6:
-                    self.x = 1 if self.old_x > 4 else 0
-
         elif key == pygame.K_UP:
             if self.y > 0:
                 self.y -= 1
@@ -114,17 +112,19 @@ class BoardNewScore(Board):
         elif key == pygame.K_RIGHT:
             if self.x < 7 and self.y < 5:
                 self.x += 1
-            elif self.y == 6 and self.x == 0:
-                self.x += 1
         elif key == pygame.K_RETURN:
-            if self.y == 6:
-                if self.x == 1:
-                    self.arena.change_board(BoardType.MENU)
-                elif self.y < 5:
-                    letter = all_chrows[self.y][self.x]
-                    if letter == ';':
-                        # remove last char
-                        self.nick = self.nick[:-1]
-                    # TODO: Add new hiscore
-                    pass
+            if self.y == 5:
+                self.nick += ' '
+            elif self.y == 6:
+                if self.nick == '':
+                    self.nick = 'no name'
+                self.arena.config.append_hiscore(self.nick, self.arena.boards[BoardType.GAME].data['points'])
+                self.arena.change_board(BoardType.MENU)
+            elif self.y < 5:
+                letter = all_chrows[self.y][self.x]
+                if letter == ';':
+                    # remove last char
+                    self.nick = self.nick[:-1]
+                else:
+                    self.nick += letter
         self.recalculate_rectangles()

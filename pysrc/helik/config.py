@@ -99,9 +99,10 @@ class Config:
         try:
             if len(self.data['hiscores']) < 10:
                 return True
-            last = self.data['hiscores'][-1]
-            if last[1] < points:
-                return True
+            else:
+                n, p = self.data['hiscores'][-1]
+                if p < points:
+                    return True
         except KeyError:
             pass
         return False
@@ -113,3 +114,5 @@ class Config:
         :param points: new winners' points
         """
         self.data['hiscores'].append((nick, points))
+        self.data['hiscores'].sort(key=lambda a: a[1], reverse=True)
+        self.data['hiscores'] = self.data['hiscores'][:10]
