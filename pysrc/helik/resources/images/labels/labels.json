@@ -1,5 +1,8 @@
 {
   "pl": {
+    "newscore": {
+      "enter-nickname": "enter-nickname-pl.png"
+    },
     "player": {
       "select-player": "select-player-pl.png"
     },
@@ -82,7 +85,8 @@
       "hiscores-empty": "hiscores-empty-en.png"
     },
     "newscore": {
-      "newscore-title": "newscore-title-en.png"
+      "newscore-title": "newscore-title-en.png",
+      "enter-nickname": "enter-nickname-en.png"
     },
     "options": {
       "options-title": "options-title-en.png",

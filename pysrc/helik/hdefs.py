@@ -14,3 +14,5 @@ LEVELNO = 2
 
 JUMP = [30, 30, 25, 20, 15, 10]
 SPEED = 20
+
+ALL_CHARS = 'abcdefghijklmnopqrstuvwxyz.-_0123456789'

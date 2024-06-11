@@ -23,7 +23,7 @@ class ModeGameOver(Mode):
 
     def on_paint(self):
         """
-        PAint event handler
+        Paint event handler
         """
         self.buffer.blit(self.resman.images["default-background"], (0, 0))
         l, r = self.resman.labels[self.arena.config['lang']]["game"]["gameover"]

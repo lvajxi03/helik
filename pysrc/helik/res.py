@@ -7,7 +7,10 @@ All the resources
 import sys
 import json
 import pygame
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, LEVELNO
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, LEVELNO, ALL_CHARS
+
+
+characters = ['abcdefgh', 'ijklmnop', 'qrstuvwx', 'yz.-_012', '3456789#']
 
 
 class ResourceManager:
@@ -26,6 +29,7 @@ class ResourceManager:
         self.levels = []
         self.colors = {}
         self.surfaces = {}
+        self.letters = {}
         self.level_planes = {}
         self.surfaces = {
             "buffer": pygame.display.set_mode(
@@ -169,4 +173,13 @@ class ResourceManager:
         except IOError as ioe:
             pass
 
-        # That's all Folks!
+        le = self.images['letters-scores']
+        i = 0
+        for char in ALL_CHARS:
+            if char != '#':
+                print(char)
+                sub = le.subsurface((i*52, 0, 32, 36))
+                self.letters[char] = sub
+            i += 1
+
+    # That's all Folks!

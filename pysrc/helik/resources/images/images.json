@@ -102,5 +102,6 @@
     "viewport": "viewport.png",
     "checkbox-checked": "checkbox-checked.png",
     "checkbox-unchecked": "checkbox-unchecked.png",
-    "cursor": "cursor.png"
+    "cursor": "cursor.png",
+    "letters-scores": "letters-scores.png"
 }

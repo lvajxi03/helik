@@ -55,9 +55,7 @@ class Application:
             BoardType.QUIT: BoardQuit(self)
             }
         self.board_id = BoardType.WELCOME
-        # self.buffer = self.res_man.surfaces["buffer"]
         self.dirc = DirCType.DOWN
-        # self.imageman.load_images()
 
     def change_board(self, newboard):
         """

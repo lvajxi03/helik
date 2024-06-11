@@ -10,6 +10,7 @@ from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType
 from helik.gfx import blitnumber
 
+
 class BoardHiscores(Board):
     """
     Hiscores board class
@@ -29,7 +30,7 @@ class BoardHiscores(Board):
         self.buffer.blit(l, (55, 45))
 
         l, r = self.resman.labels[self.arena.config["lang"]]["general"]["status-line-no-select"]
-        self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))
+        self.buffer.blit(l, (ARENA_WIDTH - r.width - 200, ARENA_HEIGHT - 50))
 
         if len(self.arena.config['hiscores']) == 0:
             pass
