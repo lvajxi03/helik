@@ -1,0 +1,13 @@
+{
+    "fonts": {
+		"heading": ["punkciki-mono.ttf", 192],
+		"heading-2": ["punkciki-mono.ttf", 128],
+		"heading-25": ["punkciki-mono.ttf", 116],
+		"heading-3": ["punkciki-mono.ttf", 84],
+		"big-message": ["punkciki-mono.ttf", 128],
+		"menu": ["punkciki-mono.ttf", 56],
+		"prepare": ["punkciki-mono.ttf", 512],
+		"status": ["punkciki-mono.ttf", 58],
+		"letters": ["punkciki-mono.ttf", 56]
+    }
+}

@@ -1,0 +1,534 @@
+{
+    "pl": {
+        "menu": {
+            "title": {
+                "label": "HELIK!",
+                "font": "heading",
+                "rotate": 90,
+                "color": "#e0df4a"
+            },
+            "title-shadow": {
+                "label": "HELIK!",
+                "font": "heading",
+                "rotate": 90,
+                "color": "#313131"
+            },
+            "items": {
+                "labels": [
+                    "NOWA GRA",
+                    "OPCJE GRY",
+                    "NAJLEPSI",
+                    "USTAWIENIA",
+                    "POMOC",
+                    "O PROGRAMIE",
+                    "WYJŚCIE"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "items-shadow": {
+                "labels": [
+                    "NOWA GRA",
+                    "OPCJE GRY",
+                    "NAJLEPSI",
+                    "USTAWIENIA",
+                    "POMOC",
+                    "O PROGRAMIE",
+                    "WYJŚCIE"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#313131"
+            }
+        },
+        "options": {
+            "title": {
+                "label": "OPCJE GRY",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#e0df4a"
+            },
+            "title-shadow": {
+                "label": "OPCJE GRY",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#313131"
+            },
+            "items": {
+                "labels": [
+                    "TRENINGOWY",
+                    "ŁATWY",
+                    "NORMALNY",
+                    "ŚREDNI",
+                    "TRUDNY",
+                    "PIEKIELNY"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "items-shadow": {
+                "labels": [
+                    "TRENINGOWY",
+                    "ŁATWY",
+                    "NORMALNY",
+                    "ŚREDNI",
+                    "TRUDNY",
+                    "PIEKIELNY"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#313131"
+            }
+        },
+        "about": {
+            "title": {
+                "label": "O PROGRAMIE",
+                "font": "heading-25",
+                "rotate": 90,
+                "color": "#e0df4a"
+            },
+            "title-shadow": {
+                "label": "O PROGRAMIE",
+                "font": "heading-25",
+                "rotate": 90,
+                "color": "#313131"
+            }
+        },
+        "help": {
+            "title": {
+                "label": "POMOC",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#e0df4a"
+            },
+            "title-shadow": {
+                "label": "POMOC",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#313131"
+            }
+        },
+        "hiscores": {
+            "title": {
+                "label": "NAJLEPSI",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#e0df4a"
+            },
+            "title-shadow": {
+                "label": "NAJLEPSI",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#313131"
+            }
+        },
+        "settings": {
+            "title": {
+                "label": "USTAWIENIA",
+                "font": "heading-25",
+                "rotate": 90,
+                "color": "#e0df4a"
+            },
+            "title-shadow": {
+                "label": "USTAWIENIA",
+                "font": "heading-25",
+                "rotate": 90,
+                "color": "#313131"
+            },
+            "items": {
+                "labels": [
+                    "DŹWIĘKI",
+                    "MUZYKA"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "items-shadow": {
+                "labels": [
+                    "DŹWIĘKI",
+                    "MUZYKA"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#313131"
+            }
+        },
+        "common": {
+            "common-status": {
+                "label": "← Q ESC \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "settings-status": {
+                "label": "↑↓ ENTER   ← Q ESC \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "menu-status": {
+                "label": "↑↓ ENTER   Q ESC \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "newscore-status": {
+                "label": "←↑↓→ ENTER   ESC \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            }
+        },
+        "game": {
+            "choose-vehicle": {
+                "label": "WYBIERZ POJAZD",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "paused": {
+                "label": "GRA WSTRZYMANA",
+                "font": "heading-2",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+           "paused-shadow": {
+                "label": "GRA WSTRZYMANA",
+                "font": "heading-2",
+                "rotate": 0,
+                "color": "#313131"
+            },
+            "continue": {
+                "label": "Naciśnij spację, by kontynuować",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "gameover": {
+                "label": "GAME OVER",
+                "font": "heading",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "gameover-shadow": {
+                "label": "GAME OVER",
+                "font": "heading",
+                "rotate": 0,
+                "color": "#313131"
+            },
+            "gameover-2": {
+                "label": "Kup se rower!",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            }
+        },
+        "newscore": {
+            "congrats": {
+                "label": "Gratulacje!",
+                "font": "heading-2",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "congrats-shadow": {
+                "label": "Gratulacje!",
+                "font": "heading-2",
+                "rotate": 0,
+                "color": "#313131"
+            },
+            "congrats-2": {
+                "label": "Jesteś w dziesiątce najlepszych!",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "enter-nickname": {
+                "label": "Wprowadź swój nick:",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "done": {
+                "label": "ZAKOŃCZ",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "space": {
+                "label": "SPACJA",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            }
+        }
+    },
+    "en": {
+        "menu": {
+            "title": {
+                "label": "HELIK!",
+                "font": "heading",
+                "rotate": 90,
+                "color": "#e0df4a"
+            },
+            "title-shadow": {
+                "label": "HELIK!",
+                "font": "heading",
+                "rotate": 90,
+                "color": "#313131"
+            },
+            "items": {
+                "labels": [
+                    "NEW GAME",
+                    "GAME OPTONS",
+                    "HISCORES",
+                    "SETTINGS",
+                    "HELP",
+                    "ABOUT",
+                    "QUIT"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "items-shadow": {
+                "labels": [
+                    "NEW GAME",
+                    "GAME OPTONS",
+                    "HISCORES",
+                    "SETTINGS",
+                    "HELP",
+                    "ABOUT",
+                    "QUIT"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#313131"
+            }
+        },
+        "options": {
+            "title": {
+                "label": "OPTIONS",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#e0df4a"
+            },
+            "title-shadow": {
+                "label": "OPTIONS",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#313131"
+            },
+            "items": {
+                "labels": [
+                    "TRAINING",
+                    "EASY",
+                    "NORMAL",
+                    "MEDIUM",
+                    "HARD",
+                    "DEVIL"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "items-shadow": {
+                "labels": [
+                    "TRAINING",
+                    "EASY",
+                    "NORMAL",
+                    "MEDIUM",
+                    "HARD",
+                    "DEVIL"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#313131"
+            }
+        },
+        "about": {
+            "title": {
+                "label": "ABOUT",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#e0df4a"
+            },
+            "title-shadow": {
+                "label": "ABOUT",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#313131"
+            }
+        },
+        "help": {
+            "title": {
+                "label": "HELP",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#e0df4a"
+            },
+            "title-shadow": {
+                "label": "HELP",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#313131"
+            }
+        },
+        "hiscores": {
+            "title": {
+                "label": "HISCORES",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#e0df4a"
+            },
+            "title-shadow": {
+                "label": "HISCORES",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#313131"
+            }
+        },
+        "settings": {
+            "title": {
+                "label": "SETTINGS",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#e0df4a"
+            },
+            "title-shadow": {
+                "label": "SETTINGS",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#313131"
+            },
+            "items": {
+                "labels": [
+                    "SOUNDS",
+                    "MUSIC"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "items-shadow": {
+                "labels": [
+                    "SOUNDS",
+                    "MUSIC"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#313131"
+            }
+        },
+        "common": {
+            "common-status": {
+                "label": "← Q ESC \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "settings-status": {
+                "label": "↑↓ ENTER   ← Q ESC \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "menu-status": {
+                "label": "↑↓ ENTER   Q ESC \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "newscore-status": {
+                "label": "←↑↓→ ENTER   ESC \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            }
+        },
+        "game": {
+            "choose-vehicle": {
+                "label": "SELECT YOUR VEHICLE",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "paused": {
+                "label": "GAME PAUSED",
+                "font": "heading-2",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "paused-shadow": {
+                "label": "GAME PAUSED",
+                "font": "heading-2",
+                "rotate": 0,
+                "color": "#313131"
+            },
+            "continue": {
+                "label": "Press space to continue",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "gameover": {
+                "label": "GAME OVER",
+                "font": "heading",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "gameover-shadow": {
+                "label": "GAME OVER",
+                "font": "heading",
+                "rotate": 0,
+                "color": "#313131"
+            },
+            "gameover-2": {
+                "label": "That's all folks!",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            }
+        },
+        "newscore": {
+            "congrats": {
+                "label": "Congratulations!",
+                "font": "heading-2",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "congrats-shadow": {
+                "label": "Congratulations!",
+                "font": "heading-2",
+                "rotate": 0,
+                "color": "#313131"
+            },
+            "congrats-2": {
+                "label": "You are in the top ten!",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "enter-nickname": {
+                "label": "Enter your nickname:",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "done": {
+                "label": "DONE",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "space": {
+                "label": "SPACE",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            }
+        }
+    }
+}

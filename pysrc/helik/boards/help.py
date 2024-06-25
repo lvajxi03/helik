@@ -25,11 +25,13 @@ class BoardHelp(Board):
         self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
         self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
 
-        l, _ = self.resman.labels[self.arena.config["lang"]]["help"]["help-title"]
-        self.buffer.blit(l, (55, 45))
+        la, _ = self.resman.locale[self.arena.config["lang"]]["help"]["title-shadow"]
+        self.buffer.blit(la, (30, 30))
+        la, _ = self.resman.locale[self.arena.config["lang"]]["help"]["title"]
+        self.buffer.blit(la, (25, 25))
 
-        l, r = self.resman.labels[self.arena.config["lang"]]["general"]["status-line-no-select"]
-        self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))
+        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["common-status"]
+        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
     def on_keyup(self, key):
         """

@@ -9,6 +9,7 @@ from helik.boards.standard import Board
 from helik.htypes import BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
 
+
 def menupos2board(menu_pos: int) -> BoardType:
     """
     Calculate board id from menu pos
@@ -39,6 +40,7 @@ class BoardMenu(Board):
         self.rect_pos_t = None
         self.color = pygame.Color(76, 76, 76)
         self.rectangles = []
+        self.rectangles_s = []
         self.create_rectangles()
 
     def recalculate_pos(self):
@@ -53,12 +55,21 @@ class BoardMenu(Board):
         Create labels and rectangles based on locale
         """
         self.rectangles = []
+        self.rectangles_s = []
         i = 0
-        for elem in self.resman.labels[self.arena.config['lang']]["menu-items"]:
+        for elem in self.resman.locale[self.arena.config['lang']]["menu"]["items"]:
             label, rect = elem
             rect.left = 400
             rect.top = 100 + i * 80
             self.rectangles.append((label, rect))
+            i += 1
+
+        i = 0
+        for elem in self.resman.locale[self.arena.config['lang']]["menu"]["items-shadow"]:
+            label, rect = elem
+            rect.left = 405
+            rect.top = 105 + i * 80
+            self.rectangles_s.append((label, rect))
             i += 1
         self.recalculate_pos()
 
@@ -72,15 +83,22 @@ class BoardMenu(Board):
         self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
         self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
 
-        l, _ = self.resman.labels[self.arena.config['lang']]["menu"]["menu-title"]
-        self.buffer.blit(l, (215, 45))
+        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["menu-status"]
+        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
-        l, r = self.resman.labels[self.arena.config["lang"]]["menu"]["status-line"]
-        self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))
+        la, _ = self.resman.locale[self.arena.config["lang"]]["menu"]["title-shadow"]
+        self.buffer.blit(la, (220, 50))
 
+        la, _ = self.resman.locale[self.arena.config["lang"]]["menu"]["title"]
+        self.buffer.blit(la, (215, 45))
+
+        for re in self.rectangles_s:
+            label, rect = re
+            self.buffer.blit(label, rect)
         for re in self.rectangles:
             label, rect = re
             self.buffer.blit(label, rect)
+
         self.rect_pos_t = self.rect_pos.move(5, 5)
         pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16),
                          self.rect_pos_t, width=5, border_radius=20)

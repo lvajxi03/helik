@@ -28,6 +28,7 @@ class ResourceManager:
         self.digits = {}
         self.levels = []
         self.colors = {}
+        self.fonts = {}
         self.surfaces = {}
         self.letters = {}
         self.level_planes = {}
@@ -45,19 +46,94 @@ class ResourceManager:
                 "en": pygame.Rect(ARENA_WIDTH - 77, ARENA_HEIGHT - 58, 75, 56)
             }
         }
+
+        self.locale = {}
         self.load_resources(basepath)
+
+        pygame.draw.rect(self.surfaces["status"],
+                         self.colors["status-color"], (0, 0, ARENA_WIDTH, 60))
 
     def load_resources(self, basepath):
         """
         Load all resources
         :param basepath: root directory of all resources
         """
+        self.load_fonts(basepath)
         self.load_images(basepath)
         self.load_digits(basepath)
+        self.load_labels(basepath)
         self.load_colors(basepath)
         self.load_level_planes(basepath)
-        self.load_labels(basepath)
+        # self.load_labelsv(basepath)
         self.load_levels(basepath)
+        self.create_letters(self.fonts["menu"], pygame.Color("#ffffff"))
+
+    def load_fonts(self, basepath):
+        """
+        Load fonts data and create Font objects
+        from fonts.json
+        :param basepath: root directory of all resources
+        """
+        f_name = basepath.joinpath("fonts.json")
+        try:
+            with open(f_name, encoding="utf-8") as f_handle:
+                data = json.load(f_handle)["fonts"]
+                for name in data:
+                    dt = data[name]
+                    self.fonts[name] = pygame.font.Font(basepath.joinpath("fonts").joinpath(dt[0]), dt[1])
+        except IOError as ioe:
+            print(str(ioe))
+
+    def load_labels(self, basepath):
+        """
+        Load and create labels
+        from labels.json file
+        :param basepath: root directory of all resources
+        """
+        f_name = basepath.joinpath("labels.json")
+        try:
+            with open(f_name, encoding="utf-8") as f_hamdle:
+                content = json.load(f_hamdle)
+                data = {}
+                # 1. Languages
+                for lang in content:
+                    if lang not in data:
+                        data[lang] = {}
+                    for group in content[lang]:
+                        if group not in data[lang]:
+                            data[lang][group] = {}
+                        for label in content[lang][group]:
+                            # Font data
+                            fd = content[lang][group][label]
+                            rotate = 0
+                            if "rotate" in fd:
+                                rotate = int(fd["rotate"])
+                            if "label" in fd:
+                                # Singla label
+                                su = pygame.transform.rotate(
+                                    self.fonts[fd["font"]].render(
+                                        fd["label"],
+                                        True,
+                                        fd["color"]),
+                                    rotate)
+                                r = su.get_rect()
+                                data[lang][group][label] = (su, r)
+                            elif "labels" in fd:
+                                # List of labels
+                                data[lang][group][label] = []
+                                for fdx in fd["labels"]:
+                                    su = pygame.transform.rotate(
+                                        self.fonts[fd["font"]].render(
+                                            fdx,
+                                            True,
+                                            fd["color"]),
+                                        rotate)
+                                    r = su.get_rect()
+                                    data[lang][group][label].append((su, r))
+                self.locale = data
+        except IOError as ioe:
+            print(str(ioe))
+            pass
 
     def load_digits(self, basepath):
         """
@@ -81,7 +157,21 @@ class ResourceManager:
                 d = json.load(f_handle)
                 self.levels.append(d)
 
-    def load_labels(self, basepath):
+    def create_letters(self, font, color):
+        """
+        Create letters for new hiscore board
+        :param font: Pygame Font object
+        :param color: Pygame color object
+        """
+        self.letters = {}
+        for letter in ALL_CHARS:
+            su = font.render(
+                letter,
+                True,
+                color)
+            self.letters[letter] = su
+
+    def load_labelsv(self, basepath):
         """
         Load labels from resources
         :param basepath: root directory of all resources
@@ -172,14 +262,5 @@ class ResourceManager:
                         self.images[key] = pygame.image.load(pa.joinpath(value))
         except IOError as ioe:
             pass
-
-        le = self.images['letters-scores']
-        i = 0
-        for char in ALL_CHARS:
-            if char != '#':
-                print(char)
-                sub = le.subsurface((i*52, 0, 32, 36))
-                self.letters[char] = sub
-            i += 1
 
     # That's all Folks!

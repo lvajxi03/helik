@@ -22,10 +22,49 @@ class BoardSettings(Board):
         """
         super().__init__(parent)
         self.labels = ["sound", "music"]
-        self.pos = 0
+        self.menu_pos = 0
         self.maxpos = 1
-        self.rectangles = [Rect(180, 130, 400, 85), Rect(180, 230, 400, 85)]
-        self.rshadows = [Rect(175, 125, 400, 85), Rect(175, 225, 400, 85)]
+        self.rectangles = []
+        self.rectangles_s = []
+        self.create_rectangles()
+        self.rect_pos = None
+        self.rect_pos_t = None
+        self.create_rectangles()
+
+        # self.rectangles = [Rect(180, 130, 400, 85), Rect(180, 230, 400, 85)]
+        # self.rshadows = [Rect(175, 125, 400, 85), Rect(175, 225, 400, 85)]
+
+    def create_rectangles(self):
+        """
+        Create labels and rectangles based on locale
+        """
+        self.rectangles = []
+        self.rectangles_s = []
+
+        i = 0
+        for elem in self.resman.locale[self.arena.config['lang']]["settings"]["items"]:
+            label, rect = elem
+            rect.left = 400
+            rect.top = 100 + i * 80
+            rect.width = 750 - rect.left
+            self.rectangles.append((label, rect))
+            i += 1
+        i = 0
+        for elem in self.resman.locale[self.arena.config['lang']]["settings"]["items-shadow"]:
+            label, rect = elem
+            rect.left = 405
+            rect.top = 105 + i * 80
+            rect.width = 750 - rect.left
+            self.rectangles_s.append((label, rect))
+            i += 1
+        self.recalculate_pos()
+
+    def recalculate_pos(self):
+        """
+        Re-calculate current selection rectangle
+        """
+        _, self.rect_pos = self.rectangles[self.menu_pos]
+        self.rect_pos = self.rect_pos.inflate(40, 40)
 
     def on_paint(self):
         """
@@ -38,30 +77,36 @@ class BoardSettings(Board):
         self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
         self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
 
-        l, _ = self.resman.labels[self.arena.config["lang"]]["settings"]["settings-title"]
-        self.buffer.blit(l, (55, 45))
+        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["title-shadow"]
+        self.buffer.blit(la, (240, 80))
+        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["title"]
+        self.buffer.blit(la, (245, 75))
 
-        l, r = self.resman.labels[self.arena.config["lang"]]["general"]["status-line-select"]
-        self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))
+        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["settings-status"]
+        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
-        l, _ = self.resman.labels[self.arena.config["lang"]]["settings"]["setting-sound"]
-        self.buffer.blit(l, (200, 150))
-        l, _ = self.resman.labels[self.arena.config["lang"]]["settings"]["setting-music"]
-        self.buffer.blit(l, (200, 250))
+        for re in self.rectangles_s:
+            label, rect = re
+            self.buffer.blit(label, rect)
+        for re in self.rectangles:
+            label, rect = re
+            self.buffer.blit(label, rect)
+
+        self.rect_pos_t = self.rect_pos.move(5, 5)
+        pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16),
+                         self.rect_pos_t, width=5, border_radius=20)
+        pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32),
+                         self.rect_pos, width=5, border_radius=20)
 
         if self.arena.config["sound"] == 1:
-            self.buffer.blit(self.resman.images["checkbox-checked"], (500, 150))
+            self.buffer.blit(self.resman.images["checkbox-checked"], (700, 105))
         else:
-            self.buffer.blit(self.resman.images["checkbox-unchecked"], (500, 150))
+            self.buffer.blit(self.resman.images["checkbox-unchecked"], (700, 105))
 
         if self.arena.config["music"] == 1:
-            self.buffer.blit(self.resman.images["checkbox-checked"], (500, 250))
+            self.buffer.blit(self.resman.images["checkbox-checked"], (700, 185))
         else:
-            self.buffer.blit(self.resman.images["checkbox-unchecked"], (500, 250))
-        pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16),
-                         self.rshadows[self.pos], width=5, border_radius=20)
-        pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32),
-                         self.rectangles[self.pos], width=5, border_radius=20)
+            self.buffer.blit(self.resman.images["checkbox-unchecked"], (700, 185))
 
     def on_keyup(self, key):
         """
@@ -70,18 +115,19 @@ class BoardSettings(Board):
         :param key: any key pressed
         """
         if key == pygame.K_DOWN:
-            if self.pos < self.maxpos:
+            if self.menu_pos < self.maxpos:
                 self.audio.play_sound("arrow")
-                self.pos += 1
+                self.menu_pos += 1
         elif key == pygame.K_UP:
-            if self.pos > 0:
-                self.pos -= 1
+            if self.menu_pos > 0:
+                self.menu_pos -= 1
                 self.audio.play_sound("arrow")
         elif key == pygame.K_RETURN:
-            self.arena.config[self.labels[self.pos]] = 1 if self.arena.config[self.labels[self.pos]] == 0 else 0
+            self.arena.config[self.labels[self.menu_pos]] = 1 if self.arena.config[self.labels[self.menu_pos]] == 0 else 0
             self.audio.play_sound("closing-tape")
         elif key == pygame.K_q or key == pygame.K_ESCAPE or key == pygame.K_LEFT:
             self.arena.change_board(BoardType.MENU)
+        self.recalculate_pos()
 
     def on_mouseup(self, button, pos):
         """
@@ -96,13 +142,21 @@ class BoardSettings(Board):
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
                     ch_lang = True
+                    self.audio.play_sound("arrow")
+                    self.create_rectangles()
             if not ch_lang:
                 i = 0
-                for rect in self.rectangles:
+                for elem in self.rectangles:
+                    _, rect = elem
                     if rect.collidepoint(pos):
-                        self.pos = i
+                        self.menu_pos = i
                         self.on_keyup(pygame.K_RETURN)
                     i += 1
 
         if button == 2 or button == 3:
             self.arena.change_board(BoardType.MENU)
+        elif button == 4:
+            self.on_keyup(pygame.K_UP)
+        elif button == 5:
+            self.on_keyup(pygame.K_DOWN)
+
