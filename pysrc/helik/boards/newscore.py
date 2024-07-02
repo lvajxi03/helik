@@ -11,6 +11,38 @@ from helik.htypes import BoardType, TimerType
 
 all_chrows = ['abcdefgh', 'ijklmnop', 'qrstuvwx', 'yz.-_012', '3456789⌫']
 
+HEADING_SHADOW_DX = 5
+LETTER_BLOCK_DX = 40
+LETTER_BLOCK_DY = 55
+LETTER_BLOCK_W = 34
+LETTER_BLOCK_H = 55
+
+LINE_WIDTH = 320
+LINE_DY = 330
+LINE_DX = (ARENA_WIDTH - LINE_WIDTH) // 2
+
+SPACE_Y_OFFSET = 605
+DONE_Y_OFFSET = 660
+SHADOW_DX = 20
+BLOCK_DX = 15
+STATUS_DX = 200
+CONGRATS_DY = 25
+CONGRATS_S_DY = 20
+CONGRATS_2_DY = 170
+NICK_DY = 261
+ENTER_NICKNAME_DX = 10
+ENTER_NICKNAME_DY = 260
+CURSOR_DY = 261
+
+SURR_W = 60
+SURR_H = 75
+BIG_BUTTON_W = 340
+BUTTON_DX = 10
+BUTTON_S_DX = 15
+
+BORDER_RADIUS = 8
+BORDER_WIDTH = 5
+
 
 class BoardNewScore(Board):
     """
@@ -25,17 +57,23 @@ class BoardNewScore(Board):
         self.nick = ""
         self.x = 0
         self.y = 0
-        self.old_x = 0
-        self.r1 = pygame.Rect(self.x - 30, self.y - 30, 50, 90)
-        self.r2 = pygame.Rect(self.x - 25, self.y - 25, 50, 90)
-        self.r3 = pygame.Rect(0, 0, 0, 0)
-        self.r3a = pygame.Rect(0, 0, 0, 0)
-        self.r4 = pygame.Rect(0, 0, 0, 0)
-        self.r4a = pygame.Rect(0, 0, 0, 0)
-        self.margin_x = 0
-        self.margin_y = 0
-        self.recalculate_rectangles()
+        self.rectangles = {}
         self.counter = 0
+        self.recalculate_rectangles()
+
+    def update_nick(self, last):
+        """
+        Update nick with given character
+        :param last: character to add
+        """
+        if len(self.nick) < 8:
+            self.nick += last
+
+    def trim_nick(self):
+        """
+        Remove last character from nick
+        """
+        self.nick = self.nick[:-1]
 
     def activate(self):
         """
@@ -51,17 +89,23 @@ class BoardNewScore(Board):
         pygame.time.set_timer(TimerType.SECOND, 0)
 
     def recalculate_rectangles(self):
-        # l, r = self.resman.labels[self.arena.config['lang']]["control"]["keyboard"]
-        # self.margin_x = (ARENA_WIDTH - r.w) // 2
-        # self.margin_y = ARENA_HEIGHT // 4 - 150
-        # self.r1 = pygame.Rect(self.margin_x - 15 + self.x * 52, self.margin_y - 15 + self.y * 52, 55, 65)
-        # self.r2 = pygame.Rect(self.margin_x - 20 + self.x * 52, self.margin_y - 10 + self.y * 52, 55, 65)
-        # self.r3 = pygame.Rect(self.margin_x - 20, self.margin_y - 12 + 5 * 52, 8*52 + 20, 65)
-        # self.r3a = pygame.Rect(self.margin_x - 15, self.margin_y - 7 + 5 * 52, 8 * 52 + 20, 65)
-        #
-        # self.r4 = pygame.Rect(self.margin_x - 20, self.margin_y - 12 + 6 * 52, 8 * 52 + 20, 65)
-        # self.r4a = pygame.Rect(self.margin_x - 15, self.margin_y - 7 + 6 * 52, 8 * 52 + 20, 65)
-        pass
+        self.rectangles = {}
+        for i in range(5):
+            for j in range(8):
+                r = pygame.Rect(LINE_DX + j * LETTER_BLOCK_DX,
+                                LINE_DY + i * LETTER_BLOCK_DY,
+                                LETTER_BLOCK_W, LETTER_BLOCK_H)
+                self.rectangles[all_chrows[i][j]] = r
+
+        la, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["space"]
+        re.y = SPACE_Y_OFFSET
+        re.x = (ARENA_WIDTH - re.w) // 2
+        self.rectangles[' '] = re
+
+        la, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["done"]
+        re.y = DONE_Y_OFFSET
+        re.x = (ARENA_WIDTH - re.w) // 2
+        self.rectangles[';'] = re
 
     def on_timer(self, timer):
         """
@@ -77,76 +121,95 @@ class BoardNewScore(Board):
         Paint event handler
         """
         self.buffer.blit(self.resman.images["default-background"], (0, 0))
-        self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - 60))
+        self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - STATUS_HEIGHT))
 
         # Lang flags
         self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
         self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
 
         la, re = self.resman.locale[self.arena.config["lang"]]["common"]["newscore-status"]
-        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+        self.buffer.blit(la, (ARENA_WIDTH - re.width - STATUS_DX, ARENA_HEIGHT - LETTER_BLOCK_H))
 
         la, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["congrats-shadow"]
-        re.x = (ARENA_WIDTH - re.w) // 2 + 5
-        re.y = 25
+        re.x = (ARENA_WIDTH - re.w) // 2 + HEADING_SHADOW_DX
+        re.y = CONGRATS_DY
         self.buffer.blit(la, re)
 
         la, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["congrats"]
         re.x = (ARENA_WIDTH - re.w) // 2
 
-        re.y = 20
+        re.y = CONGRATS_S_DY
         self.buffer.blit(la, re)
 
         la, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["congrats-2"]
         re.x = (ARENA_WIDTH - re.w) // 2
-        re.y = 170
+        re.y = CONGRATS_2_DY
         self.buffer.blit(la, re)
 
         i = 0
         for l in self.nick:
-            self.buffer.blit(self.resman.letters[l], (ARENA_WIDTH // 2 + i * 34, 261))
+            self.buffer.blit(self.resman.letters[l], (ARENA_WIDTH // 2 + i * LETTER_BLOCK_W, NICK_DY))
             i += 1
 
         if self.counter == 0:
             self.buffer.blit(self.resman.images['cursor'],
-                             (ARENA_WIDTH // 2 + i * 34,
-                              266))
+                             (ARENA_WIDTH // 2 + i * LETTER_BLOCK_W,
+                              CURSOR_DY))
 
         l, r = self.resman.locale[self.arena.config["lang"]]["newscore"]["enter-nickname"]
-        r.x = ARENA_WIDTH // 2 - r.w - 10
-        r.y = 260
+        r.x = ARENA_WIDTH // 2 - r.w - ENTER_NICKNAME_DX
+        r.y = ENTER_NICKNAME_DY
         self.buffer.blit(l, r)
 
-        dx = (ARENA_WIDTH - 320) // 2
         for i in range(5):
             for j in range(8):
-                self.buffer.blit(self.resman.letters[all_chrows[i][j]], (dx + j * 40, 330 + i * 55))
+                self.buffer.blit(self.resman.letters[all_chrows[i][j]],
+                                 (LINE_DX + j * LETTER_BLOCK_DX,
+                                  LINE_DY + i * LETTER_BLOCK_DY))
 
         la, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["space"]
-        re.y = 610
-        re.x = (ARENA_WIDTH - re.w) // 2
-        self.buffer.blit(la, re)
+        self.buffer.blit(la, self.rectangles[' '])
 
         la, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["done"]
-        re.y = 680
-        re.x = (ARENA_WIDTH - re.w) // 2
-        self.buffer.blit(la, re)
+        self.buffer.blit(la, self.rectangles[';'])
 
         if self.y < 5:
-            pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16),
-                             self.r2, width=5, border_radius=20)
-            pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32),
-                             self.r1, width=5, border_radius=20)
+            r = pygame.Rect(LINE_DX + self.x * LETTER_BLOCK_DX - BUTTON_S_DX,
+                            LINE_DY + self.y * LETTER_BLOCK_H - BLOCK_DX, SURR_W, SURR_H)
+            pygame.draw.rect(self.buffer, self.resman.colors["shadow-default"],
+                             r,
+                             width=BORDER_WIDTH, border_radius=BORDER_RADIUS)
+            r = pygame.Rect(LINE_DX + self.x * LETTER_BLOCK_DX - BLOCK_DX,
+                            LINE_DY + self.y * LETTER_BLOCK_H - BUTTON_DX, SURR_W, SURR_H)
+            pygame.draw.rect(self.buffer, self.resman.colors["yellow-default"],
+                             r, width=BORDER_WIDTH, border_radius=BORDER_RADIUS)
         elif self.y == 5:
-            pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16),
-                             self.r3a, width=5, border_radius=20)
-            pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32),
-                             self.r3, width=5, border_radius=20)
+            r = pygame.Rect(LINE_DX - BUTTON_S_DX, LINE_DY + self.y * LETTER_BLOCK_H - SHADOW_DX,
+                            BIG_BUTTON_W, SURR_H)
+            pygame.draw.rect(self.buffer, self.resman.colors["shadow-default"],
+                             r, width=BORDER_WIDTH, border_radius=BORDER_RADIUS)
+            r = pygame.Rect(LINE_DX - BUTTON_DX, LINE_DY + self.y * LETTER_BLOCK_H - BLOCK_DX,
+                            BIG_BUTTON_W, SURR_H)
+            pygame.draw.rect(self.buffer, self.resman.colors["yellow-default"],
+                             r, width=BORDER_WIDTH, border_radius=BORDER_RADIUS)
         elif self.y == 6:
-            pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16),
-                             self.r4a, width=5, border_radius=20)
-            pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32),
-                             self.r4, width=5, border_radius=20)
+            r = pygame.Rect(LINE_DX - BUTTON_S_DX, LINE_DY + self.y * LETTER_BLOCK_H - SHADOW_DX,
+                            BIG_BUTTON_W, SURR_H)
+            pygame.draw.rect(self.buffer, self.resman.colors["shadow-default"],
+                             r, width=BORDER_WIDTH, border_radius=BORDER_RADIUS)
+            r = pygame.Rect(LINE_DX - BUTTON_DX, LINE_DY + self.y * LETTER_BLOCK_H - BLOCK_DX, BIG_BUTTON_W, SURR_H)
+            pygame.draw.rect(self.buffer, self.resman.colors["yellow-default"],
+                             r, width=BORDER_WIDTH, border_radius=BORDER_RADIUS)
+
+    def store_nick(self):
+        """
+        Store nick in configuration
+        """
+        self.nick = self.nick.strip()
+        if self.nick == '':
+            self.nick = 'no name'
+        self.arena.config.append_hiscore(self.nick, self.arena.boards[BoardType.GAME].data['points'])
+        self.arena.config["lastnick"] = self.nick
 
     def on_keyup(self, key):
         """
@@ -155,27 +218,17 @@ class BoardNewScore(Board):
         :param key: any key pressed
         """
         name = pygame.key.name(key)
-        if name in ALL_CHARS:
-            if len(self.nick) < 8:
-                self.nick += name
+        if name in ALL_CHARS or name == pygame.K_SPACE:
+            self.update_nick(name)
         elif key == pygame.K_ESCAPE:
-            if self.nick == '':
-                self.nick = 'no name'
-            self.arena.config.append_hiscore(self.nick, self.arena.boards[BoardType.GAME].data['points'])
-            self.arena.config["lastnick"] = self.nick
+
             self.arena.change_board(BoardType.MENU)
         elif key == pygame.K_DOWN:
             if self.y < 6:
                 self.y += 1
-                if self.y < 5:
-                    self.old_x = self.x
-                elif self.y == 5 or self.y == 6:
-                    self.x = 0
         elif key == pygame.K_UP:
             if self.y > 0:
                 self.y -= 1
-                if self.y < 5:
-                    self.x = self.old_x
         elif key == pygame.K_LEFT:
             if self.x > 0:
                 self.x -= 1
@@ -183,13 +236,14 @@ class BoardNewScore(Board):
             if self.x < 7 and self.y < 5:
                 self.x += 1
         elif key == pygame.K_DELETE:
-            self.nick = self.nick[:-1]
+            self.trim_nick()
         elif key == pygame.K_BACKSPACE:
-            self.nick = self.nick[:-1]
+            self.trim_nick()
         elif key == pygame.K_RETURN:
             if self.y == 5:
-                self.nick += ' '
+                self.update_nick(' ')
             elif self.y == 6:
+                self.nick = self.nick.strip()
                 if self.nick == '':
                     self.nick = 'no name'
                 self.arena.config.append_hiscore(self.nick, self.arena.boards[BoardType.GAME].data['points'])
@@ -197,12 +251,10 @@ class BoardNewScore(Board):
                 self.arena.change_board(BoardType.MENU)
             elif self.y < 5:
                 letter = all_chrows[self.y][self.x]
-                if letter == ';':
-                    # remove last char
-                    self.nick = self.nick[:-1]
+                if letter == '⌫':
+                    self.trim_nick()
                 else:
-                    if len(self.nick) < 8:
-                        self.nick += letter
+                    self.update_nick(letter)
         self.recalculate_rectangles()
 
     def on_mouseup(self, button, pos):
@@ -212,11 +264,25 @@ class BoardNewScore(Board):
         :param pos: cursor position
         """
         if button == 1:
+            ch_lang = False
             rects = self.resman.rectangles["lang-rectangles"]
             for lang in rects:
                 if rects[lang].collidepoint(pos):
+                    ch_lang = True
                     self.arena.config['lang'] = lang
                     self.audio.play_sound("arrow")
+                    self.recalculate_rectangles()
+            if not ch_lang:
+                for pair in self.rectangles.items():
+                    letter, rect = pair
+                    if rect.collidepoint(pos):
+                        if letter == ';':
+                            # done
+                            self.on_keyup(pygame.K_ESCAPE)
+                        elif letter == '⌫':
+                            self.trim_nick()
+                        else:
+                            self.update_nick(letter)
         elif button == 4:
             self.on_keyup(pygame.K_UP)
         elif button == 5:

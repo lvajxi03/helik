@@ -54,7 +54,7 @@ class Application:
             BoardType.NEWSCORE: BoardNewScore(self),
             BoardType.QUIT: BoardQuit(self)
             }
-        self.board_id = BoardType.NEWSCORE
+        self.board_id = BoardType.WELCOME
         self.dirc = DirCType.DOWN
 
     def change_board(self, newboard):

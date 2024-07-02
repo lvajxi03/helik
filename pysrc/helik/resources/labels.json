@@ -241,25 +241,25 @@
             },
             "congrats-2": {
                 "label": "Jesteś w dziesiątce najlepszych!",
-                "font": "menu",
+                "font": "screen-keyboard",
                 "rotate": 0,
                 "color": "#ffffff"
             },
             "enter-nickname": {
                 "label": "Wprowadź swój nick:",
-                "font": "menu",
+                "font": "screen-keyboard",
                 "rotate": 0,
                 "color": "#ffffff"
             },
             "done": {
                 "label": "ZAKOŃCZ",
-                "font": "menu",
+                "font": "screen-keyboard",
                 "rotate": 0,
                 "color": "#ffffff"
             },
             "space": {
                 "label": "SPACJA",
-                "font": "menu",
+                "font": "screen-keyboard",
                 "rotate": 0,
                 "color": "#ffffff"
             }
@@ -507,25 +507,25 @@
             },
             "congrats-2": {
                 "label": "You are in the top ten!",
-                "font": "menu",
+                "font": "screen-keyboard",
                 "rotate": 0,
                 "color": "#ffffff"
             },
             "enter-nickname": {
                 "label": "Enter your nickname:",
-                "font": "menu",
+                "font": "screen-keyboard",
                 "rotate": 0,
                 "color": "#ffffff"
             },
             "done": {
                 "label": "DONE",
-                "font": "menu",
+                "font": "screen-keyboard",
                 "rotate": 0,
                 "color": "#ffffff"
             },
             "space": {
                 "label": "SPACE",
-                "font": "menu",
+                "font": "screen-keyboard",
                 "rotate": 0,
                 "color": "#ffffff"
             }

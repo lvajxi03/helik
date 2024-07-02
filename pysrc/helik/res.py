@@ -59,14 +59,13 @@ class ResourceManager:
         :param basepath: root directory of all resources
         """
         self.load_fonts(basepath)
+        self.load_colors(basepath)
         self.load_images(basepath)
         self.load_digits(basepath)
         self.load_labels(basepath)
-        self.load_colors(basepath)
         self.load_level_planes(basepath)
-        # self.load_labelsv(basepath)
         self.load_levels(basepath)
-        self.create_letters(self.fonts["menu"], pygame.Color("#ffffff"))
+        self.create_letters(self.fonts["screen-keyboard"], self.colors["snowy-white"])
 
     def load_fonts(self, basepath):
         """
@@ -170,43 +169,6 @@ class ResourceManager:
                 True,
                 color)
             self.letters[letter] = su
-
-    def load_labelsv(self, basepath):
-        """
-        Load labels from resources
-        :param basepath: root directory of all resources
-        """
-        self.labels = {}
-        pa = basepath.joinpath("images").joinpath("labels")
-        f_path = pa.joinpath("labels.json")
-        try:
-            with open(f_path, encoding="utf-8") as f_handle:
-                data = json.load(f_handle)
-                for lang in data:
-                    if lang not in self.labels:
-                        self.labels[lang] = {}
-                    values = data[lang]
-                    for key in values:
-                        value = values[key]
-                        if type(value) is list:
-                            self.labels[lang][key] = []
-                            for elem in value:
-                                img = pygame.image.load(pa.joinpath(lang).joinpath(key).joinpath(elem))
-                                rect = img.get_rect()
-                                self.labels[lang][key].append((img, rect))
-                        elif type(value) is str:
-                            img = pygame.image.load(pa.joinpath(lang).joinpath(value))
-                            rect = img.get_rect()
-                            self.labels[lang][key] = (img, rect)
-                        elif type(value) is dict:
-                            self.labels[lang][key] = {}
-                            for elem in value:
-                                img = pygame.image.load(pa.joinpath(lang).joinpath(key).joinpath(value[elem]))
-                                rect = img.get_rect()
-                                self.labels[lang][key][elem] = (img, rect)
-        except IOError as ioe:
-            print(str(ioe))
-            sys.exit(1)
 
     def load_level_planes(self, basepath):
         self.level_planes = {}
