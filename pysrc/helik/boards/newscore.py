@@ -277,7 +277,7 @@ class BoardNewScore(Board):
                     letter, rect = pair
                     if rect.collidepoint(pos):
                         if letter == ';':
-                            # done
+                            self.store_nick()
                             self.on_keyup(pygame.K_ESCAPE)
                         elif letter == '⌫':
                             self.trim_nick()

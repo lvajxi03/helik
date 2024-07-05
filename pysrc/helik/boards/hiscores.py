@@ -8,7 +8,15 @@ Hiscores board handler
 from helik.boards.standard import Board
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType
-from helik.gfx import blitnumber
+
+
+SCORES_DX = 200
+SCORES_DY = 90
+
+SCORES_DY_SPACE = 65
+
+SHADOW_DX = 5
+SHADOW_DY = 5
 
 
 class BoardHiscores(Board):
@@ -21,13 +29,40 @@ class BoardHiscores(Board):
         """
         super().__init__(parent)
         self.rectangles = []
+        self.rectangles_s = []
 
     def activate(self):
         """
         Activate event handler
         """
         self.rectangles = []
-
+        self.rectangles_s = []
+        dl = 0
+        try:
+            _, po = self.arena.config["hiscores"][0]
+            dl = len(f"{po}")
+        except IndexError:
+            pass
+        for i in range(0, 10):
+            try:
+                nick, points = self.arena.config["hiscores"][i]
+                self.rectangles.append(self.resman.fonts["menu"].render(
+                    f"{i+1: >2}. {points: >{dl}} {nick}",
+                    True,
+                    self.resman.colors["snowy-white"]))
+                self.rectangles_s.append(self.resman.fonts["menu"].render(
+                    f"{i+1: >2}. {points: >{dl}} {nick}",
+                    True,
+                    self.resman.colors["shadow-default"]))
+            except IndexError:
+                self.rectangles.append(self.resman.fonts["menu"].render(
+                    f"{i+1: >2}.",
+                    True,
+                    self.resman.colors["snowy-white"]))
+                self.rectangles_s.append(self.resman.fonts["menu"].render(
+                    f"{i+1: >2}.",
+                    True,
+                    self.resman.colors["shadow-default"]))
 
     def on_paint(self):
         """
@@ -51,12 +86,11 @@ class BoardHiscores(Board):
         if len(self.arena.config['hiscores']) == 0:
             pass
         else:
-            for i in range (1, 11):
-                blitnumber(self.buffer,
-                           f"{i}",
-                           0,
-                           self.resman.digits,
-                           (200, 50 + i * 58))
+            for i in range(0, 10):
+                self.buffer.blit(self.rectangles_s[i],
+                           (SCORES_DX + SHADOW_DX, SCORES_DY + SHADOW_DY + i * SCORES_DY_SPACE))
+                self.buffer.blit(self.rectangles[i],
+                           (SCORES_DX, SCORES_DY + i * SCORES_DY_SPACE))
 
     def on_keyup(self, key):
         """

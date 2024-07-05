@@ -179,11 +179,11 @@ class ModePlay(Mode):
                 self.resman.images["heart-gray"],
                 (10 + 60 * lives + i * 60, ARENA_HEIGHT - 54))
         blitnumber(self.buffer, self.data['points'], 5,
-                   self.resman.digits, (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
+                   self.resman.letters, (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
         self.buffer.blit(self.resman.images["bullets-indicator"],
                          (340, ARENA_HEIGHT - 42))
         blitnumber(self.buffer, self.data['bullets-available'],
-                   3, self.resman.digits, (400, ARENA_HEIGHT - 54))
+                   3, self.resman.letters, (400, ARENA_HEIGHT - 54))
 
         if self.game.player.direction == PlayerDirection.DOWN:
             self.buffer.blit(self.resman.images["dirc"][4], (ARENA_WIDTH - 350, ARENA_HEIGHT - 54))

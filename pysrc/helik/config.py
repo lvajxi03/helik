@@ -46,7 +46,7 @@ class Config:
         except json.decoder.JSONDecodeError:
             pass
 
-    def read_default_config(self) :
+    def read_default_config(self):
         """
         Read default configuration from a file
         :return: configuration dictionary
@@ -100,7 +100,7 @@ class Config:
             if len(self.data['hiscores']) < 10:
                 return True
             else:
-                n, p = self.data['hiscores'][-1]
+                _, p = self.data['hiscores'][-1]
                 if p < points:
                     return True
         except KeyError:
