@@ -624,6 +624,18 @@
                 "rotate": 0,
                 "color": "#ffffff"
             },
+            "help-S7": {
+                "label": "Also, you can setup custom keys or gamepad buttons",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-S8": {
+                "label": "if you're not happy with the defaults.",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
             "help-O-title": {
                 "label": "Game Options",
                 "font": "about",
@@ -650,6 +662,24 @@
             },
             "help-O4": {
                 "label": "all the objects will move. And yes, less hearts.",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-O5": {
+                "label": "In the training level, the number of hearts is unlimited",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-O6": {
+                "label": "and the speed is relatively slow.",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-O7": {
+                "label": "This is the place for you to practice.",
                 "font": "pages-small",
                 "rotate": 0,
                 "color": "#ffffff"

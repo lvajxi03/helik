@@ -154,11 +154,19 @@
                   },
                   {
                      "label": "help-S5",
-                     "location": [250, 400]
+                     "location": [250, 350]
                   },
                   {
                      "label": "help-S6",
-                     "location": [250, 450]
+                     "location": [250, 400]
+                  },
+                  {
+                     "label": "help-S7",
+                     "location": [250, 500]
+                  },
+                  {
+                     "label": "help-S8",
+                     "location": [250, 550]
                   }
                ]
             },
@@ -186,6 +194,18 @@
                   {
                      "label": "help-O4",
                      "location": [250, 300]
+                  },
+                  {
+                     "label": "help-O5",
+                     "location": [250, 400]
+                  },
+                  {
+                     "label": "help-O6",
+                     "location": [250, 450]
+                  },
+                  {
+                     "label": "help-O7",
+                     "location": [250, 500]
                   }
                ]
             },
