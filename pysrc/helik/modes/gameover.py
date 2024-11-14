@@ -15,12 +15,6 @@ class ModeGameOver(Mode):
     """
     GaneOver handler class
     """
-    def __init__(self, parent):
-        """
-        Create GameOver instance
-        """
-        super().__init__(parent)
-
     def on_paint(self):
         """
         Paint event handler

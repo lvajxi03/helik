@@ -38,7 +38,7 @@ class ModePlay(Mode):
         self.speed = SPEED - self.arena.config['option']
         pygame.time.set_timer(TimerType.SECOND, 1000)
         pygame.time.set_timer(TimerType.FIRST, 250)
-        # self.speed = 30 - 2 * self.data['option']
+        self.speed = 30 - 2 * self.data['option']
         pygame.time.set_timer(TimerType.THIRD, self.speed)
         pygame.time.set_timer(TimerType.FOURTH, int(self.speed * 1.5))
 
@@ -170,6 +170,7 @@ class ModePlay(Mode):
         """
         self.buffer.blit(self.resman.images["default-background"], (0, 0))
         self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - 60))
+
         lives = self.game.data['lives']
         missing = 5 - lives
         for i in range(lives):

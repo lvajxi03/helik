@@ -115,3 +115,4 @@ class BoardHiscores(Board):
                     ch_lang = True
         if not ch_lang:
             self.arena.change_board(BoardType.MENU)
+

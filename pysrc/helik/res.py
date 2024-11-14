@@ -4,7 +4,6 @@
 All the resources
 """
 
-import sys
 import json
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, LEVELNO, ALL_CHARS
@@ -29,15 +28,14 @@ class ResourceManager:
         self.levels = []
         self.colors = {}
         self.fonts = {}
+        self.pages = {}
         self.surfaces = {}
         self.letters = {}
         self.level_planes = {}
         self.surfaces = {
             "buffer": pygame.display.set_mode(
                 (ARENA_WIDTH, ARENA_HEIGHT),
-                # flags=pygame.SRCALPHA | pygame.FULLSCREEN | pygame.NOFRAME,
-                depth=32,
-                vsync=1),
+            ), #flags=pygame.FULLSCREEN | pygame.NOFRAME),
             "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
         }
         self.rectangles = {
@@ -66,6 +64,7 @@ class ResourceManager:
         self.load_level_planes(basepath)
         self.load_levels(basepath)
         self.create_letters(self.fonts["screen-keyboard"], self.colors["snowy-white"])
+        self.load_pages(basepath)
 
     def load_fonts(self, basepath):
         """
@@ -80,8 +79,20 @@ class ResourceManager:
                 for name in data:
                     dt = data[name]
                     self.fonts[name] = pygame.font.Font(basepath.joinpath("fonts").joinpath(dt[0]), dt[1])
-        except IOError as ioe:
-            print(str(ioe))
+        except IOError:
+            pass
+
+    def load_pages(self, basepath):
+        """
+        Load pages and pagers data from pages.json fle
+        :param basepath: root directory of all resources
+        """
+        f_name = basepath.joinpath("pages.json")
+        try:
+            with open(f_name, encoding="utf-8") as f_handle:
+                self.pages = json.load(f_handle)["pages"]
+        except IOError:
+            pass
 
     def load_labels(self, basepath):
         """
@@ -107,14 +118,19 @@ class ResourceManager:
                             rotate = 0
                             if "rotate" in fd:
                                 rotate = int(fd["rotate"])
+                            if fd["color"] in self.colors:
+                                color = self.colors[fd["color"]]
+                            else:
+                                color = pygame.Color(fd["color"])
                             if "label" in fd:
                                 # Singla label
                                 su = pygame.transform.rotate(
                                     self.fonts[fd["font"]].render(
                                         fd["label"],
                                         True,
-                                        fd["color"]),
+                                        color),
                                     rotate)
+                                su.set_alpha(color.a)
                                 r = su.get_rect()
                                 data[lang][group][label] = (su, r)
                             elif "labels" in fd:
@@ -125,13 +141,13 @@ class ResourceManager:
                                         self.fonts[fd["font"]].render(
                                             fdx,
                                             True,
-                                            fd["color"]),
+                                            color),
                                         rotate)
+                                    su.set_alpha(color.a)
                                     r = su.get_rect()
                                     data[lang][group][label].append((su, r))
                 self.locale = data
-        except IOError as ioe:
-            print(str(ioe))
+        except IOError:
             pass
 
     def load_digits(self, basepath):
@@ -142,7 +158,7 @@ class ResourceManager:
         pa = basepath.joinpath("images").joinpath("digits")
         for i in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
             fn = f"{i}.png"
-            self.digits[i] = pygame.image.load(pa.joinpath(fn))
+            self.digits[i] = pygame.image.load(pa.joinpath(fn)).convert_alpha()
 
     def load_levels(self, basepath):
         """
@@ -183,9 +199,10 @@ class ResourceManager:
                         if key not in self.level_planes:
                             self.level_planes[key] = []
                         for value in values:
-                            self.level_planes[key].append(pygame.image.load(pa.joinpath(key).joinpath(value)))
+                            self.level_planes[key].append(
+                                pygame.image.load(pa.joinpath(key).joinpath(value)).convert_alpha())
                     elif type(values) is str:
-                        self.level_planes[key] = pygame.image.load(pa.joinpath(values))
+                        self.level_planes[key] = pygame.image.load(pa.joinpath(values)).convert_alpha()
         except IOError as ioe:
             pass
 
@@ -215,14 +232,15 @@ class ResourceManager:
                     if type(value) is list:
                         self.images[key] = []
                         for elem in value:
-                            self.images[key].append(pygame.image.load(pa.joinpath(key).joinpath(elem)))
+                            self.images[key].append(pygame.image.load(pa.joinpath(key).joinpath(elem)).convert_alpha())
                     elif type(value) is dict:
                         self.images[key] = {}
                         for elem in value:
-                            self.images[key][elem] = pygame.image.load(pa.joinpath(key).joinpath(value[elem]))
+                            self.images[key][elem] = pygame.image.load(
+                                pa.joinpath(key).joinpath(value[elem])).convert_alpha()
                     elif type(value) is str:
-                        self.images[key] = pygame.image.load(pa.joinpath(value))
+                        self.images[key] = pygame.image.load(pa.joinpath(value)).convert_alpha()
         except IOError as ioe:
-            pass
+            print(ioe)
 
     # That's all Folks!

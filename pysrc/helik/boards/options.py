@@ -150,3 +150,17 @@ class BoardOptions(Board):
             self.on_keyup(pygame.K_DOWN)
         elif button == 2 or button == 3:
             self.arena.change_board(BoardType.MENU)
+
+    def on_joyaxismotion(self, axis, value):
+        value = int(value)
+        if axis == 1:
+            if value == 1:
+                self.on_keyup(pygame.K_DOWN)
+            elif value == -1:
+                self.on_keyup(pygame.K_UP)
+
+    def on_joybuttonup(self, button):
+        if button == 1: # TODO: A
+            self.on_keyup(pygame.K_RETURN)
+        elif button == 2: # TODO: B
+            self.on_keyup(pygame.K_q)

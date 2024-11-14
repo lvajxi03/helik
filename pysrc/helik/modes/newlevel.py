@@ -40,27 +40,20 @@ class ModeNewLevel(Mode):
             self.image = self.resman.level_planes[
                 self.arena.config["lang"]][self.game.data['level']]
             r = self.image.get_rect()
-            self.x = (ARENA_WIDTH -r.w) // 2
+            self.x = ARENA_WIDTH
             self.y = (ARENA_HEIGHT - r.h) // 2
             self.w = r.w
-            pygame.time.set_timer(TimerType.THIRD, 2)
         else:
             self.game.change_mode(GameMode.GAMEOVER)
 
-    def on_timer(self, timer):
+    def on_update(self, dt):
         """
-        Timer event handler
+        Update event handler
+        :param dt: unused
         """
-        if timer == TimerType.THIRD:
-            self.x -= 1
-            if self.x + self.w <= 0:
-                self.game.change_mode(GameMode.PLAY)
-
-    def deactivate(self):
-        """
-        Deactivate event handler
-        """
-        pygame.time.set_timer(TimerType.THIRD, 0)
+        self.x -= 3
+        if self.x + self.w <= 0:
+            self.game.change_mode(GameMode.PLAY)
 
     def on_paint(self):
         """

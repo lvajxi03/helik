@@ -5,7 +5,6 @@ Settings board handler
 """
 
 import pygame
-from pygame import Rect
 from helik.boards.standard import Board
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType
@@ -159,4 +158,3 @@ class BoardSettings(Board):
             self.on_keyup(pygame.K_UP)
         elif button == 5:
             self.on_keyup(pygame.K_DOWN)
-

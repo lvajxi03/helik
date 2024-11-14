@@ -162,3 +162,17 @@ class BoardMenu(Board):
             self.on_keyup(pygame.K_UP)
         elif button == 5:
             self.on_keyup(pygame.K_DOWN)
+
+    def on_joyaxismotion(self, axis, value):
+        value = int(value)
+        if axis == 1:
+            if value == 1:
+                self.on_keyup(pygame.K_DOWN)
+            elif value == -1:
+                self.on_keyup(pygame.K_UP)
+
+    def on_joybuttonup(self, button):
+        if button == 1: # TODO: A
+            self.on_keyup(pygame.K_RETURN)
+        elif button == 2: # TODO: B
+            self.on_keyup(pygame.K_q)

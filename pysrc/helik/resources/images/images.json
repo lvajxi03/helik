@@ -89,6 +89,13 @@
         "airship-down.png",
         "airship-up.png"
     ],
+    "building-2": "building-2.png",
+    "building-5": "building-5.png",
+    "building-7": "building-7.png",
+    "bird-5": "bird-5.png",
+    "helik-default": "helik-down.png",
+    "balloon-default": "balloon-down.png",
+    "airship-default": "airship-down.png",
     "default-background": "back-default.jpg",
     "line-0": "line-0.png",
     "bullet": "bullet.png",
@@ -103,5 +110,6 @@
     "checkbox-checked": "checkbox-checked.png",
     "checkbox-unchecked": "checkbox-unchecked.png",
     "cursor": "cursor.png",
-    "letters-scores": "letters-scores.png"
+    "email": "email.png",
+    "status-1": "status-1.png"
 }

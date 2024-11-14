@@ -36,7 +36,8 @@ class Config:
                     self.data['hiscores'] = []
                 if len(self.data['hiscores']) == 0:
                     i = 0
-                    for name in ["AAA", "BBB", "CCC", "DDD", "EEE", "FFF", "GGG", "HHH", "III", 'JJJ']:
+                    for name in ["AAA", "BBB", "CCC", "DDD", "EEE", "FFF",
+                                 "GGG", "HHH", "III", 'JJJ']:
                         self.data['hiscores'].append((name, i * 10 + 2))
                         i += 1
                 self.data['hiscores'].sort(key=lambda a: a[1], reverse=True)
@@ -99,10 +100,9 @@ class Config:
         try:
             if len(self.data['hiscores']) < 10:
                 return True
-            else:
-                _, p = self.data['hiscores'][-1]
-                if p < points:
-                    return True
+            _, p = self.data['hiscores'][-1]
+            if p < points:
+                return True
         except KeyError:
             pass
         return False
