@@ -1,0 +1,40 @@
+{
+          "newscore": {
+            "congrats": {
+                "label": "Gratulacje!",
+                "font": "heading-2",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "congrats-shadow": {
+                "label": "Gratulacje!",
+                "font": "heading-2",
+                "rotate": 0,
+                "color": "#313131"
+            },
+            "congrats-2": {
+                "label": "Jesteś w dziesiątce najlepszych!",
+                "font": "screen-keyboard",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "enter-nickname": {
+                "label": "Wprowadź swój nick:",
+                "font": "screen-keyboard",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "done": {
+                "label": "ZAKOŃCZ",
+                "font": "screen-keyboard",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "space": {
+                "label": "SPACJA",
+                "font": "screen-keyboard",
+                "rotate": 0,
+                "color": "#ffffff"
+            }
+        }
+}

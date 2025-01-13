@@ -3,11 +3,13 @@
 """
 Settings board handler
 """
-
 import pygame
 from helik.boards.standard import Board
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-from helik.htypes import BoardType
+from helik.htypes import BoardType, SettingsModeId
+from helik.settingsmodes import (MainSettingsMode, KbdLayoutSettingsMode,
+                                 KbdInputSettingsMode, PadLayoutSettingsMode,
+                                 PadInputSettingsMode)
 
 
 class BoardSettings(Board):
@@ -20,9 +22,17 @@ class BoardSettings(Board):
         :param parent: parent object handle
         """
         super().__init__(parent)
+        self.mode = SettingsModeId.MAIN
+        self.modes = {
+            SettingsModeId.MAIN: MainSettingsMode(self, parent),
+            SettingsModeId.KLAYOUT: KbdLayoutSettingsMode(self, parent),
+            SettingsModeId.KINPUT: KbdInputSettingsMode(self, parent),
+            SettingsModeId.GLAYOUT: PadLayoutSettingsMode(self, parent),
+            SettingsModeId.GINPUT: PadInputSettingsMode(self, parent)
+        }
         self.labels = ["sound", "music"]
         self.menu_pos = 0
-        self.maxpos = 1
+        self.maxpos = 3
         self.rectangles = []
         self.rectangles_s = []
         self.create_rectangles()
@@ -30,8 +40,15 @@ class BoardSettings(Board):
         self.rect_pos_t = None
         self.create_rectangles()
 
-        # self.rectangles = [Rect(180, 130, 400, 85), Rect(180, 230, 400, 85)]
-        # self.rshadows = [Rect(175, 125, 400, 85), Rect(175, 225, 400, 85)]
+    def change_mode(self, mode):
+        """
+        Change settings mode
+        :param mode: new mode
+        """
+        if mode != self.mode:
+            self.modes[self.mode].deactivate()
+            self.mode = mode
+            self.modes[self.mode].activate()
 
     def create_rectangles(self):
         """
@@ -66,46 +83,7 @@ class BoardSettings(Board):
         self.rect_pos = self.rect_pos.inflate(40, 40)
 
     def on_paint(self):
-        """
-        Paint event handler
-        """
-        self.buffer.blit(self.resman.images["default-background"], (0, 0))
-        self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - 60))
-
-        # Lang flags
-        self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
-        self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
-
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["title-shadow"]
-        self.buffer.blit(la, (240, 80))
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["title"]
-        self.buffer.blit(la, (245, 75))
-
-        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["settings-status"]
-        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
-
-        for re in self.rectangles_s:
-            label, rect = re
-            self.buffer.blit(label, rect)
-        for re in self.rectangles:
-            label, rect = re
-            self.buffer.blit(label, rect)
-
-        self.rect_pos_t = self.rect_pos.move(5, 5)
-        pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16),
-                         self.rect_pos_t, width=5, border_radius=20)
-        pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32),
-                         self.rect_pos, width=5, border_radius=20)
-
-        if self.arena.config["sound"] == 1:
-            self.buffer.blit(self.resman.images["checkbox-checked"], (700, 105))
-        else:
-            self.buffer.blit(self.resman.images["checkbox-unchecked"], (700, 105))
-
-        if self.arena.config["music"] == 1:
-            self.buffer.blit(self.resman.images["checkbox-checked"], (700, 185))
-        else:
-            self.buffer.blit(self.resman.images["checkbox-unchecked"], (700, 185))
+        self.modes[self.mode].on_paint()
 
     def on_keyup(self, key):
         """
@@ -113,20 +91,7 @@ class BoardSettings(Board):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        if key == pygame.K_DOWN:
-            if self.menu_pos < self.maxpos:
-                self.audio.play_sound("arrow")
-                self.menu_pos += 1
-        elif key == pygame.K_UP:
-            if self.menu_pos > 0:
-                self.menu_pos -= 1
-                self.audio.play_sound("arrow")
-        elif key == pygame.K_RETURN:
-            self.arena.config[self.labels[self.menu_pos]] = 1 if self.arena.config[self.labels[self.menu_pos]] == 0 else 0
-            self.audio.play_sound("closing-tape")
-        elif key == pygame.K_q or key == pygame.K_ESCAPE or key == pygame.K_LEFT:
-            self.arena.change_board(BoardType.MENU)
-        self.recalculate_pos()
+        self.modes[self.mode].on_keyup(key)
 
     def on_mouseup(self, button, pos):
         """
@@ -134,27 +99,10 @@ class BoardSettings(Board):
         :param button: button number
         :param pos: cursor position
         """
-        ch_lang = False
-        if button == 1:
-            rects = self.resman.rectangles["lang-rectangles"]
-            for lang in rects:
-                if rects[lang].collidepoint(pos):
-                    self.arena.config['lang'] = lang
-                    ch_lang = True
-                    self.audio.play_sound("arrow")
-                    self.create_rectangles()
-            if not ch_lang:
-                i = 0
-                for elem in self.rectangles:
-                    _, rect = elem
-                    if rect.collidepoint(pos):
-                        self.menu_pos = i
-                        self.on_keyup(pygame.K_RETURN)
-                    i += 1
+        self.modes[self.mode].on_mouseup(button, pos)
 
-        if button == 2 or button == 3:
-            self.arena.change_board(BoardType.MENU)
-        elif button == 4:
-            self.on_keyup(pygame.K_UP)
-        elif button == 5:
-            self.on_keyup(pygame.K_DOWN)
+    def activate(self):
+        """
+        Board activator
+        """
+        self.modes[self.mode].activate()

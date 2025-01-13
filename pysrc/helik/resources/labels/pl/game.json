@@ -1,0 +1,46 @@
+{
+          "game": {
+            "choose-vehicle": {
+                "label": "WYBIERZ POJAZD",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "paused": {
+                "label": "GRA WSTRZYMANA",
+                "font": "heading-2",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+           "paused-shadow": {
+                "label": "GRA WSTRZYMANA",
+                "font": "heading-2",
+                "rotate": 0,
+                "color": "#313131"
+            },
+            "continue": {
+                "label": "Naciśnij spację, by kontynuować",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "gameover": {
+                "label": "GAME OVER",
+                "font": "heading",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "gameover-shadow": {
+                "label": "GAME OVER",
+                "font": "heading",
+                "rotate": 0,
+                "color": "#313131"
+            },
+            "gameover-2": {
+                "label": "Kup se rower!",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            }
+        }
+}

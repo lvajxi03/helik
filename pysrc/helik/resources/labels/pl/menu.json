@@ -1,0 +1,44 @@
+{
+          "menu": {
+            "title": {
+                "label": "HELIK!",
+                "font": "heading-kw1",
+                "rotate": 90,
+                "color": "#e0df4a7f"
+            },
+            "title-shadow": {
+                "label": "HELIK!",
+                "font": "heading-kw1",
+                "rotate": 90,
+                "color": "#3131317f"
+            },
+            "items": {
+                "labels": [
+                    "NOWA GRA",
+                    "OPCJE GRY",
+                    "NAJLEPSI",
+                    "USTAWIENIA",
+                    "POMOC",
+                    "O PROGRAMIE",
+                    "WYJŚCIE"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "items-shadow": {
+                "labels": [
+                    "NOWA GRA",
+                    "OPCJE GRY",
+                    "NAJLEPSI",
+                    "USTAWIENIA",
+                    "POMOC",
+                    "O PROGRAMIE",
+                    "WYJŚCIE"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#313131"
+            }
+        }
+}

@@ -1,0 +1,303 @@
+{
+              "help-A-title": {
+                "label": "Table of Contents",
+                "font": "about",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "help-A-status": {
+                "label": "Use arrow keys (←→) or mouse scroll to navigate",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-A1": {
+                "label": "1. How to navigate",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-A2": {
+                "label": "2. Settings",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-A3": {
+                "label": "3. Game options",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-A4": {
+                "label": "4. Hiscores",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-A5": {
+                "label": "5. Game Play",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-N-title": {
+                "label": "How to navigate?",
+                "font": "about",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "help-N1": {
+                "label": "Wherever possible, use arrow keys (←→) to navigate,",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-N2": {
+                "label": "ENTER to accept and ESC or Q to leave.",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-N3": {
+                "label": "All the menus also handle mouse click or scroll.",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-N4": {
+                "label": "In general, look at the status bar -- all available",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-N5": {
+                "label": "keys or buttons are listed there:",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-N6": {
+                "label": "↑   ↑",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-N7": {
+                "label": "and here you can change",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-N8": {
+                "label": "current language",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-S-title": {
+                "label": "Settings",
+                "font": "about",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "help-S1": {
+                "label": "You can enable or disable sound effects and/or music.",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-S2": {
+                "label": "There are two music sets available:",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-S3": {
+                "label": "* background music set for all the menus and info boards,",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-S4": {
+                "label": "* game play music set",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-S5": {
+                "label": "All music tracks were created in udio.com,",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-S6": {
+                "label": "and we believe you gonna love them",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-S7": {
+                "label": "Also, you can setup custom keys or gamepad buttons",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-S8": {
+                "label": "if you're not happy with the defaults.",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-O-title": {
+                "label": "Game Options",
+                "font": "about",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "help-O1": {
+                "label": "Here you can set how difficult your game will be",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-O2": {
+                "label": "(we hope that level names are self-descriptive)",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-O3": {
+                "label": "The more difficult level you gonna pick, the faster",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-O4": {
+                "label": "all the objects will move. And yes, less hearts.",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-O5": {
+                "label": "In the training level, the number of hearts is unlimited",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-O6": {
+                "label": "and the speed is relatively slow.",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-O7": {
+                "label": "This is the place for you to practice.",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-H-title": {
+                "label": "Hiscores",
+                "font": "about",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "help-G-title": {
+                "label": "Game Play",
+                "font": "about",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "help-G1": {
+                "label": "a. main goal",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-G2": {
+                "label": "b. vehicle selection",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-G3": {
+                "label": "c. navigation",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-G4": {
+                "label": "d. game objects",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-G5": {
+                "label": "e. scoring and hearts",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-G6": {
+                "label": "f. game strategy",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-Ga-title": {
+                "label": "Main Goal",
+                "font": "about",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "help-Gb-title": {
+                "label": "Vehicle selection",
+                "font": "about",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "help-Gc-title": {
+                "label": "Mavigation",
+                "font": "about",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "help-Gd-title": {
+                "label": "Game Objects",
+                "font": "about",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "help-Ge-title": {
+                "label": "Scoring and Hearts",
+                "font": "about",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "help-Gf-title": {
+                "label": "Game Strategy",
+                "font": "about",
+                "rotate": 0,
+                "color": "#e0df4a"
+            },
+            "help-Gf1": {
+                "label": "Strategy in a pill:",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-Gf2": {
+                "label": "Good luck!",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-Gf3": {
+                "label": "You gonna need this!",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            }
+
+}

@@ -1,0 +1,45 @@
+{
+              "help-1": {
+                "label": "Jak grać w tę grę?",
+                "font": "about",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-2": {
+                "label": "Twoim celem jest przelot nad miastem bez kolizji z budynkiem,",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-3": {
+                "label": "chmurą lub dziką gęsią.",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-4": {
+                "label": "Za każdą szczęśliwie przeżytą sekundę otrzymujesz 10 punktów,",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-5": {
+                "label": "Strzelanie do gęsi lub budynków jest dozwolone, do chmur bezcelowe,",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-6": {
+                "label": "Każdy zestrzelony obiekt to dodatkowy punkt.",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "help-7": {
+                "label": "każdy zestrzelony obiekt to dodatkowy punkt.",
+                "font": "pages-small",
+                "rotate": 0,
+                "color": "#ffffff"
+            }
+
+}

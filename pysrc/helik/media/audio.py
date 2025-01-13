@@ -32,7 +32,8 @@ class AudioController:
             except IOError:
                 pass
         self.music_channel = pygame.mixer.Channel(0)
-        self.sfx_channel = pygame.mixer.Channel(1)
+        self.background_channel = pygame.mixer.Channel(1)
+        self.sfx_channel = pygame.mixer.Channel(2)
 
     def play_sound(self, sound: str):
         """
@@ -44,6 +45,12 @@ class AudioController:
             if sound in self.sounds:
                 self.sfx_channel.play(self.sounds[sound])
 
+    def play_background(self, music: str):
+        """
+        Play music in the background.
+        Music is played infinitely.
+        :param music:
+        """
     def play_music(self, music: str):
         """
         Play the music.

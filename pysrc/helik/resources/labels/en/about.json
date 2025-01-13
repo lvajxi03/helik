@@ -1,0 +1,16 @@
+{
+  "about": {
+    "title": {
+      "color": "#e0df4a",
+      "font": "heading-2",
+      "label": "ABOUT",
+      "rotate": 90
+    },
+    "title-shadow": {
+      "color": "#313131",
+      "font": "heading-2",
+      "label": "ABOUT",
+      "rotate": 90
+    }
+  }
+}

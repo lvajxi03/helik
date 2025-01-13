@@ -105,7 +105,7 @@ class Application:
                 elif event.type > pygame.USEREVENT:
                     self.on_timer(event.type)
 
-            dt = self.clock.tick(60)
+            dt = self.clock.tick(1000)
             self.on_update(dt)
             self.on_paint()
             pygame.display.update()

@@ -3,8 +3,8 @@
 """
 All the resources
 """
-
 import json
+import os
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, LEVELNO, ALL_CHARS
 
@@ -94,61 +94,75 @@ class ResourceManager:
         except IOError:
             pass
 
+    def read_labels(self, basepath):
+        ret = {}
+        objs = os.listdir(basepath)
+        for obj in objs:
+            fp = os.path.join(basepath, obj)
+            if os.path.isdir(fp):
+                ret[obj.lower()] = self.read_labels(fp)
+            if os.path.isfile(fp):
+                fn, ex = os.path.splitext(obj)
+                if ex.lower() == ".json":
+                    try:
+                        with open(fp, encoding='utf-8') as fh:
+                            js = json.load(fh)
+                            ret.update(js)
+                    except IOError as ioe:
+                        print(ioe)
+        return ret
+
     def load_labels(self, basepath):
         """
         Load and create labels
         from labels.json file
         :param basepath: root directory of all resources
         """
-        f_name = basepath.joinpath("labels.json")
-        try:
-            with open(f_name, encoding="utf-8") as f_hamdle:
-                content = json.load(f_hamdle)
-                data = {}
-                # 1. Languages
-                for lang in content:
-                    if lang not in data:
-                        data[lang] = {}
-                    for group in content[lang]:
-                        if group not in data[lang]:
-                            data[lang][group] = {}
-                        for label in content[lang][group]:
-                            # Font data
-                            fd = content[lang][group][label]
-                            rotate = 0
-                            if "rotate" in fd:
-                                rotate = int(fd["rotate"])
-                            if fd["color"] in self.colors:
-                                color = self.colors[fd["color"]]
-                            else:
-                                color = pygame.Color(fd["color"])
-                            if "label" in fd:
-                                # Singla label
-                                su = pygame.transform.rotate(
-                                    self.fonts[fd["font"]].render(
-                                        fd["label"],
-                                        True,
-                                        color),
-                                    rotate)
-                                su.set_alpha(color.a)
-                                r = su.get_rect()
-                                data[lang][group][label] = (su, r)
-                            elif "labels" in fd:
-                                # List of labels
-                                data[lang][group][label] = []
-                                for fdx in fd["labels"]:
-                                    su = pygame.transform.rotate(
-                                        self.fonts[fd["font"]].render(
-                                            fdx,
-                                            True,
-                                            color),
-                                        rotate)
-                                    su.set_alpha(color.a)
-                                    r = su.get_rect()
-                                    data[lang][group][label].append((su, r))
-                self.locale = data
-        except IOError:
-            pass
+        trav = basepath.joinpath("labels")
+        content = self.read_labels(trav)
+        data = {}
+        # 1. Languages
+        for lang in content:
+            if lang not in data:
+                data[lang] = {}
+            for group in content[lang]:
+                if group not in data[lang]:
+                    data[lang][group] = {}
+                for label in content[lang][group]:
+                    # Font data
+                    fd = content[lang][group][label]
+                    rotate = 0
+                    if "rotate" in fd:
+                        rotate = int(fd["rotate"])
+                    if fd["color"] in self.colors:
+                        color = self.colors[fd["color"]]
+                    else:
+                        color = pygame.Color(fd["color"])
+                    if "label" in fd:
+                        # Single label
+                        su = pygame.transform.rotate(
+                            self.fonts[fd["font"]].render(
+                                fd["label"],
+                                True,
+                                color),
+                            rotate)
+                        su.set_alpha(color.a)
+                        r = su.get_rect()
+                        data[lang][group][label] = (su, r)
+                    elif "labels" in fd:
+                        # List of labels
+                        data[lang][group][label] = []
+                        for fdx in fd["labels"]:
+                            su = pygame.transform.rotate(
+                                self.fonts[fd["font"]].render(
+                                    fdx,
+                                    True,
+                                    color),
+                                rotate)
+                            su.set_alpha(color.a)
+                            r = su.get_rect()
+                            data[lang][group][label].append((su, r))
+        self.locale = data
 
     def load_digits(self, basepath):
         """

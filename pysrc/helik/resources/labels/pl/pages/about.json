@@ -1,0 +1,105 @@
+{
+
+            "about-1s": {
+                "label": "Gra w stylu Flappy Bird, ale z helikopterem.",
+                "font": "about",
+                "rotate": 0,
+                "color": "#313131"
+            },
+            "about-2s": {
+                "label": "Albo balonem. Albo sterowcem.",
+                "font": "about",
+                "rotate": 0,
+                "color": "#313131"
+            },
+            "about-3s": {
+                "label": "I strzelaniem.",
+                "font": "about",
+                "rotate": 0,
+                "color": "#313131"
+            },
+            "about-4s": {
+                "label": "I paroma innymi rzeczami.",
+                "font": "about",
+                "rotate": 0,
+                "color": "#313131"
+            },
+            "about-1": {
+                "label": "Gra w stylu Flappy Bird, ale z helikopterem.",
+                "font": "about",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "about-2": {
+                "label": "Albo balonem. Albo sterowcem.",
+                "font": "about",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "about-3": {
+                "label": "I strzelaniem.",
+                "font": "about",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "about-4": {
+                "label": "I paroma innymi rzeczami.",
+                "font": "about",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "about-5": {
+                "label": "Autor: Marcin Bielewicz",
+                "font": "about",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "about-6": {
+                "label": "<marcin.bielewicz@gmail.com>",
+                "font": "about",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "about-7": {
+                "label": "(kod, grafika, muzyka, czcionki)",
+                "font": "about",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "about-8": {
+                "label": "https://iostream.pl/helik",
+                "font": "about",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "about-9": {
+                "label": "Konsultacje: Antoni Bielewicz",
+                "font": "about",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "about-10": {
+                "label": "Zakodowano w Emacsie",
+                "font": "about",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "about-11": {
+                "label": "Grafika: Inkscape & Gimp",
+                "font": "about",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "about-12": {
+                "label": "Muzyka: udio.com",
+                "font": "about",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "about-13": {
+                "label": "Czcionki: Birdfont",
+                "font": "about",
+                "rotate": 0,
+                "color": "#ffffff"
+            }
+}

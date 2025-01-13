@@ -5,9 +5,11 @@
   "failed": "failed.mp3",
   "game-begin": "game-begin.mp3",
   "letter": "letter.mp3",
-  "music-1": "music-1.mp3",
+  "music-1": "celestial-voyage-1.mp3",
   "music-2": "music-2.mp3",
   "music-3": "music-3.mp3",
+  "background-1": "star-battle-1.mp3",
+  "background-2": "star-battle-2.mp3",
   "popup": "popup.mp3",
   "woosh": "woosh.mp3"
 }

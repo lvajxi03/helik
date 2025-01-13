@@ -1,0 +1,16 @@
+{
+  "help": {
+    "title": {
+      "color": "yellow-default-alpha",
+      "font": "heading-kw0",
+      "label": "HELP",
+      "rotate": 90
+    },
+    "title-shadow": {
+      "color": "#3131317f",
+      "font": "heading-kw0",
+      "label": "HELP",
+      "rotate": 90
+    }
+  }
+}

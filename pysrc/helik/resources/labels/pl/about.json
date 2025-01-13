@@ -1,0 +1,16 @@
+{
+          "about": {
+            "title": {
+                "label": "O PROGRAMIE",
+                "font": "heading-27",
+                "rotate": 90,
+                "color": "#e0df4a"
+            },
+            "title-shadow": {
+                "label": "O PROGRAMIE",
+                "font": "heading-27",
+                "rotate": 90,
+                "color": "#313131"
+            }
+        }
+}

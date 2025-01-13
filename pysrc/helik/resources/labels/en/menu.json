@@ -1,0 +1,44 @@
+{
+  "menu": {
+    "items": {
+      "color": "#ffffff",
+      "font": "menu",
+      "labels": [
+        "NEW GAME",
+        "GAME OPTONS",
+        "HISCORES",
+        "SETTINGS",
+        "HELP",
+        "ABOUT",
+        "QUIT"
+      ],
+      "rotate": 0
+    },
+    "items-shadow": {
+      "color": "#313131",
+      "font": "menu",
+      "labels": [
+        "NEW GAME",
+        "GAME OPTONS",
+        "HISCORES",
+        "SETTINGS",
+        "HELP",
+        "ABOUT",
+        "QUIT"
+      ],
+      "rotate": 0
+    },
+    "title": {
+      "color": "#e0df4a",
+      "font": "heading",
+      "label": "HELIK!",
+      "rotate": 90
+    },
+    "title-shadow": {
+      "color": "#313131",
+      "font": "heading",
+      "label": "HELIK!",
+      "rotate": 90
+    }
+  }
+}
