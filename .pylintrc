@@ -1,5 +1,6 @@
 [MASTER]
 init-hook='import sys; sys.path.append("pysrc")'
+extension-pkg-whitelist=pygame
 
 [BASIC]
 good-names = x, y, r, dt, dx, dy, fh, fn, i, j, w, h
@@ -11,3 +12,10 @@ disable =
     too-many-statements,
     too-many-branches,
     import-error
+
+[SIMILARITIES]
+min-similarity-lines=20
+ignore-comments=yes
+ignore-docstrings=yes
+ignore-imports=yes
+

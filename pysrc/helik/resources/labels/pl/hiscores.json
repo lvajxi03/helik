@@ -1,0 +1,16 @@
+{
+          "hiscores": {
+            "title": {
+                "label": "NAJLEPSI",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#e0df4a"
+            },
+            "title-shadow": {
+                "label": "NAJLEPSI",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#313131"
+            }
+        }
+}

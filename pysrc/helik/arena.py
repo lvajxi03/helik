@@ -5,6 +5,7 @@ Arena module
 """
 
 import random
+# import webbrowser
 from importlib.resources import files
 import pygame
 from helik.hdefs import APPLICATION_TITLE
@@ -17,6 +18,7 @@ from helik.boards.hiscores import BoardHiscores
 from helik.boards.help import BoardHelp
 from helik.boards.settings import BoardSettings
 from helik.boards.game import BoardGame
+from helik.boards.newscore import BoardNewScore
 from helik.boards.quit import BoardQuit
 from helik.res import ResourceManager
 from helik.config import Config
@@ -34,8 +36,12 @@ class Application:
         random.seed()
         pygame.init()
         pygame.mixer.init()
+        pygame.joystick.init()
+        for i in range(pygame.joystick.get_count()):
+            joystick = pygame.joystick.Joystick(i)
+            joystick.init()
         self.resman = ResourceManager(files('helik.resources'))
-        self.audio = AudioController(files('helik.resources'))
+        self.audio = AudioController(self, files('helik.resources'))
         pygame.display.set_caption(APPLICATION_TITLE)
         self.clock = pygame.time.Clock()
         self.running = True
@@ -50,12 +56,11 @@ class Application:
             BoardType.OPTIONS: BoardOptions(self),
             BoardType.SETTINGS: BoardSettings(self),
             BoardType.GAME: BoardGame(self),
+            BoardType.NEWSCORE: BoardNewScore(self),
             BoardType.QUIT: BoardQuit(self)
             }
         self.board_id = BoardType.WELCOME
-        # self.buffer = self.res_man.surfaces["buffer"]
         self.dirc = DirCType.DOWN
-        # self.imageman.load_images()
 
     def change_board(self, newboard):
         """
@@ -78,7 +83,10 @@ class Application:
         # Activate initial board
         self.boards[self.board_id].activate()
 
+        # webbrowser.open("mailto:marcin.bielewicz@gmail.com")
         # Main application loop
+        for j in range(pygame.joystick.get_count()):
+            pygame.joystick.Joystick(j)
         while self.running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -87,16 +95,40 @@ class Application:
                     self.on_keyup(event.key)
                 elif event.type == pygame.MOUSEBUTTONUP:
                     self.on_mouseup(event.button, event.pos)
+                elif event.type == pygame.JOYBUTTONUP:
+                    self.on_joybuttonup(event.button)
+                elif event.type == pygame.JOYAXISMOTION:
+                    self.on_joyaxismotion(event.axis, event.value)
+                elif event.type == pygame.JOYDEVICEADDED:
+                    for j in range(pygame.joystick.get_count()):
+                        pygame.joystick.Joystick(j)
                 elif event.type > pygame.USEREVENT:
                     self.on_timer(event.type)
-            self.on_paint()
-            pygame.display.flip()
-            dt = self.clock.tick(60)
+
+            dt = self.clock.tick(1000)
             self.on_update(dt)
+            self.on_paint()
+            pygame.display.update()
 
         # Eventually,
         self.config.save_default_config()
         pygame.quit()
+
+    def on_joybuttonup(self, button):
+        """
+        Delegate joystick button up event
+        :param button: button number
+        """
+        print(button)
+        self.boards[self.board_id].on_joybuttonup(button)
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        Delegate joystick axis motion event
+        :param axis: axis number (0: X, 1: Y)
+        :param value:
+        """
+        self.boards[self.board_id].on_joyaxismotion(axis, value)
 
     def on_mouseup(self, button, pos):
         """

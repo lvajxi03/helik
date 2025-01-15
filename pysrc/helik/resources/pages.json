@@ -1,0 +1,587 @@
+{
+   "pages":{
+      "help":{
+         "pl":[
+            {
+               "images": [
+
+               ],
+               "labels": [
+               ]
+            },
+            {
+               "images":[
+               ],
+               "labels": [
+                  {
+                     "label": "help-1",
+                     "location": [350, 50]
+                  },
+                  {
+                     "label": "help-2",
+                     "location": [150, 100]
+                  },
+                                    {
+                     "label": "help-3",
+                     "location": [150, 150]
+                  },
+                                    {
+                     "label": "help-4",
+                     "location": [150, 200]
+                  },
+                  {
+                     "label": "help-5",
+                     "location": [150, 250]
+                  },
+                  {
+                     "label": "help-6",
+                     "location": [150, 300]
+                  },
+                  {
+                     "label": "help-7",
+                     "location": [150, 450]
+                  }
+               ]
+            }
+         ],
+         "en":[
+            {
+               "images": [
+
+               ],
+               "labels": [
+                  {
+                     "label": "help-A-title",
+                     "location": [250, 70]
+                  },
+                  {
+                     "label": "help-A1",
+                     "location": [250, 150]
+                  },
+                  {
+                     "label": "help-A2",
+                     "location": [250, 200]
+                  },
+                  {
+                     "label": "help-A3",
+                     "location": [250, 250]
+                  },
+                  {
+                     "label": "help-A4",
+                     "location": [250, 300]
+                  },
+                  {
+                     "label": "help-A5",
+                     "location": [250, 350]
+                  },
+                  {
+                     "label": "help-A-status",
+                     "location": [250, 450]
+                  }
+               ]
+            },
+            {
+               "images":[
+                  {
+                     "image": "status-1",
+                     "location": [250, 470]
+                  }
+               ],
+               "labels":
+               [
+                  {
+                     "label": "help-N-title",
+                     "location": [250, 70]
+                  },
+                  {
+                     "label": "help-N1",
+                     "location": [250, 150]
+                  },
+                  {
+                     "label": "help-N2",
+                     "location": [250, 200]
+                  },
+                  {
+                     "label": "help-N3",
+                     "location": [250, 250]
+                  },
+                  {
+                     "label": "help-N4",
+                     "location": [250, 350]
+                  },
+                                    {
+                     "label": "help-N5",
+                     "location": [250, 400]
+                  },
+                  {
+                     "label": "help-N6",
+                     "location": [950, 530]
+                  },
+                  {
+                     "label": "help-N7",
+                     "location": [860, 570]
+                  },
+                  {
+                     "label": "help-N8",
+                     "location": [860, 610]
+                  }
+               ]
+            },
+            {
+               "images": [
+
+               ],
+               "labels": [
+                  {
+                     "label": "help-S-title",
+                     "location": [250, 70]
+                  },
+                  {
+                     "label": "help-S1",
+                     "location": [250, 150]
+                  },
+                  {
+                     "label": "help-S2",
+                     "location": [250, 200]
+                  },
+                  {
+                     "label": "help-S3",
+                     "location": [250, 250]
+                  },
+                  {
+                     "label": "help-S4",
+                     "location": [250, 300]
+                  },
+                  {
+                     "label": "help-S5",
+                     "location": [250, 350]
+                  },
+                  {
+                     "label": "help-S6",
+                     "location": [250, 400]
+                  },
+                  {
+                     "label": "help-S7",
+                     "location": [250, 500]
+                  },
+                  {
+                     "label": "help-S8",
+                     "location": [250, 550]
+                  }
+               ]
+            },
+            {
+               "images": [
+
+               ],
+               "labels": [
+                  {
+                     "label": "help-O-title",
+                     "location": [250, 70]
+                  },
+                  {
+                     "label": "help-O1",
+                     "location": [250, 150]
+                  },
+                  {
+                     "label": "help-O2",
+                     "location": [250, 200]
+                  },
+                  {
+                     "label": "help-O3",
+                     "location": [250, 250]
+                  },
+                  {
+                     "label": "help-O4",
+                     "location": [250, 300]
+                  },
+                  {
+                     "label": "help-O5",
+                     "location": [250, 400]
+                  },
+                  {
+                     "label": "help-O6",
+                     "location": [250, 450]
+                  },
+                  {
+                     "label": "help-O7",
+                     "location": [250, 500]
+                  }
+               ]
+            },
+            {
+               "images": [
+
+               ],
+               "labels": [
+                  {
+                     "label": "help-H-title",
+                     "location": [250, 70]
+                  }
+               ]
+            },
+            {
+               "images": [
+
+               ],
+               "labels": [
+                  {
+                     "label": "help-G-title",
+                     "location": [250, 70]
+                  },
+                  {
+                     "label": "help-G1",
+                     "location": [250, 150]
+                  },
+                  {
+                     "label": "help-G2",
+                     "location": [250, 200]
+                  },
+                  {
+                     "label": "help-G3",
+                     "location": [250, 250]
+                  },
+                  {
+                     "label": "help-G4",
+                     "location": [250, 300]
+                  },
+                  {
+                     "label": "help-G5",
+                     "location": [250, 350]
+                  },
+                  {
+                     "label": "help-G6",
+                     "location": [250, 400]
+                  }
+               ]
+            },
+            {
+               "images": [
+
+               ],
+               "labels": [
+                  {
+                     "label": "help-Ga-title",
+                     "location": [250, 70]
+                  }
+               ]
+            },
+            {
+               "images": [
+
+               ],
+               "labels": [
+                  {
+                     "label": "help-Gb-title",
+                     "location": [250, 70]
+                  }
+               ]
+            },
+            {
+               "images": [
+
+               ],
+               "labels": [
+                  {
+                     "label": "help-Gc-title",
+                     "location": [250, 70]
+                  }
+               ]
+            },
+            {
+               "images": [
+
+               ],
+               "labels": [
+                  {
+                     "label": "help-Gd-title",
+                     "location": [250, 70]
+                  }
+               ]
+            },
+            {
+               "images": [
+
+               ],
+               "labels": [
+                  {
+                     "label": "help-Ge-title",
+                     "location": [250, 70]
+                  }
+               ]
+            },
+            {
+               "images": [
+
+               ],
+               "labels": [
+                  {
+                     "label": "help-Gf-title",
+                     "location": [250, 70]
+                  },
+                  {
+                     "label": "help-Gf1",
+                     "location": [250, 250]
+                  },
+                                    {
+                     "label": "help-Gf2",
+                     "location": [250, 350]
+                  },
+                                    {
+                     "label": "help-Gf3",
+                     "location": [250, 400]
+                  }
+               ]
+            }
+         ]
+      },
+      "about":{
+         "pl": [
+            {
+               "images": [
+                  {
+                     "image": "helik-default",
+                     "location": [
+                        200,
+                        210
+                     ]
+                  },
+                  {
+                     "image": "balloon-default",
+                     "location": [
+                        230,
+                        310
+                     ]
+                  },
+                  {
+                     "image": "airship-default",
+                     "location": [
+                        200,
+                        450
+                     ]
+                  },
+                  {
+                     "image": "bird-5",
+                     "location": [
+                        750, 180
+                     ]
+                  },
+                  {
+                     "image": "bird-5",
+                     "location": [
+                        850, 180
+                     ]
+                  },
+                  {
+                     "image": "bird-5",
+                     "location": [
+                        950, 180
+                     ]
+                  },
+                  {
+                     "image": "building-2",
+                     "location": [
+                        550, 597
+                     ]
+                  },
+                  {
+                     "image": "building-5",
+                     "location": [
+                        725, 386
+                     ]
+                  },
+                  {
+                     "image": "building-7",
+                     "location": [
+                        880, 387
+                     ]
+                  }
+               ],
+               "labels":[
+                  {
+                     "image": "email",
+                     "action": "mailto:marcin.bielewicz@gmail.com?subject=HeliK!",
+                     "location": [
+                        200,
+                        600
+                     ]
+                  },
+                  {
+                     "label": "about-1s",
+                     "location": [205, 33]
+                  },
+                  {
+                     "label": "about-2s",
+                     "location": [205, 113]
+                  },
+                  {
+                     "label": "about-3s",
+                     "location": [405, 193]
+                  },
+                  {
+                     "label": "about-4s",
+                     "location": [405, 273]
+                  },
+                  {
+                     "label": "about-1",
+                     "location": [200, 30]
+                  },
+                  {
+                     "label": "about-2",
+                     "location": [200, 110]
+                  },
+                  {
+                     "label": "about-3",
+                     "location": [400, 190]
+                  },
+                  {
+                     "label": "about-4",
+                     "location": [400, 270]
+                  }
+               ]
+            },
+            {
+               "images": [
+
+               ],
+               "labels": [
+                  {
+                     "label": "about-5",
+                     "location": [200, 30]
+                  },
+                  {
+                     "label": "about-6",
+                     "location": [200, 110]
+                  },
+                  {
+                     "label": "about-7",
+                     "location": [200, 190]
+                  },
+                  {
+                     "label": "about-8",
+                     "location": [200, 270]
+                  },
+                  {
+                     "label": "about-9",
+                     "location": [200, 350]
+                  },
+                  {
+                     "label": "about-10",
+                     "location": [200, 430]
+                  },
+                  {
+                     "label": "about-11",
+                     "location": [200, 510]
+                  },
+                  {
+                     "label": "about-12",
+                     "location": [200, 590]
+                  },
+                  {
+                     "label": "about-13",
+                     "location": [200, 670]
+                  }
+               ]
+            }
+         ],
+         "en": [
+            {
+               "images": [
+                  {
+                     "image": "helik-default",
+                     "location": [
+                        200,
+                        210
+                     ]
+                  },
+                  {
+                     "image": "balloon-default",
+                     "location": [
+                        230,
+                        310
+                     ]
+                  },
+                                    {
+                     "image": "airship-default",
+                     "location": [
+                        200,
+                        450
+                     ]
+                  },
+                  {
+                     "image": "bird-5",
+                     "location": [
+                        750, 180
+                     ]
+                  },
+                                    {
+                     "image": "bird-5",
+                     "location": [
+                        850, 180
+                     ]
+                  },
+                                    {
+                     "image": "bird-5",
+                     "location": [
+                        950, 180
+                     ]
+                  },
+                  {
+                     "image": "building-2",
+                     "location": [
+                        550, 597
+                     ]
+                  },
+                  {
+                     "image": "building-5",
+                     "location": [
+                        725, 386
+                     ]
+                  },
+                  {
+                     "image": "building-7",
+                     "location": [
+                        880, 387
+                     ]
+                  }
+
+               ],
+               "labels":[
+                  {
+                     "label": "about-1s",
+                     "location": [205, 33]
+                  },
+                  {
+                     "label": "about-2s",
+                     "location": [205, 113]
+                  },
+                  {
+                     "label": "about-3s",
+                     "location": [405, 193]
+                  },
+                  {
+                     "label": "about-4s",
+                     "location": [405, 273]
+                  },
+                  {
+                     "label": "about-1",
+                     "location": [200, 30]
+                  },
+                  {
+                     "label": "about-2",
+                     "location": [200, 110]
+                  },
+                  {
+                     "label": "about-3",
+                     "location": [400, 190]
+                  },
+                  {
+                     "label": "about-4",
+                     "location": [400, 270]
+                  }
+               ]
+            }
+         ]
+      }
+   }
+}

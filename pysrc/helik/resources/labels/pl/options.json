@@ -1,0 +1,42 @@
+{
+          "options": {
+            "title": {
+                "label": "OPCJE GRY",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#e0df4a"
+            },
+            "title-shadow": {
+                "label": "OPCJE GRY",
+                "font": "heading-2",
+                "rotate": 90,
+                "color": "#313131"
+            },
+            "items": {
+                "labels": [
+                    "TRENINGOWY",
+                    "ŁATWY",
+                    "NORMALNY",
+                    "ŚREDNI",
+                    "TRUDNY",
+                    "PIEKIELNY"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "items-shadow": {
+                "labels": [
+                    "TRENINGOWY",
+                    "ŁATWY",
+                    "NORMALNY",
+                    "ŚREDNI",
+                    "TRUDNY",
+                    "PIEKIELNY"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#313131"
+            }
+        }
+}

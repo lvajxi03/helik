@@ -1,5 +1,9 @@
 {
     "colors": {
-	"status-color": [128, 128, 128, 64]
+      "status-color": [128, 128, 128, 64],
+      "yellow-default": [207, 229, 32, 255],
+      "yellow-default-alpha": [207, 229, 32, 127],
+      "shadow-default": [16, 16, 16, 255],
+      "snowy-white": [255, 255, 255, 255]
     }
 }

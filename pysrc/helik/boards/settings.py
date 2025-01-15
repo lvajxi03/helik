@@ -3,41 +3,95 @@
 """
 Settings board handler
 """
-
-
+import pygame
 from helik.boards.standard import Board
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-from helik.htypes import BoardType
+from helik.htypes import BoardType, SettingsModeId
+from helik.settingsmodes import (MainSettingsMode, KbdLayoutSettingsMode,
+                                 KbdInputSettingsMode, PadLayoutSettingsMode,
+                                 PadInputSettingsMode)
+
 
 class BoardSettings(Board):
     """
     Settings board class
     """
+    def __init__(self, parent):
+        """
+        Create settings object
+        :param parent: parent object handle
+        """
+        super().__init__(parent)
+        self.mode = SettingsModeId.MAIN
+        self.modes = {
+            SettingsModeId.MAIN: MainSettingsMode(self, parent),
+            SettingsModeId.KLAYOUT: KbdLayoutSettingsMode(self, parent),
+            SettingsModeId.KINPUT: KbdInputSettingsMode(self, parent),
+            SettingsModeId.GLAYOUT: PadLayoutSettingsMode(self, parent),
+            SettingsModeId.GINPUT: PadInputSettingsMode(self, parent)
+        }
+        self.labels = ["sound", "music"]
+        self.menu_pos = 0
+        self.maxpos = 3
+        self.rectangles = []
+        self.rectangles_s = []
+        self.create_rectangles()
+        self.rect_pos = None
+        self.rect_pos_t = None
+        self.create_rectangles()
+
+    def change_mode(self, mode):
+        """
+        Change settings mode
+        :param mode: new mode
+        """
+        if mode != self.mode:
+            self.modes[self.mode].deactivate()
+            self.mode = mode
+            self.modes[self.mode].activate()
+
+    def create_rectangles(self):
+        """
+        Create labels and rectangles based on locale
+        """
+        self.rectangles = []
+        self.rectangles_s = []
+
+        i = 0
+        for elem in self.resman.locale[self.arena.config['lang']]["settings"]["items"]:
+            label, rect = elem
+            rect.left = 400
+            rect.top = 100 + i * 80
+            rect.width = 750 - rect.left
+            self.rectangles.append((label, rect))
+            i += 1
+        i = 0
+        for elem in self.resman.locale[self.arena.config['lang']]["settings"]["items-shadow"]:
+            label, rect = elem
+            rect.left = 405
+            rect.top = 105 + i * 80
+            rect.width = 750 - rect.left
+            self.rectangles_s.append((label, rect))
+            i += 1
+        self.recalculate_pos()
+
+    def recalculate_pos(self):
+        """
+        Re-calculate current selection rectangle
+        """
+        _, self.rect_pos = self.rectangles[self.menu_pos]
+        self.rect_pos = self.rect_pos.inflate(40, 40)
+
     def on_paint(self):
-        """
-        Paint event handler
-        """
-        self.buffer.blit(self.resman.images["default-background"], (0, 0))
-        self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - 60))
-
-        # Lang flags
-        self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
-        self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
-
-        l, _ = self.resman.labels[self.arena.config["lang"]]["settings"]["settings-title"]
-        self.buffer.blit(l, (55, 45))
-
-        l, r = self.resman.labels[self.arena.config["lang"]]["general"]["status-line-select"]
-        self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))
+        self.modes[self.mode].on_paint()
 
     def on_keyup(self, key):
         """
-        # TODO
         Key release event handler
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        self.arena.change_board(BoardType.MENU)
+        self.modes[self.mode].on_keyup(key)
 
     def on_mouseup(self, button, pos):
         """
@@ -45,13 +99,10 @@ class BoardSettings(Board):
         :param button: button number
         :param pos: cursor position
         """
-        ch_lang = False
-        if button == 1:
-            rects = self.resman.rectangles["lang-rectangles"]
-            for lang in rects:
-                if rects[lang].collidepoint(pos):
-                    self.arena.config['lang'] = lang
-                    ch_lang = True
-        if not ch_lang:
-            # TODO: settings-related ops here
-            self.arena.change_board(BoardType.MENU)
+        self.modes[self.mode].on_mouseup(button, pos)
+
+    def activate(self):
+        """
+        Board activator
+        """
+        self.modes[self.mode].activate()

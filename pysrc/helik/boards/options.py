@@ -21,6 +21,7 @@ class BoardOptions(Board):
         self.rect_pos_t = None
         self.color = pygame.Color(76, 76, 76)
         self.rectangles = []
+        self.rectangles_s = []
         self.create_rectangles()
 
     def recalculate_pos(self):
@@ -35,12 +36,21 @@ class BoardOptions(Board):
         Create labels and rectangles based on locale
         """
         self.rectangles = []
+        self.rectangles_s = []
+
         i = 0
-        for elem in self.resman.labels[self.arena.config['lang']]["options-items"]:
+        for elem in self.resman.locale[self.arena.config['lang']]["options"]["items"]:
             label, rect = elem
             rect.left = 400
             rect.top = 100 + i * 80
             self.rectangles.append((label, rect))
+            i += 1
+        i = 0
+        for elem in self.resman.locale[self.arena.config['lang']]["options"]["items-shadow"]:
+            label, rect = elem
+            rect.left = 405
+            rect.top = 105 + i * 80
+            self.rectangles_s.append((label, rect))
             i += 1
         self.recalculate_pos()
 
@@ -55,12 +65,17 @@ class BoardOptions(Board):
         self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
         self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
 
-        l, _ = self.resman.labels[self.arena.config['lang']]["options"]["options-title"]
-        self.buffer.blit(l, (275, 95))
+        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["settings-status"]
+        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
-        l, r = self.resman.labels[self.arena.config["lang"]]["general"]["status-line-select"]
-        self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))
+        la, _ = self.resman.locale[self.arena.config["lang"]]["options"]["title-shadow"]
+        self.buffer.blit(la, (240, 90))
+        la, _ = self.resman.locale[self.arena.config["lang"]]["options"]["title"]
+        self.buffer.blit(la, (245, 85))
 
+        for re in self.rectangles_s:
+            label, rect = re
+            self.buffer.blit(label, rect)
         for re in self.rectangles:
             label, rect = re
             self.buffer.blit(label, rect)
@@ -133,4 +148,19 @@ class BoardOptions(Board):
             self.on_keyup(pygame.K_UP)
         elif button == 5:
             self.on_keyup(pygame.K_DOWN)
+        elif button == 2 or button == 3:
+            self.arena.change_board(BoardType.MENU)
 
+    def on_joyaxismotion(self, axis, value):
+        value = int(value)
+        if axis == 1:
+            if value == 1:
+                self.on_keyup(pygame.K_DOWN)
+            elif value == -1:
+                self.on_keyup(pygame.K_UP)
+
+    def on_joybuttonup(self, button):
+        if button == 1: # TODO: A
+            self.on_keyup(pygame.K_RETURN)
+        elif button == 2: # TODO: B
+            self.on_keyup(pygame.K_q)

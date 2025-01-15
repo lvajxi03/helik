@@ -6,7 +6,7 @@ Level handler module
 
 
 from helik.game.bullets import Bullet
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.hdefs import ARENA_WIDTH
 from helik.game.lane import Lane
 
 
@@ -27,8 +27,7 @@ class Level:
         # TODO: or make it a const in hdefs module?
         self.bullet_speed = 8
         multiplier = data["multipliers"][option]
-        if multiplier < 1:
-            multiplier = 1
+        multiplier = max(multiplier, 1)
         for ld in data["lanes"]:
             la = Lane(ld, resman, multiplier)
             self.lanes.append(la)

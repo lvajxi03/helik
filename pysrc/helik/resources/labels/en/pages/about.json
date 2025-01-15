@@ -1,0 +1,50 @@
+{
+  "about-1": {
+    "color": "#ffffff",
+    "font": "about",
+    "label": "A flappy bird style game, but with a helicopter.",
+    "rotate": 0
+  },
+  "about-1s": {
+    "color": "#313131",
+    "font": "about",
+    "label": "A flappy bird style game, but with a helicopter.",
+    "rotate": 0
+  },
+  "about-2": {
+    "color": "#ffffff",
+    "font": "about",
+    "label": "Or a balloon. Or a blimp.",
+    "rotate": 0
+  },
+  "about-2s": {
+    "color": "#313131",
+    "font": "about",
+    "label": "Or a balloon. Or a blimp.",
+    "rotate": 0
+  },
+  "about-3": {
+    "color": "#ffffff",
+    "font": "about",
+    "label": "And shooting.",
+    "rotate": 0
+  },
+  "about-3s": {
+    "color": "#313131",
+    "font": "about",
+    "label": "And shooting.",
+    "rotate": 0
+  },
+  "about-4": {
+    "color": "#ffffff",
+    "font": "about",
+    "label": "And a few other things.",
+    "rotate": 0
+  },
+  "about-4s": {
+    "color": "#313131",
+    "font": "about",
+    "label": "And a few other things.",
+    "rotate": 0
+  }
+}

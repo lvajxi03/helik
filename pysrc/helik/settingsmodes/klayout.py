@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+
+"""
+Keyboard Layout settings mode
+"""
+
+import pygame
+from helik.settingsmodes import SettingsMode
+from helik.htypes import SettingsModeId
+from helik.hdefs import ARENA_HEIGHT
+
+
+class KbdLayoutSettingsMode(SettingsMode):
+    """
+    Keyboard Layout settings mode class
+    """
+    def __init__(self, parent, arena):
+        """
+        Class constructor
+        :param parent: Settings board handle
+        :param arena: Arena handle
+        """
+        super().__init__(parent, arena)
+
+    def on_paint(self):
+        """
+        Paint event handler
+        """
+        self.buffer.blit(self.resman.images["default-background"], (0, 0))
+        self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - 60))
+
+        # Lang flags
+        self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
+        self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
+
+    def on_keyup(self, key):
+        """
+        Key release event handler
+        Key code does not matter. Always return to main menu
+        :param key: any key pressed
+        """
+        if key in (pygame.K_q, pygame.K_ESCAPE, pygame.K_LEFT):
+            self.parent.change_mode(SettingsModeId.MAIN)
+
+    def on_mouseup(self, button, pos):
+        """
+        Mouse up event handler
+        :param button: button number
+        :param pos: cursor position
+        """
+        if button == 1:
+            rects = self.resman.rectangles["lang-rectangles"]
+            for lang in rects:
+                if rects[lang].collidepoint(pos):
+                    self.arena.config['lang'] = lang
+                    self.audio.play_sound("arrow")
+        if button in (2, 3):
+            self.parent.change_mode(SettingsModeId.MAIN)
+        elif button == 4:
+            self.on_keyup(pygame.K_UP)
+        elif button == 5:
+            self.on_keyup(pygame.K_DOWN)

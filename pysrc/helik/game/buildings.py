@@ -24,7 +24,7 @@ def building_from_image(image, x, y=-1):
     :param y: y coordinate, if < 0 then aligned to bottom edge
     :return: Building object
     """
-    w, h = image.get_size()
+    _, h = image.get_size()
     if y < 0:
         y = ARENA_HEIGHT - h - 60
     return Building(x, y, image)

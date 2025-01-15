@@ -35,7 +35,7 @@ class GameObject:
 
     def collide(self, other):
         """
-        Check for collision between this object and the other
+        Check for collision between this object and the other one
         :param other: the other object
         :return: tuple of intersection or None
         """
@@ -44,6 +44,7 @@ class GameObject:
     def move(self, speed):
         """
         Move game object according to its policy
+        :param speed: move object by <speed> pixels left
         """
 
 
@@ -116,4 +117,3 @@ class ImageListGameObject(ImageGameObject):
             self.w = self.rects[self.current].w
             self.h = self.rects[self.current].h
             self.ic = 0
-

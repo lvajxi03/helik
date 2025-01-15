@@ -1,0 +1,40 @@
+{
+  "newscore": {
+    "congrats": {
+      "color": "#e0df4a",
+      "font": "heading-2",
+      "label": "Congratulations!",
+      "rotate": 0
+    },
+    "congrats-2": {
+      "color": "#ffffff",
+      "font": "screen-keyboard",
+      "label": "You are in the top ten!",
+      "rotate": 0
+    },
+    "congrats-shadow": {
+      "color": "#313131",
+      "font": "heading-2",
+      "label": "Congratulations!",
+      "rotate": 0
+    },
+    "done": {
+      "color": "#ffffff",
+      "font": "screen-keyboard",
+      "label": "DONE",
+      "rotate": 0
+    },
+    "enter-nickname": {
+      "color": "#ffffff",
+      "font": "screen-keyboard",
+      "label": "Enter your nickname:",
+      "rotate": 0
+    },
+    "space": {
+      "color": "#ffffff",
+      "font": "screen-keyboard",
+      "label": "SPACE",
+      "rotate": 0
+    }
+  }
+}

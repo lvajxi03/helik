@@ -20,11 +20,15 @@ class ModePaused(Mode):
         Paint event handler
         """
         self.buffer.blit(self.resman.images["default-background"], (0, 0))
-        im, r = self.resman.labels[self.arena.config["lang"]]["game"]["paused"]
+        im, r = self.resman.locale[self.arena.config["lang"]]["game"]["paused-shadow"]
+        r.x = (ARENA_WIDTH - r.w ) // 2 + 5
+        r.y = (ARENA_HEIGHT // 2 - r.h) // 2 + 5
+        self.buffer.blit(im, r)
+        im, r = self.resman.locale[self.arena.config["lang"]]["game"]["paused"]
         r.x = (ARENA_WIDTH - r.w ) // 2
         r.y = (ARENA_HEIGHT // 2 - r.h) // 2
         self.buffer.blit(im, r)
-        im, r = self.resman.labels[self.arena.config["lang"]]["game"]["continue"]
+        im, r = self.resman.locale[self.arena.config["lang"]]["game"]["continue"]
         r.x = (ARENA_WIDTH - r.w) // 2
         r.y = (3 * ARENA_HEIGHT // 2 - r.h) // 2
         self.buffer.blit(im, r)

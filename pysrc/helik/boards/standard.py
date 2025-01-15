@@ -56,3 +56,16 @@ class Board:
         Update event handler
         :param delta: delta time from last frame
         """
+
+    def on_joybuttonup(self, button):
+        """
+        Joystick button up handler
+        :param button: number of button released
+        """
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        Joystick axis motion handler
+        :param axis: axis number in use
+        :param value: axis move value
+        """

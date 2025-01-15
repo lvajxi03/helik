@@ -1,0 +1,74 @@
+{
+  "settings": {
+    "checked": {
+      "color": "yellow-default",
+      "font": "menu",
+      "label": "☒",
+      "rotate": 0
+    },
+    "checked-shadow": {
+      "color": "#313131",
+      "font": "menu",
+      "label": "☒",
+      "rotate": 0
+    },
+    "grip": {
+      "color": "yellow-default",
+      "font": "menu",
+      "label": "►",
+      "rotate": 0
+    },
+    "grip-shadow": {
+      "color": "#313131",
+      "font": "menu",
+      "label": "►",
+      "rotate": 0
+    },
+    "items": {
+      "color": "#ffffff",
+      "font": "menu",
+      "labels": [
+        "SOUNDS",
+        "MUSIC",
+        "KEYS",
+        "BUTTONS"
+      ],
+      "rotate": 0
+    },
+    "items-shadow": {
+      "color": "#313131",
+      "font": "menu",
+      "labels": [
+        "SOUNDS",
+        "MUSIC",
+        "KEYS",
+        "BUTTONS"
+      ],
+      "rotate": 0
+    },
+    "title": {
+      "color": "#e0df4a",
+      "font": "heading-2",
+      "label": "SETTINGS",
+      "rotate": 90
+    },
+    "title-shadow": {
+      "color": "#313131",
+      "font": "heading-2",
+      "label": "SETTINGS",
+      "rotate": 90
+    },
+    "unchecked": {
+      "color": "yellow-default",
+      "font": "menu",
+      "label": "☐",
+      "rotate": 0
+    },
+    "unchecked-shadow": {
+      "color": "#313131",
+      "font": "menu",
+      "label": "☐",
+      "rotate": 0
+    }
+  }
+}

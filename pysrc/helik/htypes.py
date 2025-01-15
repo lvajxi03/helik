@@ -92,3 +92,20 @@ class GameObjectType(enum.IntEnum):
     HEART = 5
     BIRD = 6
     BULLET = 7
+
+
+@enum.unique
+class SettingsModeId(enum.IntEnum):
+    """
+    Settings board can have multiple modes:
+    1. Main settings menu
+    2. Keyboard layout
+    3. Keyboard input
+    4. Gamepad layout
+    5. Gamepad input
+    """
+    MAIN = 0
+    KLAYOUT = 1
+    KINPUT = 2
+    GLAYOUT = 3
+    GINPUT = 4

@@ -9,10 +9,61 @@ from helik.boards.standard import Board
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType
 
+
+SCORES_DX = 200
+SCORES_DY = 90
+
+SCORES_DY_SPACE = 65
+
+SHADOW_DX = 5
+SHADOW_DY = 5
+
+
 class BoardHiscores(Board):
     """
     Hiscores board class
     """
+    def __init__(self, parent):
+        """
+        Hiscores board class constructor
+        """
+        super().__init__(parent)
+        self.rectangles = []
+        self.rectangles_s = []
+
+    def activate(self):
+        """
+        Activate event handler
+        """
+        self.rectangles = []
+        self.rectangles_s = []
+        dl = 0
+        try:
+            _, po = self.arena.config["hiscores"][0]
+            dl = len(f"{po}")
+        except IndexError:
+            pass
+        for i in range(0, 10):
+            try:
+                nick, points = self.arena.config["hiscores"][i]
+                self.rectangles.append(self.resman.fonts["menu"].render(
+                    f"{i+1: >2}. {points: >{dl}} {nick}",
+                    True,
+                    self.resman.colors["snowy-white"]))
+                self.rectangles_s.append(self.resman.fonts["menu"].render(
+                    f"{i+1: >2}. {points: >{dl}} {nick}",
+                    True,
+                    self.resman.colors["shadow-default"]))
+            except IndexError:
+                self.rectangles.append(self.resman.fonts["menu"].render(
+                    f"{i+1: >2}.",
+                    True,
+                    self.resman.colors["snowy-white"]))
+                self.rectangles_s.append(self.resman.fonts["menu"].render(
+                    f"{i+1: >2}.",
+                    True,
+                    self.resman.colors["shadow-default"]))
+
     def on_paint(self):
         """
         Paint event handler
@@ -24,11 +75,22 @@ class BoardHiscores(Board):
         self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
         self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
 
-        l, _ = self.resman.labels[self.arena.config["lang"]]["hiscores"]["hiscores-title"]
-        self.buffer.blit(l, (55, 45))
+        la, _ = self.resman.locale[self.arena.config["lang"]]["hiscores"]["title-shadow"]
+        self.buffer.blit(la, (30, 30))
+        la, _ = self.resman.locale[self.arena.config["lang"]]["hiscores"]["title"]
+        self.buffer.blit(la, (25, 25))
 
-        l, r = self.resman.labels[self.arena.config["lang"]]["general"]["status-line-no-select"]
-        self.buffer.blit(l, (ARENA_WIDTH - r.width - 200 , ARENA_HEIGHT - 50))
+        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["common-status"]
+        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+
+        if len(self.arena.config['hiscores']) == 0:
+            pass
+        else:
+            for i in range(0, 10):
+                self.buffer.blit(self.rectangles_s[i],
+                           (SCORES_DX + SHADOW_DX, SCORES_DY + SHADOW_DY + i * SCORES_DY_SPACE))
+                self.buffer.blit(self.rectangles[i],
+                           (SCORES_DX, SCORES_DY + i * SCORES_DY_SPACE))
 
     def on_keyup(self, key):
         """
@@ -52,5 +114,5 @@ class BoardHiscores(Board):
                     self.arena.config['lang'] = lang
                     ch_lang = True
         if not ch_lang:
-            # TODO: about-related ops here
             self.arena.change_board(BoardType.MENU)
+

@@ -89,7 +89,13 @@
         "airship-down.png",
         "airship-up.png"
     ],
-    "big-left-arrow": "big-left-arrow.png",
+    "building-2": "building-2.png",
+    "building-5": "building-5.png",
+    "building-7": "building-7.png",
+    "bird-5": "bird-5.png",
+    "helik-default": "helik-down.png",
+    "balloon-default": "balloon-down.png",
+    "airship-default": "airship-down.png",
     "default-background": "back-default.jpg",
     "line-0": "line-0.png",
     "bullet": "bullet.png",
@@ -99,8 +105,11 @@
     "flag-en": "flag_en.png",
     "heart-yellow": "heart-yellow.png",
     "heart-gray": "heart-gray.png",
-    "krzyk": "krzyk.png",
     "helik-main": "helik-main.png",
-    "pl-status-1": "pl-status-1.png",
-    "viewport": "viewport.png"
+    "viewport": "viewport.png",
+    "checkbox-checked": "checkbox-checked.png",
+    "checkbox-unchecked": "checkbox-unchecked.png",
+    "cursor": "cursor.png",
+    "email": "email.png",
+    "status-1": "status-1.png"
 }

@@ -80,3 +80,10 @@ class BoardWelcome(Board):
         :param pos: cursor position
         """
         self.arena.change_board(BoardType.MENU)
+
+    def on_joyaxismotion(self, axis, value):
+        self.arena.change_board(BoardType.MENU)
+
+    def on_joybuttonup(self, button):
+        self.arena.change_board(BoardType.MENU)
+

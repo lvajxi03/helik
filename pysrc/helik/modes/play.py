@@ -8,7 +8,7 @@ Mode play handler module
 import pygame
 from helik.modes.standard import Mode
 from helik.htypes import TimerType, GameMode, SoundPlayState
-from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT
+from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT, SPEED
 from helik.gfx import blitnumber
 from helik.game.explosion import Explosion
 from helik.game.player import PlayerDirection
@@ -25,7 +25,7 @@ class ModePlay(Mode):
         """
         super().__init__(parent)
         self.data = self.game.data
-        self.speed = 30
+        self.speed = SPEED
 
     def activate(self):
         """
@@ -35,9 +35,10 @@ class ModePlay(Mode):
             self.audio.unpause_music()
         elif self.game.music_state == SoundPlayState.STOPPED:
             self.audio.play_music("music-3")
+        self.speed = SPEED - self.arena.config['option']
         pygame.time.set_timer(TimerType.SECOND, 1000)
         pygame.time.set_timer(TimerType.FIRST, 250)
-        self.speed = 20 - self.data['level'] - 3 * self.data['option']
+        self.speed = 30 - 2 * self.data['option']
         pygame.time.set_timer(TimerType.THIRD, self.speed)
         pygame.time.set_timer(TimerType.FOURTH, int(self.speed * 1.5))
 
@@ -51,12 +52,11 @@ class ModePlay(Mode):
         pygame.time.set_timer(TimerType.THIRD, 0)
         pygame.time.set_timer(TimerType.FOURTH, 0)
 
-    def on_update(self, delta):
+    def game_update(self):
         """
-        Update event handler
-        :param delta: delta time between two frames
+        Game objects update
         """
-        self.game.player.move(delta)
+        self.game.player.move(1)
         self.game.level.move()
 
         # Bullet collisions (buildings, birds)
@@ -133,7 +133,7 @@ class ModePlay(Mode):
             self.game.data['points'] += 10
 
         elif timer == TimerType.THIRD:
-            self.game.level.move()
+            self.game_update()
         elif timer == TimerType.FOURTH:
             pass
 
@@ -170,6 +170,7 @@ class ModePlay(Mode):
         """
         self.buffer.blit(self.resman.images["default-background"], (0, 0))
         self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - 60))
+
         lives = self.game.data['lives']
         missing = 5 - lives
         for i in range(lives):
@@ -179,11 +180,11 @@ class ModePlay(Mode):
                 self.resman.images["heart-gray"],
                 (10 + 60 * lives + i * 60, ARENA_HEIGHT - 54))
         blitnumber(self.buffer, self.data['points'], 5,
-                   self.resman.digits, (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
+                   self.resman.letters, (ARENA_WIDTH - 200, ARENA_HEIGHT - 54))
         self.buffer.blit(self.resman.images["bullets-indicator"],
                          (340, ARENA_HEIGHT - 42))
         blitnumber(self.buffer, self.data['bullets-available'],
-                   3, self.resman.digits, (400, ARENA_HEIGHT - 54))
+                   3, self.resman.letters, (400, ARENA_HEIGHT - 54))
 
         if self.game.player.direction == PlayerDirection.DOWN:
             self.buffer.blit(self.resman.images["dirc"][4], (ARENA_WIDTH - 350, ARENA_HEIGHT - 54))

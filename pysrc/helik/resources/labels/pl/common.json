@@ -1,0 +1,52 @@
+{
+        "common": {
+            "common-status": {
+                "label": "← ESC Q \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "pager-status-full": {
+                "label": "←→  ESC Q \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "pager-status-next": {
+                "label": "→  ESC Q \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "pager-status-prev": {
+                "label": "←  ESC Q \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "pager-status-none": {
+                "label": "ESC Q \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "settings-status": {
+                "label": "↑↓ ENTER   ← ESC Q \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "menu-status": {
+                "label": "↑↓ ENTER   ESC Q \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "newscore-status": {
+                "label": "←↑↓→ ENTER   ESC \uD83D\uDDB1",
+                "font": "status",
+                "rotate": 0,
+                "color": "#ffffff"
+            }
+        }
+        }

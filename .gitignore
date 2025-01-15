@@ -12,3 +12,5 @@ bin/
 obj/
 *.egg-info
 vent/
+*.swp
+

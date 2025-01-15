@@ -1,0 +1,16 @@
+{
+  "about": {
+    "title": {
+      "color": "yellow-default-alpha",
+      "font": "heading-kw2",
+      "label": "ABOUT",
+      "rotate": 90
+    },
+    "title-shadow": {
+      "color": "shadow-default",
+      "font": "heading-kw2",
+      "label": "ABOUT",
+      "rotate": 90
+    }
+  }
+}
