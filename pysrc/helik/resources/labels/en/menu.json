@@ -29,14 +29,14 @@
       "rotate": 0
     },
     "title": {
-      "color": "#e0df4a",
-      "font": "heading",
+      "color": "yellow-default-alpha",
+      "font": "heading-kw1",
       "label": "HELIK!",
       "rotate": 90
     },
     "title-shadow": {
-      "color": "#313131",
-      "font": "heading",
+      "color": "shadow-default",
+      "font": "heading-kw1",
       "label": "HELIK!",
       "rotate": 90
     }

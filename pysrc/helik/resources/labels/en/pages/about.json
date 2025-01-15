@@ -1,50 +1,50 @@
 {
+  "about-1": {
+    "color": "#ffffff",
+    "font": "about",
+    "label": "A flappy bird style game, but with a helicopter.",
+    "rotate": 0
+  },
   "about-1s": {
-                "label": "A flappy bird style game, but with a helicopter.",
-                "font": "about",
-                "rotate": 0,
-                "color": "#313131"
-            },
-            "about-2s": {
-                "label": "Or a balloon. Or a blimp.",
-                "font": "about",
-                "rotate": 0,
-                "color": "#313131"
-            },
-            "about-3s": {
-                "label": "And shooting.",
-                "font": "about",
-                "rotate": 0,
-                "color": "#313131"
-            },
-            "about-4s": {
-                "label": "And a few other things.",
-                "font": "about",
-                "rotate": 0,
-                "color": "#313131"
-            },
-            "about-1": {
-                "label": "A flappy bird style game, but with a helicopter.",
-                "font": "about",
-                "rotate": 0,
-                "color": "#ffffff"
-            },
-            "about-2": {
-                "label": "Or a balloon. Or a blimp.",
-                "font": "about",
-                "rotate": 0,
-                "color": "#ffffff"
-            },
-            "about-3": {
-                "label": "And shooting.",
-                "font": "about",
-                "rotate": 0,
-                "color": "#ffffff"
-            },
-              "about-4": {
-                "label": "And a few other things.",
-                "font": "about",
-                "rotate": 0,
-                "color": "#ffffff"
-            }
+    "color": "#313131",
+    "font": "about",
+    "label": "A flappy bird style game, but with a helicopter.",
+    "rotate": 0
+  },
+  "about-2": {
+    "color": "#ffffff",
+    "font": "about",
+    "label": "Or a balloon. Or a blimp.",
+    "rotate": 0
+  },
+  "about-2s": {
+    "color": "#313131",
+    "font": "about",
+    "label": "Or a balloon. Or a blimp.",
+    "rotate": 0
+  },
+  "about-3": {
+    "color": "#ffffff",
+    "font": "about",
+    "label": "And shooting.",
+    "rotate": 0
+  },
+  "about-3s": {
+    "color": "#313131",
+    "font": "about",
+    "label": "And shooting.",
+    "rotate": 0
+  },
+  "about-4": {
+    "color": "#ffffff",
+    "font": "about",
+    "label": "And a few other things.",
+    "rotate": 0
+  },
+  "about-4s": {
+    "color": "#313131",
+    "font": "about",
+    "label": "And a few other things.",
+    "rotate": 0
+  }
 }

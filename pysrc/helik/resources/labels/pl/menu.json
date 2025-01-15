@@ -4,13 +4,13 @@
                 "label": "HELIK!",
                 "font": "heading-kw1",
                 "rotate": 90,
-                "color": "#e0df4a7f"
+                "color": "yellow-default-alpha"
             },
             "title-shadow": {
                 "label": "HELIK!",
                 "font": "heading-kw1",
                 "rotate": 90,
-                "color": "#3131317f"
+                "color": "shadow-default"
             },
             "items": {
                 "labels": [

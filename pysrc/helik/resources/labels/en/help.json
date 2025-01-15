@@ -2,13 +2,13 @@
   "help": {
     "title": {
       "color": "yellow-default-alpha",
-      "font": "heading-kw0",
+      "font": "heading-kw1",
       "label": "HELP",
       "rotate": 90
     },
     "title-shadow": {
-      "color": "#3131317f",
-      "font": "heading-kw0",
+      "color": "shadow-default",
+      "font": "heading-kw1",
       "label": "HELP",
       "rotate": 90
     }

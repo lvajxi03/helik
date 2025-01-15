@@ -2,6 +2,8 @@
     "fonts": {
 		"heading-kw0": ["kwadraciki-mono.ttf", 256],
 		"heading-kw1": ["kwadraciki-mono.ttf", 192],
+		"heading-kw2": ["kwadraciki-mono.ttf", 128],
+		"heading-kw3": ["kwadraciki-mono.ttf", 96],
 		"heading": ["punkciki-mono.ttf", 192],
 		"heading-2": ["punkciki-mono.ttf", 128],
 		"heading-25": ["punkciki-mono.ttf", 116],

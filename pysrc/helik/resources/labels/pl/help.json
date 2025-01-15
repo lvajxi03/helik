@@ -2,15 +2,15 @@
           "help": {
             "title": {
                 "label": "POMOC",
-                "font": "heading-2",
+                "font": "heading-kw1",
                 "rotate": 90,
-                "color": "#e0df4a"
+                "color": "yellow-default-alpha"
             },
             "title-shadow": {
                 "label": "POMOC",
-                "font": "heading-2",
+                "font": "heading-kw1",
                 "rotate": 90,
-                "color": "#313131"
+                "color": "shadow-default"
             }
         }
 }
