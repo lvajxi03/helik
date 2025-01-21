@@ -19,3 +19,5 @@ class PadInputSettingsMode(SettingsMode):
         """
         Paint event handler
         """
+        self.paint_default_bg()
+        self.paint_default_title("settings")

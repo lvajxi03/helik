@@ -68,20 +68,9 @@ class BoardHiscores(Board):
         """
         Paint event handler
         """
-        self.buffer.blit(self.resman.images["default-background"], (0, 0))
-        self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - 60))
-
-        # Lang flags
-        self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
-        self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
-
-        la, _ = self.resman.locale[self.arena.config["lang"]]["hiscores"]["title-shadow"]
-        self.buffer.blit(la, (30, 30))
-        la, _ = self.resman.locale[self.arena.config["lang"]]["hiscores"]["title"]
-        self.buffer.blit(la, (25, 25))
-
-        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["common-status"]
-        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+        self.paint_default_bg()
+        self.paint_default_title("hiscores")
+        self.paint_default_status()
 
         if len(self.arena.config['hiscores']) == 0:
             pass

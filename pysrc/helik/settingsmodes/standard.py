@@ -73,3 +73,12 @@ class SettingsMode:
         :param axis: axis number in use
         :param value: axis move value
         """
+
+    def paint_default_bg(self):
+        """
+        Paint default background and items
+        """
+        self.parent.paint_default_bg()
+
+    def paint_default_title(self, groupname):
+        self.parent.paint_default_title(groupname)

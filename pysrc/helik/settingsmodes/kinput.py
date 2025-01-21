@@ -14,3 +14,10 @@ class KbdInputSettingsMode(SettingsMode):
         :param arena: Arena handle
         """
         super().__init__(parent, arena)
+
+    def on_paint(self):
+        """
+        Paint event handler
+        """
+        self.paint_default_bg()
+        self.paint_default_title("settings")

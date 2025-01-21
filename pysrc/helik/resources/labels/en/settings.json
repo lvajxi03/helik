@@ -7,7 +7,7 @@
       "rotate": 0
     },
     "checked-shadow": {
-      "color": "#313131",
+      "color": "shadow-default",
       "font": "menu",
       "label": "☒",
       "rotate": 0
@@ -19,7 +19,7 @@
       "rotate": 0
     },
     "grip-shadow": {
-      "color": "#313131",
+      "color": "shadow-default",
       "font": "menu",
       "label": "►",
       "rotate": 0
@@ -36,7 +36,7 @@
       "rotate": 0
     },
     "items-shadow": {
-      "color": "#313131",
+      "color": "shadow-default",
       "font": "menu",
       "labels": [
         "SOUNDS",
@@ -47,14 +47,14 @@
       "rotate": 0
     },
     "title": {
-      "color": "#e0df4a",
-      "font": "heading-2",
+      "color": "yellow-default-alpha",
+      "font": "heading-kw2",
       "label": "SETTINGS",
       "rotate": 90
     },
     "title-shadow": {
-      "color": "#313131",
-      "font": "heading-2",
+      "color": "shadow-default",
+      "font": "heading-kw2",
       "label": "SETTINGS",
       "rotate": 90
     },
@@ -65,7 +65,7 @@
       "rotate": 0
     },
     "unchecked-shadow": {
-      "color": "#313131",
+      "color": "shadow-default",
       "font": "menu",
       "label": "☐",
       "rotate": 0

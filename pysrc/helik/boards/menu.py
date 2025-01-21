@@ -77,11 +77,7 @@ class BoardMenu(Board):
         """
         Paint event handler
         """
-        self.buffer.blit(self.resman.images["default-background"], (0, 0))
-        self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - STATUS_HEIGHT))
-        # Lang flags
-        self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
-        self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
+        self.paint_default_bg()
 
         la, re = self.resman.locale[self.arena.config["lang"]]["common"]["menu-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))

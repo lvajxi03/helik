@@ -2,15 +2,15 @@
           "settings": {
             "title": {
                 "label": "USTAWIENIA",
-                "font": "heading-25",
+                "font": "heading-kw2",
                 "rotate": 90,
-                "color": "#e0df4a"
+                "color": "yellow-default-alpha"
             },
             "title-shadow": {
                 "label": "USTAWIENIA",
-                "font": "heading-25",
+                "font": "heading-kw2",
                 "rotate": 90,
-                "color": "#313131"
+                "color": "shadow-default"
             },
             "checked": {
                 "label": "☒",
@@ -22,7 +22,7 @@
                 "label": "☒",
                 "font": "menu",
                 "rotate": 0,
-                "color": "#313131"
+                "color": "shadow-default"
             },
             "unchecked": {
                 "label": "☐",
@@ -46,7 +46,7 @@
                 "label": "►",
                 "font": "menu",
                 "rotate": 0,
-                "color": "#313131"
+                "color": "shadow-default"
             },
             "items": {
                 "labels": [
@@ -68,7 +68,7 @@
                 ],
                 "font": "menu",
                 "rotate": 0,
-                "color": "#313131"
+                "color": "shadow-default"
             }
         }
 }

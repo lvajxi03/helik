@@ -29,17 +29,8 @@ class BoardAbout(Board):
         """
         Paint event handler
         """
-        self.buffer.blit(self.resman.images["default-background"], (0, 0))
-        self.buffer.blit(self.resman.surfaces["status"],  (0, ARENA_HEIGHT - 60))
-
-        # Lang flags
-        self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
-        self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
-
-        la, _ = self.resman.locale[self.arena.config["lang"]]["about"]["title-shadow"]
-        self.buffer.blit(la, (30, 30))
-        la, _ = self.resman.locale[self.arena.config["lang"]]["about"]["title"]
-        self.buffer.blit(la, (25, 25))
+        self.paint_default_bg()
+        self.paint_default_title("about")
 
         self.pager.on_paint(self.buffer)
 

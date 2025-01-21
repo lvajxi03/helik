@@ -67,17 +67,8 @@ class MainSettingsMode(SettingsMode):
         """
         Paint event handler
         """
-        self.buffer.blit(self.resman.images["default-background"], (0, 0))
-        self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - 60))
-
-        # Lang flags
-        self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
-        self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
-
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["title-shadow"]
-        self.buffer.blit(la, (240, 80))
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["title"]
-        self.buffer.blit(la, (245, 75))
+        self.paint_default_bg()
+        self.paint_default_title("settings")
 
         la, re = self.resman.locale[self.arena.config["lang"]]["common"]["settings-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))

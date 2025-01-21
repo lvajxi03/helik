@@ -4,6 +4,9 @@
 Standard boards for Helik
 """
 
+from helik.hdefs import ARENA_HEIGHT, STATUS_HEIGHT, ARENA_WIDTH
+
+
 class Board:
     """
     Generic board class for Helik
@@ -69,3 +72,28 @@ class Board:
         :param axis: axis number in use
         :param value: axis move value
         """
+
+    def paint_default_bg(self):
+        """
+        Default background and all labels paint method
+        """
+        self.buffer.blit(self.resman.images["default-background"], (0, 0))
+        self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - STATUS_HEIGHT))
+
+        # Lang flags
+        self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
+        self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
+
+    def paint_default_title(self, groupname):
+        """
+        Paint default title
+        :param groupname: Name of the group/board
+        """
+        la, _ = self.resman.locale[self.arena.config["lang"]][groupname]["title-shadow"]
+        self.buffer.blit(la, (30, 30))
+        la, _ = self.resman.locale[self.arena.config["lang"]][groupname]["title"]
+        self.buffer.blit(la, (25, 25))
+
+    def paint_default_status(self):
+        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["common-status"]
+        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
