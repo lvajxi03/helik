@@ -1,0 +1,14 @@
+{
+  "playout-heading": {
+    "label": "Ustawienia przycisków",
+    "font": "heading-normal",
+    "rotate": 0,
+    "color": "snowy-white"
+  },
+  "playout-heading-shadow": {
+    "label": "Ustawienia przycisków",
+    "font": "heading-normal",
+    "rotate": 0,
+    "color": "shadow-default"
+  }
+}

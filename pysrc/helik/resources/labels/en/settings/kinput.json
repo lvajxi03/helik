@@ -1,0 +1,14 @@
+{
+  "kinput-heading": {
+    "label": "Define new keys",
+    "font": "heading-normal",
+    "rotate": 0,
+    "color": "snowy-white"
+  },
+  "kinput-heading-shadow": {
+    "label": "Define new keys",
+    "font": "heading-normal",
+    "rotate": 0,
+    "color": "shadow-default"
+  }
+}

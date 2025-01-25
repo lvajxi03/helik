@@ -27,6 +27,9 @@ dependencies = [
              ]
 
 [tool.setuptools]
-packages = ["helik", "helik.modes", "helik.boards", "helik.game", "helik.resources"]
+packages = ["helik", "helik.settingsmodes", "helik.core", "helik.media", "helik.resources.labels.pl",
+    "helik.modes", "helik.boards", "helik.game", "helik.resources", "helik.resources.labels.en",
+    "helik.resources.fonts", "helik.resources.images", "helik.resources.images.ammo",
+    "helik.resources.images.birds"]
 package-dir = {"" = "pysrc"}
 include-package-data = true

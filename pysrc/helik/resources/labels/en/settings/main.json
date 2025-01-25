@@ -1,13 +1,13 @@
 {
-          "settings": {
-            "title": {
-                "label": "USTAWIENIA",
+
+              "title": {
+                "label": "SETTINGS",
                 "font": "heading-kw2",
                 "rotate": 90,
                 "color": "yellow-default-alpha"
             },
             "title-shadow": {
-                "label": "USTAWIENIA",
+                "label": "SETTINGS",
                 "font": "heading-kw2",
                 "rotate": 90,
                 "color": "shadow-default"
@@ -50,10 +50,10 @@
             },
             "items": {
                 "labels": [
-                    "DŹWIĘKI",
-                    "MUZYKA",
-                    "KLAWISZE",
-                    "PRZYCISKI"
+                    "SOUNDS",
+                    "MUSIC",
+                    "KEYS",
+                    "BUTTONS"
                 ],
                 "font": "menu",
                 "rotate": 0,
@@ -61,14 +61,13 @@
             },
             "items-shadow": {
                 "labels": [
-                    "DŹWIĘKI",
-                    "MUZYKA",
-                    "KLAWISZE",
-                    "PRZYCISKI"
+                    "SOUNDS",
+                    "MUSIC",
+                    "KEYS",
+                    "BUTTONS"
                 ],
                 "font": "menu",
                 "rotate": 0,
                 "color": "shadow-default"
             }
-        }
 }

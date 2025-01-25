@@ -1,0 +1,14 @@
+{
+  "kinput-heading": {
+    "label": "Zdefiniuj nowe klawisze",
+    "font": "heading-normal",
+    "rotate": 0,
+    "color": "snowy-white"
+  },
+  "kinput-heading-shadow": {
+    "label": "Zdefiniuj nowe klawisze",
+    "font": "heading-normal",
+    "rotate": 0,
+    "color": "shadow-default"
+  }
+}

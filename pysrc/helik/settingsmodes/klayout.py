@@ -7,7 +7,6 @@ Keyboard Layout settings mode
 import pygame
 from helik.settingsmodes import SettingsMode
 from helik.htypes import SettingsModeId
-from helik.hdefs import ARENA_HEIGHT
 
 
 class KbdLayoutSettingsMode(SettingsMode):
@@ -28,6 +27,10 @@ class KbdLayoutSettingsMode(SettingsMode):
         """
         self.paint_default_bg()
         self.paint_default_title("settings")
+        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["klayout-heading-shadow"]
+        self.buffer.blit(la, (205, 45))
+        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["klayout-heading"]
+        self.buffer.blit(la, (200, 40))
 
     def on_keyup(self, key):
         """
@@ -35,7 +38,9 @@ class KbdLayoutSettingsMode(SettingsMode):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        if key in (pygame.K_q, pygame.K_ESCAPE, pygame.K_LEFT):
+        if key == pygame.K_F2:
+            self.parent.change_mode(SettingsModeId.KINPUT)
+        elif key in (pygame.K_q, pygame.K_ESCAPE, pygame.K_LEFT):
             self.parent.change_mode(SettingsModeId.MAIN)
 
     def on_mouseup(self, button, pos):

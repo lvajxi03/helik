@@ -1,0 +1,73 @@
+{
+
+              "title": {
+                "label": "USTAWIENIA",
+                "font": "heading-kw2",
+                "rotate": 90,
+                "color": "yellow-default-alpha"
+            },
+            "title-shadow": {
+                "label": "USTAWIENIA",
+                "font": "heading-kw2",
+                "rotate": 90,
+                "color": "shadow-default"
+            },
+            "checked": {
+                "label": "☒",
+                "font": "menu",
+                "rotate": 0,
+                "color": "yellow-default"
+            },
+            "checked-shadow": {
+                "label": "☒",
+                "font": "menu",
+                "rotate": 0,
+                "color": "shadow-default"
+            },
+            "unchecked": {
+                "label": "☐",
+                "font": "menu",
+                "rotate": 0,
+                "color": "yellow-default"
+            },
+            "unchecked-shadow": {
+                "label": "☐",
+                "font": "menu",
+                "rotate": 0,
+                "color": "#313131"
+            },
+            "grip": {
+                "label": "►",
+                "font": "menu",
+                "rotate": 0,
+                "color": "yellow-default"
+            },
+            "grip-shadow": {
+                "label": "►",
+                "font": "menu",
+                "rotate": 0,
+                "color": "shadow-default"
+            },
+            "items": {
+                "labels": [
+                    "DŹWIĘKI",
+                    "MUZYKA",
+                    "KLAWISZE",
+                    "PRZYCISKI"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "#ffffff"
+            },
+            "items-shadow": {
+                "labels": [
+                    "DŹWIĘKI",
+                    "MUZYKA",
+                    "KLAWISZE",
+                    "PRZYCISKI"
+                ],
+                "font": "menu",
+                "rotate": 0,
+                "color": "shadow-default"
+            }
+}

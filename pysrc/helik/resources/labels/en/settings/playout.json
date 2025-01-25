@@ -1,0 +1,14 @@
+{
+  "playout-heading": {
+    "label": "Buttons settings",
+    "font": "heading-normal",
+    "rotate": 0,
+    "color": "snowy-white"
+  },
+  "playout-heading-shadow": {
+    "label": "Buttons settings",
+    "font": "heading-normal",
+    "rotate": 0,
+    "color": "shadow-default"
+  }
+}
