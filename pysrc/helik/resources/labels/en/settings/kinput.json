@@ -10,5 +10,35 @@
     "font": "heading-normal",
     "rotate": 0,
     "color": "shadow-default"
+  },
+  "kinput-items": {
+    "labels": [
+      "JUMP",
+      "SHOT"
+    ],
+    "font": "menu",
+    "rotate": 0,
+    "color": "snowy-white"
+  },
+  "kinput-items-shadow": {
+    "labels": [
+      "JUMP",
+      "SHOT"
+    ],
+    "font": "menu",
+    "rotate": 0,
+    "color": "shadow-default"
+  },
+  "kinput-help-1": {
+    "label": "Not allowed: ESC, ENTER, Q, F1 or F2",
+    "color": "snowy-white",
+    "rotate": 0,
+    "font": "normal"
+  },
+  "kinput-help-2": {
+    "label": "Enter to accept, F2 to start again",
+    "color": "snowy-white",
+    "rotate": 0,
+    "font": "normal"
   }
 }

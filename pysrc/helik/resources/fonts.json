@@ -14,6 +14,7 @@
 		"big-message": ["punkciki-mono.ttf", 128],
 		"menu": ["punkciki-mono.ttf", 56],
 		"about": ["punkciki-mono.ttf", 40],
+		"normal": ["punkciki-mono.ttf", 40],
 		"pages-small": ["punkciki-mono.ttf", 30],
 		"pages-smallest": ["punkciki-mono.ttf", 24],
 		"screen-keyboard": ["punkciki-mono.ttf", 50],

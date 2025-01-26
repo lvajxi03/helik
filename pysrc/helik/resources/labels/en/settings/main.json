@@ -1,6 +1,5 @@
 {
-
-              "title": {
+  "title": {
                 "label": "SETTINGS",
                 "font": "heading-kw2",
                 "rotate": 90,
@@ -57,7 +56,7 @@
                 ],
                 "font": "menu",
                 "rotate": 0,
-                "color": "#ffffff"
+                "color": "snowy-white"
             },
             "items-shadow": {
                 "labels": [

@@ -10,5 +10,47 @@
     "font": "heading-normal",
     "rotate": 0,
     "color": "shadow-default"
+  },
+  "kinput-items": {
+    "labels": [
+      "SKOK",
+      "STRZAŁ"
+    ],
+    "font": "menu",
+    "rotate": 0,
+    "color": "snowy-white"
+  },
+  "kinput-items-shadow": {
+    "labels": [
+      "SKOK",
+      "STRZAŁ"
+    ],
+    "font": "menu",
+    "rotate": 0,
+    "color": "shadow-default"
+  },
+  "kinput-jump": {
+    "label": "Skok:",
+    "font": "normal",
+    "rotate": 0,
+    "color": "snowy-white"
+  },
+  "kinput-shoot": {
+    "label": "Strzał:",
+    "font": "normal",
+    "rotate": 0,
+    "color": "snowy-white"
+  },
+  "kinput-help-1": {
+    "label": "Niedozwolone: ESC, ENTER, Q, F1 lub F2",
+    "color": "snowy-white",
+    "rotate": 0,
+    "font": "normal"
+  },
+  "kinput-help-2": {
+    "label": "Enter zatwierdza, F2 zaczyna na nowo",
+    "color": "snowy-white",
+    "rotate": 0,
+    "font": "normal"
   }
 }

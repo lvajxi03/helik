@@ -6,6 +6,7 @@ HeliK config module
 
 import json
 import os
+import pygame
 
 
 class Config:
@@ -19,8 +20,16 @@ class Config:
             "hiscores": [],
             "lastnick": "",
             "sound": 1,
-            "music": 1
+            "music": 1,
+            "keys": {
+                "jump": pygame.K_SPACE,
+                "shoot": pygame.K_s
+            },
+            "buttons": {
+                "jump": 0,
+                "shoot": 1
             }
+        }
 
     def read_config(self, fn: str):
         """
@@ -42,6 +51,17 @@ class Config:
                         i += 1
                 self.data['hiscores'].sort(key=lambda a: a[1], reverse=True)
                 self.data['hiscores'] = self.data['hiscores'][:10]
+                if 'keys' in self.data:
+                    if 'jump' in self.data['keys']:
+                        if self.data['keys']['jump'] in (pygame.K_ESCAPE, pygame.K_q,
+                                                         pygame.K_LEFT, pygame.K_F1, pygame.K_F2):
+                            self.data['keys']['jump'] = pygame.K_SPACE
+                        if self.data['keys']['shoot'] in (pygame.K_ESCAPE, pygame.K_q,
+                                                          pygame.K_LEFT, pygame.K_F1, pygame.K_F2):
+                            self.data['keys']['shoot'] = pygame.K_s
+                        if self.data['keys']['shoot'] == self.data['keys']['jump']:
+                            self.data['keys']['jump'] = pygame.K_SPACE
+                            self.data['keys']['shoot'] = pygame.K_s
         except IOError:
             pass
         except json.decoder.JSONDecodeError:

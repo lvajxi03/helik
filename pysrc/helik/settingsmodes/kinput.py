@@ -1,14 +1,21 @@
 #!/usr/bin/env python3
 
+"""
+KInput settings mode
+Provides mode for keys input (interactive new key definition)
+"""
+
 import pygame
 from helik.settingsmodes.standard import SettingsMode
-from helik.htypes import SettingsModeId
+from helik.htypes import SettingsModeId, TimerType
 
 
 class KbdInputSettingsMode(SettingsMode):
     """
     Keyboart input settings mode
     """
+    blink: bool = False
+
     def __init__(self, parent, arena):
         """
         Class constructor
@@ -16,6 +23,10 @@ class KbdInputSettingsMode(SettingsMode):
         :param arena: Arena handle
         """
         super().__init__(parent, arena)
+        self.blink = False
+
+    def activate(self):
+        pygame.time.set_timer(TimerType.SECOND, 250)
 
     def on_paint(self):
         """
@@ -28,6 +39,23 @@ class KbdInputSettingsMode(SettingsMode):
         la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-heading"]
         self.buffer.blit(la, (200, 40))
 
+        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-help-1"]
+        self.buffer.blit(la, (200, 180))
+
+        i = 0
+        for elem in self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-items-shadow"]:
+            la, _ = elem
+            self.buffer.blit(la, (205, 285 + i * 80))
+            i += 1
+
+        i = 0
+        for elem in self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-items"]:
+            la, _ = elem
+            self.buffer.blit(la, (200, 280 + i * 80))
+            i += 1
+
+        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-help-2"]
+        self.buffer.blit(la, (200, 680))
 
     def on_keyup(self, key):
         """
@@ -56,3 +84,10 @@ class KbdInputSettingsMode(SettingsMode):
             self.on_keyup(pygame.K_UP)
         elif button == 5:
             self.on_keyup(pygame.K_DOWN)
+
+    def on_timer(self, timer):
+        """
+        Timer handler
+        """
+        if timer == TimerType.SECOND:
+            self.blink = not self.blink

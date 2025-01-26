@@ -106,3 +106,9 @@ class BoardSettings(Board):
         Board activator
         """
         self.modes[self.mode].activate()
+
+    def on_timer(self, timer):
+        """
+        Timer handler
+        """
+        self.modes[self.mode].activate()

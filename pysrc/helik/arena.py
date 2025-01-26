@@ -5,7 +5,6 @@ Arena module
 """
 
 import random
-# import webbrowser
 from importlib.resources import files
 import pygame
 from helik.hdefs import APPLICATION_TITLE
