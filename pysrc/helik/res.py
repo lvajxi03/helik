@@ -78,7 +78,8 @@ class ResourceManager:
                 data = json.load(f_handle)["fonts"]
                 for name in data:
                     dt = data[name]
-                    self.fonts[name] = pygame.font.Font(basepath.joinpath("fonts").joinpath(dt[0]), dt[1])
+                    self.fonts[name] = pygame.font.Font(basepath.joinpath("fonts").joinpath(dt[0]),
+                                                        dt[1])
         except IOError:
             pass
 
@@ -95,6 +96,10 @@ class ResourceManager:
             pass
 
     def read_labels(self, basepath):
+        """
+        Recursively read labels data from fancy directory structures
+        :param basepath: root directory of all resources
+        """
         ret = {}
         objs = os.listdir(basepath)
         for obj in objs:
@@ -102,14 +107,14 @@ class ResourceManager:
             if os.path.isdir(fp):
                 ret[obj.lower()] = self.read_labels(fp)
             if os.path.isfile(fp):
-                fn, ex = os.path.splitext(obj)
+                _, ex = os.path.splitext(obj)
                 if ex.lower() == ".json":
                     try:
                         with open(fp, encoding='utf-8') as fh:
                             js = json.load(fh)
                             ret.update(js)
-                    except IOError as ioe:
-                        print(ioe)
+                    except IOError:
+                        pass
         return ret
 
     def load_labels(self, basepath):
@@ -216,8 +221,9 @@ class ResourceManager:
                             self.level_planes[key].append(
                                 pygame.image.load(pa.joinpath(key).joinpath(value)).convert_alpha())
                     elif type(values) is str:
-                        self.level_planes[key] = pygame.image.load(pa.joinpath(values)).convert_alpha()
-        except IOError as ioe:
+                        self.level_planes[key] = pygame.image.load(pa.joinpath(
+                            values)).convert_alpha()
+        except IOError:
             pass
 
     def load_colors(self, basepath):
@@ -246,7 +252,8 @@ class ResourceManager:
                     if type(value) is list:
                         self.images[key] = []
                         for elem in value:
-                            self.images[key].append(pygame.image.load(pa.joinpath(key).joinpath(elem)).convert_alpha())
+                            self.images[key].append(pygame.image.load(
+                                pa.joinpath(key).joinpath(elem)).convert_alpha())
                     elif type(value) is dict:
                         self.images[key] = {}
                         for elem in value:
@@ -254,7 +261,7 @@ class ResourceManager:
                                 pa.joinpath(key).joinpath(value[elem])).convert_alpha()
                     elif type(value) is str:
                         self.images[key] = pygame.image.load(pa.joinpath(value)).convert_alpha()
-        except IOError as ioe:
-            print(ioe)
+        except IOError:
+            pass
 
     # That's all Folks!
