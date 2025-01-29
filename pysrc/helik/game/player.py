@@ -63,7 +63,7 @@ class Player:
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_SPACE:
+        if key == self.arena.config["keys"]["jump"]:
             if self.direction == PlayerDirection.DOWN:
                 self.y -= self.jump
             else:

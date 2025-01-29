@@ -32,6 +32,34 @@ class KbdLayoutSettingsMode(SettingsMode):
         la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["klayout-heading"]
         self.buffer.blit(la, (200, 40))
 
+        keys = ["jump", "shoot"]
+        i = 0
+        for elem in self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-items-shadow"]:
+            la, _ = elem
+            self.buffer.blit(la, (205, 285 + i * 80))
+            try:
+                self.buffer.blit(self.resman.keylabels[
+                                     "shadows"][
+                                     self.arena.config["lang"]][self.arena.config["keys"][keys[i]]],
+                                 (505, 285 + i * 80))
+            except IndexError:
+                pass
+            i += 1
+
+        i = 0
+        for elem in self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-items"]:
+            la, _ = elem
+            self.buffer.blit(la, (200, 280 + i * 80))
+            try:
+                self.buffer.blit(self.resman.keylabels[
+                                     "keys"][
+                                     self.arena.config["lang"]][self.arena.config["keys"][keys[i]]],
+                                 (500, 280 + i * 80))
+            except IndexError:
+                pass
+            i += 1
+
+
     def on_keyup(self, key):
         """
         Key release event handler

@@ -111,4 +111,4 @@ class BoardSettings(Board):
         """
         Timer handler
         """
-        self.modes[self.mode].activate()
+        self.modes[self.mode].on_timer(timer)

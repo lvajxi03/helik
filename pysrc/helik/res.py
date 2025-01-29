@@ -7,6 +7,7 @@ import json
 import os
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, LEVELNO, ALL_CHARS
+from helik.platform import render_keys_labels
 
 
 characters = ['abcdefgh', 'ijklmnop', 'qrstuvwx', 'yz.-_012', '3456789#']
@@ -16,22 +17,25 @@ class ResourceManager:
     """
     Resource Manager class
     """
+    misc: dict = {}
+    resources: dict = {}
+    fonts: dict = {}
+    colors: dict = {}
+    pages: dict = {}
+    levels: list = []
+    digits: dict = {}
+    images: dict = {}
+    surfaces = {}
+    letters = {}
+    level_planes = {}
+    locale = {}
+    keylabels: dict = {}
 
     def __init__(self, basepath):
         """
         Create ResourceManager instance
         :param basepath: root directory of all resources
         """
-        self.resources = {}
-        self.images = {}
-        self.digits = {}
-        self.levels = []
-        self.colors = {}
-        self.fonts = {}
-        self.pages = {}
-        self.surfaces = {}
-        self.letters = {}
-        self.level_planes = {}
         self.surfaces = {
             "buffer": pygame.display.set_mode(
                 (ARENA_WIDTH, ARENA_HEIGHT),
@@ -44,12 +48,22 @@ class ResourceManager:
                 "en": pygame.Rect(ARENA_WIDTH - 77, ARENA_HEIGHT - 58, 75, 56)
             }
         }
-
-        self.locale = {}
         self.load_resources(basepath)
 
         pygame.draw.rect(self.surfaces["status"],
                          self.colors["status-color"], (0, 0, ARENA_WIDTH, 60))
+
+    def load_misc_data(self, basepath):
+        """
+        Load misc data from a JSON file
+        :param basepath: root directory of all resources
+        """
+        f_name = basepath.joinpath("misc.json")
+        try:
+            with open(f_name, encoding='utf-8') as f_handle:
+                self.misc = json.load(f_handle)
+        except IOError:
+            pass
 
     def load_resources(self, basepath):
         """
@@ -58,9 +72,12 @@ class ResourceManager:
         """
         self.load_fonts(basepath)
         self.load_colors(basepath)
+        self.load_misc_data(basepath)
         self.load_images(basepath)
         self.load_digits(basepath)
         self.load_labels(basepath)
+        print(self.misc)
+        self.keylabels = render_keys_labels(self.misc, self.fonts, self.colors)
         self.load_level_planes(basepath)
         self.load_levels(basepath)
         self.create_letters(self.fonts["screen-keyboard"], self.colors["snowy-white"])
@@ -120,7 +137,6 @@ class ResourceManager:
     def load_labels(self, basepath):
         """
         Load and create labels
-        from labels.json file
         :param basepath: root directory of all resources
         """
         trav = basepath.joinpath("labels")

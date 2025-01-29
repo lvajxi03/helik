@@ -144,7 +144,7 @@ class ModePlay(Mode):
         """
         if key == pygame.K_ESCAPE:
             self.game.change_mode(GameMode.PAUSED)
-        elif key == pygame.K_s:
+        elif key == self.arena.config["keys"]["shoot"]:
             if self.data['bullets-available'] > 0:
                 self.audio.play_sound("popup")
                 self.game.level.make_bullet(self.game.player)
