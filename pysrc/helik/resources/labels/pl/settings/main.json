@@ -1,73 +1,72 @@
 {
-
-              "title": {
-                "label": "USTAWIENIA",
-                "font": "heading-kw2",
-                "rotate": 90,
-                "color": "yellow-default-alpha"
-            },
-            "title-shadow": {
-                "label": "USTAWIENIA",
-                "font": "heading-kw2",
-                "rotate": 90,
-                "color": "shadow-default"
-            },
-            "checked": {
-                "label": "☒",
-                "font": "menu",
-                "rotate": 0,
-                "color": "yellow-default"
-            },
-            "checked-shadow": {
-                "label": "☒",
-                "font": "menu",
-                "rotate": 0,
-                "color": "shadow-default"
-            },
-            "unchecked": {
-                "label": "☐",
-                "font": "menu",
-                "rotate": 0,
-                "color": "yellow-default"
-            },
-            "unchecked-shadow": {
-                "label": "☐",
-                "font": "menu",
-                "rotate": 0,
-                "color": "#313131"
-            },
-            "grip": {
-                "label": "►",
-                "font": "menu",
-                "rotate": 0,
-                "color": "yellow-default"
-            },
-            "grip-shadow": {
-                "label": "►",
-                "font": "menu",
-                "rotate": 0,
-                "color": "shadow-default"
-            },
-            "items": {
-                "labels": [
-                    "DŹWIĘKI",
-                    "MUZYKA",
-                    "KLAWISZE",
-                    "PRZYCISKI"
-                ],
-                "font": "menu",
-                "rotate": 0,
-                "color": "#ffffff"
-            },
-            "items-shadow": {
-                "labels": [
-                    "DŹWIĘKI",
-                    "MUZYKA",
-                    "KLAWISZE",
-                    "PRZYCISKI"
-                ],
-                "font": "menu",
-                "rotate": 0,
-                "color": "shadow-default"
-            }
+  "checked": {
+    "color": "yellow-default",
+    "font": "menu",
+    "label": "☒",
+    "rotate": 0
+  },
+  "checked-shadow": {
+    "color": "shadow-default",
+    "font": "menu",
+    "label": "☒",
+    "rotate": 0
+  },
+  "grip": {
+    "color": "yellow-default",
+    "font": "menu",
+    "label": "►",
+    "rotate": 0
+  },
+  "grip-shadow": {
+    "color": "shadow-default",
+    "font": "menu",
+    "label": "►",
+    "rotate": 0
+  },
+  "items": {
+    "color": "#ffffff",
+    "font": "menu",
+    "labels": [
+      "DŹWIĘKI",
+      "MUZYKA",
+      "KLAWISZE",
+      "PRZYCISKI"
+    ],
+    "rotate": 0
+  },
+  "items-shadow": {
+    "color": "shadow-default",
+    "font": "menu",
+    "labels": [
+      "DŹWIĘKI",
+      "MUZYKA",
+      "KLAWISZE",
+      "PRZYCISKI"
+    ],
+    "rotate": 0
+  },
+  "title": {
+    "color": "yellow-default-alpha",
+    "font": "heading-kw2",
+    "label": "USTAWIENIA",
+    "rotate": 90
+  },
+  "title-shadow": {
+    "color": "shadow-default",
+    "font": "heading-kw2",
+    "label": "USTAWIENIA",
+    "rotate": 90
+  },
+  "unchecked": {
+    "color": "yellow-default",
+    "font": "menu",
+    "label": "☐",
+    "rotate": 0
+  },
+  "unchecked-shadow": {
+    "color": "#313131",
+    "font": "menu",
+    "label": "☐",
+    "rotate": 0
+  }
 }

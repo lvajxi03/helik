@@ -58,16 +58,14 @@ class Player:
         """
         self.buffer.blit(self.images[self.direction], (self.x, self.y))
 
-    def on_keyup(self, key):
+    def on_jump(self):
         """
-        Key release event handler
-        :param key: key code
+        Jump event
         """
-        if key == self.arena.config["keys"]["jump"]:
-            if self.direction == PlayerDirection.DOWN:
-                self.y -= self.jump
-            else:
-                self.y += self.jump
+        if self.direction == PlayerDirection.DOWN:
+            self.y -= self.jump
+        else:
+            self.y += self.jump
 
     def move(self, delta) -> bool:
         """

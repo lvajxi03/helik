@@ -7,7 +7,7 @@ import json
 import os
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, LEVELNO, ALL_CHARS
-from helik.platform import render_keys_labels
+from helik.platform import render_keys_labels, render_buttons_labels
 
 
 characters = ['abcdefgh', 'ijklmnop', 'qrstuvwx', 'yz.-_012', '3456789#']
@@ -30,6 +30,7 @@ class ResourceManager:
     level_planes = {}
     locale = {}
     keylabels: dict = {}
+    button_labels: dict = {}
 
     def __init__(self, basepath):
         """
@@ -76,8 +77,8 @@ class ResourceManager:
         self.load_images(basepath)
         self.load_digits(basepath)
         self.load_labels(basepath)
-        print(self.misc)
         self.keylabels = render_keys_labels(self.misc, self.fonts, self.colors)
+        self.button_labels = render_buttons_labels(self.misc, self.fonts, self.colors)
         self.load_level_planes(basepath)
         self.load_levels(basepath)
         self.create_letters(self.fonts["screen-keyboard"], self.colors["snowy-white"])

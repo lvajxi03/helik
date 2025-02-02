@@ -7,6 +7,7 @@ HeliK config module
 import json
 import os
 import pygame
+from helik.platform import ButtonType, buttons_allowed
 
 
 class Config:
@@ -26,8 +27,8 @@ class Config:
                 "shoot": pygame.K_s
             },
             "buttons": {
-                "jump": 0,
-                "shoot": 1
+                "jump": ButtonType.Y,
+                "shoot": ButtonType.A
             }
         }
 
@@ -51,17 +52,22 @@ class Config:
                         i += 1
                 self.data['hiscores'].sort(key=lambda a: a[1], reverse=True)
                 self.data['hiscores'] = self.data['hiscores'][:10]
-                if 'keys' in self.data:
-                    if 'jump' in self.data['keys']:
-                        if self.data['keys']['jump'] in (pygame.K_ESCAPE, pygame.K_q,
-                                                         pygame.K_LEFT, pygame.K_F1, pygame.K_F2):
-                            self.data['keys']['jump'] = pygame.K_SPACE
-                        if self.data['keys']['shoot'] in (pygame.K_ESCAPE, pygame.K_q,
-                                                          pygame.K_LEFT, pygame.K_F1, pygame.K_F2):
-                            self.data['keys']['shoot'] = pygame.K_s
-                        if self.data['keys']['shoot'] == self.data['keys']['jump']:
-                            self.data['keys']['jump'] = pygame.K_SPACE
-                            self.data['keys']['shoot'] = pygame.K_s
+                if self.data['keys']['jump'] in (pygame.K_ESCAPE, pygame.K_q,
+                                                 pygame.K_LEFT, pygame.K_F1, pygame.K_F2):
+                    self.data['keys']['jump'] = pygame.K_SPACE
+                if self.data['keys']['shoot'] in (pygame.K_ESCAPE, pygame.K_q,
+                                                  pygame.K_LEFT, pygame.K_F1, pygame.K_F2):
+                    self.data['keys']['shoot'] = pygame.K_s
+                if self.data['keys']['shoot'] == self.data['keys']['jump']:
+                    self.data['keys']['jump'] = pygame.K_SPACE
+                    self.data['keys']['shoot'] = pygame.K_s
+                if self.data["buttons"]["jump"] not in buttons_allowed:
+                    self.data["buttons"]['jump"'] = ButtonType.Y
+                if self.data["buttons"]["shoot"] not in buttons_allowed:
+                    self.data["buttons"]["jump"] = ButtonType.A
+                if self.data["buttons"]["jump"] == self.data["buttons"]["shoot"]:
+                    self.data["buttons"]['jump"'] = ButtonType.Y
+                    self.data["buttons"]["jump"] = ButtonType.A
         except IOError:
             pass
         except json.decoder.JSONDecodeError:

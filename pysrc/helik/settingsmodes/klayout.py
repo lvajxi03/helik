@@ -32,6 +32,9 @@ class KbdLayoutSettingsMode(SettingsMode):
         la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["klayout-heading"]
         self.buffer.blit(la, (200, 40))
 
+        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["klayout-help-2"]
+        self.buffer.blit(la, (200, 180))
+
         keys = ["jump", "shoot"]
         i = 0
         for elem in self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-items-shadow"]:
@@ -59,6 +62,8 @@ class KbdLayoutSettingsMode(SettingsMode):
                 pass
             i += 1
 
+            la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["klayout-help-1"]
+            self.buffer.blit(la, (200, 680))
 
     def on_keyup(self, key):
         """

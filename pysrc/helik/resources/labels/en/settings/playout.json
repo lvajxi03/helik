@@ -1,14 +1,26 @@
 {
   "playout-heading": {
-    "label": "Buttons settings",
+    "color": "snowy-white",
     "font": "heading-normal",
-    "rotate": 0,
-    "color": "snowy-white"
+    "label": "Buttons settings",
+    "rotate": 0
   },
   "playout-heading-shadow": {
-    "label": "Buttons settings",
+    "color": "shadow-default",
     "font": "heading-normal",
-    "rotate": 0,
-    "color": "shadow-default"
+    "label": "Buttons settings",
+    "rotate": 0
+  },
+  "playout-help-1": {
+    "color": "snowy-white",
+    "font": "normal",
+    "label": "Press F2/Start to define your buttons",
+    "rotate": 0
+  },
+  "playout-help-2": {
+    "color": "snowy-white",
+    "font": "normal",
+    "label": "Current settings:",
+    "rotate": 0
   }
 }

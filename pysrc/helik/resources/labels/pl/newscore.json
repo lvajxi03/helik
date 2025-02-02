@@ -1,40 +1,40 @@
 {
-          "newscore": {
-            "congrats": {
-                "label": "Gratulacje!",
-                "font": "heading-2",
-                "rotate": 0,
-                "color": "#e0df4a"
-            },
-            "congrats-shadow": {
-                "label": "Gratulacje!",
-                "font": "heading-2",
-                "rotate": 0,
-                "color": "#313131"
-            },
-            "congrats-2": {
-                "label": "Jesteś w dziesiątce najlepszych!",
-                "font": "screen-keyboard",
-                "rotate": 0,
-                "color": "#ffffff"
-            },
-            "enter-nickname": {
-                "label": "Wprowadź swój nick:",
-                "font": "screen-keyboard",
-                "rotate": 0,
-                "color": "#ffffff"
-            },
-            "done": {
-                "label": "ZAKOŃCZ",
-                "font": "screen-keyboard",
-                "rotate": 0,
-                "color": "#ffffff"
-            },
-            "space": {
-                "label": "SPACJA",
-                "font": "screen-keyboard",
-                "rotate": 0,
-                "color": "#ffffff"
-            }
-        }
+  "newscore": {
+    "congrats": {
+      "color": "#e0df4a",
+      "font": "heading-2",
+      "label": "Gratulacje!",
+      "rotate": 0
+    },
+    "congrats-2": {
+      "color": "#ffffff",
+      "font": "screen-keyboard",
+      "label": "Jesteś w dziesiątce najlepszych!",
+      "rotate": 0
+    },
+    "congrats-shadow": {
+      "color": "#313131",
+      "font": "heading-2",
+      "label": "Gratulacje!",
+      "rotate": 0
+    },
+    "done": {
+      "color": "#ffffff",
+      "font": "screen-keyboard",
+      "label": "ZAKOŃCZ",
+      "rotate": 0
+    },
+    "enter-nickname": {
+      "color": "#ffffff",
+      "font": "screen-keyboard",
+      "label": "Wprowadź swój nick:",
+      "rotate": 0
+    },
+    "space": {
+      "color": "#ffffff",
+      "font": "screen-keyboard",
+      "label": "SPACJA",
+      "rotate": 0
+    }
+  }
 }

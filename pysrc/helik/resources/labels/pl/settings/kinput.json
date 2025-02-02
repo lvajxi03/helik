@@ -1,56 +1,68 @@
 {
   "kinput-heading": {
-    "label": "Zdefiniuj nowe klawisze",
+    "color": "snowy-white",
     "font": "heading-normal",
-    "rotate": 0,
-    "color": "snowy-white"
+    "label": "Zdefiniuj nowe klawisze",
+    "rotate": 0
   },
   "kinput-heading-shadow": {
-    "label": "Zdefiniuj nowe klawisze",
+    "color": "shadow-default",
     "font": "heading-normal",
-    "rotate": 0,
-    "color": "shadow-default"
-  },
-  "kinput-items": {
-    "labels": [
-      "SKOK",
-      "STRZAŁ"
-    ],
-    "font": "menu",
-    "rotate": 0,
-    "color": "snowy-white"
-  },
-  "kinput-items-shadow": {
-    "labels": [
-      "SKOK",
-      "STRZAŁ"
-    ],
-    "font": "menu",
-    "rotate": 0,
-    "color": "shadow-default"
-  },
-  "kinput-jump": {
-    "label": "Skok:",
-    "font": "normal",
-    "rotate": 0,
-    "color": "snowy-white"
-  },
-  "kinput-shoot": {
-    "label": "Strzał:",
-    "font": "normal",
-    "rotate": 0,
-    "color": "snowy-white"
+    "label": "Zdefiniuj nowe klawisze",
+    "rotate": 0
   },
   "kinput-help-1": {
-    "label": "Niedozwolone: ESC, ENTER, Q, F1 lub F2",
     "color": "snowy-white",
-    "rotate": 0,
-    "font": "normal"
+    "font": "normal",
+    "label": "Niedozwolone: ESC, ENTER, Q, F1 lub F2",
+    "rotate": 0
   },
   "kinput-help-2": {
-    "label": "Enter zatwierdza, F2 zaczyna na nowo",
     "color": "snowy-white",
-    "rotate": 0,
-    "font": "normal"
+    "font": "normal",
+    "label": "Enter/Select zapisuje i wychodzi",
+    "rotate": 0
+  },
+  "kinput-help-3": {
+    "color": "snowy-white",
+    "font": "normal",
+    "label": "F2/Start zaczyna na nowo",
+    "rotate": 0
+  },
+  "kinput-help-4": {
+    "color": "snowy-white",
+    "font": "normal",
+    "label": "ESC/← anuluje",
+    "rotate": 0
+  },
+  "kinput-items": {
+    "color": "snowy-white",
+    "font": "menu",
+    "labels": [
+      "SKOK",
+      "STRZAŁ"
+    ],
+    "rotate": 0
+  },
+  "kinput-items-shadow": {
+    "color": "shadow-default",
+    "font": "menu",
+    "labels": [
+      "SKOK",
+      "STRZAŁ"
+    ],
+    "rotate": 0
+  },
+  "kinput-jump": {
+    "color": "snowy-white",
+    "font": "normal",
+    "label": "Skok:",
+    "rotate": 0
+  },
+  "kinput-shoot": {
+    "color": "snowy-white",
+    "font": "normal",
+    "label": "Strzał:",
+    "rotate": 0
   }
 }

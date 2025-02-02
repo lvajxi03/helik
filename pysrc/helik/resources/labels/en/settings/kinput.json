@@ -1,44 +1,56 @@
 {
   "kinput-heading": {
-    "label": "Define new keys",
+    "color": "snowy-white",
     "font": "heading-normal",
-    "rotate": 0,
-    "color": "snowy-white"
+    "label": "Define new keys",
+    "rotate": 0
   },
   "kinput-heading-shadow": {
-    "label": "Define new keys",
+    "color": "shadow-default",
     "font": "heading-normal",
-    "rotate": 0,
-    "color": "shadow-default"
-  },
-  "kinput-items": {
-    "labels": [
-      "JUMP",
-      "SHOT"
-    ],
-    "font": "menu",
-    "rotate": 0,
-    "color": "snowy-white"
-  },
-  "kinput-items-shadow": {
-    "labels": [
-      "JUMP",
-      "SHOT"
-    ],
-    "font": "menu",
-    "rotate": 0,
-    "color": "shadow-default"
+    "label": "Define new keys",
+    "rotate": 0
   },
   "kinput-help-1": {
-    "label": "Not allowed: ESC, ENTER, Q, F1 or F2",
     "color": "snowy-white",
-    "rotate": 0,
-    "font": "normal"
+    "font": "normal",
+    "label": "Not allowed: ESC, ENTER, Q, F1 or F2",
+    "rotate": 0
   },
   "kinput-help-2": {
-    "label": "Enter to accept, F2 to start again",
     "color": "snowy-white",
-    "rotate": 0,
-    "font": "normal"
+    "font": "normal",
+    "label": "Enter/Select to save and quit",
+    "rotate": 0
+  },
+  "kinput-help-3": {
+    "color": "snowy-white",
+    "font": "normal",
+    "label": "F2/Start to start again",
+    "rotate": 0
+  },
+  "kinput-help-4": {
+    "color": "snowy-white",
+    "font": "normal",
+    "label": "ESC/← to cancel",
+    "rotate": 0
+  },
+  "kinput-items": {
+    "color": "snowy-white",
+    "font": "menu",
+    "labels": [
+      "JUMP",
+      "SHOT"
+    ],
+    "rotate": 0
+  },
+  "kinput-items-shadow": {
+    "color": "shadow-default",
+    "font": "menu",
+    "labels": [
+      "JUMP",
+      "SHOT"
+    ],
+    "rotate": 0
   }
 }

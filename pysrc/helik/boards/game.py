@@ -126,3 +126,18 @@ class BoardGame(Board):
         :param pos: cursor position
         """
         self.modes[self.mode].on_mouseup(button, pos)
+
+    def on_joybuttonup(self, button):
+        """
+        JoyButtonUp event handler
+        :param button: button number
+        """
+        self.modes[self.mode].on_joybuttonup(button)
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        JoyAxisMotion event handler
+        :param axis: axis number
+        :param value: axis value
+        """
+        self.modes[self.mode].on_joyaxismotion(axis, value)

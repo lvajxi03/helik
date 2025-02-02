@@ -3,9 +3,7 @@
 """
 Settings board handler
 """
-import pygame
 from helik.boards.standard import Board
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType, SettingsModeId
 from helik.settingsmodes import (MainSettingsMode, KbdLayoutSettingsMode,
                                  KbdInputSettingsMode, PadLayoutSettingsMode,
@@ -14,7 +12,8 @@ from helik.settingsmodes import (MainSettingsMode, KbdLayoutSettingsMode,
 
 class BoardSettings(Board):
     """
-    Settings board class
+    Settings board class.
+    Deletage all operations to settings modes.
     """
     def __init__(self, parent):
         """
@@ -30,15 +29,6 @@ class BoardSettings(Board):
             SettingsModeId.GLAYOUT: PadLayoutSettingsMode(self, parent),
             SettingsModeId.GINPUT: PadInputSettingsMode(self, parent)
         }
-        self.labels = ["sound", "music"]
-        self.menu_pos = 0
-        self.maxpos = 3
-        self.rectangles = []
-        self.rectangles_s = []
-        self.create_rectangles()
-        self.rect_pos = None
-        self.rect_pos_t = None
-        self.create_rectangles()
 
     def change_mode(self, mode):
         """
@@ -49,38 +39,6 @@ class BoardSettings(Board):
             self.modes[self.mode].deactivate()
             self.mode = mode
             self.modes[self.mode].activate()
-
-    def create_rectangles(self):
-        """
-        Create labels and rectangles based on locale
-        """
-        self.rectangles = []
-        self.rectangles_s = []
-
-        i = 0
-        for elem in self.resman.locale[self.arena.config['lang']]["settings"]["items"]:
-            label, rect = elem
-            rect.left = 400
-            rect.top = 100 + i * 80
-            rect.width = 750 - rect.left
-            self.rectangles.append((label, rect))
-            i += 1
-        i = 0
-        for elem in self.resman.locale[self.arena.config['lang']]["settings"]["items-shadow"]:
-            label, rect = elem
-            rect.left = 405
-            rect.top = 105 + i * 80
-            rect.width = 750 - rect.left
-            self.rectangles_s.append((label, rect))
-            i += 1
-        self.recalculate_pos()
-
-    def recalculate_pos(self):
-        """
-        Re-calculate current selection rectangle
-        """
-        _, self.rect_pos = self.rectangles[self.menu_pos]
-        self.rect_pos = self.rect_pos.inflate(40, 40)
 
     def on_paint(self):
         self.modes[self.mode].on_paint()
@@ -112,3 +70,18 @@ class BoardSettings(Board):
         Timer handler
         """
         self.modes[self.mode].on_timer(timer)
+
+    def on_joybuttonup(self, button):
+        """
+        JoyButtonUp event handler
+        :param button: joystick button
+        """
+        self.modes[self.mode].on_joybuttonup(button)
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        JoyAxisMotion event handler
+        :param axis: axis number
+        :param value: axis value
+        """
+        self.modes[self.mode].on_joyaxismotion(axis, value)

@@ -72,7 +72,11 @@ class KbdInputSettingsMode(SettingsMode):
                 i += 1
 
         la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-help-2"]
-        self.buffer.blit(la, (200, 680))
+        self.buffer.blit(la, (200, 500))
+        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-help-3"]
+        self.buffer.blit(la, (200, 560))
+        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-help-4"]
+        self.buffer.blit(la, (200, 620))
 
     def on_keyup(self, key):
         """

@@ -1,12 +1,12 @@
 {
   "keys-and-buttons": {
     "color": "snowy-white",
-    "rotate": 0,
-    "font": "menu"
+    "font": "menu",
+    "rotate": 0
   },
   "keys-and-buttons-shadow": {
     "color": "shadow-default",
-    "rotate": 0,
-    "font": "menu"
+    "font": "menu",
+    "rotate": 0
   }
 }

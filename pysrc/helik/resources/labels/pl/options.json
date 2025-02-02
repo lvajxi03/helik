@@ -1,42 +1,42 @@
 {
-          "options": {
-            "title": {
-                "label": "OPCJE GRY",
-                "font": "heading-kw2",
-                "rotate": 90,
-                "color": "yellow-default-alpha"
-            },
-            "title-shadow": {
-                "label": "OPCJE GRY",
-                "font": "heading-kw2",
-                "rotate": 90,
-                "color": "shadow-default"
-            },
-            "items": {
-                "labels": [
-                    "TRENINGOWY",
-                    "ŁATWY",
-                    "NORMALNY",
-                    "ŚREDNI",
-                    "TRUDNY",
-                    "PIEKIELNY"
-                ],
-                "font": "menu",
-                "rotate": 0,
-                "color": "#ffffff"
-            },
-            "items-shadow": {
-                "labels": [
-                    "TRENINGOWY",
-                    "ŁATWY",
-                    "NORMALNY",
-                    "ŚREDNI",
-                    "TRUDNY",
-                    "PIEKIELNY"
-                ],
-                "font": "menu",
-                "rotate": 0,
-                "color": "#313131"
-            }
-        }
+  "options": {
+    "items": {
+      "color": "#ffffff",
+      "font": "menu",
+      "labels": [
+        "TRENINGOWY",
+        "ŁATWY",
+        "NORMALNY",
+        "ŚREDNI",
+        "TRUDNY",
+        "PIEKIELNY"
+      ],
+      "rotate": 0
+    },
+    "items-shadow": {
+      "color": "#313131",
+      "font": "menu",
+      "labels": [
+        "TRENINGOWY",
+        "ŁATWY",
+        "NORMALNY",
+        "ŚREDNI",
+        "TRUDNY",
+        "PIEKIELNY"
+      ],
+      "rotate": 0
+    },
+    "title": {
+      "color": "yellow-default-alpha",
+      "font": "heading-kw2",
+      "label": "OPCJE GRY",
+      "rotate": 90
+    },
+    "title-shadow": {
+      "color": "shadow-default",
+      "font": "heading-kw2",
+      "label": "OPCJE GRY",
+      "rotate": 90
+    }
+  }
 }

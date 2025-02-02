@@ -56,3 +56,16 @@ class Mode:
         :param button: button number
         :param pos: cursor position
         """
+
+    def on_joybuttonup(self, button):
+        """
+        JoyButtonUp event handler
+        :param button: button number
+        """
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        JoyAxisMotion event handler
+        :param axis: axis number
+        :param value: axis value
+        """

@@ -1,16 +1,16 @@
 {
-          "about": {
-            "title": {
-                "label": "O PROGRAMIE",
-                "font": "heading-kw3",
-                "rotate": 90,
-                "color": "yellow-default-alpha"
-            },
-            "title-shadow": {
-                "label": "O PROGRAMIE",
-                "font": "heading-kw3",
-                "rotate": 90,
-                "color": "shadow-default"
-            }
-        }
+  "about": {
+    "title": {
+      "color": "yellow-default-alpha",
+      "font": "heading-kw3",
+      "label": "O PROGRAMIE",
+      "rotate": 90
+    },
+    "title-shadow": {
+      "color": "shadow-default",
+      "font": "heading-kw3",
+      "label": "O PROGRAMIE",
+      "rotate": 90
+    }
+  }
 }

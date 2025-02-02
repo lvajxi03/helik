@@ -1,16 +1,16 @@
 {
-          "hiscores": {
-            "title": {
-                "label": "NAJLEPSI",
-                "font": "heading-kw2",
-                "rotate": 90,
-                "color": "yellow-default-alpha"
-            },
-            "title-shadow": {
-                "label": "NAJLEPSI",
-                "font": "heading-2",
-                "rotate": 90,
-                "color": "shadow-default"
-            }
-        }
+  "hiscores": {
+    "title": {
+      "color": "yellow-default-alpha",
+      "font": "heading-kw2",
+      "label": "NAJLEPSI",
+      "rotate": 90
+    },
+    "title-shadow": {
+      "color": "shadow-default",
+      "font": "heading-2",
+      "label": "NAJLEPSI",
+      "rotate": 90
+    }
+  }
 }

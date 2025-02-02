@@ -1,46 +1,46 @@
 {
-          "game": {
-            "choose-vehicle": {
-                "label": "WYBIERZ POJAZD",
-                "font": "menu",
-                "rotate": 0,
-                "color": "#ffffff"
-            },
-            "paused": {
-                "label": "GRA WSTRZYMANA",
-                "font": "heading-2",
-                "rotate": 0,
-                "color": "#e0df4a"
-            },
-           "paused-shadow": {
-                "label": "GRA WSTRZYMANA",
-                "font": "heading-2",
-                "rotate": 0,
-                "color": "#313131"
-            },
-            "continue": {
-                "label": "Naciśnij spację, by kontynuować",
-                "font": "menu",
-                "rotate": 0,
-                "color": "#ffffff"
-            },
-            "gameover": {
-                "label": "GAME OVER",
-                "font": "heading",
-                "rotate": 0,
-                "color": "#e0df4a"
-            },
-            "gameover-shadow": {
-                "label": "GAME OVER",
-                "font": "heading",
-                "rotate": 0,
-                "color": "#313131"
-            },
-            "gameover-2": {
-                "label": "Kup se rower!",
-                "font": "menu",
-                "rotate": 0,
-                "color": "#ffffff"
-            }
-        }
+  "game": {
+    "choose-vehicle": {
+      "color": "#ffffff",
+      "font": "menu",
+      "label": "WYBIERZ POJAZD",
+      "rotate": 0
+    },
+    "continue": {
+      "color": "#ffffff",
+      "font": "menu",
+      "label": "Naciśnij spację, by kontynuować",
+      "rotate": 0
+    },
+    "gameover": {
+      "color": "#e0df4a",
+      "font": "heading",
+      "label": "GAME OVER",
+      "rotate": 0
+    },
+    "gameover-2": {
+      "color": "#ffffff",
+      "font": "menu",
+      "label": "Kup se rower!",
+      "rotate": 0
+    },
+    "gameover-shadow": {
+      "color": "#313131",
+      "font": "heading",
+      "label": "GAME OVER",
+      "rotate": 0
+    },
+    "paused": {
+      "color": "#e0df4a",
+      "font": "heading-2",
+      "label": "GRA WSTRZYMANA",
+      "rotate": 0
+    },
+    "paused-shadow": {
+      "color": "#313131",
+      "font": "heading-2",
+      "label": "GRA WSTRZYMANA",
+      "rotate": 0
+    }
+  }
 }

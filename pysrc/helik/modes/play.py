@@ -149,7 +149,30 @@ class ModePlay(Mode):
                 self.audio.play_sound("popup")
                 self.game.level.make_bullet(self.game.player)
                 self.data['bullets-available'] -= 1
-        self.game.player.on_keyup(key)
+        elif key == self.arena.config["keys"]["jump"]:
+            self.game.player.on_jump()
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        JoyAxisMotion event handler
+        :param axis: axis number
+        :param value: value number
+        """
+        if axis == 0 and value < 0:
+            self.game.change_mode(GameMode.PAUSED)
+
+    def on_joybuttonup(self, button):
+        """
+        JoyButtonUp event handler
+        :param button: button number
+        """
+        if button == self.arena.config["buttons"]["shoot"]:
+            if self.data['bullets-available'] > 0:
+                self.audio.play_sound("popup")
+                self.game.level.make_bullet(self.game.player)
+                self.data['bullets-available'] -= 1
+        elif button == self.arena.config["buttons"]["jump"]:
+            self.game.player.on_jump()
 
     def on_mouseup(self, button, pos):
         """

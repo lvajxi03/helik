@@ -186,7 +186,7 @@ def render_keys_labels(misc: dict, fonts: dict, colors: dict) -> dict:
             )
             su.set_alpha(color.a)
             data["shadows"][lang][elem] = su
-    # do the letters:
+    # do the keys:
     for lang in keynames:
         data["keys"][lang] = {}
         for elem in keynames[lang]:

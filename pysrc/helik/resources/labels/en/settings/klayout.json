@@ -1,14 +1,26 @@
 {
   "klayout-heading": {
-    "label": "Keys settings",
+    "color": "snowy-white",
     "font": "heading-normal",
-    "rotate": 0,
-    "color": "snowy-white"
+    "label": "Keys settings",
+    "rotate": 0
   },
   "klayout-heading-shadow": {
-    "label": "Keys settings",
+    "color": "shadow-default",
     "font": "heading-normal",
-    "rotate": 0,
-    "color": "shadow-default"
+    "label": "Keys settings",
+    "rotate": 0
+  },
+  "klayout-help-1": {
+    "color": "snowy-white",
+    "font": "normal",
+    "label": "Press F2/Start to define your keys",
+    "rotate": 0
+  },
+  "klayout-help-2": {
+    "color": "snowy-white",
+    "font": "normal",
+    "label": "Current settings:",
+    "rotate": 0
   }
 }

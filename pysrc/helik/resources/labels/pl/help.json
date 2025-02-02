@@ -1,16 +1,16 @@
 {
-          "help": {
-            "title": {
-                "label": "POMOC",
-                "font": "heading-kw2",
-                "rotate": 90,
-                "color": "yellow-default-alpha"
-            },
-            "title-shadow": {
-                "label": "POMOC",
-                "font": "heading-kw2",
-                "rotate": 90,
-                "color": "shadow-default"
-            }
-        }
+  "help": {
+    "title": {
+      "color": "yellow-default-alpha",
+      "font": "heading-kw2",
+      "label": "POMOC",
+      "rotate": 90
+    },
+    "title-shadow": {
+      "color": "shadow-default",
+      "font": "heading-kw2",
+      "label": "POMOC",
+      "rotate": 90
+    }
+  }
 }

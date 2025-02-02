@@ -5,8 +5,9 @@ Pad Layout settings mode
 """
 
 import pygame
-from helik.settingsmodes import  SettingsMode
+from helik.settingsmodes import SettingsMode
 from helik.htypes import SettingsModeId
+from helik.platform import ButtonType, buttons_allowed
 
 
 class PadLayoutSettingsMode(SettingsMode):
@@ -31,6 +32,47 @@ class PadLayoutSettingsMode(SettingsMode):
         self.buffer.blit(la, (205, 45))
         la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["playout-heading"]
         self.buffer.blit(la, (200, 40))
+
+        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["playout-help-2"]
+        self.buffer.blit(la, (200, 180))
+
+        buttons = ["jump", "shoot"]
+        i = 0
+        for elem in self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-items-shadow"]:
+            la, _ = elem
+            self.buffer.blit(la, (205, 285 + i * 80))
+            try:
+                self.buffer.blit(self.resman.button_labels[
+                                     "shadows"][
+                                     self.arena.config["lang"]][self.arena.config["buttons"][buttons[i]]],
+                                 (505, 285 + i * 80))
+            except IndexError:
+                pass
+            i += 1
+
+        i = 0
+        for elem in self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-items"]:
+            la, _ = elem
+            self.buffer.blit(la, (200, 280 + i * 80))
+            try:
+                self.buffer.blit(self.resman.button_labels[
+                                     "buttons"][
+                                     self.arena.config["lang"]][self.arena.config["buttons"][buttons[i]]],
+                                 (500, 280 + i * 80))
+            except IndexError:
+                pass
+            i += 1
+
+            la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["playout-help-1"]
+            self.buffer.blit(la, (200, 680))
+
+    def on_joybuttonup(self, button):
+        """
+        JoyButtonUp event handler
+        :param button: button number
+        """
+        if button == ButtonType.START:
+            self.parent.change_mode(SettingsModeId.GINPUT)
 
     def on_keyup(self, key):
         """

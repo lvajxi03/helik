@@ -1,25 +1,88 @@
 {
-    "fonts": {
-		"heading-kw0": ["kwadraciki-mono.ttf", 256],
-		"heading-kw1": ["kwadraciki-mono.ttf", 192],
-		"heading-kwsans1": ["kwadraciki-sans.ttf", 192],
-		"heading-kw2": ["kwadraciki-mono.ttf", 128],
-		"heading-kw3": ["kwadraciki-mono.ttf", 96],
-		"heading-normal": ["punkciki-mono.ttf", 48],
-		"heading": ["punkciki-mono.ttf", 192],
-		"heading-2": ["punkciki-mono.ttf", 128],
-		"heading-25": ["punkciki-mono.ttf", 116],
-		"heading-27": ["punkciki-mono.ttf", 100],
-		"heading-3": ["punkciki-mono.ttf", 84],
-		"big-message": ["punkciki-mono.ttf", 128],
-		"menu": ["punkciki-mono.ttf", 56],
-		"about": ["punkciki-mono.ttf", 40],
-		"normal": ["punkciki-mono.ttf", 40],
-		"pages-small": ["punkciki-mono.ttf", 30],
-		"pages-smallest": ["punkciki-mono.ttf", 24],
-		"screen-keyboard": ["punkciki-mono.ttf", 50],
-		"prepare": ["punkciki-mono.ttf", 512],
-		"status": ["punkciki-mono.ttf", 58],
-		"letters": ["punkciki-mono.ttf", 56]
-    }
+  "fonts": {
+    "about": [
+      "punkciki-mono.ttf",
+      40
+    ],
+    "big-message": [
+      "punkciki-mono.ttf",
+      128
+    ],
+    "heading": [
+      "punkciki-mono.ttf",
+      192
+    ],
+    "heading-2": [
+      "punkciki-mono.ttf",
+      128
+    ],
+    "heading-25": [
+      "punkciki-mono.ttf",
+      116
+    ],
+    "heading-27": [
+      "punkciki-mono.ttf",
+      100
+    ],
+    "heading-3": [
+      "punkciki-mono.ttf",
+      84
+    ],
+    "heading-kw0": [
+      "kwadraciki-mono.ttf",
+      256
+    ],
+    "heading-kw1": [
+      "kwadraciki-mono.ttf",
+      192
+    ],
+    "heading-kw2": [
+      "kwadraciki-mono.ttf",
+      128
+    ],
+    "heading-kw3": [
+      "kwadraciki-mono.ttf",
+      96
+    ],
+    "heading-kwsans1": [
+      "kwadraciki-sans.ttf",
+      192
+    ],
+    "heading-normal": [
+      "punkciki-mono.ttf",
+      48
+    ],
+    "letters": [
+      "punkciki-mono.ttf",
+      56
+    ],
+    "menu": [
+      "punkciki-mono.ttf",
+      56
+    ],
+    "normal": [
+      "punkciki-mono.ttf",
+      40
+    ],
+    "pages-small": [
+      "punkciki-mono.ttf",
+      30
+    ],
+    "pages-smallest": [
+      "punkciki-mono.ttf",
+      24
+    ],
+    "prepare": [
+      "punkciki-mono.ttf",
+      512
+    ],
+    "screen-keyboard": [
+      "punkciki-mono.ttf",
+      50
+    ],
+    "status": [
+      "punkciki-mono.ttf",
+      58
+    ]
+  }
 }

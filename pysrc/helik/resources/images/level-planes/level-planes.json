@@ -1,14 +1,4 @@
 {
-  "pl": [
-    "pl-plane-level-1.png",
-    "pl-plane-level-2.png",
-    "pl-plane-level-3.png",
-    "pl-plane-level-4.png",
-    "pl-plane-level-5.png",
-    "pl-plane-level-6.png",
-    "pl-plane-level-7.png",
-    "pl-plane-level-8.png"
-  ],
   "en": [
     "en-plane-level-1.png",
     "en-plane-level-2.png",
@@ -19,6 +9,16 @@
     "en-plane-level-7.png",
     "en-plane-level-8.png"
   ],
-  "pl-get-ready": "pl-plane-get-ready.png",
-  "en-get-ready": "en-plane-get-ready.png"
+  "en-get-ready": "en-plane-get-ready.png",
+  "pl": [
+    "pl-plane-level-1.png",
+    "pl-plane-level-2.png",
+    "pl-plane-level-3.png",
+    "pl-plane-level-4.png",
+    "pl-plane-level-5.png",
+    "pl-plane-level-6.png",
+    "pl-plane-level-7.png",
+    "pl-plane-level-8.png"
+  ],
+  "pl-get-ready": "pl-plane-get-ready.png"
 }

@@ -100,7 +100,8 @@ class Application:
                     self.on_joyaxismotion(event.axis, event.value)
                 elif event.type == pygame.JOYDEVICEADDED:
                     for j in range(pygame.joystick.get_count()):
-                        pygame.joystick.Joystick(j)
+                        joy = pygame.joystick.Joystick(j)
+                        joy.init()
                 elif event.type > pygame.USEREVENT:
                     self.on_timer(event.type)
 
@@ -118,7 +119,6 @@ class Application:
         Delegate joystick button up event
         :param button: button number
         """
-        print(button)
         self.boards[self.board_id].on_joybuttonup(button)
 
     def on_joyaxismotion(self, axis, value):

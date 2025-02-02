@@ -1,14 +1,56 @@
 {
   "pinput-heading": {
-    "label": "Define new buttons",
+    "color": "snowy-white",
     "font": "heading-normal",
-    "rotate": 0,
-    "color": "snowy-white"
+    "label": "Define new buttons",
+    "rotate": 0
   },
   "pinput-heading-shadow": {
-    "label": "Define new buttons",
+    "color": "shadow-default",
     "font": "heading-normal",
-    "rotate": 0,
-    "color": "shadow-default"
+    "label": "Define new buttons",
+    "rotate": 0
+  },
+  "pinput-help-1": {
+    "color": "snowy-white",
+    "font": "normal",
+    "label": "Not allowed: Select, Start",
+    "rotate": 0
+  },
+  "pinput-help-2": {
+    "color": "snowy-white",
+    "font": "normal",
+    "label": "Enter/Select to save and quit",
+    "rotate": 0
+  },
+  "pinput-help-3": {
+    "color": "snowy-white",
+    "font": "normal",
+    "label": "F2/Start to start again",
+    "rotate": 0
+  },
+  "pinput-help-4": {
+    "color": "snowy-white",
+    "font": "normal",
+    "label": "ESC/← to cancel",
+    "rotate": 0
+  },
+  "pinput-items": {
+    "color": "snowy-white",
+    "font": "menu",
+    "labels": [
+      "JUMP",
+      "SHOT"
+    ],
+    "rotate": 0
+  },
+  "pinput-items-shadow": {
+    "color": "shadow-default",
+    "font": "menu",
+    "labels": [
+      "JUMP",
+      "SHOT"
+    ],
+    "rotate": 0
   }
 }

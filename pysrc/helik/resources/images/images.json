@@ -1,115 +1,115 @@
 {
-    "buildings": [
-        "building-1.png",
-        "building-2.png",
-        "building-3.png",
-        "building-4.png",
-        "building-5.png",
-        "building-6.png",
-        "building-7.png",
-        "building-8.png",
-        "building-9.png"
-    ],
-    "hearts": [
-        "heart-0.png",
-        "heart-1.png",
-        "heart-2.png",
-        "heart-3.png",
-        "heart-4.png",
-        "heart-5.png",
-        "heart-6.png",
-        "heart-7.png"
-    ],
-    "clouds": [
-        "cloud-1.png",
-        "cloud-2.png",
-        "cloud-3.png",
-        "cloud-4.png",
-        "cloud-5.png",
-        "cloud-6.png",
-        "cloud-7.png"
-    ],
-    "digits": {
-        "0": "0.png",
-        "1": "1.png",
-        "2": "2.png",
-        "3": "3.png",
-        "4": "4.png",
-        "5": "5.png",
-        "6": "6.png",
-        "7": "7.png",
-        "8": "8.png",
-        "9": "9.png"
-    },
-    "explosions": [
-        "expl-1.png",
-        "expl-2.png",
-        "expl-3.png",
-        "expl-4.png",
-        "expl-5.png"
-    ],
-    "dirc": [
-        "dir-0.png",
-        "dir-1.png",
-        "dir-2.png",
-        "dir-3.png",
-        "dir-4.png",
-        "dir-5.png",
-        "dir-6.png",
-        "dir-7.png"
-    ],
-    "ammo": [
-        "roc-0.png",
-        "roc-2.png",
-        "roc-0.png",
-        "roc-1.png"
-    ],
-    "birds": [
-        "bird-1.png",
-        "bird-2.png",
-        "bird-3.png",
-        "bird-4.png",
-        "bird-5.png",
-        "bird-6.png",
-        "bird-7.png",
-        "bird-8.png",
-        "bird-9.png",
-        "bird-10.png"
-    ],
-    "big": [
-        "b3.png",
-        "b2.png",
-        "b1.png"
-        ],
-    "vehicles": [
-        "helik-down.png",
-        "helik-up.png",
-        "balloon-down.png",
-        "balloon-up.png",
-        "airship-down.png",
-        "airship-up.png"
-    ],
-    "building-2": "building-2.png",
-    "building-5": "building-5.png",
-    "building-7": "building-7.png",
-    "bird-5": "bird-5.png",
-    "helik-default": "helik-down.png",
-    "balloon-default": "balloon-down.png",
-    "airship-default": "airship-down.png",
-    "default-background": "back-default.jpg",
-    "line-0": "line-0.png",
-    "bullet": "bullet.png",
-    "rocket-1": "rocket-1.png",
-    "bullets-indicator": "bullets-indicator.png",
-    "flag-pl": "flag_pl.png",
-    "flag-en": "flag_en.png",
-    "heart-yellow": "heart-yellow.png",
-    "heart-gray": "heart-gray.png",
-    "helik-main": "helik-main.png",
-    "viewport": "viewport.png",
-    "checkbox-checked": "checkbox-checked.png",
-    "checkbox-unchecked": "checkbox-unchecked.png",
-    "cursor": "cursor.png",
-    "email": "email.png",
-    "status-1": "status-1.png"
+  "airship-default": "airship-down.png",
+  "ammo": [
+    "roc-0.png",
+    "roc-2.png",
+    "roc-0.png",
+    "roc-1.png"
+  ],
+  "balloon-default": "balloon-down.png",
+  "big": [
+    "b3.png",
+    "b2.png",
+    "b1.png"
+  ],
+  "bird-5": "bird-5.png",
+  "birds": [
+    "bird-1.png",
+    "bird-2.png",
+    "bird-3.png",
+    "bird-4.png",
+    "bird-5.png",
+    "bird-6.png",
+    "bird-7.png",
+    "bird-8.png",
+    "bird-9.png",
+    "bird-10.png"
+  ],
+  "building-2": "building-2.png",
+  "building-5": "building-5.png",
+  "building-7": "building-7.png",
+  "buildings": [
+    "building-1.png",
+    "building-2.png",
+    "building-3.png",
+    "building-4.png",
+    "building-5.png",
+    "building-6.png",
+    "building-7.png",
+    "building-8.png",
+    "building-9.png"
+  ],
+  "bullet": "bullet.png",
+  "bullets-indicator": "bullets-indicator.png",
+  "checkbox-checked": "checkbox-checked.png",
+  "checkbox-unchecked": "checkbox-unchecked.png",
+  "clouds": [
+    "cloud-1.png",
+    "cloud-2.png",
+    "cloud-3.png",
+    "cloud-4.png",
+    "cloud-5.png",
+    "cloud-6.png",
+    "cloud-7.png"
+  ],
+  "cursor": "cursor.png",
+  "default-background": "back-default.jpg",
+  "digits": {
+    "0": "0.png",
+    "1": "1.png",
+    "2": "2.png",
+    "3": "3.png",
+    "4": "4.png",
+    "5": "5.png",
+    "6": "6.png",
+    "7": "7.png",
+    "8": "8.png",
+    "9": "9.png"
+  },
+  "dirc": [
+    "dir-0.png",
+    "dir-1.png",
+    "dir-2.png",
+    "dir-3.png",
+    "dir-4.png",
+    "dir-5.png",
+    "dir-6.png",
+    "dir-7.png"
+  ],
+  "email": "email.png",
+  "explosions": [
+    "expl-1.png",
+    "expl-2.png",
+    "expl-3.png",
+    "expl-4.png",
+    "expl-5.png"
+  ],
+  "flag-en": "flag_en.png",
+  "flag-pl": "flag_pl.png",
+  "heart-gray": "heart-gray.png",
+  "heart-yellow": "heart-yellow.png",
+  "hearts": [
+    "heart-0.png",
+    "heart-1.png",
+    "heart-2.png",
+    "heart-3.png",
+    "heart-4.png",
+    "heart-5.png",
+    "heart-6.png",
+    "heart-7.png"
+  ],
+  "helik-default": "helik-down.png",
+  "helik-main": "helik-main.png",
+  "line-0": "line-0.png",
+  "rocket-1": "rocket-1.png",
+  "status-1": "status-1.png",
+  "vehicles": [
+    "helik-down.png",
+    "helik-up.png",
+    "balloon-down.png",
+    "balloon-up.png",
+    "airship-down.png",
+    "airship-up.png"
+  ],
+  "viewport": "viewport.png"
 }
