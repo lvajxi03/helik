@@ -224,8 +224,7 @@ class BoardNewScore(Board):
         if name in ALL_CHARS or name == pygame.K_SPACE:
             self.update_nick(name)
         elif key == pygame.K_ESCAPE:
-
-            self.arena.change_board(BoardType.MENU)
+            self.arena.change_board(BoardType.HISCORES)
         elif key == pygame.K_DOWN:
             if self.y < 6:
                 self.y += 1
@@ -253,7 +252,7 @@ class BoardNewScore(Board):
                     self.nick,
                     self.arena.boards[BoardType.GAME].data['points'])
                 self.arena.config["lastnick"] = self.nick
-                self.arena.change_board(BoardType.MENU)
+                self.arena.change_board(BoardType.HISCORES)
             elif self.y < 5:
                 letter = all_chrows[self.y][self.x]
                 if letter == '⌫':
@@ -292,5 +291,5 @@ class BoardNewScore(Board):
             self.on_keyup(pygame.K_UP)
         elif button == 5:
             self.on_keyup(pygame.K_DOWN)
-        elif button == 2 or button == 3:
-            self.arena.change_board(BoardType.MENU)
+        elif button in (2, 3):
+            self.arena.change_board(BoardType.HISCORES)

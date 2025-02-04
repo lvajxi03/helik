@@ -5,14 +5,15 @@ Mode play handler module
 """
 
 
+from threading import Thread
 import pygame
-from helik.modes.standard import Mode
 from helik.htypes import TimerType, GameMode, SoundPlayState
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT, SPEED
 from helik.gfx import blitnumber
 from helik.game.explosion import Explosion
 from helik.game.player import PlayerDirection
 from helik.htypes import GameObjectType
+from .standard import Mode
 
 
 class ModePlay(Mode):
@@ -35,10 +36,9 @@ class ModePlay(Mode):
             self.audio.unpause_music()
         elif self.game.music_state == SoundPlayState.STOPPED:
             self.audio.play_music("music-3")
-        self.speed = SPEED - self.arena.config['option']
         pygame.time.set_timer(TimerType.SECOND, 1000)
         pygame.time.set_timer(TimerType.FIRST, 250)
-        self.speed = 30 - 2 * self.data['option']
+        self.speed = SPEED - 3 * self.data['option']
         pygame.time.set_timer(TimerType.THIRD, self.speed)
         pygame.time.set_timer(TimerType.FOURTH, int(self.speed * 1.5))
 
@@ -58,7 +58,6 @@ class ModePlay(Mode):
         """
         self.game.player.move(1)
         self.game.level.move()
-
         # Bullet collisions (buildings, birds)
         for bullet in self.game.level.bullets:
             if bullet.valid:
@@ -133,7 +132,7 @@ class ModePlay(Mode):
             self.game.data['points'] += 10
 
         elif timer == TimerType.THIRD:
-            self.game_update()
+            Thread(name='game-play-update', target=self.game_update).start()
         elif timer == TimerType.FOURTH:
             pass
 

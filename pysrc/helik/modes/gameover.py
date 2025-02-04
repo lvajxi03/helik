@@ -6,9 +6,9 @@ GameOver handler module
 
 
 import pygame
-from helik.modes.standard import Mode
 from helik.htypes import BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from .standard import Mode
 
 
 class ModeGameOver(Mode):

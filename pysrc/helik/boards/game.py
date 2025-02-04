@@ -9,15 +9,8 @@ import pygame
 from helik.boards.standard import Board
 from helik.game.level import Level
 from helik.htypes import BoardType, GameMode, SoundPlayState
-from helik.modes.init import ModeInit
-from helik.modes.killed import ModeKilled
-from helik.modes.paused import ModePaused
-from helik.modes.play import ModePlay
-from helik.modes.prepare import ModePrepare
-from helik.modes.standard import Mode
-from helik.modes.newlevel import ModeNewLevel
-from helik.modes.selectplayer import SelectPlayer
-from helik.modes.gameover import ModeGameOver
+from helik.modes import (Mode, ModeInit, ModeKilled, ModePaused,
+                         ModePlay, ModePrepare, ModeNewLevel, SelectPlayer, ModeGameOver)
 
 
 class BoardGame(Board):

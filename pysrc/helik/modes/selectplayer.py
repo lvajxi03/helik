@@ -5,10 +5,11 @@ SelectPlayer handler module
 """
 
 import pygame
-from helik.modes.standard import Mode
 from helik.htypes import BoardType, GameMode
 from helik.game.player import Player
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.platform import AxisValue, AxisType, ButtonType
+from .standard import Mode
 
 
 class SelectPlayer(Mode):
@@ -92,3 +93,25 @@ class SelectPlayer(Mode):
             self.arena.change_board(BoardType.MENU)
         elif key == pygame.K_q:
             self.arena.change_board(BoardType.MENU)
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        Joy Axis Motion event handler
+        :param axis: axis number
+        :param value: axis value
+        """
+        if axis == AxisType.HORIZ:
+            if value == AxisValue.HIGHER:
+                self.on_keyup(pygame.K_RIGHT)
+            elif value == AxisValue.LOWER:
+                self.on_keyup(pygame.K_LEFT)
+        else:
+            self.arena.change_board(BoardType.MENU)
+
+    def on_joybuttonup(self, button):
+        """
+        Joy Button Up event handler
+        :param button: button number
+        """
+        if button == ButtonType.SELECT:
+            self.on_keyup(pygame.K_RETURN)

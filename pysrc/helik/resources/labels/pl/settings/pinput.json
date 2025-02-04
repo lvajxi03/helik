@@ -53,8 +53,8 @@
     "color": "shadow-default",
     "font": "menu",
     "labels": [
-      "JUMP",
-      "SHOT"
+      "SKOK",
+      "STRZAŁ"
     ],
     "rotate": 0
   }

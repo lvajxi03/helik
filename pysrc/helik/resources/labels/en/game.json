@@ -1,44 +1,44 @@
 {
   "game": {
     "choose-vehicle": {
-      "color": "#ffffff",
-      "font": "menu",
+      "color": "snowy-white",
+      "font": "normal",
       "label": "SELECT YOUR VEHICLE",
       "rotate": 0
     },
     "continue": {
-      "color": "#ffffff",
-      "font": "menu",
+      "color": "snowy-white",
+      "font": "normal",
       "label": "Press space to continue",
       "rotate": 0
     },
     "gameover": {
-      "color": "#e0df4a",
-      "font": "heading",
+      "color": "yellow-default-alpha",
+      "font": "heading-kw2",
       "label": "GAME OVER",
       "rotate": 0
     },
     "gameover-2": {
-      "color": "#ffffff",
-      "font": "menu",
+      "color": "snowy-white",
+      "font": "normal",
       "label": "That's all folks!",
       "rotate": 0
     },
     "gameover-shadow": {
-      "color": "#313131",
-      "font": "heading",
+      "color": "shadow-default",
+      "font": "heading-kw2",
       "label": "GAME OVER",
       "rotate": 0
     },
     "paused": {
-      "color": "#e0df4a",
-      "font": "heading-2",
+      "color": "yellow-default-alpha",
+      "font": "heading-kw2",
       "label": "GAME PAUSED",
       "rotate": 0
     },
     "paused-shadow": {
-      "color": "#313131",
-      "font": "heading-2",
+      "color": "shadow-default",
+      "font": "heading-kw2",
       "label": "GAME PAUSED",
       "rotate": 0
     }
