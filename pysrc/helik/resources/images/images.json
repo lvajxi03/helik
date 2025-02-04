@@ -41,8 +41,6 @@
   ],
   "bullet": "bullet.png",
   "bullets-indicator": "bullets-indicator.png",
-  "checkbox-checked": "checkbox-checked.png",
-  "checkbox-unchecked": "checkbox-unchecked.png",
   "clouds": [
     "cloud-1.png",
     "cloud-2.png",
@@ -98,11 +96,10 @@
     "heart-6.png",
     "heart-7.png"
   ],
-  "helik-default": "helik-down.png",
+  "helik-default": "helik-default.png",
   "helik-main": "helik-main.png",
   "line-0": "line-0.png",
   "rocket-1": "rocket-1.png",
-  "status-1": "status-1.png",
   "vehicles": [
     "helik-down.png",
     "helik-up.png",
