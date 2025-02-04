@@ -5,10 +5,10 @@ Keyboard Layout settings mode
 """
 
 import pygame
-from .standard import SettingsMode
 from helik.htypes import SettingsModeId
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.platform import ButtonType, AxisType, AxisValue
+from .standard import SettingsMode
 
 
 class KbdLayoutSettingsMode(SettingsMode):
@@ -29,45 +29,54 @@ class KbdLayoutSettingsMode(SettingsMode):
         """
         self.paint_default_bg()
         self.paint_default_title("settings")
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["klayout-heading-shadow"]
+        la, _ = self.resman.locale[self.arena.config["lang"]][
+            "settings"]["klayout-heading-shadow"]
         self.buffer.blit(la, (205, 45))
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["klayout-heading"]
+        la, _ = self.resman.locale[self.arena.config["lang"]][
+            "settings"]["klayout-heading"]
         self.buffer.blit(la, (200, 40))
 
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["klayout-help-2"]
+        la, _ = self.resman.locale[self.arena.config["lang"]][
+            "settings"]["klayout-help-2"]
         self.buffer.blit(la, (200, 180))
 
         keys = ["jump", "shoot"]
         i = 0
-        for elem in self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-items-shadow"]:
+        for elem in self.resman.locale[self.arena.config["lang"]]["settings"][
+            "kinput-items-shadow"]:
             la, _ = elem
             self.buffer.blit(la, (205, 285 + i * 80))
             try:
                 self.buffer.blit(self.resman.keylabels[
                                      "shadows"][
-                                     self.arena.config["lang"]][self.arena.config["keys"][keys[i]]],
+                                     self.arena.config["lang"]][
+                                     self.arena.config["keys"][keys[i]]],
                                  (505, 285 + i * 80))
             except IndexError:
                 pass
             i += 1
 
         i = 0
-        for elem in self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-items"]:
+        for elem in self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["kinput-items"]:
             la, _ = elem
             self.buffer.blit(la, (200, 280 + i * 80))
             try:
                 self.buffer.blit(self.resman.keylabels[
                                      "keys"][
-                                     self.arena.config["lang"]][self.arena.config["keys"][keys[i]]],
+                                     self.arena.config["lang"]][
+                                     self.arena.config["keys"][keys[i]]],
                                  (500, 280 + i * 80))
             except IndexError:
                 pass
             i += 1
 
-            la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["klayout-help-1"]
+            la, _ = self.resman.locale[self.arena.config[
+                "lang"]]["settings"]["klayout-help-1"]
             self.buffer.blit(la, (200, 680))
 
-            la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["klayout-status"]
+            la, re = self.resman.locale[self.arena.config[
+                "lang"]]["settings"]["klayout-status"]
             self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
     def on_keyup(self, key):
