@@ -5,7 +5,7 @@ Main Settings mode
 """
 
 import pygame
-from helik.settingsmodes.standard import SettingsMode
+from .standard import SettingsMode
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
 from helik.htypes import BoardType, SettingsModeId
 from helik.platform import AxisValue, AxisType, ButtonType

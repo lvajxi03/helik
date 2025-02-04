@@ -5,9 +5,9 @@ Settings Modes module
 Provides all settings modes classes
 """
 
-from helik.settingsmodes.standard import SettingsMode
-from helik.settingsmodes.main import MainSettingsMode
-from helik.settingsmodes.kinput import KbdInputSettingsMode
-from helik.settingsmodes.klayout import KbdLayoutSettingsMode
-from helik.settingsmodes.playout import PadLayoutSettingsMode
-from helik.settingsmodes.pinput import PadInputSettingsMode
+from .standard import SettingsMode
+from .main import MainSettingsMode
+from .kinput import KbdInputSettingsMode
+from .klayout import KbdLayoutSettingsMode
+from .playout import PadLayoutSettingsMode
+from .pinput import PadInputSettingsMode
