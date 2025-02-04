@@ -50,11 +50,14 @@ packages = ["helik",
     "helik.resources.images.hearts",
     "helik.resources.images.level_planes",
     "helik.resources.images.vehicles",
-    "helik.resources.labels",
     "helik.resources.labels.pl",
     "helik.resources.labels.pl.pages",
     "helik.resources.labels.pl.settings",
+    "helik.resources.labels.en",
+    "helik.resources.labels.en.pages",
+    "helik.resources.labels.en.settings",
     "helik.resources.levels",
+    "helik.resources.sounds",
     "helik.settingsmodes"]
 
 [tool.setuptools.package-data]
@@ -72,11 +75,11 @@ packages = ["helik",
 "helik.resources.images.hearts" = ["*.png"]
 "helik.resources.images.level_planes" = ["*.png"]
 "helik.resources.images.vehicles" = ["*.png"]
-"helik.resources.labels" = [".json"]
 "helik.resources.labels.pl" = ["*.json"]
 "helik.resources.labels.pl.pages" = ["*.json"]
 "helik.resources.labels.pl.settings" = ["*.json"]
 "helik.resources.labels.en" = ["*.json"]
 "helik.resources.labels.en.pages" = ["*.json"]
 "helik.resources.labels.en.settings" = ["*.json"]
-"helik.resources.levels" = [".json"]
+"helik.resources.levels" = ["*.json"]
+"helik.resources.sounds" = ["*.mp3"]
