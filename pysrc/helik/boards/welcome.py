@@ -86,4 +86,3 @@ class BoardWelcome(Board):
 
     def on_joybuttonup(self, button):
         self.arena.change_board(BoardType.MENU)
-

@@ -10,6 +10,9 @@ import pygame
 
 @enum.unique
 class ButtonType(enum.IntEnum):
+    """
+    Common buttons definiton
+    """
     X = 0
     A = 1
     B = 2
@@ -57,7 +60,6 @@ def render_buttons_labels(misc: dict, fonts: dict, colors: dict) -> dict:
     :param colors: colors data
     :return dict: rendered labels
     """
-    global button_names
     data = {"shadows": {}, "buttons": {}}
     # do the shadows:
     for lang in button_names:

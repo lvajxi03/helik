@@ -1,7 +1,7 @@
 #!/usr/bin/env/python3
 
 import pygame
-from helik.settingsmodes.standard import SettingsMode
+from helik.settingsmodes import SettingsMode
 from helik.htypes import SettingsModeId, TimerType
 from helik.platform import ButtonType, buttons_allowed
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
