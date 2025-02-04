@@ -7,6 +7,8 @@ Keyboard Layout settings mode
 import pygame
 from helik.settingsmodes import SettingsMode
 from helik.htypes import SettingsModeId
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.platform import ButtonType, AxisType, AxisValue
 
 
 class KbdLayoutSettingsMode(SettingsMode):
@@ -65,6 +67,9 @@ class KbdLayoutSettingsMode(SettingsMode):
             la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["klayout-help-1"]
             self.buffer.blit(la, (200, 680))
 
+            la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["klayout-status"]
+            self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+
     def on_keyup(self, key):
         """
         Key release event handler
@@ -74,6 +79,23 @@ class KbdLayoutSettingsMode(SettingsMode):
         if key == pygame.K_F2:
             self.parent.change_mode(SettingsModeId.KINPUT)
         elif key in (pygame.K_q, pygame.K_ESCAPE, pygame.K_LEFT):
+            self.parent.change_mode(SettingsModeId.MAIN)
+
+    def on_joybuttonup(self, button):
+        """
+        Joy Button Up event handler
+        :param button: button number
+        """
+        if button == ButtonType.START:
+            self.parent.change_mode(SettingsModeId.KINPUT)
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        Joy Axis Motion event handler
+        :param axis: axis number
+        :param value: axis value
+        """
+        if axis == AxisType.HORIZ and value == AxisValue.LOWER:
             self.parent.change_mode(SettingsModeId.MAIN)
 
     def on_mouseup(self, button, pos):

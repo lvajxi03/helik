@@ -127,7 +127,7 @@ class Application:
         :param axis: axis number (0: X, 1: Y)
         :param value:
         """
-        self.boards[self.board_id].on_joyaxismotion(axis, value)
+        self.boards[self.board_id].on_joyaxismotion(axis, int(value))
 
     def on_mouseup(self, button, pos):
         """

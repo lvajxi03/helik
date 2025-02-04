@@ -8,6 +8,7 @@ import pygame
 from helik.settingsmodes.standard import SettingsMode
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
 from helik.htypes import BoardType, SettingsModeId
+from helik.platform import AxisValue, AxisType, ButtonType
 
 
 class MainSettingsMode(SettingsMode):
@@ -171,3 +172,21 @@ class MainSettingsMode(SettingsMode):
             self.on_keyup(pygame.K_UP)
         elif button == 5:
             self.on_keyup(pygame.K_DOWN)
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        JoyAxisMotion event handler
+        :param axis: axis number
+        :param value: axis value
+        """
+        if axis == AxisType.HORIZ and value == AxisValue.LOWER:
+            self.arena.change_board(BoardType.MENU)
+        elif axis == AxisType.VERT:
+            if value == 1:
+                self.on_keyup(pygame.K_DOWN)
+            elif value == -1:
+                self.on_keyup(pygame.K_UP)
+
+    def on_joybuttonup(self, button):
+        if button == ButtonType.SELECT:
+            self.on_keyup(pygame.K_RETURN)

@@ -7,7 +7,8 @@ Pad Layout settings mode
 import pygame
 from helik.settingsmodes import SettingsMode
 from helik.htypes import SettingsModeId
-from helik.platform import ButtonType, buttons_allowed
+from helik.platform import ButtonType, AxisType, AxisValue
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 
 
 class PadLayoutSettingsMode(SettingsMode):
@@ -66,6 +67,9 @@ class PadLayoutSettingsMode(SettingsMode):
             la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["playout-help-1"]
             self.buffer.blit(la, (200, 680))
 
+            la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["playout-status"]
+            self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+
     def on_joybuttonup(self, button):
         """
         JoyButtonUp event handler
@@ -83,6 +87,15 @@ class PadLayoutSettingsMode(SettingsMode):
         if key == pygame.K_F2:
             self.parent.change_mode(SettingsModeId.GINPUT)
         elif key in (pygame.K_q, pygame.K_ESCAPE, pygame.K_LEFT):
+            self.parent.change_mode(SettingsModeId.MAIN)
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        Joy Axis Motion event handler
+        :param axis: axis number
+        :param value: axis value
+        """
+        if axis == AxisType.HORIZ and value == AxisValue.LOWER:
             self.parent.change_mode(SettingsModeId.MAIN)
 
     def on_mouseup(self, button, pos):

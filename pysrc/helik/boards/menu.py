@@ -8,6 +8,7 @@ import pygame
 from helik.boards.standard import Board
 from helik.htypes import BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
+from helik.platform import ButtonType, AxisType
 
 
 def menupos2board(menu_pos: int) -> BoardType:
@@ -160,15 +161,12 @@ class BoardMenu(Board):
             self.on_keyup(pygame.K_DOWN)
 
     def on_joyaxismotion(self, axis, value):
-        value = int(value)
-        if axis == 1:
+        if axis == AxisType.VERT:
             if value == 1:
                 self.on_keyup(pygame.K_DOWN)
             elif value == -1:
                 self.on_keyup(pygame.K_UP)
 
     def on_joybuttonup(self, button):
-        if button == 1: # TODO: A
+        if button == ButtonType.SELECT:
             self.on_keyup(pygame.K_RETURN)
-        elif button == 2: # TODO: B
-            self.on_keyup(pygame.K_q)

@@ -4,6 +4,7 @@ import pygame
 from helik.settingsmodes.standard import SettingsMode
 from helik.htypes import SettingsModeId, TimerType
 from helik.platform import ButtonType, buttons_allowed
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 
 
 class PadInputSettingsMode(SettingsMode):
@@ -69,6 +70,9 @@ class PadInputSettingsMode(SettingsMode):
         la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-help-4"]
         self.buffer.blit(la, (200, 620))
 
+        la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-status"]
+        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+
     def on_keyup(self, key):
         """
         Key release event handler
@@ -105,7 +109,8 @@ class PadInputSettingsMode(SettingsMode):
         :param axis: axis number
         :param value: axis move value
         """
-        self.parent.change_mode(SettingsModeId.GLAYOUT)
+        if axis == 0:
+            self.parent.change_mode(SettingsModeId.GLAYOUT)
 
     def on_mouseup(self, button, pos):
         """

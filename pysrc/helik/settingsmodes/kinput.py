@@ -9,6 +9,8 @@ import pygame
 from helik.settingsmodes.standard import SettingsMode
 from helik.htypes import SettingsModeId, TimerType
 from helik.platform import keysallowed
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.platform import ButtonType
 
 
 class KbdInputSettingsMode(SettingsMode):
@@ -78,6 +80,9 @@ class KbdInputSettingsMode(SettingsMode):
         la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-help-4"]
         self.buffer.blit(la, (200, 620))
 
+        la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-status"]
+        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+
     def on_keyup(self, key):
         """
         Key release event handler
@@ -116,6 +121,28 @@ class KbdInputSettingsMode(SettingsMode):
             self.on_keyup(pygame.K_UP)
         elif button == 5:
             self.on_keyup(pygame.K_DOWN)
+
+    def on_joybuttonup(self, button):
+        """
+        Jou Bytton Up event handler
+        :param button: button number
+        """
+        if button == ButtonType.START:
+            self.activate()
+        if button == ButtonType.SELECT:
+            if len(self.defined) == 2:
+                self.arena.config["keys"]["jump"] = self.defined[0]
+                self.arena.config["keys"]["shoot"] = self.defined[1]
+                self.parent.change_mode(SettingsModeId.KLAYOUT)
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        Joy Axis Motion event handler
+        :param axis: axis number
+        :poram value: axis value
+        """
+        if axis == 0:
+            self.parent.change_mode(SettingsModeId.KLAYOUT)
 
     def on_timer(self, timer):
         """
