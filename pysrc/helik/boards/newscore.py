@@ -89,6 +89,10 @@ class BoardNewScore(Board):
         pygame.time.set_timer(TimerType.SECOND, 0)
 
     def recalculate_rectangles(self):
+        """
+        Recalculate internal rectangles that depend on locales
+        (for instance, around the text labels)
+        """
         self.rectangles = {}
         for i in range(5):
             for j in range(8):

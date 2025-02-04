@@ -4,7 +4,7 @@
 Settings board handler
 """
 from helik.boards.standard import Board
-from helik.htypes import BoardType, SettingsModeId
+from helik.htypes import SettingsModeId
 from helik.settingsmodes import (MainSettingsMode, KbdLayoutSettingsMode,
                                  KbdInputSettingsMode, PadLayoutSettingsMode,
                                  PadInputSettingsMode)
