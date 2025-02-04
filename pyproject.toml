@@ -27,9 +27,63 @@ dependencies = [
              ]
 
 [tool.setuptools]
-packages = ["helik", "helik.settingsmodes", "helik.core", "helik.media", "helik.resources.labels.pl",
-    "helik.modes", "helik.boards", "helik.game", "helik.resources", "helik.resources.labels.en",
-    "helik.resources.fonts", "helik.resources.images", "helik.resources.images.ammo",
-    "helik.resources.images.birds"]
 package-dir = {"" = "pysrc"}
 include-package-data = true
+packages = ["helik",
+    "helik.boards",
+    "helik.core",
+    "helik.game",
+    "helik.media",
+    "helik.modes",
+    "helik.platform",
+    "helik.resources",
+    "helik.resources.fonts",
+    "helik.resources.images",
+    "helik.resources.images.ammo",
+    "helik.resources.images.big",
+    "helik.resources.images.birds",
+    "helik.resources.images.buildings",
+    "helik.resources.images.clouds",
+    "helik.resources.images.digits",
+    "helik.resources.images.dirc",
+    "helik.resources.images.explosions",
+    "helik.resources.images.hearts",
+    "helik.resources.images.level_planes",
+    "helik.resources.images.level_planes.en",
+    "helik.resources.images.level_planes.pl",
+    "helik.resources.images.vehicles",
+    "helik.resources.labels.pl",
+    "helik.resources.labels.pl.pages",
+    "helik.resources.labels.pl.settings",
+    "helik.resources.labels.en",
+    "helik.resources.labels.en.pages",
+    "helik.resources.labels.en.settings",
+    "helik.resources.levels",
+    "helik.resources.sounds",
+    "helik.settingsmodes"]
+
+[tool.setuptools.package-data]
+"helik.resources" = ["*.json"]
+"helik.resources.fonts" = ["*.ttf"]
+"helik.resources.images" = ["*.png", "*.json", "*.jpg"]
+"helik.resources.images.ammo" = ["*.png"]
+"helik.resources.images.big" = ["*.png"]
+"helik.resources.images.birds" = ["*.png"]
+"helik.resources.images.buildings" = ["*.png"]
+"helik.resources.images.clouds" = ["*.png"]
+"helik.resources.images.digits" = ["*.png"]
+"helik.resources.images.dirc" = ["*.png"]
+"helik.resources.images.explosions" = ["*.png"]
+"helik.resources.images.hearts" = ["*.png"]
+"helik.resources.images.level_planes" = ["*.png", "*.json"]
+"helik.resources.images.level_planes.en" = ["*.png"]
+"helik.resources.images.level_planes.pl" = ["*.png"]
+"helik.resources.images.vehicles" = ["*.png"]
+"helik.resources.labels.pl" = ["*.json"]
+"helik.resources.labels.pl.pages" = ["*.json"]
+"helik.resources.labels.pl.settings" = ["*.json"]
+"helik.resources.labels.en" = ["*.json"]
+"helik.resources.labels.en.pages" = ["*.json"]
+"helik.resources.labels.en.settings" = ["*.json"]
+"helik.resources.levels" = ["*.json"]
+"helik.resources.sounds" = ["*.mp3"]
