@@ -71,14 +71,18 @@ class Page:
         self.data = {"images": [], "labels": [], "buttons": []}
         for elem in data["images"]:
             if "action" in elem:
-                b = Button(resman.images[elem["image"]], elem["location"], elem["action"], resman.colors)
+                b = Button(resman.images[elem["image"]],
+                           elem["location"],
+                           elem["action"], resman.colors)
                 self.data["buttons"].append(b)
             else:
                 elem["image"] = resman.images[elem["image"]]
                 self.data['images'].append(elem)
         for elem in data["labels"]:
             if "action" in elem:
-                b = Button(resman.images[elem["image"]], elem["location"], elem["action"], resman.colors)
+                b = Button(resman.images[elem["image"]],
+                           elem["location"],
+                           elem["action"], resman.colors)
                 self.data["buttons"].append(b)
             else:
                 elem["label"] = resman.locale[lang]["pages"][elem["label"]]
@@ -106,7 +110,7 @@ class Page:
             canvas.blit(image, (x, y))
 
         for img in self.data['labels']:
-            label, rect = img["label"]
+            label, _ = img["label"]
             x, y = img["location"]
             canvas.blit(label, (x, y))
 
@@ -165,7 +169,8 @@ class Pager:
         """
         Check if next page exists
         """
-        if len(self.pages[self.lang]) > 0 and self.current < len(self.pages[self.lang]) - 1:
+        if len(self.pages[self.lang]) > 0 and self.current < len(
+                self.pages[self.lang]) - 1:
             return True
         return False
 

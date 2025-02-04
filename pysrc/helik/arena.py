@@ -75,12 +75,17 @@ class Application:
             self.board_id = newboard
             self.boards[self.board_id].activate()
 
-    def run(self):
+    def run(self, **kwargs):
         """
         Main application loop
         """
-        # Activate initial board
-        self.boards[self.board_id].activate()
+        vaq = kwargs.get("validate_and_quit", False)
+
+        if vaq:
+            self.boards[BoardType.QUIT].activate()
+        else:
+            # Activate initial board
+            self.boards[self.board_id].activate()
 
         # webbrowser.open("mailto:marcin.bielewicz@gmail.com")
         # Main application loop
@@ -127,7 +132,7 @@ class Application:
         :param axis: axis number (0: X, 1: Y)
         :param value:
         """
-        self.boards[self.board_id].on_joyaxismotion(axis, value)
+        self.boards[self.board_id].on_joyaxismotion(axis, int(value))
 
     def on_mouseup(self, button, pos):
         """

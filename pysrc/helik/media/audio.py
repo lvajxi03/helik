@@ -51,6 +51,7 @@ class AudioController:
         Music is played infinitely.
         :param music:
         """
+
     def play_music(self, music: str):
         """
         Play the music.

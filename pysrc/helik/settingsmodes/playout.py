@@ -5,66 +5,74 @@ Pad Layout settings mode
 """
 
 import pygame
-from helik.settingsmodes import SettingsMode
 from helik.htypes import SettingsModeId
-from helik.platform import ButtonType, buttons_allowed
+from helik.platform import ButtonType, AxisType, AxisValue
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from .standard import SettingsMode
 
 
 class PadLayoutSettingsMode(SettingsMode):
     """
     Pad Layout settings mode class
     """
-    def __init__(self, parent, arena):
-        """
-        Class constructor
-        :param parent: Settings board handle
-        :param arena: Arena handle
-        """
-        super().__init__(parent, arena)
-
     def on_paint(self):
         """
         Paint event handler
         """
         self.paint_default_bg()
         self.paint_default_title("settings")
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["playout-heading-shadow"]
+        la, _ = self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["playout-heading-shadow"]
         self.buffer.blit(la, (205, 45))
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["playout-heading"]
+        la, _ = self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["playout-heading"]
         self.buffer.blit(la, (200, 40))
 
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["playout-help-2"]
+        la, _ = self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["playout-help-2"]
         self.buffer.blit(la, (200, 180))
 
         buttons = ["jump", "shoot"]
         i = 0
-        for elem in self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-items-shadow"]:
+        for elem in self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["pinput-items-shadow"]:
             la, _ = elem
             self.buffer.blit(la, (205, 285 + i * 80))
             try:
                 self.buffer.blit(self.resman.button_labels[
                                      "shadows"][
-                                     self.arena.config["lang"]][self.arena.config["buttons"][buttons[i]]],
+                                     self.arena.config[
+                                         "lang"]][
+                                     self.arena.config[
+                                         "buttons"][buttons[i]]],
                                  (505, 285 + i * 80))
             except IndexError:
                 pass
             i += 1
 
         i = 0
-        for elem in self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-items"]:
+        for elem in self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["pinput-items"]:
             la, _ = elem
             self.buffer.blit(la, (200, 280 + i * 80))
             try:
                 self.buffer.blit(self.resman.button_labels[
                                      "buttons"][
-                                     self.arena.config["lang"]][self.arena.config["buttons"][buttons[i]]],
+                                     self.arena.config["lang"]][
+                                     self.arena.config[
+                                         "buttons"][buttons[i]]],
                                  (500, 280 + i * 80))
             except IndexError:
                 pass
             i += 1
 
-            la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["playout-help-1"]
+            la, _ = self.resman.locale[self.arena.config[
+                "lang"]]["settings"]["playout-help-1"]
             self.buffer.blit(la, (200, 680))
+
+            la, re = self.resman.locale[self.arena.config[
+                "lang"]]["settings"]["playout-status"]
+            self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
     def on_joybuttonup(self, button):
         """
@@ -83,6 +91,15 @@ class PadLayoutSettingsMode(SettingsMode):
         if key == pygame.K_F2:
             self.parent.change_mode(SettingsModeId.GINPUT)
         elif key in (pygame.K_q, pygame.K_ESCAPE, pygame.K_LEFT):
+            self.parent.change_mode(SettingsModeId.MAIN)
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        Joy Axis Motion event handler
+        :param axis: axis number
+        :param value: axis value
+        """
+        if axis == AxisType.HORIZ and value == AxisValue.LOWER:
             self.parent.change_mode(SettingsModeId.MAIN)
 
     def on_mouseup(self, button, pos):

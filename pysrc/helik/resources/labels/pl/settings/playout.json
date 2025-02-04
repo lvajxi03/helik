@@ -1,4 +1,9 @@
 {
+  "playout-status": {
+    "color": "snowy-white",
+    "font": "status",
+    "label": "F2/Start   ← ESC Q 🖱"
+  },
   "playout-heading": {
     "color": "snowy-white",
     "font": "heading-normal",
@@ -14,7 +19,7 @@
   "playout-help-1": {
     "color": "snowy-white",
     "font": "normal",
-    "label": "Użyj F2/Select, aby zdefiniować własne przyciski",
+    "label": "Użyj F2/Start, aby zdefiniować własne przyciski",
     "rotate": 0
   },
   "playout-help-2": {

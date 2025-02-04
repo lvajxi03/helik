@@ -1,4 +1,9 @@
 {
+  "pinput-status": {
+    "color": "snowy-white",
+    "font": "status",
+    "label": "F2/Start   Enter/Sel   ← ESC Q 🖱"
+  },
   "pinput-heading": {
     "color": "snowy-white",
     "font": "heading-normal",
@@ -39,8 +44,8 @@
     "color": "snowy-white",
     "font": "menu",
     "labels": [
-      "JUMP",
-      "SHOT"
+      "SKOK",
+      "STRZAŁ"
     ],
     "rotate": 0
   },

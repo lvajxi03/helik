@@ -8,6 +8,7 @@ Hiscores board handler
 from helik.boards.standard import Board
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType
+from helik.platform import AxisType, AxisValue
 
 
 SCORES_DX = 200
@@ -105,3 +106,11 @@ class BoardHiscores(Board):
         if not ch_lang:
             self.arena.change_board(BoardType.MENU)
 
+    def on_joyaxismotion(self, axis, value):
+        """
+        JoyAxisMotion event handler
+        :param axis: axis number
+        :param value: axis value
+        """
+        if axis == AxisType.HORIZ and value == AxisValue.LOWER:
+            self.arena.change_board(BoardType.MENU)

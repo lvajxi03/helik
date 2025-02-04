@@ -89,6 +89,10 @@ class BoardNewScore(Board):
         pygame.time.set_timer(TimerType.SECOND, 0)
 
     def recalculate_rectangles(self):
+        """
+        Recalculate internal rectangles that depend on locales
+        (for instance, around the text labels)
+        """
         self.rectangles = {}
         for i in range(5):
             for j in range(8):
@@ -97,12 +101,12 @@ class BoardNewScore(Board):
                                 LETTER_BLOCK_W, LETTER_BLOCK_H)
                 self.rectangles[all_chrows[i][j]] = r
 
-        la, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["space"]
+        _, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["space"]
         re.y = SPACE_Y_OFFSET
         re.x = (ARENA_WIDTH - re.w) // 2
         self.rectangles[' '] = re
 
-        la, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["done"]
+        _, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["done"]
         re.y = DONE_Y_OFFSET
         re.x = (ARENA_WIDTH - re.w) // 2
         self.rectangles[';'] = re
@@ -143,7 +147,8 @@ class BoardNewScore(Board):
 
         i = 0
         for l in self.nick:
-            self.buffer.blit(self.resman.letters[l], (ARENA_WIDTH // 2 + i * LETTER_BLOCK_W, NICK_DY))
+            self.buffer.blit(self.resman.letters[l],
+                             (ARENA_WIDTH // 2 + i * LETTER_BLOCK_W, NICK_DY))
             i += 1
 
         if self.counter == 0:
@@ -162,10 +167,10 @@ class BoardNewScore(Board):
                                  (LINE_DX + j * LETTER_BLOCK_DX,
                                   LINE_DY + i * LETTER_BLOCK_DY))
 
-        la, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["space"]
+        la, _ = self.resman.locale[self.arena.config["lang"]]["newscore"]["space"]
         self.buffer.blit(la, self.rectangles[' '])
 
-        la, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["done"]
+        la, _ = self.resman.locale[self.arena.config["lang"]]["newscore"]["done"]
         self.buffer.blit(la, self.rectangles[';'])
 
         if self.y < 5:
@@ -192,7 +197,9 @@ class BoardNewScore(Board):
                             BIG_BUTTON_W, SURR_H)
             pygame.draw.rect(self.buffer, self.resman.colors["shadow-default"],
                              r, width=BORDER_WIDTH, border_radius=BORDER_RADIUS)
-            r = pygame.Rect(LINE_DX - BUTTON_DX, LINE_DY + self.y * LETTER_BLOCK_H - BLOCK_DX, BIG_BUTTON_W, SURR_H)
+            r = pygame.Rect(LINE_DX - BUTTON_DX,
+                            LINE_DY + self.y * LETTER_BLOCK_H - BLOCK_DX,
+                            BIG_BUTTON_W, SURR_H)
             pygame.draw.rect(self.buffer, self.resman.colors["yellow-default"],
                              r, width=BORDER_WIDTH, border_radius=BORDER_RADIUS)
 
@@ -203,7 +210,8 @@ class BoardNewScore(Board):
         self.nick = self.nick.strip()
         if self.nick == '':
             self.nick = 'no name'
-        self.arena.config.append_hiscore(self.nick, self.arena.boards[BoardType.GAME].data['points'])
+        self.arena.config.append_hiscore(self.nick,
+                                         self.arena.boards[BoardType.GAME].data['points'])
         self.arena.config["lastnick"] = self.nick
 
     def on_keyup(self, key):
@@ -241,7 +249,9 @@ class BoardNewScore(Board):
                 self.nick = self.nick.strip()
                 if self.nick == '':
                     self.nick = 'no name'
-                self.arena.config.append_hiscore(self.nick, self.arena.boards[BoardType.GAME].data['points'])
+                self.arena.config.append_hiscore(
+                    self.nick,
+                    self.arena.boards[BoardType.GAME].data['points'])
                 self.arena.config["lastnick"] = self.nick
                 self.arena.change_board(BoardType.MENU)
             elif self.y < 5:

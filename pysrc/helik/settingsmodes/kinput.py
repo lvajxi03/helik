@@ -6,9 +6,11 @@ Provides mode for keys input (interactive new key definition)
 """
 
 import pygame
-from helik.settingsmodes.standard import SettingsMode
 from helik.htypes import SettingsModeId, TimerType
 from helik.platform import keysallowed
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.platform import ButtonType
+from .standard import SettingsMode
 
 
 class KbdInputSettingsMode(SettingsMode):
@@ -18,14 +20,6 @@ class KbdInputSettingsMode(SettingsMode):
     blink: bool = False
     maxdef: int = 0
     defined: list = []
-
-    def __init__(self, parent, arena):
-        """
-        Class constructor
-        :param parent: Settings board handle
-        :param arena: Arena handle
-        """
-        super().__init__(parent, arena)
 
     def activate(self):
         pygame.time.set_timer(TimerType.SECOND, 250)
@@ -39,44 +33,60 @@ class KbdInputSettingsMode(SettingsMode):
         """
         self.paint_default_bg()
         self.paint_default_title("settings")
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-heading-shadow"]
+        la, _ = self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["kinput-heading-shadow"]
         self.buffer.blit(la, (205, 45))
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-heading"]
+        la, _ = self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["kinput-heading"]
         self.buffer.blit(la, (200, 40))
 
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-help-1"]
+        la, _ = self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["kinput-help-1"]
         self.buffer.blit(la, (200, 180))
 
         i = 0
-        for elem in self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-items-shadow"]:
+        for elem in self.resman.locale[self.arena.config["lang"]][
+            "settings"]["kinput-items-shadow"]:
             if i < self.maxdef or (i == self.maxdef and self.blink):
                 la, _ = elem
                 self.buffer.blit(la, (205, 285 + i * 80))
                 try:
-                    self.buffer.blit(self.resman.keylabels["shadows"][self.arena.config["lang"]][self.defined[i]],
+                    self.buffer.blit(self.resman.keylabels["shadows"][
+                                         self.arena.config[
+                                             "lang"]][self.defined[i]],
                                      (505, 285 + i * 80))
                 except IndexError:
                     pass
                 i += 1
 
         i = 0
-        for elem in self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-items"]:
+        for elem in self.resman.locale[self.arena.config["lang"]][
+            "settings"]["kinput-items"]:
             if i < self.maxdef or (i == self.maxdef and self.blink):
                 la, _ = elem
                 self.buffer.blit(la, (200, 280 + i * 80))
                 try:
-                    self.buffer.blit(self.resman.keylabels["keys"][self.arena.config["lang"]][self.defined[i]],
+                    self.buffer.blit(self.resman.keylabels["keys"][
+                                         self.arena.config["lang"]][
+                                         self.defined[i]],
                                      (500, 280 + i * 80))
                 except IndexError:
                     pass
                 i += 1
 
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-help-2"]
+        la, _ = self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["kinput-help-2"]
         self.buffer.blit(la, (200, 500))
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-help-3"]
+        la, _ = self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["kinput-help-3"]
         self.buffer.blit(la, (200, 560))
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["kinput-help-4"]
+        la, _ = self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["kinput-help-4"]
         self.buffer.blit(la, (200, 620))
+
+        la, re = self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["kinput-status"]
+        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
     def on_keyup(self, key):
         """
@@ -116,6 +126,28 @@ class KbdInputSettingsMode(SettingsMode):
             self.on_keyup(pygame.K_UP)
         elif button == 5:
             self.on_keyup(pygame.K_DOWN)
+
+    def on_joybuttonup(self, button):
+        """
+        Jou Bytton Up event handler
+        :param button: button number
+        """
+        if button == ButtonType.START:
+            self.activate()
+        if button == ButtonType.SELECT:
+            if len(self.defined) == 2:
+                self.arena.config["keys"]["jump"] = self.defined[0]
+                self.arena.config["keys"]["shoot"] = self.defined[1]
+                self.parent.change_mode(SettingsModeId.KLAYOUT)
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        Joy Axis Motion event handler
+        :param axis: axis number
+        :poram value: axis value
+        """
+        if axis == 0:
+            self.parent.change_mode(SettingsModeId.KLAYOUT)
 
     def on_timer(self, timer):
         """

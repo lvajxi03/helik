@@ -1,9 +1,14 @@
 #!/usr/bin/env/python3
 
+"""
+Pad Input settings mode
+"""
+
 import pygame
-from helik.settingsmodes.standard import SettingsMode
 from helik.htypes import SettingsModeId, TimerType
 from helik.platform import ButtonType, buttons_allowed
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from .standard import SettingsMode
 
 
 class PadInputSettingsMode(SettingsMode):
@@ -14,49 +19,49 @@ class PadInputSettingsMode(SettingsMode):
     maxdef: int = 0
     defined: list = []
 
-    def __init__(self, parent, arena):
-        """
-        Class constructor
-        :param parent: Settings board handle
-        :param arena: Arena handle
-        """
-        super().__init__(parent, arena)
-        self.blink = False
-        self.maxdef = 0
-        self.defined = []
-
     def on_paint(self):
         """
         Paint event handler
         """
         self.paint_default_bg()
         self.paint_default_title("settings")
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-heading-shadow"]
+        la, _ = self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["pinput-heading-shadow"]
         self.buffer.blit(la, (205, 45))
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-heading"]
+        la, _ = self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["pinput-heading"]
         self.buffer.blit(la, (200, 40))
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-help-1"]
+        la, _ = self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["pinput-help-1"]
         self.buffer.blit(la, (200, 180))
 
         i = 0
-        for elem in self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-items-shadow"]:
+        for elem in self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["pinput-items-shadow"]:
             if i < self.maxdef or (i == self.maxdef and self.blink):
                 la, _ = elem
                 self.buffer.blit(la, (205, 285 + i * 80))
                 try:
-                    self.buffer.blit(self.resman.button_labels["shadows"][self.arena.config["lang"]][self.defined[i]],
-                                     (505, 285 + i * 80))
+                    self.buffer.blit(
+                        self.resman.button_labels[
+                            "shadows"][
+                            self.arena.config["lang"]][self.defined[i]],
+                        (505, 285 + i * 80))
                 except IndexError:
                     pass
                 i += 1
 
         i = 0
-        for elem in self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-items"]:
+        for elem in self.resman.locale[self.arena.config[
+            "lang"]]["settings"]["pinput-items"]:
             if i < self.maxdef or (i == self.maxdef and self.blink):
                 la, _ = elem
                 self.buffer.blit(la, (200, 280 + i * 80))
                 try:
-                    self.buffer.blit(self.resman.button_labels["buttons"][self.arena.config["lang"]][self.defined[i]],
+                    self.buffer.blit(self.resman.button_labels[
+                                         "buttons"][
+                                         self.arena.config[
+                                             "lang"]][self.defined[i]],
                                      (500, 280 + i * 80))
                 except IndexError:
                     pass
@@ -68,6 +73,9 @@ class PadInputSettingsMode(SettingsMode):
         self.buffer.blit(la, (200, 560))
         la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-help-4"]
         self.buffer.blit(la, (200, 620))
+
+        la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-status"]
+        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
     def on_keyup(self, key):
         """
@@ -105,7 +113,8 @@ class PadInputSettingsMode(SettingsMode):
         :param axis: axis number
         :param value: axis move value
         """
-        self.parent.change_mode(SettingsModeId.GLAYOUT)
+        if axis == 0:
+            self.parent.change_mode(SettingsModeId.GLAYOUT)
 
     def on_mouseup(self, button, pos):
         """

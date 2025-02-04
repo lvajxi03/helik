@@ -112,6 +112,9 @@ class Lane:
             obj.x += dx
 
     def move(self):
+        """
+        Move the object in default direction with default values
+        """
         for obj in self.objects:
             if issubclass(type(obj), ImageListGameObject):
                 obj.next()

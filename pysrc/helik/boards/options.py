@@ -8,6 +8,7 @@ import pygame
 from helik.boards.standard import Board
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType
+from helik.platform import ButtonType, AxisType, AxisValue
 
 class BoardOptions(Board):
     """
@@ -144,15 +145,14 @@ class BoardOptions(Board):
             self.arena.change_board(BoardType.MENU)
 
     def on_joyaxismotion(self, axis, value):
-        value = int(value)
-        if axis == 1:
-            if value == 1:
+        if axis == AxisType.VERT:
+            if value == AxisValue.HIGHER:
                 self.on_keyup(pygame.K_DOWN)
-            elif value == -1:
+            elif value == AxisValue.LOWER:
                 self.on_keyup(pygame.K_UP)
+        elif axis == AxisType.HORIZ:
+            self.arena.change_board(BoardType.MENU)
 
     def on_joybuttonup(self, button):
-        if button == 1: # TODO: A
+        if button == ButtonType.SELECT:
             self.on_keyup(pygame.K_RETURN)
-        elif button == 2: # TODO: B
-            self.on_keyup(pygame.K_q)

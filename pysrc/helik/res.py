@@ -223,8 +223,11 @@ class ResourceManager:
             self.letters[letter] = su
 
     def load_level_planes(self, basepath):
+        """
+        Load images that display leven planes
+        """
         self.level_planes = {}
-        pa = basepath.joinpath("images").joinpath("level-planes")
+        pa = basepath.joinpath("images").joinpath("level_planes")
         f_path = pa.joinpath("level-planes.json")
         try:
             with open(f_path, encoding="utf-8") as f_handle:
@@ -240,10 +243,13 @@ class ResourceManager:
                     elif type(values) is str:
                         self.level_planes[key] = pygame.image.load(pa.joinpath(
                             values)).convert_alpha()
-        except IOError:
-            pass
+        except IOError as ioe:
+            print(ioe)
 
     def load_colors(self, basepath):
+        """
+        Load colors definitions
+        """
         f_name = basepath.joinpath("colors.json")
         try:
             with open(f_name, encoding="utf-8") as f_handle:
@@ -251,8 +257,8 @@ class ResourceManager:
                 for name in data["colors"]:
                     r = data["colors"][name]
                     self.colors[name] = pygame.Color(r[0], r[1], r[2], r[3])
-        except IOError:
-            pass
+        except IOError as ioe:
+            print(ioe)
 
     def load_images(self, basepath):
         """
@@ -278,7 +284,7 @@ class ResourceManager:
                                 pa.joinpath(key).joinpath(value[elem])).convert_alpha()
                     elif type(value) is str:
                         self.images[key] = pygame.image.load(pa.joinpath(value)).convert_alpha()
-        except IOError:
-            pass
+        except IOError as ioe:
+            print(ioe)
 
     # That's all Folks!
