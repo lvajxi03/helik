@@ -75,12 +75,17 @@ class Application:
             self.board_id = newboard
             self.boards[self.board_id].activate()
 
-    def run(self):
+    def run(self, **kwargs):
         """
         Main application loop
         """
-        # Activate initial board
-        self.boards[self.board_id].activate()
+        vaq = kwargs.get("validate_and_quit", False)
+
+        if vaq:
+            self.boards[BoardType.QUIT].activate()
+        else:
+            # Activate initial board
+            self.boards[self.board_id].activate()
 
         # webbrowser.open("mailto:marcin.bielewicz@gmail.com")
         # Main application loop
