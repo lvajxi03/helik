@@ -6,7 +6,7 @@ Mode paused handler module
 
 
 import pygame
-from helik.htypes import GameMode, BoardType
+from helik.htypes import GameMode
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.modes.standard import Mode
 

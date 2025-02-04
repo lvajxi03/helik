@@ -25,4 +25,4 @@ jobs:
         python -m pip install pygame
     - name: Analyzing application code with pylint
       run: |
-        PYTHONPATH=pysrc python -m pylint pysrc
+        PYTHONPATH=pysrc python -m pylint --fail-under=9.8 pysrc

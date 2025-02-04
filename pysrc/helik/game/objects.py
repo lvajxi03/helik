@@ -4,7 +4,6 @@
 Standard and abstract game objects
 """
 
-import enum
 import pygame
 from helik.hdefs import ARENA_WIDTH
 from helik.htypes import GameObjectType
