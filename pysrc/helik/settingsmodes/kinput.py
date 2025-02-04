@@ -21,14 +21,6 @@ class KbdInputSettingsMode(SettingsMode):
     maxdef: int = 0
     defined: list = []
 
-    def __init__(self, parent, arena):
-        """
-        Class constructor
-        :param parent: Settings board handle
-        :param arena: Arena handle
-        """
-        super().__init__(parent, arena)
-
     def activate(self):
         pygame.time.set_timer(TimerType.SECOND, 250)
         self.blink = False

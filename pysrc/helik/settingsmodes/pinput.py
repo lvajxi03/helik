@@ -1,5 +1,9 @@
 #!/usr/bin/env/python3
 
+"""
+Pad Input settings mode
+"""
+
 import pygame
 from helik.htypes import SettingsModeId, TimerType
 from helik.platform import ButtonType, buttons_allowed
@@ -14,17 +18,6 @@ class PadInputSettingsMode(SettingsMode):
     blink: bool = False
     maxdef: int = 0
     defined: list = []
-
-    def __init__(self, parent, arena):
-        """
-        Class constructor
-        :param parent: Settings board handle
-        :param arena: Arena handle
-        """
-        super().__init__(parent, arena)
-        self.blink = False
-        self.maxdef = 0
-        self.defined = []
 
     def on_paint(self):
         """

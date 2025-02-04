@@ -223,6 +223,9 @@ class ResourceManager:
             self.letters[letter] = su
 
     def load_level_planes(self, basepath):
+        """
+        Load images that display leven planes
+        """
         self.level_planes = {}
         pa = basepath.joinpath("images").joinpath("level-planes")
         f_path = pa.joinpath("level-planes.json")

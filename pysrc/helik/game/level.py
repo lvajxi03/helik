@@ -43,8 +43,7 @@ class Level:
         for lane in self.lanes:
             try:
                 obj = lane.objects[0]
-                if obj.x < minx:
-                    minx = obj.x
+                minx = min(obj.x, minx)
             except IndexError:
                 # Prevents checking empty lanes
                 pass
