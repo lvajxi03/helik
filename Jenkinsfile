@@ -1,15 +1,6 @@
-
 pipeline {
     agent any
     stages {
-        stage('Get sources') {
-            steps {
-                bat """
-                git clone https://github.com/lvajxi03/helik.git .
-                echo %GIT_BRANCH%
-                """
-            }
-        }
         stage('Install Tools')  {
             steps {
                 bat """
@@ -44,6 +35,8 @@ pipeline {
         stage('ATest') {
             steps {
                 bat """
+		setSDL_VIDEODRIVER="dummy"
+		set SDL_AUDIODRIVER="disk"
                 python -m  helik -q
                 """
             }
