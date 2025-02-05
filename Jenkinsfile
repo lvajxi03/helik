@@ -25,11 +25,7 @@ pipeline {
         }
         stage('Install') {
             steps {
-                bat """
-                cd dist
-                dir
-                python -m pip install *.whl
-                """
+                bat 'cd dist && dir && python -m pip install *.whl'
             }
         }
         stage('ATest') {
