@@ -81,13 +81,14 @@ class SelectPlayer(Mode):
         if key == pygame.K_LEFT:
             if self.viewpos > 0:
                 self.viewpos -= 1
-                self.audio.play_sound("arrow")
+                self.audio.play_sfx("arrow")
         elif key == pygame.K_RIGHT:
             if self.viewpos < len(self.vehicles) - 1:
                 self.viewpos += 1
-                self.audio.play_sound("arrow")
+                self.audio.play_sfx("arrow")
         elif key == pygame.K_RETURN:
             self.game.player = Player(self.game, self.viewpos)
+            self.audio.play_sfx("closing-tape")
             self.game.change_mode(GameMode.PREPARE)
         elif key == pygame.K_ESCAPE:
             self.arena.change_board(BoardType.MENU)

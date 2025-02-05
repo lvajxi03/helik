@@ -64,7 +64,7 @@ class ModePrepare(Mode):
         """
         Activate event handler
         """
-        self.audio.play_sound("countdown")
+        self.audio.play_sfx("countdown")
         self.alpha = 255
         self.index = 0
         pygame.time.set_timer(TimerType.SECOND, 1000)

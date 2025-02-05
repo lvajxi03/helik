@@ -123,23 +123,34 @@ class MainSettingsMode(SettingsMode):
         """
         if key == pygame.K_DOWN:
             if self.menu_pos < self.maxpos:
-                self.audio.play_sound("arrow")
+                self.audio.play_sfx("arrow")
                 self.menu_pos += 1
         elif key == pygame.K_UP:
             if self.menu_pos > 0:
                 self.menu_pos -= 1
-                self.audio.play_sound("arrow")
+                self.audio.play_sfx("arrow")
         elif key == pygame.K_RETURN:
-            if self.menu_pos < 2:
-                self.arena.config[self.labels[self.menu_pos]] = 1 if self.arena.config[self.labels[self.menu_pos]] == 0 else 0
-                self.audio.play_sound("closing-tape")
+            if self.menu_pos == 0:
+                pass
+
+            if self.menu_pos == 1:
+                pass
+            # if self.menu_pos < 2:
+            #     self.arena.config[
+            #         self.labels[
+            #             self.menu_pos]] = 1 if self.arena.config[
+            #                                                        self.labels[
+            #                                                            self.menu_pos]] == 0 else 0
+
             elif self.menu_pos == 2:
                 # Keyboard settings
                 self.parent.change_mode(SettingsModeId.KLAYOUT)
             elif self.menu_pos == 3:
                 # Gamepad buttons settings
                 self.parent.change_mode(SettingsModeId.GLAYOUT)
+            self.audio.play_sfx("closing-tape")
         elif key in (pygame.K_q, pygame.K_ESCAPE, pygame.K_LEFT):
+            self.audio.play_sfx("closing-tape")
             self.arena.change_board(BoardType.MENU)
         self.recalculate_pos()
 

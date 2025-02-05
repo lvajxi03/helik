@@ -95,18 +95,18 @@ class BoardOptions(Board):
         if key == pygame.K_DOWN:
             if self.menu_pos < 5:
                 self.menu_pos += 1
-                self.audio.play_sound("arrow")
+                self.audio.play_sfx("arrow")
         elif key == pygame.K_UP:
             if self.menu_pos > 0:
                 self.menu_pos -= 1
-                self.audio.play_sound("arrow")
+                self.audio.play_sfx("arrow")
         elif key == pygame.K_RETURN:
             self.option = self.menu_pos
             self.arena.config['option'] = self.menu_pos
+            self.audio.play_sfx("closing-tape")
             self.arena.change_board(BoardType.MENU)
-        elif key == pygame.K_ESCAPE:
-            self.arena.change_board(BoardType.MENU)
-        elif key == pygame.K_q:
+        elif key in (pygame.K_ESCAPE, pygame.K_q):
+            self.audio.play_sfx("closing-tape")
             self.arena.change_board(BoardType.MENU)
         self.recalculate_pos()
 
@@ -135,14 +135,14 @@ class BoardOptions(Board):
                         self.option = tpos
                         self.arena.config['option'] = self.menu_pos
                         self.recalculate_pos()
-                        self.audio.play_sound("closing-tape")
+                        self.audio.play_sfx("closing-tape")
                 self.arena.change_board(BoardType.MENU)
         elif button == 4:
             self.on_keyup(pygame.K_UP)
         elif button == 5:
             self.on_keyup(pygame.K_DOWN)
-        elif button == 2 or button == 3:
-            self.arena.change_board(BoardType.MENU)
+        elif button in (2, 3):
+            self.on_keyup(pygame.K_ESCAPE)
 
     def on_joyaxismotion(self, axis, value):
         if axis == AxisType.VERT:
@@ -151,7 +151,7 @@ class BoardOptions(Board):
             elif value == AxisValue.LOWER:
                 self.on_keyup(pygame.K_UP)
         elif axis == AxisType.HORIZ:
-            self.arena.change_board(BoardType.MENU)
+            self.on_keyup(pygame.K_ESCAPE)
 
     def on_joybuttonup(self, button):
         if button == ButtonType.SELECT:
