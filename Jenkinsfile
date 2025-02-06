@@ -44,7 +44,7 @@ pipeline {
         stage('Uninstall') {
             steps {
                 bat """
-                python -m pip uninstall helik
+                python -m pip -y uninstall helik
                 """
             }
         }

@@ -36,6 +36,7 @@ class BoardHiscores(Board):
         """
         Activate event handler
         """
+        self.arena.audio.enable_background_music("background-music")
         self.rectangles = []
         self.rectangles_s = []
         dl = 0

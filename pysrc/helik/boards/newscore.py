@@ -79,6 +79,7 @@ class BoardNewScore(Board):
         """
         Activate event handler
         """
+        self.arena.audio.enable_background_music("background-music")
         self.nick = self.arena.config["lastnick"]
         pygame.time.set_timer(TimerType.SECOND, 500)
 

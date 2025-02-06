@@ -116,6 +116,7 @@ class AudioController:
                 self.unpause_music(SoundChannel.BACKGROUND)
             elif self.states[SoundChannel.BACKGROUND] == SoundPlayState.STOPPED:
                 self.play(SoundChannel.BACKGROUND, sound, loops=-1)
+                self.channels[SoundChannel.BACKGROUND].set_volume(0.05)
 
     def pause_background_music(self):
         """
