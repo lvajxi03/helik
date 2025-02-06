@@ -26,7 +26,7 @@ class ModeKilled(Mode):
         """
         Activate event handler
         """
-        self.audio.play_sound("failed")
+        self.audio.play_sfx("failed")
         self.previous_y = self.game.player.y
         pygame.time.set_timer(TimerType.FIRST, 11)
 

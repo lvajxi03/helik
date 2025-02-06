@@ -107,6 +107,7 @@ class BoardMenu(Board):
         Activate board event handler
         """
         self.create_rectangles()
+        self.arena.audio.enable_background_music("background-music")
 
     def on_keyup(self, key):
         """
@@ -115,15 +116,15 @@ class BoardMenu(Board):
         """
         if key == pygame.K_DOWN:
             if self.menu_pos < 6:
-                self.audio.play_sound("arrow")
+                self.audio.play_sfx("poom")
                 self.menu_pos += 1
         elif key == pygame.K_UP:
             if self.menu_pos > 0:
                 self.menu_pos -= 1
-                self.audio.play_sound("arrow")
+                self.audio.play_sfx("poom")
         elif key == pygame.K_RETURN:
             bid = menupos2board(self.menu_pos)
-            self.audio.play_sound("closing-tape")
+            self.audio.play_sfx("closing-tape")
             self.arena.change_board(bid)
         elif key == pygame.K_q:
             self.arena.change_board(BoardType.QUIT)
@@ -142,7 +143,7 @@ class BoardMenu(Board):
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
                     ch_lang = True
-                    self.audio.play_sound("arrow")
+                    self.audio.play_sfx("poom")
                     self.create_rectangles()
             if not ch_lang:
                 tpos = -1
@@ -153,7 +154,7 @@ class BoardMenu(Board):
                         self.menu_pos = tpos
                         self.recalculate_pos()
                         bid = menupos2board(self.menu_pos)
-                        self.audio.play_sound("closing-tape")
+                        self.audio.play_sfx("closing-tape")
                         self.arena.change_board(bid)
         elif button == 4:
             self.on_keyup(pygame.K_UP)

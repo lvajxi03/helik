@@ -32,10 +32,7 @@ class ModePlay(Mode):
         """
         Activate event handler
         """
-        if self.audio.music_state == SoundPlayState.PAUSED:
-            self.audio.unpause_music()
-        elif self.game.music_state == SoundPlayState.STOPPED:
-            self.audio.play_music("music-3")
+        self.audio.enable_music("music-1")
         pygame.time.set_timer(TimerType.SECOND, 1000)
         pygame.time.set_timer(TimerType.FIRST, 250)
         self.speed = SPEED - 3 * self.data['option']
@@ -145,7 +142,7 @@ class ModePlay(Mode):
             self.game.change_mode(GameMode.PAUSED)
         elif key == self.arena.config["keys"]["shoot"]:
             if self.data['bullets-available'] > 0:
-                self.audio.play_sound("popup")
+                self.audio.play_sfx("popup")
                 self.game.level.make_bullet(self.game.player)
                 self.data['bullets-available'] -= 1
         elif key == self.arena.config["keys"]["jump"]:
@@ -167,7 +164,7 @@ class ModePlay(Mode):
         """
         if button == self.arena.config["buttons"]["shoot"]:
             if self.data['bullets-available'] > 0:
-                self.audio.play_sound("popup")
+                self.audio.play_sfx("popup")
                 self.game.level.make_bullet(self.game.player)
                 self.data['bullets-available'] -= 1
         elif button == self.arena.config["buttons"]["jump"]:
