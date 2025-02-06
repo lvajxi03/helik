@@ -4,7 +4,7 @@ pipeline {
         stage('Install Tools')  {
             steps {
                 bat """
-                python -m pip install pylint
+                python -m pip install pylint pylint_junit
                 """
             }
         }
