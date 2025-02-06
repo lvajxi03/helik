@@ -35,7 +35,7 @@ pipeline {
         stage('ATest') {
             steps {
                 bat """
-		setSDL_VIDEODRIVER="dummy"
+		set SDL_VIDEODRIVER="dummy"
 		set SDL_AUDIODRIVER="disk"
                 python -m  helik -q
                 """
