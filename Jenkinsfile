@@ -51,8 +51,8 @@ pipeline {
     }
     post { 
         always { 
-            cleanWs()
             junit 'build/reports/**/*.xml'
+            cleanWs()
         }
     }
 }
