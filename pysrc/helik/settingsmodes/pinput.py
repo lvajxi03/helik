@@ -127,7 +127,7 @@ class PadInputSettingsMode(SettingsMode):
             for lang in rects:
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
-                    self.audio.play_sound("arrow")
+                    self.audio.play_sfx("arrow")
         if button in (2, 3):
             self.parent.change_mode(SettingsModeId.GLAYOUT)
         elif button == 4:

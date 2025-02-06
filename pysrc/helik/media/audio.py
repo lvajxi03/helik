@@ -42,6 +42,7 @@ class AudioController:
             try:
                 js = json.load(f_handle)
                 for sound in js:
+                    print(sound)
                     self.sounds[sound] = pygame.mixer.Sound(bp.joinpath(js[sound]))
             except IOError:
                 pass
@@ -110,10 +111,11 @@ class AudioController:
         Handy wrapper to enable background music
         :param sound: sound key in the music library
         """
-        if self.states[SoundChannel.BACKGROUND] == SoundPlayState.PAUSED:
-            self.unpause_music(SoundChannel.BACKGROUND)
-        elif self.states[SoundChannel.BACKGROUND] == SoundPlayState.STOPPED:
-            self.play(SoundChannel.BACKGROUND, sound, loops=-1)
+        if self.arena.config["music"] == 1:
+            if self.states[SoundChannel.BACKGROUND] == SoundPlayState.PAUSED:
+                self.unpause_music(SoundChannel.BACKGROUND)
+            elif self.states[SoundChannel.BACKGROUND] == SoundPlayState.STOPPED:
+                self.play(SoundChannel.BACKGROUND, sound, loops=-1)
 
     def pause_background_music(self):
         """
@@ -132,10 +134,11 @@ class AudioController:
         Handy wrapper for enabling gameplay music
         :param sound: sound key in the music library
         """
-        if self.states[SoundChannel.MUSIC] == SoundPlayState.PAUSED:
-            self.unpause_music(SoundChannel.MUSIC)
-        elif self.states[SoundChannel.MUSIC] == SoundPlayState.STOPPED:
-            self.play(SoundChannel.MUSIC, sound, loops=-1)
+        if self.arena.config["music"] == 1:
+            if self.states[SoundChannel.MUSIC] == SoundPlayState.PAUSED:
+                self.unpause_music(SoundChannel.MUSIC)
+            elif self.states[SoundChannel.MUSIC] == SoundPlayState.STOPPED:
+                self.play(SoundChannel.MUSIC, sound, loops=-1)
 
     def pause_music(self):
         """
@@ -152,6 +155,13 @@ class AudioController:
     def play_sfx(self, sound: str):
         """
         Handy wrapper to play sound in SFX channel
+        :param sound: sound key in the music library
+        """
+        self.play_sound(SoundChannel.SOUND, sound)
+
+    def play_music(self, sound: str):
+        """
+        Handy wrapper to play sound in music channel
         :param sound: sound key in the music library
         """
         self.play_sound(SoundChannel.SOUND, sound)

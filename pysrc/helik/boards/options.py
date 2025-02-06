@@ -123,7 +123,7 @@ class BoardOptions(Board):
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
                     ch_lang = True
-                    self.audio.play_sound("arrow")
+                    self.audio.play_sfx("arrow")
                     self.create_rectangles()
             if not ch_lang:
                 tpos = -1

@@ -123,25 +123,23 @@ class MainSettingsMode(SettingsMode):
         """
         if key == pygame.K_DOWN:
             if self.menu_pos < self.maxpos:
-                self.audio.play_sfx("arrow")
+                self.audio.play_sfx("poom")
                 self.menu_pos += 1
         elif key == pygame.K_UP:
             if self.menu_pos > 0:
                 self.menu_pos -= 1
-                self.audio.play_sfx("arrow")
+                self.audio.play_sfx("poom")
         elif key == pygame.K_RETURN:
             if self.menu_pos == 0:
-                pass
-
-            if self.menu_pos == 1:
-                pass
-            # if self.menu_pos < 2:
-            #     self.arena.config[
-            #         self.labels[
-            #             self.menu_pos]] = 1 if self.arena.config[
-            #                                                        self.labels[
-            #                                                            self.menu_pos]] == 0 else 0
-
+                self.arena.config["sound"] = 0 if self.arena.config["sound"] == 1 else 1
+            elif self.menu_pos == 1:
+                if self.arena.config["music"] == 1:
+                    self.arena.config["music"] = 0
+                    self.arena.audio.stop_music()
+                    self.arena.audio.stop_background_music()
+                else:
+                    self.arena.config["music"] = 1
+                    self.arena.audio.enable_background_music("background-music")
             elif self.menu_pos == 2:
                 # Keyboard settings
                 self.parent.change_mode(SettingsModeId.KLAYOUT)
@@ -167,7 +165,7 @@ class MainSettingsMode(SettingsMode):
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
                     ch_lang = True
-                    self.audio.play_sound("arrow")
+                    self.audio.play_sfx("poom")
                     self.create_rectangles()
             if not ch_lang:
                 i = 0

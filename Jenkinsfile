@@ -25,7 +25,11 @@ pipeline {
         }
         stage('Install') {
             steps {
-                bat 'cd dist && dir && python -m pip install *.whl'
+	        dir("dist") {
+                    bat """
+		    python -m pip install helik-0.0.0-py3-none-any.whl
+		    """
+		}
             }
         }
         stage('ATest') {

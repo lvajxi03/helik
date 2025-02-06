@@ -274,7 +274,7 @@ class BoardNewScore(Board):
                 if rects[lang].collidepoint(pos):
                     ch_lang = True
                     self.arena.config['lang'] = lang
-                    self.audio.play_sound("arrow")
+                    self.audio.play_sfx("arrow")
                     self.recalculate_rectangles()
             if not ch_lang:
                 for pair in self.rectangles.items():

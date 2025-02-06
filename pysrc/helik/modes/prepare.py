@@ -64,6 +64,7 @@ class ModePrepare(Mode):
         """
         Activate event handler
         """
+        self.audio.stop_background_music()
         self.audio.play_sfx("countdown")
         self.alpha = 255
         self.index = 0

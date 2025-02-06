@@ -116,12 +116,12 @@ class BoardMenu(Board):
         """
         if key == pygame.K_DOWN:
             if self.menu_pos < 6:
-                self.audio.play_sfx("arrow")
+                self.audio.play_sfx("poom")
                 self.menu_pos += 1
         elif key == pygame.K_UP:
             if self.menu_pos > 0:
                 self.menu_pos -= 1
-                self.audio.play_sfx("arrow")
+                self.audio.play_sfx("poom")
         elif key == pygame.K_RETURN:
             bid = menupos2board(self.menu_pos)
             self.audio.play_sfx("closing-tape")
@@ -143,7 +143,7 @@ class BoardMenu(Board):
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
                     ch_lang = True
-                    self.audio.play_sound("arrow")
+                    self.audio.play_sfx("poom")
                     self.create_rectangles()
             if not ch_lang:
                 tpos = -1
