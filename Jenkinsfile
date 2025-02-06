@@ -1,44 +1,58 @@
 pipeline {
-    agent {
-    	docker { image 'python:3.12-slim' }
-    }
+    agent any
     stages {
         stage('Install Tools')  {
             steps {
-                sh 'python -m pip install pylint'
+                bat """
+                python -m pip install pylint
+                """
             }
         }
         stage('Pylint') {
             steps {
-                sh 'PYTHONPATH=pysrc python -m pylint --fail-under=9.8 pysrc'
+                bat """
+                set PYTHONPATH=pysrc
+                python -m pylint --output-format=pylint_junit.JUnitReporter --fail-under=9.8 pysrc
+                """
             }
         }
         stage('Build') {
             steps {
-                sh 'python -m build'
+                bat """
+                python -m build
+                """
             }
         }
         stage('Install') {
             steps {
 	        dir("dist") {
-                    sh 'python -m pip install helik*.whl'
+                    bat """
+		    python -m pip install helik-0.0.0-py3-none-any.whl
+		    """
 		}
             }
         }
         stage('ATest') {
             steps {
-		sh 'SDL_VIDEODRIVER="dummy" SDL_AUDIODRIVER="disk" python -m helik -q'
+                bat """
+		rem set SDL_VIDEODRIVER="dummy"
+		rem set SDL_AUDIODRIVER="disk"
+                python -m  helik -q
+                """
             }
         }
         stage('Uninstall') {
             steps {
-                ish 'python -m pip uninstall -y helik'
+                bat """
+                python -m pip uninstall -y helik
+                """
             }
         }
     }
     post { 
         always { 
             cleanWs()
+            junit 'build/reports/**/*.xml'
         }
     }
 }
