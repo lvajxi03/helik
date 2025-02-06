@@ -36,7 +36,7 @@ pipeline {
             steps {
                 bat """
 		set SDL_VIDEODRIVER="dummy"
-		set SDL_AUDIODRIVER="disk"
+		rem set SDL_AUDIODRIVER="disk"
                 python -m  helik -q
                 """
             }
