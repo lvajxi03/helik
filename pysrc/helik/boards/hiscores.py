@@ -97,15 +97,11 @@ class BoardHiscores(Board):
         :param button: button number
         :param pos: cursor position
         """
-        ch_lang = False
         if button == 1:
             rects = self.resman.rectangles["lang-rectangles"]
             for lang in rects:
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
-                    ch_lang = True
-        if not ch_lang:
-            self.arena.change_board(BoardType.MENU)
 
     def on_joyaxismotion(self, axis, value):
         """
