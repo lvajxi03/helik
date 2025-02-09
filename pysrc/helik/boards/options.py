@@ -111,6 +111,7 @@ class BoardOptions(Board):
             self.arena.change_board(BoardType.MENU)
         elif key == pygame.K_F3:
             self.arena.config.toggle_lang()
+            self.create_rectangles()
         self.recalculate_pos()
 
     def on_mouseup(self, button, pos):
@@ -161,3 +162,4 @@ class BoardOptions(Board):
             self.on_keyup(pygame.K_RETURN)
         elif button == ButtonType.B:
             self.arena.config.toggle_lang()
+            self.create_rectangles()

@@ -81,6 +81,8 @@ class PadLayoutSettingsMode(SettingsMode):
         """
         if button == ButtonType.START:
             self.parent.change_mode(SettingsModeId.GINPUT)
+        if button == ButtonType.B:
+            self.arena.config.toggle_lang()
 
     def on_keyup(self, key):
         """

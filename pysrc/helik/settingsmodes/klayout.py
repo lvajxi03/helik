@@ -91,6 +91,8 @@ class KbdLayoutSettingsMode(SettingsMode):
         """
         if button == ButtonType.START:
             self.parent.change_mode(SettingsModeId.KINPUT)
+        elif button == ButtonType.B:
+            self.arena.config.toggle_lang()
 
     def on_joyaxismotion(self, axis, value):
         """
