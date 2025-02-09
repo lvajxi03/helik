@@ -25,6 +25,7 @@ class BoardWelcome(Board):
             comp = random.randint(64, 255)
             self.colors.append(
                 pygame.Color(comp, comp, comp))
+            # a = random.randint(0, 255)
 
     def activate(self):
         pygame.time.set_timer(TimerType.FIRST, 3000)

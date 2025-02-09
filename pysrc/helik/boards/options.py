@@ -10,6 +10,7 @@ from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType
 from helik.platform import ButtonType, AxisType, AxisValue
 
+
 class BoardOptions(Board):
     """
     Options board class
@@ -105,9 +106,11 @@ class BoardOptions(Board):
             self.arena.config['option'] = self.menu_pos
             self.audio.play_sfx("closing-tape")
             self.arena.change_board(BoardType.MENU)
-        elif key in (pygame.K_ESCAPE, pygame.K_q):
+        elif key == pygame.K_ESCAPE:
             self.audio.play_sfx("closing-tape")
             self.arena.change_board(BoardType.MENU)
+        elif key == pygame.K_F3:
+            self.arena.config.toggle_lang()
         self.recalculate_pos()
 
     def on_mouseup(self, button, pos):
@@ -156,3 +159,5 @@ class BoardOptions(Board):
     def on_joybuttonup(self, button):
         if button == ButtonType.SELECT:
             self.on_keyup(pygame.K_RETURN)
+        elif button == ButtonType.B:
+            self.arena.config.toggle_lang()

@@ -2,7 +2,7 @@
   "kinput-status": {
     "color": "snowy-white",
     "font": "status",
-    "label": "F2/Start   Enter/Sel   ← ESC Q 🖱"
+    "label": "F2/Start  Enter/Select  ←ESC"
   },
   "kinput-heading": {
     "color": "snowy-white",
@@ -19,7 +19,7 @@
   "kinput-help-1": {
     "color": "snowy-white",
     "font": "normal",
-    "label": "Niedozwolone: ESC, ENTER, Q, F1 lub F2",
+    "label": "Niedozwolone: ESC, ENTER, F1-F3",
     "rotate": 0
   },
   "kinput-help-2": {
@@ -37,7 +37,7 @@
   "kinput-help-4": {
     "color": "snowy-white",
     "font": "normal",
-    "label": "ESC/← anuluje",
+    "label": "←ESC anuluje",
     "rotate": 0
   },
   "kinput-items": {
@@ -56,18 +56,6 @@
       "SKOK",
       "STRZAŁ"
     ],
-    "rotate": 0
-  },
-  "kinput-jump": {
-    "color": "snowy-white",
-    "font": "normal",
-    "label": "Skok:",
-    "rotate": 0
-  },
-  "kinput-shoot": {
-    "color": "snowy-white",
-    "font": "normal",
-    "label": "Strzał:",
     "rotate": 0
   }
 }

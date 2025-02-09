@@ -9,7 +9,7 @@
     "continue": {
       "color": "snowy-white",
       "font": "normal",
-      "label": "Press space to continue",
+      "label": "Press ESC/Start to continue",
       "rotate": 0
     },
     "gameover": {

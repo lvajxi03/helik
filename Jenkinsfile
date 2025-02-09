@@ -4,7 +4,7 @@ pipeline {
         stage('Install Tools')  {
             steps {
                 bat """
-                python -m pip install pylint
+                python -m pip install pylint pylint_junit
                 """
             }
         }
@@ -12,7 +12,7 @@ pipeline {
             steps {
                 bat """
                 set PYTHONPATH=pysrc
-                python -m pylint --fail-under=9.8 pysrc
+                python -m pylint --output-format=pylint_junit.JUnitReporter --fail-under=9.8 pysrc > pylint-report.xml
                 """
             }
         }
@@ -51,6 +51,7 @@ pipeline {
     }
     post { 
         always { 
+            junit 'pylint-report.xml'
             cleanWs()
         }
     }

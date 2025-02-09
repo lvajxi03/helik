@@ -1,37 +1,37 @@
 {
   "newscore": {
     "congrats": {
-      "color": "#e0df4a",
+      "color": "yellow-default",
       "font": "heading-2",
       "label": "Gratulacje!",
       "rotate": 0
     },
     "congrats-2": {
-      "color": "#ffffff",
+      "color": "snowy-white",
       "font": "screen-keyboard",
       "label": "Jesteś w dziesiątce najlepszych!",
       "rotate": 0
     },
     "congrats-shadow": {
-      "color": "#313131",
+      "color": "shadow-default",
       "font": "heading-2",
       "label": "Gratulacje!",
       "rotate": 0
     },
     "done": {
-      "color": "#ffffff",
+      "color": "snowy-white",
       "font": "screen-keyboard",
       "label": "ZAKOŃCZ",
       "rotate": 0
     },
     "enter-nickname": {
-      "color": "#ffffff",
+      "color": "snowy-white",
       "font": "screen-keyboard",
       "label": "Wprowadź swój nick:",
       "rotate": 0
     },
     "space": {
-      "color": "#ffffff",
+      "color": "snowy-white",
       "font": "screen-keyboard",
       "label": "SPACJA",
       "rotate": 0

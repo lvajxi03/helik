@@ -81,6 +81,12 @@ class Config:
         fn = os.path.expanduser("~/.helikrc")
         self.read_config(fn)
 
+    def toggle_lang(self):
+        """
+        Toggle Polish/English locale
+        """
+        self.data["lang"] = "pl" if self.data["lang"] == "en" else "en"
+
     def save_config(self, fn: str):
         """
         Save configuration to a file

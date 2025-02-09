@@ -9,6 +9,7 @@ import pygame
 from helik.htypes import BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from .standard import Mode
+from helik.platform import ButtonType
 
 
 class ModeGameOver(Mode):
@@ -39,16 +40,34 @@ class ModeGameOver(Mode):
         Key release event handler
         :param key: key code
         """
-        # self.game.arena.change_board(BoardType.HISCORES)
+        if key == pygame.K_F3:
+            self.arena.config.toggle_lang()
+        else:
+            if self.arena.config.is_hiscore(self.game.data['points']):
+                self.game.arena.change_board(BoardType.NEWSCORE)
+            else:
+                self.game.arena.change_board(BoardType.HISCORES)
+
+    def on_joybuttonup(self, button):
+        """
+        Joy Button Up event handler
+        :param button: button number
+        """
+        if button == ButtonType.B:
+            self.arena.config.toggle_lang()
+        else:
+            if self.arena.config.is_hiscore(self.game.data['points']):
+                self.game.arena.change_board(BoardType.NEWSCORE)
+            else:
+                self.game.arena.change_board(BoardType.HISCORES)
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        Joy Axis Motion event handler
+        :param axis: axis number
+        :param value: axis value
+        """
         if self.arena.config.is_hiscore(self.game.data['points']):
             self.game.arena.change_board(BoardType.NEWSCORE)
         else:
             self.game.arena.change_board(BoardType.HISCORES)
-
-    def on_mouseup(self, button, pos):
-        """
-        Mouse up event handler
-        :param button: button number
-        :param pos: cursor position
-        """
-        self.on_keyup(pygame.K_RETURN)

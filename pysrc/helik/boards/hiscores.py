@@ -5,10 +5,10 @@ Hiscores board handler
 """
 
 
+import pygame
 from helik.boards.standard import Board
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType
-from helik.platform import AxisType, AxisValue
+from helik.platform import AxisType, AxisValue, ButtonType
 
 
 SCORES_DX = 200
@@ -89,7 +89,10 @@ class BoardHiscores(Board):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        self.arena.change_board(BoardType.MENU)
+        if key == pygame.K_F3:
+            self.arena.config.toggle_lang()
+        elif key == pygame.K_ESCAPE:
+            self.arena.change_board(BoardType.MENU)
 
     def on_mouseup(self, button, pos):
         """
@@ -97,15 +100,11 @@ class BoardHiscores(Board):
         :param button: button number
         :param pos: cursor position
         """
-        ch_lang = False
         if button == 1:
             rects = self.resman.rectangles["lang-rectangles"]
             for lang in rects:
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
-                    ch_lang = True
-        if not ch_lang:
-            self.arena.change_board(BoardType.MENU)
 
     def on_joyaxismotion(self, axis, value):
         """
@@ -115,3 +114,11 @@ class BoardHiscores(Board):
         """
         if axis == AxisType.HORIZ and value == AxisValue.LOWER:
             self.arena.change_board(BoardType.MENU)
+
+    def on_joybuttonup(self, button):
+        """
+        Joy Button Up event handler
+        :param button: button number
+        """
+        if button == ButtonType.B:
+            self.arena.config.toggle_lang()
