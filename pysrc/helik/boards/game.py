@@ -61,7 +61,7 @@ class BoardGame(Board):
         1. Old mode runs its `deactivate` method
         2. Mode is changed
         3. New mode runs its `activate` method
-        :param mode: new mode
+        :param newmode: new mode
         """
         if newmode != self.mode:
             self.modes[self.mode].deactivate()

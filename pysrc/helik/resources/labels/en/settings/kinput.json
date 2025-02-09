@@ -2,7 +2,7 @@
   "kinput-status": {
     "color": "snowy-white",
     "font": "status",
-    "label": "F2/Start   Enter/Sel   ← ESC Q 🖱"
+    "label": "F2/Start  Enter/Select  ←ESC"
   },
   "kinput-heading": {
     "color": "snowy-white",
@@ -19,7 +19,7 @@
   "kinput-help-1": {
     "color": "snowy-white",
     "font": "normal",
-    "label": "Not allowed: ESC, ENTER, Q, F1 or F2",
+    "label": "Not allowed: ESC, ENTER, F1-F3",
     "rotate": 0
   },
   "kinput-help-2": {
@@ -37,7 +37,7 @@
   "kinput-help-4": {
     "color": "snowy-white",
     "font": "normal",
-    "label": "ESC/← to cancel",
+    "label": "←ESC  to cancel",
     "rotate": 0
   },
   "kinput-items": {

@@ -12,7 +12,7 @@ pipeline {
             steps {
                 bat """
                 set PYTHONPATH=pysrc
-                python -m pylint --output-format=pylint_junit.JUnitReporter --fail-under=9.8 pysrc
+                python -m pylint --output-format=pylint_junit.JUnitReporter --fail-under=9.8 pysrc > pylint-report.xml
                 """
             }
         }
@@ -51,7 +51,7 @@ pipeline {
     }
     post { 
         always { 
-            junit 'build/reports/**/*.xml'
+            junit 'pylint-report.xml'
             cleanWs()
         }
     }

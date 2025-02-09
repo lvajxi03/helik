@@ -90,7 +90,9 @@ class PadLayoutSettingsMode(SettingsMode):
         """
         if key == pygame.K_F2:
             self.parent.change_mode(SettingsModeId.GINPUT)
-        elif key in (pygame.K_q, pygame.K_ESCAPE, pygame.K_LEFT):
+        elif key == pygame.K_F3:
+            self.arena.config.toggle_lang()
+        elif key in (pygame.K_ESCAPE, pygame.K_LEFT):
             self.parent.change_mode(SettingsModeId.MAIN)
 
     def on_joyaxismotion(self, axis, value):

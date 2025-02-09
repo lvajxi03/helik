@@ -8,6 +8,7 @@ from helik.htypes import BoardType
 from helik.boards.standard import Board
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.core.pages import Pager
+from helik.platform import ButtonType, AxisType, AxisValue
 
 
 class BoardAbout(Board):
@@ -53,15 +54,15 @@ class BoardAbout(Board):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        if key in [pygame.K_ESCAPE, pygame.K_q]:
+        if key == pygame.K_ESCAPE:
             self.arena.change_board(BoardType.MENU)
         elif key == pygame.K_LEFT:
             self.pager.prev()
-        else:
-            if self.pager.has_next():
-                self.pager.next()
-            else:
-                self.arena.change_board(BoardType.MENU)
+        elif key  == pygame.K_RIGHT:
+            self.pager.next()
+        elif key == pygame.K_F3:
+            self.arena.config.toggle_lang()
+            self.pager.change_lang(self.arena.config["lang"])
 
     def on_mouseup(self, button, pos):
         """
@@ -79,16 +80,31 @@ class BoardAbout(Board):
                     ch_lang = True
             if not ch_lang:
                 if not self.pager.on_click():
-                    if self.pager.has_next():
-                        self.pager.next()
-                    else:
-                        self.arena.change_board(BoardType.MENU)
+                    self.pager.next()
+
         elif button == 4:
-            if self.pager.has_next():
-                self.pager.next()
-            else:
-                self.arena.change_board(BoardType.MENU)
+            self.pager.next()
         elif button == 5:
             self.pager.prev()
-        elif not ch_lang:
+
+    def on_joybuttonup(self, button):
+        """
+        Joy Button Up event handler
+        :param button: button number
+        """
+        if button == ButtonType.B:
+            self.arena.config.toggle_lang()
+        elif button == ButtonType.A:
             self.arena.change_board(BoardType.MENU)
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        Joy Axis Motion event handler
+        :param axis: axis number
+        :param value: axis value
+        """
+        if axis == AxisType.HORIZ:
+            if value == AxisValue.LOWER:
+                self.pager.prev()
+            else:
+                self.pager.next()

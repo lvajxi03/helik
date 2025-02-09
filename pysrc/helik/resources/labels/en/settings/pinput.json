@@ -2,7 +2,7 @@
   "pinput-status": {
     "color": "snowy-white",
     "font": "status",
-    "label": "F2/Start   Enter/Sel   ← ESC Q 🖱"
+    "label": "F2/Start   Enter/Sel   ←ESC"
   },
   "pinput-heading": {
     "color": "snowy-white",
@@ -37,7 +37,7 @@
   "pinput-help-4": {
     "color": "snowy-white",
     "font": "normal",
-    "label": "ESC/← to cancel",
+    "label": "←ESC  to cancel",
     "rotate": 0
   },
   "pinput-items": {

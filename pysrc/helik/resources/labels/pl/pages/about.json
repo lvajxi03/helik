@@ -1,102 +1,102 @@
 {
   "about-1": {
-    "color": "#ffffff",
+    "color": "snowy-white",
     "font": "about",
     "label": "Gra w stylu Flappy Bird, ale z helikopterem.",
     "rotate": 0
   },
   "about-10": {
-    "color": "#ffffff",
+    "color": "snowy-white",
     "font": "about",
     "label": "Zakodowano w Emacsie",
     "rotate": 0
   },
   "about-11": {
-    "color": "#ffffff",
+    "color": "snowy-white",
     "font": "about",
     "label": "Grafika: Inkscape & Gimp",
     "rotate": 0
   },
   "about-12": {
-    "color": "#ffffff",
+    "color": "snowy-white",
     "font": "about",
     "label": "Muzyka: udio.com",
     "rotate": 0
   },
   "about-13": {
-    "color": "#ffffff",
+    "color": "snowy-white",
     "font": "about",
     "label": "Czcionki: Birdfont",
     "rotate": 0
   },
   "about-1s": {
-    "color": "#313131",
+    "color": "shadow-default",
     "font": "about",
     "label": "Gra w stylu Flappy Bird, ale z helikopterem.",
     "rotate": 0
   },
   "about-2": {
-    "color": "#ffffff",
+    "color": "snowy-white",
     "font": "about",
     "label": "Albo balonem. Albo sterowcem.",
     "rotate": 0
   },
   "about-2s": {
-    "color": "#313131",
+    "color": "shadow-default",
     "font": "about",
     "label": "Albo balonem. Albo sterowcem.",
     "rotate": 0
   },
   "about-3": {
-    "color": "#ffffff",
+    "color": "snowy-white",
     "font": "about",
     "label": "I strzelaniem.",
     "rotate": 0
   },
   "about-3s": {
-    "color": "#313131",
+    "color": "shadow-default",
     "font": "about",
     "label": "I strzelaniem.",
     "rotate": 0
   },
   "about-4": {
-    "color": "#ffffff",
+    "color": "snowy-white",
     "font": "about",
     "label": "I paroma innymi rzeczami.",
     "rotate": 0
   },
   "about-4s": {
-    "color": "#313131",
+    "color": "shadow-default",
     "font": "about",
     "label": "I paroma innymi rzeczami.",
     "rotate": 0
   },
   "about-5": {
-    "color": "#ffffff",
+    "color": "snowy-white",
     "font": "about",
     "label": "Autor: Marcin Bielewicz",
     "rotate": 0
   },
   "about-6": {
-    "color": "#ffffff",
+    "color": "snowy-white",
     "font": "about",
     "label": "<marcin.bielewicz@gmail.com>",
     "rotate": 0
   },
   "about-7": {
-    "color": "#ffffff",
+    "color": "snowy-white",
     "font": "about",
     "label": "(kod, grafika, muzyka, czcionki)",
     "rotate": 0
   },
   "about-8": {
-    "color": "#ffffff",
+    "color": "snowy-white",
     "font": "about",
     "label": "https://iostream.pl/helik",
     "rotate": 0
   },
   "about-9": {
-    "color": "#ffffff",
+    "color": "snowy-white",
     "font": "about",
     "label": "Konsultacje: Antoni Bielewicz",
     "rotate": 0

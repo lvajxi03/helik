@@ -78,7 +78,9 @@ class SelectPlayer(Mode):
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_LEFT:
+        if key == pygame.K_F3:
+            self.arena.config.toggle_lang()
+        elif key == pygame.K_LEFT:
             if self.viewpos > 0:
                 self.viewpos -= 1
                 self.audio.play_sfx("arrow")
@@ -116,3 +118,5 @@ class SelectPlayer(Mode):
         """
         if button == ButtonType.SELECT:
             self.on_keyup(pygame.K_RETURN)
+        elif button == ButtonType.B:
+            self.arena.config.toggle_lang()

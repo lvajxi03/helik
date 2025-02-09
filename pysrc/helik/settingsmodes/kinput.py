@@ -94,10 +94,12 @@ class KbdInputSettingsMode(SettingsMode):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        if key in (pygame.K_q, pygame.K_ESCAPE, pygame.K_LEFT):
+        if key in (pygame.K_ESCAPE, pygame.K_LEFT):
             self.parent.change_mode(SettingsModeId.KLAYOUT)
         elif key == pygame.K_F2:
             self.activate()
+        elif key == pygame.K_F3:
+            self.arena.config.toggle_lang()
         elif key == pygame.K_RETURN:
             if len(self.defined) == 2:
                 self.arena.config["keys"]["jump"] = self.defined[0]

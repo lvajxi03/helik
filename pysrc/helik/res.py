@@ -40,7 +40,7 @@ class ResourceManager:
         self.surfaces = {
             "buffer": pygame.display.set_mode(
                 (ARENA_WIDTH, ARENA_HEIGHT),
-                flags=pygame.FULLSCREEN | pygame.NOFRAME),
+            ), # flags=pygame.FULLSCREEN | pygame.NOFRAME),
             "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
         }
         self.rectangles = {

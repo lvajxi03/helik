@@ -5,8 +5,9 @@ NewScore board module
 """
 import pygame
 from helik.boards.standard import Board
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, ALL_CHARS, STATUS_HEIGHT
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, ALL_CHARS
 from helik.htypes import BoardType, TimerType
+from helik.platform import ButtonType
 
 
 all_chrows = ['abcdefgh', 'ijklmnop', 'qrstuvwx', 'yz.-_012', '3456789⌫']
@@ -222,7 +223,9 @@ class BoardNewScore(Board):
         :param key: any key pressed
         """
         name = pygame.key.name(key)
-        if name in ALL_CHARS or name == pygame.K_SPACE:
+        if key == pygame.K_F3:
+            self.arena.config.toggle_lang()
+        elif name in ALL_CHARS or name == pygame.K_SPACE:
             self.update_nick(name)
         elif key == pygame.K_ESCAPE:
             self.arena.change_board(BoardType.HISCORES)
@@ -294,3 +297,13 @@ class BoardNewScore(Board):
             self.on_keyup(pygame.K_DOWN)
         elif button in (2, 3):
             self.arena.change_board(BoardType.HISCORES)
+
+    def on_joybuttonup(self, button):
+        """
+        Joy Button Up event handler
+        :param button: button number
+        """
+        if button == ButtonType.B:
+            self.arena.config.toggle_lang()
+        elif button == ButtonType.A:
+            self.on_keyup(pygame.K_ESCAPE)

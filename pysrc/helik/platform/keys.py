@@ -6,7 +6,7 @@ Various keys definition
 
 import pygame
 
-keysallowed = [pygame.K_F3, pygame.K_F4, pygame.K_F5, pygame.K_F6, pygame.K_F7,
+keysallowed = [pygame.K_F4, pygame.K_F5, pygame.K_F6, pygame.K_F7,
                pygame.K_F8, pygame.K_F9, pygame.K_F10, pygame.K_F11, pygame.K_F12,
                pygame.K_BACKSPACE, pygame.K_INSERT, pygame.K_DELETE, pygame.K_PAGEUP,
                pygame.K_PAGEDOWN, pygame.K_PAUSE, pygame.K_HOME, pygame.K_END,
