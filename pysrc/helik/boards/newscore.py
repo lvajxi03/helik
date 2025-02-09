@@ -5,8 +5,9 @@ NewScore board module
 """
 import pygame
 from helik.boards.standard import Board
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, ALL_CHARS, STATUS_HEIGHT
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, ALL_CHARS
 from helik.htypes import BoardType, TimerType
+from helik.platform import ButtonType
 
 
 all_chrows = ['abcdefgh', 'ijklmnop', 'qrstuvwx', 'yz.-_012', '3456789⌫']
@@ -79,6 +80,7 @@ class BoardNewScore(Board):
         """
         Activate event handler
         """
+        self.arena.audio.enable_background_music("background-music")
         self.nick = self.arena.config["lastnick"]
         pygame.time.set_timer(TimerType.SECOND, 500)
 
@@ -221,11 +223,12 @@ class BoardNewScore(Board):
         :param key: any key pressed
         """
         name = pygame.key.name(key)
-        if name in ALL_CHARS or name == pygame.K_SPACE:
+        if key == pygame.K_F3:
+            self.arena.config.toggle_lang()
+        elif name in ALL_CHARS or name == pygame.K_SPACE:
             self.update_nick(name)
         elif key == pygame.K_ESCAPE:
-
-            self.arena.change_board(BoardType.MENU)
+            self.arena.change_board(BoardType.HISCORES)
         elif key == pygame.K_DOWN:
             if self.y < 6:
                 self.y += 1
@@ -253,7 +256,7 @@ class BoardNewScore(Board):
                     self.nick,
                     self.arena.boards[BoardType.GAME].data['points'])
                 self.arena.config["lastnick"] = self.nick
-                self.arena.change_board(BoardType.MENU)
+                self.arena.change_board(BoardType.HISCORES)
             elif self.y < 5:
                 letter = all_chrows[self.y][self.x]
                 if letter == '⌫':
@@ -275,7 +278,7 @@ class BoardNewScore(Board):
                 if rects[lang].collidepoint(pos):
                     ch_lang = True
                     self.arena.config['lang'] = lang
-                    self.audio.play_sound("arrow")
+                    self.audio.play_sfx("arrow")
                     self.recalculate_rectangles()
             if not ch_lang:
                 for pair in self.rectangles.items():
@@ -292,5 +295,15 @@ class BoardNewScore(Board):
             self.on_keyup(pygame.K_UP)
         elif button == 5:
             self.on_keyup(pygame.K_DOWN)
-        elif button == 2 or button == 3:
-            self.arena.change_board(BoardType.MENU)
+        elif button in (2, 3):
+            self.arena.change_board(BoardType.HISCORES)
+
+    def on_joybuttonup(self, button):
+        """
+        Joy Button Up event handler
+        :param button: button number
+        """
+        if button == ButtonType.B:
+            self.arena.config.toggle_lang()
+        elif button == ButtonType.A:
+            self.on_keyup(pygame.K_ESCAPE)

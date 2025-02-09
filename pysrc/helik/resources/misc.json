@@ -8,5 +8,13 @@
     "color": "shadow-default",
     "font": "menu",
     "rotate": 0
-  }
+  },
+  "level-music": [
+    "music-1",
+    "music-2",
+    "music-3",
+    "music-4",
+    "music-5",
+    "music-6"
+  ]
 }

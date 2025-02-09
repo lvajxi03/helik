@@ -5,6 +5,7 @@ Distance handler class
 """
 
 from helik.game.objects import GameObject
+from helik.htypes import GameObjectType
 
 
 class Distance(GameObject):
@@ -13,7 +14,7 @@ class Distance(GameObject):
     Useful when you need fake object between two real ones.
     """
     def __init__(self, x, w):
-        super().__init__(x, 0)
+        super().__init__(x, 0, GameObjectType.NONE)
         self.w = w
 
     def move(self, speed=1):

@@ -5,10 +5,11 @@ SelectPlayer handler module
 """
 
 import pygame
-from helik.modes.standard import Mode
 from helik.htypes import BoardType, GameMode
 from helik.game.player import Player
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.platform import AxisValue, AxisType, ButtonType
+from .standard import Mode
 
 
 class SelectPlayer(Mode):
@@ -77,18 +78,45 @@ class SelectPlayer(Mode):
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_LEFT:
+        if key == pygame.K_F3:
+            self.arena.config.toggle_lang()
+        elif key == pygame.K_LEFT:
             if self.viewpos > 0:
                 self.viewpos -= 1
-                self.audio.play_sound("arrow")
+                self.audio.play_sfx("arrow")
         elif key == pygame.K_RIGHT:
             if self.viewpos < len(self.vehicles) - 1:
                 self.viewpos += 1
-                self.audio.play_sound("arrow")
+                self.audio.play_sfx("arrow")
         elif key == pygame.K_RETURN:
             self.game.player = Player(self.game, self.viewpos)
+            self.audio.play_sfx("closing-tape")
             self.game.change_mode(GameMode.PREPARE)
         elif key == pygame.K_ESCAPE:
             self.arena.change_board(BoardType.MENU)
         elif key == pygame.K_q:
             self.arena.change_board(BoardType.MENU)
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        Joy Axis Motion event handler
+        :param axis: axis number
+        :param value: axis value
+        """
+        if axis == AxisType.HORIZ:
+            if value == AxisValue.HIGHER:
+                self.on_keyup(pygame.K_RIGHT)
+            elif value == AxisValue.LOWER:
+                self.on_keyup(pygame.K_LEFT)
+        else:
+            self.arena.change_board(BoardType.MENU)
+
+    def on_joybuttonup(self, button):
+        """
+        Joy Button Up event handler
+        :param button: button number
+        """
+        if button == ButtonType.SELECT:
+            self.on_keyup(pygame.K_RETURN)
+        elif button == ButtonType.B:
+            self.arena.config.toggle_lang()

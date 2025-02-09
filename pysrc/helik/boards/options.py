@@ -10,6 +10,7 @@ from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.htypes import BoardType
 from helik.platform import ButtonType, AxisType, AxisValue
 
+
 class BoardOptions(Board):
     """
     Options board class
@@ -95,19 +96,21 @@ class BoardOptions(Board):
         if key == pygame.K_DOWN:
             if self.menu_pos < 5:
                 self.menu_pos += 1
-                self.audio.play_sound("arrow")
+                self.audio.play_sfx("arrow")
         elif key == pygame.K_UP:
             if self.menu_pos > 0:
                 self.menu_pos -= 1
-                self.audio.play_sound("arrow")
+                self.audio.play_sfx("arrow")
         elif key == pygame.K_RETURN:
             self.option = self.menu_pos
             self.arena.config['option'] = self.menu_pos
+            self.audio.play_sfx("closing-tape")
             self.arena.change_board(BoardType.MENU)
         elif key == pygame.K_ESCAPE:
+            self.audio.play_sfx("closing-tape")
             self.arena.change_board(BoardType.MENU)
-        elif key == pygame.K_q:
-            self.arena.change_board(BoardType.MENU)
+        elif key == pygame.K_F3:
+            self.arena.config.toggle_lang()
         self.recalculate_pos()
 
     def on_mouseup(self, button, pos):
@@ -123,7 +126,7 @@ class BoardOptions(Board):
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
                     ch_lang = True
-                    self.audio.play_sound("arrow")
+                    self.audio.play_sfx("arrow")
                     self.create_rectangles()
             if not ch_lang:
                 tpos = -1
@@ -135,14 +138,14 @@ class BoardOptions(Board):
                         self.option = tpos
                         self.arena.config['option'] = self.menu_pos
                         self.recalculate_pos()
-                        self.audio.play_sound("closing-tape")
+                        self.audio.play_sfx("closing-tape")
                 self.arena.change_board(BoardType.MENU)
         elif button == 4:
             self.on_keyup(pygame.K_UP)
         elif button == 5:
             self.on_keyup(pygame.K_DOWN)
-        elif button == 2 or button == 3:
-            self.arena.change_board(BoardType.MENU)
+        elif button in (2, 3):
+            self.on_keyup(pygame.K_ESCAPE)
 
     def on_joyaxismotion(self, axis, value):
         if axis == AxisType.VERT:
@@ -151,8 +154,10 @@ class BoardOptions(Board):
             elif value == AxisValue.LOWER:
                 self.on_keyup(pygame.K_UP)
         elif axis == AxisType.HORIZ:
-            self.arena.change_board(BoardType.MENU)
+            self.on_keyup(pygame.K_ESCAPE)
 
     def on_joybuttonup(self, button):
         if button == ButtonType.SELECT:
             self.on_keyup(pygame.K_RETURN)
+        elif button == ButtonType.B:
+            self.arena.config.toggle_lang()

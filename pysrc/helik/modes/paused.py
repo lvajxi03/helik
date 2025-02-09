@@ -8,7 +8,8 @@ Mode paused handler module
 import pygame
 from helik.htypes import GameMode
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-from helik.modes.standard import Mode
+from helik.platform import ButtonType
+from .standard import Mode
 
 
 class ModePaused(Mode):
@@ -38,8 +39,16 @@ class ModePaused(Mode):
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_SPACE:
+        if key == pygame.K_ESCAPE:
             self.game.change_mode(GameMode.PLAY)
+
+    def on_joybuttonup(self, button):
+        """
+        Joy Button Up event handler
+        :param button: button number
+        """
+        if button == ButtonType.START:
+            self.on_keyup(pygame.K_ESCAPE)
 
     def on_mouseup(self, button, pos):
         """

@@ -1,7 +1,7 @@
 {
   "options": {
     "items": {
-      "color": "#ffffff",
+      "color": "snowy-white",
       "font": "menu",
       "labels": [
         "TRENINGOWY",
@@ -14,7 +14,7 @@
       "rotate": 0
     },
     "items-shadow": {
-      "color": "#313131",
+      "color": "shadow-default",
       "font": "menu",
       "labels": [
         "TRENINGOWY",

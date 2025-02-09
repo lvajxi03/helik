@@ -4,6 +4,6 @@
 Initialize platform module
 """
 
-from helik.platform.keys import keysallowed, render_keys_labels, keynames
-from helik.platform.buttons import button_names, buttons_allowed, render_buttons_labels, ButtonType
-from helik.platform.axis import AxisType, AxisValue
+from .keys import keysallowed, render_keys_labels, keynames
+from .buttons import button_names, buttons_allowed, render_buttons_labels, ButtonType
+from .axis import AxisType, AxisValue

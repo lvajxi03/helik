@@ -1,51 +1,51 @@
 {
   "common": {
     "common-status": {
-      "color": "#ffffff",
+      "color": "snowy-white",
       "font": "status",
-      "label": "← ESC Q 🖱",
+      "label": "←ESC  F3/Ⓑ",
       "rotate": 0
     },
     "menu-status": {
-      "color": "#ffffff",
+      "color": "snowy-white",
       "font": "status",
-      "label": "↑↓ ENTER   ESC Q 🖱",
+      "label": "↑↓ ENTER/Select  F3/Ⓑ",
       "rotate": 0
     },
     "newscore-status": {
-      "color": "#ffffff",
+      "color": "snowy-white",
       "font": "status",
-      "label": "←↑↓→ ENTER   ESC 🖱",
+      "label": "←↑↓→ ENTER/Select  ESC/Ⓐ  F3/Ⓑ",
       "rotate": 0
     },
     "pager-status-full": {
-      "color": "#ffffff",
+      "color": "snowy-white",
       "font": "status",
-      "label": "←→  ESC Q 🖱",
+      "label": "←→  ESC/Ⓐ  F3/Ⓑ",
       "rotate": 0
     },
     "pager-status-next": {
-      "color": "#ffffff",
+      "color": "snowy-white",
       "font": "status",
-      "label": "→  ESC Q 🖱",
+      "label": "→  ESC/Ⓐ  F3/Ⓑ",
       "rotate": 0
     },
     "pager-status-none": {
-      "color": "#ffffff",
+      "color": "snowy-white",
       "font": "status",
-      "label": "ESC Q 🖱",
+      "label": "ESC/Ⓐ  F3/Ⓑ",
       "rotate": 0
     },
     "pager-status-prev": {
-      "color": "#ffffff",
+      "color": "snowy-white",
       "font": "status",
-      "label": "←  ESC Q 🖱",
+      "label": "←  ESC/Ⓐ  F3/Ⓑ",
       "rotate": 0
     },
     "settings-status": {
-      "color": "#ffffff",
+      "color": "snowy-white",
       "font": "status",
-      "label": "↑↓ ENTER   ← ESC Q 🖱",
+      "label": "↑↓ ENTER/Select  ←ESC  F3/Ⓑ",
       "rotate": 0
     }
   }

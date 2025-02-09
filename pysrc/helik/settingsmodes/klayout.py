@@ -79,7 +79,9 @@ class KbdLayoutSettingsMode(SettingsMode):
         """
         if key == pygame.K_F2:
             self.parent.change_mode(SettingsModeId.KINPUT)
-        elif key in (pygame.K_q, pygame.K_ESCAPE, pygame.K_LEFT):
+        elif key == pygame.K_F3:
+            self.arena.config.toggle_lang()
+        elif key in (pygame.K_ESCAPE, pygame.K_LEFT):
             self.parent.change_mode(SettingsModeId.MAIN)
 
     def on_joybuttonup(self, button):
@@ -110,7 +112,7 @@ class KbdLayoutSettingsMode(SettingsMode):
             for lang in rects:
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
-                    self.audio.play_sound("arrow")
+                    self.audio.play_sfx("arrow")
         if button in (2, 3):
             self.parent.change_mode(SettingsModeId.MAIN)
         elif button == 4:

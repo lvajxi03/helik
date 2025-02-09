@@ -4,8 +4,8 @@
 Init mode handler module
 """
 
-from helik.modes.standard import Mode
 from helik.htypes import GameMode
+from .standard import Mode
 
 
 class ModeInit(Mode):

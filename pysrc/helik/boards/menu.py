@@ -7,8 +7,8 @@ Menu board handler
 import pygame
 from helik.boards.standard import Board
 from helik.htypes import BoardType
-from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, STATUS_HEIGHT
-from helik.platform import ButtonType, AxisType
+from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.platform import ButtonType, AxisType, AxisValue
 
 
 def menupos2board(menu_pos: int) -> BoardType:
@@ -79,7 +79,6 @@ class BoardMenu(Board):
         Paint event handler
         """
         self.paint_default_bg()
-
         la, re = self.resman.locale[self.arena.config["lang"]]["common"]["menu-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
@@ -107,6 +106,7 @@ class BoardMenu(Board):
         Activate board event handler
         """
         self.create_rectangles()
+        self.arena.audio.enable_background_music("background-music")
 
     def on_keyup(self, key):
         """
@@ -115,18 +115,19 @@ class BoardMenu(Board):
         """
         if key == pygame.K_DOWN:
             if self.menu_pos < 6:
-                self.audio.play_sound("arrow")
+                self.audio.play_sfx("poom")
                 self.menu_pos += 1
         elif key == pygame.K_UP:
             if self.menu_pos > 0:
                 self.menu_pos -= 1
-                self.audio.play_sound("arrow")
+                self.audio.play_sfx("poom")
         elif key == pygame.K_RETURN:
             bid = menupos2board(self.menu_pos)
-            self.audio.play_sound("closing-tape")
+            self.audio.play_sfx("closing-tape")
             self.arena.change_board(bid)
-        elif key == pygame.K_q:
-            self.arena.change_board(BoardType.QUIT)
+        elif key == pygame.K_F3:
+            self.arena.config.toggle_lang()
+            self.create_rectangles()
         self.recalculate_pos()
 
     def on_mouseup(self, button, pos):
@@ -142,7 +143,7 @@ class BoardMenu(Board):
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
                     ch_lang = True
-                    self.audio.play_sound("arrow")
+                    self.audio.play_sfx("poom")
                     self.create_rectangles()
             if not ch_lang:
                 tpos = -1
@@ -153,7 +154,7 @@ class BoardMenu(Board):
                         self.menu_pos = tpos
                         self.recalculate_pos()
                         bid = menupos2board(self.menu_pos)
-                        self.audio.play_sound("closing-tape")
+                        self.audio.play_sfx("closing-tape")
                         self.arena.change_board(bid)
         elif button == 4:
             self.on_keyup(pygame.K_UP)
@@ -161,12 +162,24 @@ class BoardMenu(Board):
             self.on_keyup(pygame.K_DOWN)
 
     def on_joyaxismotion(self, axis, value):
+        """
+        Joy Axis Motion event handler
+        :param axis: axis number
+        :param value: axis value
+        """
         if axis == AxisType.VERT:
-            if value == 1:
+            if value == AxisValue.HIGHER:
                 self.on_keyup(pygame.K_DOWN)
-            elif value == -1:
+            elif value == AxisValue.LOWER:
                 self.on_keyup(pygame.K_UP)
 
     def on_joybuttonup(self, button):
-        if button == ButtonType.SELECT:
+        """
+        Joy Button Up event handler
+        :param button: button number
+        """
+        if button == ButtonType.B:
+            self.arena.config.toggle_lang()
+            self.create_rectangles()
+        elif button == ButtonType.SELECT:
             self.on_keyup(pygame.K_RETURN)

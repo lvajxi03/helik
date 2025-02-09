@@ -5,11 +5,10 @@ New level mode handler module
 """
 
 
-import pygame
-from helik.modes.standard import Mode
 from helik.game.level import Level
 from helik.htypes import GameMode, TimerType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from .standard import Mode
 
 
 class ModeNewLevel(Mode):
@@ -32,7 +31,7 @@ class ModeNewLevel(Mode):
         Activate event handler
         """
         if self.game.data['level'] < len(self.resman.levels) - 1:
-            self.audio.play_sound("game-begin")
+            self.audio.play_music("game-begin")
             self.game.data['level'] += 1
             self.game.level = Level(self.resman,
                                     self.game.data['level'],

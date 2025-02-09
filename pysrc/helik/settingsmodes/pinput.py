@@ -83,8 +83,10 @@ class PadInputSettingsMode(SettingsMode):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        if key in (pygame.K_q, pygame.K_ESCAPE, pygame.K_LEFT):
+        if key in (pygame.K_ESCAPE, pygame.K_LEFT):
             self.parent.change_mode(SettingsModeId.GLAYOUT)
+        elif key == pygame.K_F3:
+            self.arena.config.toggle_lang()
         elif key == pygame.K_RETURN:
             if len(self.defined) == 2:
                 self.arena.config["buttons"]["jump"] = self.defined[0]
@@ -127,7 +129,7 @@ class PadInputSettingsMode(SettingsMode):
             for lang in rects:
                 if rects[lang].collidepoint(pos):
                     self.arena.config['lang'] = lang
-                    self.audio.play_sound("arrow")
+                    self.audio.play_sfx("arrow")
         if button in (2, 3):
             self.parent.change_mode(SettingsModeId.GLAYOUT)
         elif button == 4:
