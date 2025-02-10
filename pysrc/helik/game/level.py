@@ -7,7 +7,7 @@ Level handler module
 
 from helik.game.bullets import Bullet
 from helik.hdefs import ARENA_WIDTH
-from helik.game.lane import Lane
+from .lane import Lane
 
 
 class Level:

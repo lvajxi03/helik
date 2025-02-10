@@ -7,12 +7,10 @@ Mode play handler module
 
 from threading import Thread
 import pygame
-from helik.htypes import TimerType, GameMode, SoundPlayState
+from helik.htypes import TimerType, GameMode
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT, SPEED
 from helik.gfx import blitnumber
-from helik.game.explosion import Explosion
-from helik.game.player import PlayerDirection
-from helik.htypes import GameObjectType
+from helik.game import Explosion, PlayerDirection, GameObjectType
 from .standard import Mode
 
 
@@ -34,7 +32,6 @@ class ModePlay(Mode):
         """
         self.audio.enable_music("music-1")
         pygame.time.set_timer(TimerType.SECOND, 1000)
-        pygame.time.set_timer(TimerType.FIRST, 250)
         self.speed = SPEED - 3 * self.data['option']
         pygame.time.set_timer(TimerType.THIRD, self.speed)
         pygame.time.set_timer(TimerType.FOURTH, int(self.speed * 1.5))
@@ -45,7 +42,6 @@ class ModePlay(Mode):
         """
         self.audio.pause_music()
         pygame.time.set_timer(TimerType.SECOND, 0)
-        pygame.time.set_timer(TimerType.FIRST, 0)
         pygame.time.set_timer(TimerType.THIRD, 0)
         pygame.time.set_timer(TimerType.FOURTH, 0)
 
@@ -129,7 +125,7 @@ class ModePlay(Mode):
             self.game.data['points'] += 10
 
         elif timer == TimerType.THIRD:
-            Thread(name='game-play-update', target=self.game_update).start()
+            self.game_update()
         elif timer == TimerType.FOURTH:
             pass
 

@@ -5,6 +5,7 @@ New level mode handler module
 """
 
 
+import pygame
 from helik.game.level import Level
 from helik.htypes import GameMode, TimerType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
@@ -26,11 +27,28 @@ class ModeNewLevel(Mode):
         self.y = 0
         self.w = 0
 
+    def on_timer(self, timer):
+        """
+        Timer event handler
+        :param timer: timer identifier
+        """
+        if timer == TimerType.FIRST:
+            self.x -= 2
+            if self.x + self.w <= 0:
+                self.game.change_mode(GameMode.PLAY)
+
+    def deactivate(self):
+        """
+        Deactivate event handler
+        """
+        pygame.time.set_timer(TimerType.FIRST, 0)
+
     def activate(self):
         """
         Activate event handler
         """
         if self.game.data['level'] < len(self.resman.levels) - 1:
+            pygame.time.set_timer(TimerType.FIRST, 2)
             self.audio.play_music("game-begin")
             self.game.data['level'] += 1
             self.game.level = Level(self.resman,
@@ -45,19 +63,9 @@ class ModeNewLevel(Mode):
         else:
             self.game.change_mode(GameMode.GAMEOVER)
 
-    def on_update(self, dt):
-        """
-        Update event handler
-        :param dt: unused
-        """
-        self.x -= 3
-        if self.x + self.w <= 0:
-            self.game.change_mode(GameMode.PLAY)
-
     def on_paint(self):
         """
         Paint event handler
         """
         self.buffer.blit(self.resman.images["default-background"], (0, 0))
-        if self.image:
-            self.buffer.blit(self.image, (self.x, self.y))
+        self.buffer.blit(self.image, (self.x, self.y))

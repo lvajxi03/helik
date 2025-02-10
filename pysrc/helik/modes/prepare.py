@@ -21,6 +21,7 @@ class ModePrepare(Mode):
         """
         super().__init__(parent)
         self.timers = {
+            TimerType.FIRST: self.on_alpha,
             TimerType.SECOND: self.on_prepare,
             TimerType.THIRD: self.on_prepare_stop
         }
@@ -39,12 +40,12 @@ class ModePrepare(Mode):
         except KeyError:
             pass
 
-    def on_update(self, delta):
+    def on_alpha(self):
         """
-        Update event handler
-        :param delta: delta time from last frame
+        Handle TimerType.FIRST,
+        Decrease alpha value
         """
-        self.alpha -= 2
+        self.alpha -= 20
         self.resman.images["big"][self.index].set_alpha(self.alpha)
 
     def on_prepare(self):
@@ -53,6 +54,7 @@ class ModePrepare(Mode):
         """
         self.index += 1
         self.alpha = 255
+        self.resman.images["big"][self.index].set_alpha(self.alpha)
 
     def on_prepare_stop(self):
         """
@@ -68,6 +70,7 @@ class ModePrepare(Mode):
         self.audio.play_sfx("countdown")
         self.alpha = 255
         self.index = 0
+        pygame.time.set_timer(TimerType.FIRST, 50)
         pygame.time.set_timer(TimerType.SECOND, 1000)
         pygame.time.set_timer(TimerType.THIRD, 3000)
 
