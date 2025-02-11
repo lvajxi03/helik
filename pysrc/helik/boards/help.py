@@ -6,8 +6,7 @@ Help board handler
 
 
 import pygame
-from helik.htypes import BoardType
-from helik.boards.standard import Board
+from helik.boards import Board, BoardType
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
 from helik.core.pages import Pager
 from helik.platform import ButtonType
@@ -97,3 +96,10 @@ class BoardHelp(Board):
             self.arena.config.toggle_lang()
         elif button == ButtonType.A:
             self.arena.change_board(BoardType.MENU)
+
+    def on_joyaxismotion(self, axis, value):
+        """
+        Joy Axis Motion event handler
+        :param axis: axis number
+        :param value: axis value
+        """

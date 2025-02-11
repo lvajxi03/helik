@@ -4,8 +4,7 @@
 About board module
 """
 import pygame
-from helik.htypes import BoardType
-from helik.boards.standard import Board
+from helik.boards import BoardType, Board
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.core.pages import Pager
 from helik.platform import ButtonType, AxisType, AxisValue

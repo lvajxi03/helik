@@ -6,8 +6,8 @@ Welcome board handler
 
 import random
 import pygame
-from helik.boards.standard import Board
-from helik.htypes import TimerType, BoardType
+from helik.boards import Board, BoardType
+from helik.htypes import TimerType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 
 

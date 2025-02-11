@@ -5,9 +5,8 @@ Options board handler
 """
 
 import pygame
-from helik.boards.standard import Board
+from helik.boards import Board, BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-from helik.htypes import BoardType
 from helik.platform import ButtonType, AxisType, AxisValue
 
 

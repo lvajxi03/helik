@@ -32,7 +32,7 @@ class ModePlay(Mode):
         """
         self.audio.enable_music("music-1")
         pygame.time.set_timer(TimerType.SECOND, 1000)
-        self.speed = SPEED - 3 * self.data['option']
+        self.speed = SPEED - 2 * self.data['option']
         pygame.time.set_timer(TimerType.THIRD, self.speed)
         pygame.time.set_timer(TimerType.FOURTH, int(self.speed * 1.5))
 
@@ -90,13 +90,13 @@ class ModePlay(Mode):
                     if obj.collide(self.game.player):
                         obj.visible = False
                         obj.valid = False
-                        if self.game.data['lives'] < 4:
+                        if self.game.data['lives'] < 5:
                             self.game.data['lives'] += 1
                 elif obj.go_type == GameObjectType.AMMO:
                     if obj.collide(self.game.player):
                         obj.visible = False
                         obj.valid = False
-                        self.game.data['bullets-available'] += 1
+                        self.game.data['bullets-available'] += 5
 
         for ex in self.game.explosions:
             ex.on_update(0)

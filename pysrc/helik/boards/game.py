@@ -6,9 +6,9 @@ Game board for HeliK
 
 
 import pygame
-from helik.boards.standard import Board
 from helik.game.level import Level
-from helik.htypes import BoardType, GameMode, SoundPlayState
+from helik.boards import BoardType, Board
+from helik.htypes import GameMode, SoundPlayState
 from helik.modes import (Mode, ModeInit, ModeKilled, ModePaused,
                          ModePlay, ModePrepare, ModeNewLevel, SelectPlayer, ModeGameOver)
 
@@ -92,11 +92,7 @@ class BoardGame(Board):
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_q:
-            self.audio.stop_music()
-            self.arena.change_board(BoardType.MENU)
-        else:
-            self.modes[self.mode].on_keyup(key)
+        self.modes[self.mode].on_keyup(key)
 
     def on_timer(self, timer):
         """

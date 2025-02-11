@@ -42,7 +42,6 @@ class AudioController:
             try:
                 js = json.load(f_handle)
                 for sound in js:
-                    print(sound)
                     self.sounds[sound] = pygame.mixer.Sound(bp.joinpath(js[sound]))
             except IOError:
                 pass

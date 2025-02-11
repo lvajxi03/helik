@@ -4,9 +4,9 @@
 NewScore board module
 """
 import pygame
-from helik.boards.standard import Board
+from helik.boards import Board, BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, ALL_CHARS
-from helik.htypes import BoardType, TimerType
+from helik.htypes import TimerType
 from helik.platform import ButtonType
 
 
