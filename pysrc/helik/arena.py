@@ -8,17 +8,9 @@ import random
 from importlib.resources import files
 import pygame
 from helik.hdefs import APPLICATION_TITLE
-from helik.htypes import BoardType, DirCType
-from helik.boards.welcome import BoardWelcome
-from helik.boards.about import BoardAbout
-from helik.boards.menu import BoardMenu
-from helik.boards.options import BoardOptions
-from helik.boards.hiscores import BoardHiscores
-from helik.boards.help import BoardHelp
-from helik.boards.settings import BoardSettings
-from helik.boards.game import BoardGame
-from helik.boards.newscore import BoardNewScore
-from helik.boards.quit import BoardQuit
+from helik.board import (BoardType, BoardWelcome, BoardAbout, BoardMenu, BoardOptions,
+                         BoardHiscores, BoardHelp, BoardSettings, BoardGame, BoardNewScore, BoardQuit)
+from helik.game import DirCType
 from helik.res import ResourceManager
 from helik.config import Config
 from helik.media.audio import AudioController

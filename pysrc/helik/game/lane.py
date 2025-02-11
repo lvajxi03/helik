@@ -5,14 +5,14 @@ Lane module
 """
 
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
-from helik.htypes import GameObjectType
-from helik.game.buildings import building_from_image
-from helik.game.clouds import cloud_from_image
-from helik.game.dirc import dirc_from_images
-from helik.game.ammo import ammo_from_images
-from helik.game.heart import heart_from_images
-from helik.game.birds import bird_from_images
-from helik.game.objects import ImageListGameObject
+from .types import GameObjectType
+from .buildings import building_from_image
+from .clouds import cloud_from_image
+from .dirc import dirc_from_images
+from .ammo import ammo_from_images
+from .heart import heart_from_images
+from .birds import bird_from_images
+from .objects import ImageListGameObject
 
 
 class Lane:

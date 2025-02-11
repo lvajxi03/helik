@@ -4,7 +4,18 @@
 DirChanger handler module
 """
 
-from helik.game.objects import GameObjectType, ImageListGameObject
+import enum
+from .objects import GameObjectType, ImageListGameObject
+
+
+@enum.unique
+class DirCType(enum.IntEnum):
+    """
+    DirCType enum
+    Tells you what's the copter direction right now.
+    """
+    DOWN = 0
+    UP = 1
 
 
 class DirChanger(ImageListGameObject):

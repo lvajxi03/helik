@@ -6,7 +6,7 @@ Standard and abstract game objects
 
 import pygame
 from helik.hdefs import ARENA_WIDTH
-from helik.htypes import GameObjectType
+from .types import GameObjectType
 
 
 class GameObject:

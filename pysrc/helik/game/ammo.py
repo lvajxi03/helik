@@ -4,7 +4,8 @@
 Ammo handler module
 """
 
-from helik.game.objects import GameObjectType, ImageListGameObject
+from .types import GameObjectType
+from .objects import ImageListGameObject
 
 
 class Ammo(ImageListGameObject):
