@@ -34,7 +34,7 @@ packages = ["helik",
     "helik.core",
     "helik.game",
     "helik.media",
-    "helik.modes",
+    "helik.gamemode",
     "helik.platform",
     "helik.resources",
     "helik.resources.fonts",
@@ -60,7 +60,7 @@ packages = ["helik",
     "helik.resources.labels.en.settings",
     "helik.resources.levels",
     "helik.resources.sounds",
-    "helik.settingsmodes"]
+    "helik.settingsmode"]
 
 [tool.setuptools.package-data]
 "helik.resources" = ["*.json"]
