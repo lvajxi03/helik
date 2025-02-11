@@ -30,7 +30,7 @@ dependencies = [
 package-dir = {"" = "pysrc"}
 include-package-data = true
 packages = ["helik",
-    "helik.boards",
+    "helik.board",
     "helik.core",
     "helik.game",
     "helik.media",

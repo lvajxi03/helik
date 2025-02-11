@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-All types related to boards
+All types related to board
 """
 
 

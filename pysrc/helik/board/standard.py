@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Standard boards for Helik
+Standard board for Helik
 """
 
 from helik.hdefs import ARENA_HEIGHT, STATUS_HEIGHT, ARENA_WIDTH
