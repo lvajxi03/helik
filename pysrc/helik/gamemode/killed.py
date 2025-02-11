@@ -7,8 +7,8 @@ Mode killed handler module
 
 import pygame
 from helik.hdefs import ARENA_HEIGHT
-from .types import GameMode
 from helik.platform import TimerType
+from .types import GameMode
 from .standard import Mode
 
 

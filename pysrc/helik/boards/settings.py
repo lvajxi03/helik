@@ -3,16 +3,16 @@
 """
 Settings board handler
 """
-from helik.settingsmodes import (MainSettingsMode, KbdLayoutSettingsMode,
-                                 KbdInputSettingsMode, PadLayoutSettingsMode,
-                                 PadInputSettingsMode, SettingsModeId)
+from helik.settingsmode import (MainSettingsMode, KbdLayoutSettingsMode,
+                                KbdInputSettingsMode, PadLayoutSettingsMode,
+                                PadInputSettingsMode, SettingsModeId)
 from .standard import Board
 
 
 class BoardSettings(Board):
     """
     Settings board class.
-    Deletage all operations to settings modes.
+    Deletage all operations to settings gamemode.
     """
     def __init__(self, parent):
         """

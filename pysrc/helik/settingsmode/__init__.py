@@ -2,7 +2,7 @@
 
 """
 Settings Modes module
-Provides all settings modes classes
+Provides all settings gamemode classes
 """
 
 from .standard import SettingsMode, SettingsModeId

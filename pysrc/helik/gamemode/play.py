@@ -5,7 +5,6 @@ Mode play handler module
 """
 
 
-from threading import Thread
 import pygame
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT, SPEED
 from helik.gfx import blitnumber
@@ -75,7 +74,8 @@ class ModePlay(Mode):
         # Regular collisions (buildings, clouds, birds)
         for lane in self.game.level.lanes:
             for obj in lane.objects:
-                if obj.go_type in [GameObjectType.BUILDING, GameObjectType.BIRD, GameObjectType.CLOUD]:
+                if obj.go_type in [GameObjectType.BUILDING,
+                                   GameObjectType.BIRD, GameObjectType.CLOUD]:
                     if obj.valid:
                         col = obj.collide(self.game.player)
                         if col:
@@ -185,12 +185,14 @@ class ModePlay(Mode):
         Paint event handler
         """
         self.buffer.blit(self.resman.images["default-background"], (0, 0))
-        self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - 60))
+        self.buffer.blit(self.resman.surfaces["status"],
+                         (0, ARENA_HEIGHT - 60))
 
         lives = self.game.data['lives']
         missing = 5 - lives
         for i in range(lives):
-            self.buffer.blit(self.resman.images["heart-yellow"], (10 + i * 60, ARENA_HEIGHT - 54))
+            self.buffer.blit(self.resman.images["heart-yellow"],
+                             (10 + i * 60, ARENA_HEIGHT - 54))
         for i in range(missing):
             self.buffer.blit(
                 self.resman.images["heart-gray"],
@@ -203,9 +205,11 @@ class ModePlay(Mode):
                    3, self.resman.letters, (400, ARENA_HEIGHT - 54))
 
         if self.game.player.direction == PlayerDirection.DOWN:
-            self.buffer.blit(self.resman.images["dirc"][4], (ARENA_WIDTH - 350, ARENA_HEIGHT - 54))
+            self.buffer.blit(self.resman.images["dirc"][4],
+                             (ARENA_WIDTH - 350, ARENA_HEIGHT - 54))
         else:
-            self.buffer.blit(self.resman.images["dirc"][0], (ARENA_WIDTH - 350, ARENA_HEIGHT - 54))
+            self.buffer.blit(self.resman.images["dirc"][0],
+                             (ARENA_WIDTH - 350, ARENA_HEIGHT - 54))
 
         self.game.level.on_paint(self.buffer)
         self.game.player.on_paint()
@@ -217,4 +221,5 @@ class ModePlay(Mode):
         pygame.draw.line(self.buffer,
                          pygame.Color(255, 255, 255),
                          (0, ARENA_HEIGHT - STATUS_HEIGHT),
-                         (ARENA_WIDTH, ARENA_HEIGHT - STATUS_HEIGHT), width=2)
+                         (ARENA_WIDTH, ARENA_HEIGHT - STATUS_HEIGHT),
+                         width=2)

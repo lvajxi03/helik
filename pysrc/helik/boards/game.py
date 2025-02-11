@@ -6,10 +6,10 @@ Game board for HeliK
 
 
 from helik.game import Level
-from helik.modes import (Mode, ModeInit, ModeKilled, ModePaused,
-                         ModePlay, ModePrepare, ModeNewLevel, SelectPlayer, ModeGameOver)
+from helik.gamemode import (Mode, ModeInit, ModeKilled, ModePaused,
+                            ModePlay, ModePrepare, ModeNewLevel, SelectPlayer, ModeGameOver)
 from .standard import Board
-from helik.modes import GameMode
+from helik.gamemode import GameMode
 from helik.media import SoundPlayState
 
 

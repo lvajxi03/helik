@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Game modes package
+Game gamemode package
 """
 
 from .standard import Mode

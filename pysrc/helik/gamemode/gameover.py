@@ -8,8 +8,8 @@ GameOver handler module
 import pygame
 from helik.boards import BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-from .standard import Mode
 from helik.platform import ButtonType
+from .standard import Mode
 
 
 class ModeGameOver(Mode):

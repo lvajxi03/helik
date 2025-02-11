@@ -10,7 +10,7 @@ import enum
 @enum.unique
 class SettingsModeId(enum.IntEnum):
     """
-    Settings board can have multiple modes:
+    Settings board can have multiple gamemode:
     1. Main settings menu
     2. Keyboard layout
     3. Keyboard input
