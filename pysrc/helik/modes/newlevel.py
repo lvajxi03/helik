@@ -6,10 +6,11 @@ New level mode handler module
 
 
 import pygame
-from helik.game.level import Level
-from helik.htypes import GameMode, TimerType
+from helik.game import Level
+from helik.platform import TimerType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from .standard import Mode
+from .types import GameMode
 
 
 class ModeNewLevel(Mode):

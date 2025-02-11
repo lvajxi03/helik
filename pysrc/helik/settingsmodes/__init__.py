@@ -5,7 +5,7 @@ Settings Modes module
 Provides all settings modes classes
 """
 
-from .standard import SettingsMode
+from .standard import SettingsMode, SettingsModeId
 from .main import MainSettingsMode
 from .kinput import KbdInputSettingsMode
 from .klayout import KbdLayoutSettingsMode

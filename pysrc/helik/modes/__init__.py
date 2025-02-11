@@ -13,3 +13,4 @@ from .paused import ModePaused
 from .play import ModePlay
 from .prepare import ModePrepare
 from .selectplayer import SelectPlayer
+from .types import GameMode

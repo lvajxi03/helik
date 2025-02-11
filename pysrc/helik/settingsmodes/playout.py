@@ -5,10 +5,9 @@ Pad Layout settings mode
 """
 
 import pygame
-from helik.htypes import SettingsModeId
 from helik.platform import ButtonType, AxisType, AxisValue
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-from .standard import SettingsMode
+from .standard import SettingsMode, SettingsModeId
 
 
 class PadLayoutSettingsMode(SettingsMode):

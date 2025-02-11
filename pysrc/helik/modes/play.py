@@ -7,11 +7,12 @@ Mode play handler module
 
 from threading import Thread
 import pygame
-from helik.htypes import TimerType, GameMode
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT, SPEED
 from helik.gfx import blitnumber
 from helik.game import Explosion, PlayerDirection, GameObjectType
+from helik.platform import TimerType
 from .standard import Mode
+from .types import GameMode
 
 
 class ModePlay(Mode):

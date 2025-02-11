@@ -6,10 +6,10 @@ Mode paused handler module
 
 
 import pygame
-from helik.htypes import GameMode
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.platform import ButtonType
 from .standard import Mode
+from .types import GameMode
 
 
 class ModePaused(Mode):

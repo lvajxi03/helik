@@ -4,7 +4,7 @@
 Init mode handler module
 """
 
-from helik.htypes import GameMode
+from .types import GameMode
 from .standard import Mode
 
 

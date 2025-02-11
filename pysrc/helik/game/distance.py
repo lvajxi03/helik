@@ -4,8 +4,8 @@
 Distance handler class
 """
 
-from helik.game.objects import GameObject
-from helik.htypes import GameObjectType
+from .objects import GameObject
+from .types import GameObjectType
 
 
 class Distance(GameObject):

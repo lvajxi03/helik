@@ -5,10 +5,9 @@ Pad Input settings mode
 """
 
 import pygame
-from helik.htypes import SettingsModeId, TimerType
-from helik.platform import ButtonType, buttons_allowed
+from helik.platform import ButtonType, buttons_allowed, TimerType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-from .standard import SettingsMode
+from .standard import SettingsMode, SettingsModeId
 
 
 class PadInputSettingsMode(SettingsMode):

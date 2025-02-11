@@ -6,9 +6,10 @@ Mode prepare handler module
 
 
 import pygame
-from helik.htypes import TimerType, GameMode
+from helik.platform import TimerType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from .standard import Mode
+from .types import GameMode
 
 
 class ModePrepare(Mode):

@@ -5,7 +5,7 @@ Lane module
 """
 
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
-from helik.htypes import GameObjectType
+from .types import GameObjectType
 from .buildings import building_from_image
 from .clouds import cloud_from_image
 from .dirc import dirc_from_images

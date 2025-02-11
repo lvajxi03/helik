@@ -5,10 +5,9 @@ Keyboard Layout settings mode
 """
 
 import pygame
-from helik.htypes import SettingsModeId
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.platform import ButtonType, AxisType, AxisValue
-from .standard import SettingsMode
+from .standard import SettingsMode, SettingsModeId
 
 
 class KbdLayoutSettingsMode(SettingsMode):

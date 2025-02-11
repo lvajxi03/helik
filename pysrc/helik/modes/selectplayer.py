@@ -6,11 +6,11 @@ SelectPlayer handler module
 
 import pygame
 from helik.boards import BoardType
-from helik.htypes import GameMode
 from helik.game import Player
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.platform import AxisValue, AxisType, ButtonType
 from .standard import Mode
+from .types import GameMode
 
 
 class SelectPlayer(Mode):

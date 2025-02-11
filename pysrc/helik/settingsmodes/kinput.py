@@ -6,11 +6,10 @@ Provides mode for keys input (interactive new key definition)
 """
 
 import pygame
-from helik.htypes import SettingsModeId, TimerType
 from helik.platform import keysallowed
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-from helik.platform import ButtonType
-from .standard import SettingsMode
+from helik.platform import ButtonType, TimerType
+from .standard import SettingsMode, SettingsModeId
 
 
 class KbdInputSettingsMode(SettingsMode):
