@@ -1,0 +1,62 @@
+{
+  "pl": [
+    {
+      "images": [],
+      "labels": []
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "label": "help-1",
+          "location": [
+            350,
+            50
+          ]
+        },
+        {
+          "label": "help-2",
+          "location": [
+            150,
+            100
+          ]
+        },
+        {
+          "label": "help-3",
+          "location": [
+            150,
+            150
+          ]
+        },
+        {
+          "label": "help-4",
+          "location": [
+            150,
+            200
+          ]
+        },
+        {
+          "label": "help-5",
+          "location": [
+            150,
+            250
+          ]
+        },
+        {
+          "label": "help-6",
+          "location": [
+            150,
+            300
+          ]
+        },
+        {
+          "label": "help-7",
+          "location": [
+            150,
+            450
+          ]
+        }
+      ]
+    }
+  ]
+}

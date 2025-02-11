@@ -1,0 +1,205 @@
+{
+  "pl": [
+    {
+      "images": [
+        {
+          "image": "helik-default",
+          "location": [
+            200,
+            210
+          ]
+        },
+        {
+          "image": "balloon-default",
+          "location": [
+            230,
+            310
+          ]
+        },
+        {
+          "image": "airship-default",
+          "location": [
+            200,
+            450
+          ]
+        },
+        {
+          "image": "bird-5",
+          "location": [
+            750,
+            180
+          ]
+        },
+        {
+          "image": "bird-5",
+          "location": [
+            850,
+            180
+          ]
+        },
+        {
+          "image": "bird-5",
+          "location": [
+            950,
+            180
+          ]
+        },
+        {
+          "image": "building-2",
+          "location": [
+            550,
+            597
+          ]
+        },
+        {
+          "image": "building-5",
+          "location": [
+            725,
+            386
+          ]
+        },
+        {
+          "image": "building-7",
+          "location": [
+            880,
+            387
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "action": "mailto:marcin.bielewicz@gmail.com?subject=HeliK!",
+          "image": "email",
+          "location": [
+            200,
+            600
+          ]
+        },
+        {
+          "label": "about-1s",
+          "location": [
+            205,
+            33
+          ]
+        },
+        {
+          "label": "about-2s",
+          "location": [
+            205,
+            113
+          ]
+        },
+        {
+          "label": "about-3s",
+          "location": [
+            405,
+            193
+          ]
+        },
+        {
+          "label": "about-4s",
+          "location": [
+            405,
+            273
+          ]
+        },
+        {
+          "label": "about-1",
+          "location": [
+            200,
+            30
+          ]
+        },
+        {
+          "label": "about-2",
+          "location": [
+            200,
+            110
+          ]
+        },
+        {
+          "label": "about-3",
+          "location": [
+            400,
+            190
+          ]
+        },
+        {
+          "label": "about-4",
+          "location": [
+            400,
+            270
+          ]
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "label": "about-5",
+          "location": [
+            200,
+            30
+          ]
+        },
+        {
+          "label": "about-6",
+          "location": [
+            200,
+            110
+          ]
+        },
+        {
+          "label": "about-7",
+          "location": [
+            200,
+            190
+          ]
+        },
+        {
+          "label": "about-8",
+          "location": [
+            200,
+            270
+          ]
+        },
+        {
+          "label": "about-9",
+          "location": [
+            200,
+            350
+          ]
+        },
+        {
+          "label": "about-10",
+          "location": [
+            200,
+            430
+          ]
+        },
+        {
+          "label": "about-11",
+          "location": [
+            200,
+            510
+          ]
+        },
+        {
+          "label": "about-12",
+          "location": [
+            200,
+            590
+          ]
+        },
+        {
+          "label": "about-13",
+          "location": [
+            200,
+            670
+          ]
+        }
+      ]
+    }
+  ]
+}

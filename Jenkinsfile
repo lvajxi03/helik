@@ -50,7 +50,8 @@ pipeline {
         }
     }
     post { 
-        always { 
+        always {
+            archiveArtifacts artifacts: "dist\\helik-*.whl", fingerprint: true
             junit 'pylint-report.xml'
             cleanWs()
         }

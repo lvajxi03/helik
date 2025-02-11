@@ -82,7 +82,8 @@ class ResourceManager:
         self.load_level_planes(basepath)
         self.load_levels(basepath)
         self.create_letters(self.fonts["screen-keyboard"], self.colors["snowy-white"])
-        self.load_pages(basepath)
+        trav = basepath.joinpath("pages")
+        self.pages = self.read_labels(trav)
 
     def load_fonts(self, basepath):
         """
@@ -101,17 +102,27 @@ class ResourceManager:
         except IOError:
             pass
 
-    def load_pages(self, basepath):
+    def read_pages(self, basepath):
         """
-        Load pages and pagers data from pages.json fle
+        Recursively read pages data from fancy directory structures
         :param basepath: root directory of all resources
         """
-        f_name = basepath.joinpath("pages.json")
-        try:
-            with open(f_name, encoding="utf-8") as f_handle:
-                self.pages = json.load(f_handle)["pages"]
-        except IOError:
-            pass
+        ret = {}
+        objs = os.listdir(basepath)
+        for obj in objs:
+            fp = os.path.join(basepath, obj)
+            if os.path.isdir(fp):
+                ret[obj.lower()] = self.read_pages(fp)
+            if os.path.isfile(fp):
+                _, ex = os.path.splitext(fp)
+                if ex.lower() == ".json":
+                    try:
+                        with open(fp, encoding='utf-8') as fh:
+                            js = json.load(fh)
+                            ret.update(js)
+                    except IOError:
+                        pass
+        return ret
 
     def read_labels(self, basepath):
         """
