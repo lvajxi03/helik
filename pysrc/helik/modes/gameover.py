@@ -42,7 +42,7 @@ class ModeGameOver(Mode):
         """
         if key == pygame.K_F3:
             self.arena.config.toggle_lang()
-        else:
+        elif key == pygame.K_ESCAPE:
             if self.arena.config.is_hiscore(self.game.data['points']):
                 self.game.arena.change_board(BoardType.NEWSCORE)
             else:
@@ -55,11 +55,6 @@ class ModeGameOver(Mode):
         """
         if button == ButtonType.B:
             self.arena.config.toggle_lang()
-        else:
-            if self.arena.config.is_hiscore(self.game.data['points']):
-                self.game.arena.change_board(BoardType.NEWSCORE)
-            else:
-                self.game.arena.change_board(BoardType.HISCORES)
 
     def on_joyaxismotion(self, axis, value):
         """

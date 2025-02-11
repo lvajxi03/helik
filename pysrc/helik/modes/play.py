@@ -30,7 +30,7 @@ class ModePlay(Mode):
         """
         Activate event handler
         """
-        self.audio.enable_music("music-1")
+        self.audio.enable_music(self.resman.misc["level-music"][self.game.data['level']])
         pygame.time.set_timer(TimerType.SECOND, 1000)
         self.speed = SPEED - 2 * self.data['option']
         pygame.time.set_timer(TimerType.THIRD, self.speed)

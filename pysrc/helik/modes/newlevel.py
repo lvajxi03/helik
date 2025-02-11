@@ -49,6 +49,7 @@ class ModeNewLevel(Mode):
         """
         if self.game.data['level'] < len(self.resman.levels) - 1:
             pygame.time.set_timer(TimerType.FIRST, 2)
+            self.audio.stop_music()
             self.audio.play_music("game-begin")
             self.game.data['level'] += 1
             self.game.level = Level(self.resman,
