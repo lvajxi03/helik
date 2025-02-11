@@ -4,10 +4,11 @@
 NewScore board module
 """
 import pygame
-from helik.boards import Board, BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, ALL_CHARS
 from helik.htypes import TimerType
 from helik.platform import ButtonType
+from .standard import Board
+from .types import BoardType
 
 
 all_chrows = ['abcdefgh', 'ijklmnop', 'qrstuvwx', 'yz.-_012', '3456789⌫']

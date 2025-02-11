@@ -7,10 +7,10 @@ Game board for HeliK
 
 import pygame
 from helik.game.level import Level
-from helik.boards import BoardType, Board
 from helik.htypes import GameMode, SoundPlayState
 from helik.modes import (Mode, ModeInit, ModeKilled, ModePaused,
                          ModePlay, ModePrepare, ModeNewLevel, SelectPlayer, ModeGameOver)
+from .standard import Board
 
 
 class BoardGame(Board):

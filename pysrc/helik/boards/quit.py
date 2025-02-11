@@ -4,7 +4,7 @@
 Board quit handler module
 """
 
-from helik.boards.standard import Board
+from .standard import Board
 
 
 class BoardQuit(Board):

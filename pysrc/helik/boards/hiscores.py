@@ -6,8 +6,9 @@ Hiscores board handler
 
 
 import pygame
-from helik.boards import Board, BoardType
 from helik.platform import AxisType, AxisValue, ButtonType
+from .standard import Board
+from .types import BoardType
 
 
 SCORES_DX = 200
