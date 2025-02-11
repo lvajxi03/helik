@@ -59,6 +59,8 @@ packages = ["helik",
     "helik.resources.labels.en.pages",
     "helik.resources.labels.en.settings",
     "helik.resources.levels",
+    "helik.resources.pages.about",
+    "helik.resources.pages.help",
     "helik.resources.sounds",
     "helik.settingsmode"]
 
@@ -86,4 +88,7 @@ packages = ["helik",
 "helik.resources.labels.en.pages" = ["*.json"]
 "helik.resources.labels.en.settings" = ["*.json"]
 "helik.resources.levels" = ["*.json"]
+"helik.resources.pages.about" = ["*.json"]
+"helik.resources.pages.help" = ["*.json"]
 "helik.resources.sounds" = ["*.mp3"]
+
