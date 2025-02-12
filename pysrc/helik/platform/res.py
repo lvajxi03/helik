@@ -7,7 +7,8 @@ import json
 import os
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, LEVELNO, ALL_CHARS
-from helik.platform import render_keys_labels, render_buttons_labels
+from .keys import render_keys_labels
+from .buttons import render_buttons_labels
 
 
 characters = ['abcdefgh', 'ijklmnop', 'qrstuvwx', 'yz.-_012', '3456789#']
