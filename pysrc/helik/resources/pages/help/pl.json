@@ -1,8 +1,134 @@
 {
   "pl": [
-    {
+{
       "images": [],
-      "labels": []
+      "labels": [
+        {
+          "label": "help-A-title",
+          "location": [
+            250,
+            70
+          ]
+        },
+        {
+          "label": "help-A1",
+          "location": [
+            250,
+            150
+          ]
+        },
+        {
+          "label": "help-A2",
+          "location": [
+            250,
+            200
+          ]
+        },
+        {
+          "label": "help-A3",
+          "location": [
+            250,
+            250
+          ]
+        },
+        {
+          "label": "help-A4",
+          "location": [
+            250,
+            300
+          ]
+        },
+        {
+          "label": "help-A5",
+          "location": [
+            250,
+            350
+          ]
+        },
+        {
+          "label": "help-A-status",
+          "location": [
+            250,
+            450
+          ]
+        }
+      ]
+    },
+    {
+      "images": [
+        {
+          "image": "status-1",
+          "location": [
+            250,
+            470
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "label": "help-N-title",
+          "location": [
+            250,
+            70
+          ]
+        },
+        {
+          "label": "help-N1",
+          "location": [
+            250,
+            150
+          ]
+        },
+        {
+          "label": "help-N2",
+          "location": [
+            250,
+            200
+          ]
+        },
+        {
+          "label": "help-N3",
+          "location": [
+            250,
+            250
+          ]
+        },
+        {
+          "label": "help-N4",
+          "location": [
+            250,
+            350
+          ]
+        },
+        {
+          "label": "help-N5",
+          "location": [
+            250,
+            400
+          ]
+        },
+        {
+          "label": "help-N6",
+          "location": [
+            950,
+            530
+          ]
+        },
+        {
+          "label": "help-N7",
+          "location": [
+            860,
+            570
+          ]
+        },
+        {
+          "label": "help-N8",
+          "location": [
+            860,
+            610
+          ]
+        }
+      ]
     },
     {
       "images": [],

@@ -1,4 +1,46 @@
 {
+  "help-A-status": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Użyj strzałek/dpad (←→) lub rolki myszy do nawigacji",
+    "rotate": 0
+  },
+  "help-A-title": {
+    "color": "yellow-default",
+    "font": "about",
+    "label": "Spis treści",
+    "rotate": 0
+  },
+  "help-A1": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "1. Jak się poruszać?",
+    "rotate": 0
+  },
+  "help-A2": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "2. Ustawienia",
+    "rotate": 0
+  },
+  "help-A3": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "3. Opcje gry",
+    "rotate": 0
+  },
+  "help-A4": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "4. Najlepsze wyniki",
+    "rotate": 0
+  },
+  "help-A5": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "5. Rozgrywka",
+    "rotate": 0
+  },
   "help-1": {
     "color": "snowy-white",
     "font": "about",
@@ -39,6 +81,60 @@
     "color": "snowy-white",
     "font": "pages-small",
     "label": "każdy zestrzelony obiekt to dodatkowy punkt.",
+    "rotate": 0
+  },
+    "help-N-title": {
+    "color": "yellow-default",
+    "font": "about",
+    "label": "Jak się tu poruszać?",
+    "rotate": 0
+  },
+  "help-N1": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Gdziekolwiek możliwe, użyj klawiszy kursora lub dpad do poruszania,",
+    "rotate": 0
+  },
+  "help-N2": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Enter, Esc, Select, Start, F3, Ⓐ lub Ⓑ",
+    "rotate": 0
+  },
+  "help-N3": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Wszystkie menu obsługują też rolkę myszy i klikanie.",
+    "rotate": 0
+  },
+  "help-N4": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "W ogóle, patrz na pasek statusu -- wszystkie możliwe",
+    "rotate": 0
+  },
+  "help-N5": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "klawisze lub przyciski są tam wymienione:",
+    "rotate": 0
+  },
+  "help-N6": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "↑   ↑",
+    "rotate": 0
+  },
+  "help-N7": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "a tu możesz zmienić",
+    "rotate": 0
+  },
+  "help-N8": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "bieżący język",
     "rotate": 0
   }
 }

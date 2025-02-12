@@ -2,7 +2,7 @@
   "help-A-status": {
     "color": "snowy-white",
     "font": "pages-small",
-    "label": "Use arrow keys (←→) or mouse scroll to navigate",
+    "label": "Use arrow keys/dpad (←→) or mouse scroll to navigate",
     "rotate": 0
   },
   "help-A-title": {
@@ -152,13 +152,13 @@
   "help-N1": {
     "color": "snowy-white",
     "font": "pages-small",
-    "label": "Wherever possible, use arrow keys (←→) to navigate,",
+    "label": "Wherever possible, use arrow keys or dpad to navigate",
     "rotate": 0
   },
   "help-N2": {
     "color": "snowy-white",
     "font": "pages-small",
-    "label": "ENTER to accept and ESC or Q to leave.",
+    "label": "Enter, Esc, Select, Start F3, Ⓐ or Ⓑ",
     "rotate": 0
   },
   "help-N3": {
