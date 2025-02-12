@@ -68,6 +68,22 @@
       ],
       "labels": [
         {
+          "action": "mailto:marcin@iostream.pl?subject=HeliK!",
+          "image": "email",
+          "location": [
+            200,
+            650
+          ]
+        },
+        {
+          "action": "https://iostream.pl/helik-en",
+          "image": "webpage",
+          "location": [
+            300,
+            630
+          ]
+        },
+        {
           "label": "about-1s",
           "location": [
             205,
@@ -121,6 +137,74 @@
           "location": [
             400,
             270
+          ]
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "label": "about-B1",
+          "location": [
+            200,
+            30
+          ]
+        },
+        {
+          "label": "about-B2",
+          "location": [
+            200,
+            70
+          ]
+        },
+        {
+          "label": "about-B3",
+          "location": [
+            200,
+            110
+          ]
+        },
+        {
+          "label": "about-B4",
+          "location": [
+            200,
+            210
+          ]
+        },
+        {
+          "label": "about-B5",
+          "location": [
+            200,
+            310
+          ]
+        },
+        {
+          "label": "about-B6",
+          "location": [
+            200,
+            410
+          ]
+        },
+        {
+          "label": "about-B7",
+          "location": [
+            200,
+            450
+          ]
+        },
+        {
+          "label": "about-B8",
+          "location": [
+            200,
+            490
+          ]
+        },
+        {
+          "label": "about-B9",
+          "location": [
+            200,
+            530
           ]
         }
       ]

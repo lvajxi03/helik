@@ -109,5 +109,6 @@
     "airship-down.png",
     "airship-up.png"
   ],
-  "viewport": "viewport.png"
+  "viewport": "viewport.png",
+  "webpage": "webpage.png"
 }
