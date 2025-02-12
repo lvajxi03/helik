@@ -13,7 +13,7 @@ from helik.board import (BoardType, BoardWelcome, BoardAbout, BoardMenu, BoardOp
 from helik.game import DirCType
 from helik.config import Config
 from helik.media.audio import AudioController
-from .res import ResourceManager
+from helik.platform import ResourceManager
 
 
 class Arena:

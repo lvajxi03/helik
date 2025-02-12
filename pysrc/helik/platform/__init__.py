@@ -9,4 +9,3 @@ from .buttons import button_names, buttons_allowed, render_buttons_labels, Butto
 from .axis import AxisType, AxisValue
 from .types import TimerType
 from .res import ResourceManager
-from .arena import Arena

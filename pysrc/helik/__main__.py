@@ -5,11 +5,11 @@ Entry point for Helik package
 """
 
 import sys
-from helik.platform.arena import Arena
+from .arena import Arena
 
 
 if __name__ == "__main__":
-    vaq = False #  Validate And Quit
+    vaq = False  # Validate And Quit
     app = Arena()
     try:
         if sys.argv[1] == "-q":

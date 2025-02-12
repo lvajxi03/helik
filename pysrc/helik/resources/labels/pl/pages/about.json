@@ -5,27 +5,27 @@
     "label": "Gra w stylu Flappy Bird, ale z helikopterem.",
     "rotate": 0
   },
-  "about-10": {
+  "about-B6": {
     "color": "snowy-white",
-    "font": "about",
+    "font": "about-sans",
     "label": "Zakodowano w Emacsie",
     "rotate": 0
   },
-  "about-11": {
+  "about-B7": {
     "color": "snowy-white",
-    "font": "about",
+    "font": "about-sans",
     "label": "Grafika: Inkscape & Gimp",
     "rotate": 0
   },
-  "about-12": {
+  "about-B8": {
     "color": "snowy-white",
-    "font": "about",
-    "label": "Muzyka: udio.com",
+    "font": "about-sans",
+    "label": "Muzyka: udio.com, dźwięki: elevenlabs.io",
     "rotate": 0
   },
-  "about-13": {
+  "about-B9": {
     "color": "snowy-white",
-    "font": "about",
+    "font": "about-sans",
     "label": "Czcionki: Birdfont",
     "rotate": 0
   },
@@ -71,33 +71,33 @@
     "label": "I paroma innymi rzeczami.",
     "rotate": 0
   },
-  "about-5": {
+  "about-B1": {
     "color": "snowy-white",
-    "font": "about",
+    "font": "about-sans",
     "label": "Autor: Marcin Bielewicz",
     "rotate": 0
   },
-  "about-6": {
+  "about-B2": {
     "color": "snowy-white",
-    "font": "about",
-    "label": "<marcin.bielewicz@gmail.com>",
+    "font": "about-sans",
+    "label": "<marcin@iostream.pl>",
     "rotate": 0
   },
-  "about-7": {
+  "about-B3": {
     "color": "snowy-white",
-    "font": "about",
+    "font": "about-sans",
     "label": "(kod, grafika, muzyka, czcionki)",
     "rotate": 0
   },
-  "about-8": {
+  "about-B4": {
     "color": "snowy-white",
-    "font": "about",
+    "font": "about-sans",
     "label": "https://iostream.pl/helik",
     "rotate": 0
   },
-  "about-9": {
+  "about-B5": {
     "color": "snowy-white",
-    "font": "about",
+    "font": "about-sans",
     "label": "Konsultacje: Antoni Bielewicz",
     "rotate": 0
   }
