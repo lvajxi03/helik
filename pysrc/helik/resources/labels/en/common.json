@@ -1,5 +1,15 @@
 {
   "common": {
+    "big-digits": {
+      "color": "yellow-default",
+      "font": "really-big",
+      "labels": [
+        "1",
+        "2",
+        "3"
+      ],
+      "rotate": 0
+    },
     "common-status": {
       "color": "snowy-white",
       "font": "status",

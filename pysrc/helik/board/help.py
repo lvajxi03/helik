@@ -95,6 +95,7 @@ class BoardHelp(Board):
         """
         if button == ButtonType.B:
             self.arena.config.toggle_lang()
+            self.pager.change_lang(self.arena.config["lang"])
         elif button == ButtonType.A:
             self.arena.change_board(BoardType.MENU)
 
