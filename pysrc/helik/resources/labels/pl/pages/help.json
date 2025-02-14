@@ -1,46 +1,4 @@
 {
-  "help-A-status": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "Użyj strzałek/dpad (←→) lub rolki myszy do nawigacji",
-    "rotate": 0
-  },
-  "help-A-title": {
-    "color": "yellow-default",
-    "font": "about",
-    "label": "Spis treści",
-    "rotate": 0
-  },
-  "help-A1": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "1. Jak się poruszać?",
-    "rotate": 0
-  },
-  "help-A2": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "2. Ustawienia",
-    "rotate": 0
-  },
-  "help-A3": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "3. Opcje gry",
-    "rotate": 0
-  },
-  "help-A4": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "4. Najlepsze wyniki",
-    "rotate": 0
-  },
-  "help-A5": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "5. Rozgrywka",
-    "rotate": 0
-  },
   "help-1": {
     "color": "snowy-white",
     "font": "about",
@@ -83,7 +41,49 @@
     "label": "każdy zestrzelony obiekt to dodatkowy punkt.",
     "rotate": 0
   },
-    "help-N-title": {
+  "help-A-status": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Użyj strzałek/dpad (←→) lub rolki myszy do nawigacji",
+    "rotate": 0
+  },
+  "help-A-title": {
+    "color": "yellow-default",
+    "font": "about",
+    "label": "Spis treści",
+    "rotate": 0
+  },
+  "help-A1": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "1. Jak się poruszać?",
+    "rotate": 0
+  },
+  "help-A2": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "2. Ustawienia",
+    "rotate": 0
+  },
+  "help-A3": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "3. Opcje gry",
+    "rotate": 0
+  },
+  "help-A4": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "4. Najlepsze wyniki",
+    "rotate": 0
+  },
+  "help-A5": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "5. Rozgrywka",
+    "rotate": 0
+  },
+  "help-N-title": {
     "color": "yellow-default",
     "font": "about",
     "label": "Jak się tu poruszać?",

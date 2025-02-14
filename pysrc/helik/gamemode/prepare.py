@@ -28,10 +28,7 @@ class ModePrepare(Mode):
         }
         self.alpha = 255
         self.index = 0
-        _, self.rect = self.resman.locale[
-            self.arena.config["lang"]][
-            "common"]["big-digits"][0]
-        # self.rect = self.resman.images["big"][0].get_rect()
+        _, self.rect = self.resman.locale["common"]["common"]["big-digits"][0]
         self.rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
 
     def on_timer(self, timer):
@@ -50,11 +47,9 @@ class ModePrepare(Mode):
         Decrease alpha value
         """
         self.alpha -= 20
-        l, _ = self.resman.locale[
-            self.arena.config["lang"]]["common"][
-            "big-digits"][self.index]
+        l, self.rect = self.resman.locale["common"]["common"]["big-digits"][self.index]
+        self.rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
         l.set_alpha(self.alpha)
-        # self.resman.images["big"][self.index].set_alpha(self.alpha)
 
     def on_prepare(self):
         """
@@ -62,9 +57,8 @@ class ModePrepare(Mode):
         """
         self.index += 1
         self.alpha = 255
-        l, _ = self.resman.locale[
-            self.arena.config["lang"]]["common"][
-            "big-digits"][self.index]
+        l, self.rect = self.resman.locale["common"]["common"]["big-digits"][self.index]
+        self.rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
         l.set_alpha(self.alpha)
 
     def on_prepare_stop(self):
@@ -99,8 +93,6 @@ class ModePrepare(Mode):
         """
         self.buffer.blit(
             self.resman.images["default-background"], (0, 0))
-        l, r = self.resman.locale[
-                self.arena.config["lang"]]["common"][
-                "big-digits"][self.index]
+        l, self.rect = self.resman.locale["common"]["common"]["big-digits"][self.index]
+        self.rect.center = (ARENA_WIDTH // 2, ARENA_HEIGHT // 2)
         self.buffer.blit(l, self.rect)
-        # self.buffer.blit(self.resman.images["big"][self.index], self.rect)

@@ -1,9 +1,4 @@
 {
-  "kinput-status": {
-    "color": "snowy-white",
-    "font": "status",
-    "label": "F2/Start  Enter/Select  ←ESC"
-  },
   "kinput-heading": {
     "color": "snowy-white",
     "font": "heading-normal",
@@ -57,5 +52,10 @@
       "SHOT"
     ],
     "rotate": 0
+  },
+  "kinput-status": {
+    "color": "snowy-white",
+    "font": "status",
+    "label": "F2/Start  Enter/Select  ←ESC"
   }
 }

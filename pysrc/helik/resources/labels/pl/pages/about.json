@@ -5,30 +5,6 @@
     "label": "Gra w stylu Flappy Bird, ale z helikopterem.",
     "rotate": 0
   },
-  "about-B6": {
-    "color": "snowy-white",
-    "font": "about-sans",
-    "label": "Zakodowano w Emacsie",
-    "rotate": 0
-  },
-  "about-B7": {
-    "color": "snowy-white",
-    "font": "about-sans",
-    "label": "Grafika: Inkscape & Gimp",
-    "rotate": 0
-  },
-  "about-B8": {
-    "color": "snowy-white",
-    "font": "about-sans",
-    "label": "Muzyka: udio.com, dźwięki: elevenlabs.io",
-    "rotate": 0
-  },
-  "about-B9": {
-    "color": "snowy-white",
-    "font": "about-sans",
-    "label": "Czcionki: Birdfont",
-    "rotate": 0
-  },
   "about-1s": {
     "color": "shadow-default",
     "font": "about",
@@ -99,6 +75,30 @@
     "color": "snowy-white",
     "font": "about-sans",
     "label": "Konsultacje: Antoni Bielewicz",
+    "rotate": 0
+  },
+  "about-B6": {
+    "color": "snowy-white",
+    "font": "about-sans",
+    "label": "Zakodowano w Emacsie",
+    "rotate": 0
+  },
+  "about-B7": {
+    "color": "snowy-white",
+    "font": "about-sans",
+    "label": "Grafika: Inkscape & Gimp",
+    "rotate": 0
+  },
+  "about-B8": {
+    "color": "snowy-white",
+    "font": "about-sans",
+    "label": "Muzyka: udio.com, dźwięki: elevenlabs.io",
+    "rotate": 0
+  },
+  "about-B9": {
+    "color": "snowy-white",
+    "font": "about-sans",
+    "label": "Czcionki: Birdfont",
     "rotate": 0
   }
 }

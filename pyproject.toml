@@ -40,7 +40,6 @@ packages = ["helik",
     "helik.resources.fonts",
     "helik.resources.images",
     "helik.resources.images.ammo",
-    "helik.resources.images.big",
     "helik.resources.images.birds",
     "helik.resources.images.buildings",
     "helik.resources.images.clouds",
@@ -69,7 +68,6 @@ packages = ["helik",
 "helik.resources.fonts" = ["*.ttf"]
 "helik.resources.images" = ["*.png", "*.json", "*.jpg"]
 "helik.resources.images.ammo" = ["*.png"]
-"helik.resources.images.big" = ["*.png"]
 "helik.resources.images.birds" = ["*.png"]
 "helik.resources.images.buildings" = ["*.png"]
 "helik.resources.images.clouds" = ["*.png"]

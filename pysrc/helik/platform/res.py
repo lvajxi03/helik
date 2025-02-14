@@ -18,30 +18,29 @@ class ResourceManager:
     """
     Resource Manager class
     """
-    misc: dict = {}
-    resources: dict = {}
-    fonts: dict = {}
-    colors: dict = {}
-    pages: dict = {}
-    levels: list = []
-    digits: dict = {}
-    images: dict = {}
-    surfaces = {}
-    letters = {}
-    level_planes = {}
-    locale = {}
-    keylabels: dict = {}
-    button_labels: dict = {}
 
     def __init__(self, basepath):
         """
         Create ResourceManager instance
         :param basepath: root directory of all resources
         """
+        self.misc = {}
+        self.resources = {}
+        self.fonts = {}
+        self.colors = {}
+        self.pages = {}
+        self.levels = []
+        self.images = {}
+        self.surfaces = {}
+        self.letters = {}
+        self.level_planes = {}
+        self.locale = {}
+        self.keylabels = {}
+        self.button_labels = {}
         self.surfaces = {
             "buffer": pygame.display.set_mode(
                 (ARENA_WIDTH, ARENA_HEIGHT),
-            ), # flags=pygame.FULLSCREEN | pygame.NOFRAME),
+                    flags=pygame.FULLSCREEN | pygame.NOFRAME),
             "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
         }
         self.rectangles = {
@@ -76,7 +75,6 @@ class ResourceManager:
         self.load_colors(basepath)
         self.load_misc_data(basepath)
         self.load_images(basepath)
-        self.load_digits(basepath)
         self.load_labels(basepath)
         self.keylabels = render_keys_labels(self.misc, self.fonts, self.colors)
         self.button_labels = render_buttons_labels(self.misc, self.fonts, self.colors)
@@ -198,16 +196,6 @@ class ResourceManager:
                             data[lang][group][label].append((su, r))
         self.locale = data
 
-    def load_digits(self, basepath):
-        """
-        Load digits -- surfaces to produce numbers
-        :param basepath: root directory of all resources
-        """
-        pa = basepath.joinpath("images").joinpath("digits")
-        for i in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
-            fn = f"{i}.png"
-            self.digits[i] = pygame.image.load(pa.joinpath(fn)).convert_alpha()
-
     def load_levels(self, basepath):
         """
         :param basepath: root directory of all resources
@@ -256,7 +244,7 @@ class ResourceManager:
                         self.level_planes[key] = pygame.image.load(pa.joinpath(
                             values)).convert_alpha()
         except IOError as ioe:
-            print(ioe)
+            raise
 
     def load_colors(self, basepath):
         """
@@ -270,7 +258,7 @@ class ResourceManager:
                     r = data["colors"][name]
                     self.colors[name] = pygame.Color(r[0], r[1], r[2], r[3])
         except IOError as ioe:
-            print(ioe)
+            raise
 
     def load_images(self, basepath):
         """
@@ -297,6 +285,6 @@ class ResourceManager:
                     elif type(value) is str:
                         self.images[key] = pygame.image.load(pa.joinpath(value)).convert_alpha()
         except IOError as ioe:
-            print(ioe)
+            raise
 
     # That's all Folks!
