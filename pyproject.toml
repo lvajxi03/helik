@@ -43,7 +43,6 @@ packages = ["helik",
     "helik.resources.images.birds",
     "helik.resources.images.buildings",
     "helik.resources.images.clouds",
-    "helik.resources.images.digits",
     "helik.resources.images.dirc",
     "helik.resources.images.explosions",
     "helik.resources.images.hearts",
@@ -71,7 +70,6 @@ packages = ["helik",
 "helik.resources.images.birds" = ["*.png"]
 "helik.resources.images.buildings" = ["*.png"]
 "helik.resources.images.clouds" = ["*.png"]
-"helik.resources.images.digits" = ["*.png"]
 "helik.resources.images.dirc" = ["*.png"]
 "helik.resources.images.explosions" = ["*.png"]
 "helik.resources.images.hearts" = ["*.png"]
