@@ -41,7 +41,7 @@ def load_images(basepath):
                 elif type(value) is str:
                     images[key] = pygame.image.load(pa.joinpath(value)).convert_alpha()
     except IOError as ioe:
-        raise
+        print(ioe)
 
     return images
 
@@ -88,7 +88,7 @@ def load_level_planes(basepath):
                     level_planes[key] = pygame.image.load(pa.joinpath(
                         values)).convert_alpha()
     except IOError as ioe:
-        raise
+        print(ioe)
     return level_planes
 
 
@@ -140,7 +140,7 @@ def load_colors(basepath) -> dict:
                 r = data["colors"][name]
                 colors[name] = pygame.Color(r[0], r[1], r[2], r[3])
     except IOError as ioe:
-        raise
+        print(ioe)
     return colors
 
 
@@ -271,22 +271,37 @@ class ResourceManager:
         self.locale = {}
         self.keylabels = {}
         self.button_labels = {}
+        self.surfaces = {}
+        self.rectangles = {}
+
+        # First, surface(s) shall be created,
+        # otherwise remaining resources will fail to load
+        # (video mode must be set)
+        self.create_surfaces()
+        self.load_resources(basepath)
+
+        # Leave this at the end, because we need
+        # both surfaces and colors
+        pygame.draw.rect(self.surfaces["status"],
+                         self.colors["status-color"], (0, 0, ARENA_WIDTH, 60))
+
+    def create_surfaces(self):
+        """
+        Create
+        """
         self.surfaces = {
             "buffer": pygame.display.set_mode(
                 (ARENA_WIDTH, ARENA_HEIGHT),
-                    flags=pygame.FULLSCREEN | pygame.NOFRAME),
+                flags=pygame.FULLSCREEN | pygame.NOFRAME),
             "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
         }
+
         self.rectangles = {
             "lang-rectangles": {
                 "pl": pygame.Rect(ARENA_WIDTH - 154, ARENA_HEIGHT - 58, 75, 56),
                 "en": pygame.Rect(ARENA_WIDTH - 77, ARENA_HEIGHT - 58, 75, 56)
             }
         }
-        self.load_resources(basepath)
-
-        pygame.draw.rect(self.surfaces["status"],
-                         self.colors["status-color"], (0, 0, ARENA_WIDTH, 60))
 
     def load_resources(self, basepath):
         """

@@ -98,6 +98,7 @@ class Page:
             if button.contains(x, y):
                 button.execute()
                 return True
+        return False
 
     def on_paint(self, canvas):
         """
@@ -146,10 +147,10 @@ class Pager:
     def change_lang(self, newlang):
         """
         Change current language
+        :param newlang: new language id
         """
         self.lang = newlang
-        if self.current > len(self.pages[self.lang]) - 1:
-            self.current = len(self.pages[self.lang]) - 1
+        self.current = min(self.current, len(self.pages[self.lang]) - 1)
 
     def prev(self):
         """
