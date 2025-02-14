@@ -266,7 +266,7 @@ class ResourceManager:
         """
         self.images = {}  # Clear existing images
         pa = basepath.joinpath("images")
-        f_path = pa.joinpath("images.json")
+        f_path = basepath.joinpath("images.json")
         try:
             with open(f_path, encoding="utf-8") as f_handle:
                 data = json.load(f_handle)

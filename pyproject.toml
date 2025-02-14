@@ -50,6 +50,7 @@ packages = ["helik",
     "helik.resources.images.level_planes.en",
     "helik.resources.images.level_planes.pl",
     "helik.resources.images.vehicles",
+    "helik.resources.labels.common",
     "helik.resources.labels.pl",
     "helik.resources.labels.pl.pages",
     "helik.resources.labels.pl.settings",
@@ -77,6 +78,7 @@ packages = ["helik",
 "helik.resources.images.level_planes.en" = ["*.png"]
 "helik.resources.images.level_planes.pl" = ["*.png"]
 "helik.resources.images.vehicles" = ["*.png"]
+"helik.resources.labels.common" = ["*.json"]
 "helik.resources.labels.pl" = ["*.json"]
 "helik.resources.labels.pl.pages" = ["*.json"]
 "helik.resources.labels.pl.settings" = ["*.json"]

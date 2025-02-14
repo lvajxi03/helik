@@ -57,7 +57,7 @@ class ModePlay(Mode):
                 for lane in self.game.level.lanes:
                     for obj in lane.objects:
                         # Buildings and birds:
-                        if obj.go_type in [GameObjectType.BUILDING, GameObjectType.BIRD]:
+                        if obj.go_type == GameObjectType.BIRD:
                             col = obj.collide(bullet)
                             if col:
                                 bullet.valid = False
@@ -65,6 +65,16 @@ class ModePlay(Mode):
                                 obj.valid = False
                                 obj.visible = False
                                 self.game.data["points"] += 1
+                                x, y = col
+                                ex = Explosion(self.resman.images["explosions"],
+                                               x + obj.x,
+                                               y + obj.y)
+                                self.game.explosions.append(ex)
+                        elif obj.go_type in (GameObjectType.BUILDING, GameObjectType.CLOUD):
+                            col = obj.collide(bullet)
+                            if col:
+                                bullet.valid = False
+                                bullet.visible = False
                                 x, y = col
                                 ex = Explosion(self.resman.images["explosions"],
                                                x + obj.x,
@@ -105,16 +115,16 @@ class ModePlay(Mode):
         self.game.explosions = [x for x in self.game.explosions if x.valid]
         self.game.level.bullets = [x for x in self.game.level.bullets if x.valid]
 
-        if self.game.level.is_empty():
-            self.game.change_mode(GameMode.NEWLEVEL)
-
         if (self.game.player.h + self.game.player.y >= ARENA_HEIGHT - STATUS_HEIGHT) or \
-                (self.game.player.y < 0):
+                (self.game.player.y <= 0):
             ex = Explosion(self.resman.images["explosions"],
                            self.game.player.x + self.game.player.w // 2,
-                           self.game.player.y + self.game.player.h)
+                           self.game.player.y + self.game.player.h // 2)
             self.game.explosions.append(ex)
             self.game.change_mode(GameMode.KILLED)
+
+        if self.game.level.is_empty():
+            self.game.change_mode(GameMode.NEWLEVEL)
 
     def on_timer(self, timer):
         """
@@ -175,10 +185,6 @@ class ModePlay(Mode):
         """
         if button == 1:
             self.on_keyup(pygame.K_s)
-        elif button == 4:
-            self.on_keyup(pygame.K_SPACE)
-        elif button == 2:
-            self.on_keyup(pygame.K_ESCAPE)
 
     def on_paint(self):
         """

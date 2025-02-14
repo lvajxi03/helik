@@ -82,9 +82,9 @@ class BoardAbout(Board):
                 if not self.pager.on_click():
                     self.pager.next()
 
-        elif button == 4:
-            self.pager.next()
         elif button == 5:
+            self.pager.next()
+        elif button == 4:
             self.pager.prev()
 
     def on_joybuttonup(self, button):
