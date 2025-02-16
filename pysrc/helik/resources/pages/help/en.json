@@ -315,13 +315,6 @@
             250,
             350
           ]
-        },
-        {
-          "label": "help-G6",
-          "location": [
-            250,
-            400
-          ]
         }
       ]
     },
@@ -334,6 +327,30 @@
             250,
             70
           ]
+        },
+        {
+          "label": "help-G1a",
+          "location": [250, 170]
+        },
+        {
+          "label": "help-G1c",
+          "location": [250, 220]
+        },
+        {
+          "label": "help-G1e",
+          "location": [250, 270]
+        },
+        {
+          "label": "help-G1f",
+          "location": [250, 370]
+        },
+        {
+          "label": "help-G1g",
+          "location": [250, 420]
+        },
+        {
+          "label": "help-G1h",
+          "location": [250, 520]
         }
       ]
     },
@@ -381,39 +398,6 @@
           "location": [
             250,
             70
-          ]
-        }
-      ]
-    },
-    {
-      "images": [],
-      "labels": [
-        {
-          "label": "help-Gf-title",
-          "location": [
-            250,
-            70
-          ]
-        },
-        {
-          "label": "help-Gf1",
-          "location": [
-            250,
-            250
-          ]
-        },
-        {
-          "label": "help-Gf2",
-          "location": [
-            250,
-            350
-          ]
-        },
-        {
-          "label": "help-Gf3",
-          "location": [
-            250,
-            400
           ]
         }
       ]

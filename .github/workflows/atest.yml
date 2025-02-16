@@ -33,4 +33,7 @@ jobs:
     - name: Run
       run: |
         python -m helik -q
+    - uses: actions/upload-artifact@v4
+      with: dist/helik-*.whl
+      overwrite: true
 
