@@ -7,7 +7,7 @@ import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.core.pages import Pager
 from helik.platform import ButtonType, AxisType, AxisValue
-from .types import BoardType
+from helik.types import BoardType
 from .standard import Board
 
 
@@ -54,6 +54,8 @@ class BoardAbout(Board):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
+        if key == pygame.K_F1:
+            self.arena.change_board(BoardType.HELP)
         if key == pygame.K_ESCAPE:
             self.arena.change_board(BoardType.MENU)
         elif key == pygame.K_LEFT:

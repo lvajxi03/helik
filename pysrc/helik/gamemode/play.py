@@ -6,6 +6,7 @@ Mode play handler module
 
 
 import pygame
+from helik.types import BoardType, HelpChapter
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT, SPEED
 from helik.gfx import blitnumber
 from helik.game import Explosion, PlayerDirection, GameObjectType
@@ -145,7 +146,9 @@ class ModePlay(Mode):
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_ESCAPE:
+        if key == pygame.K_F1:
+            self.arena.change_board(BoardType.HELP, help=HelpChapter.GAMEPLAY)
+        elif key == pygame.K_ESCAPE:
             self.game.change_mode(GameMode.PAUSED)
         elif key == self.arena.config["keys"]["shoot"]:
             if self.data['bullets-available'] > 0:

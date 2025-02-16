@@ -6,11 +6,11 @@ Help board handler
 
 
 import pygame
+from helik.types import BoardType
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
 from helik.core.pages import Pager
-from helik.platform import ButtonType
+from helik.platform import ButtonType, AxisType, AxisValue
 from .standard import Board
-from .types import BoardType
 
 
 class BoardHelp(Board):
@@ -21,12 +21,16 @@ class BoardHelp(Board):
         super().__init__(parent)
         self.pager = Pager(self.resman.pages["help"], self.resman)
 
-    def activate(self):
+    def activate(self, **kwargs):
         """
         Activate event handler
+        :param kwargs: additional parameters, like previous board or help
         """
         self.pager.change_lang(self.arena.config["lang"])
         self.pager.activate()
+
+        if 'help' in kwargs:
+            self.pager.activate(kwargs['help'])
 
     def on_paint(self):
         """
@@ -105,3 +109,8 @@ class BoardHelp(Board):
         :param axis: axis number
         :param value: axis value
         """
+        if axis == AxisType.HORIZ:
+            if value == AxisValue.LOWER:
+                self.pager.prev()
+            elif value == AxisValue.HIGHER:
+                self.pager.next()

@@ -8,9 +8,9 @@ import random
 from importlib.resources import files
 import pygame
 from helik.hdefs import APPLICATION_TITLE
-from helik.board import (BoardType, BoardWelcome, BoardAbout, BoardMenu, BoardOptions,
+from helik.types import BoardType
+from helik.board import (BoardWelcome, BoardAbout, BoardMenu, BoardOptions,
                          BoardHiscores, BoardHelp, BoardSettings, BoardGame, BoardNewScore, BoardQuit)
-from helik.game import DirCType
 from helik.config import Config
 from helik.media.audio import AudioController
 from helik.platform import ResourceManager
@@ -51,9 +51,8 @@ class Arena:
             BoardType.QUIT: BoardQuit(self)
             }
         self.board_id = BoardType.WELCOME
-        self.dirc = DirCType.DOWN
 
-    def change_board(self, newboard):
+    def change_board(self, newboard, **kwargs):
         """
         Change board to the other one.
         Will change only if the other one is different.
@@ -61,11 +60,12 @@ class Arena:
         * .deactivate() method called for the current board
         * .activate() method called for the new board
         :param newboard: other board id
+        :param kwargs: additional parameters, like previous board or help
         """
         if newboard != self.board_id:
             self.boards[self.board_id].deactivate()
             self.board_id = newboard
-            self.boards[self.board_id].activate()
+            self.boards[self.board_id].activate(**kwargs)
 
     def run(self, **kwargs):
         """

@@ -7,8 +7,8 @@ Menu board handler
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.platform import ButtonType, AxisType, AxisValue
+from helik.types import BoardType
 from .standard import Board
-from .types import BoardType
 
 
 def menupos2board(menu_pos: int) -> BoardType:

@@ -7,8 +7,8 @@ Hiscores board handler
 
 import pygame
 from helik.platform import AxisType, AxisValue, ButtonType
+from helik.types import BoardType
 from .standard import Board
-from .types import BoardType
 
 
 SCORES_DX = 200
@@ -89,7 +89,9 @@ class BoardHiscores(Board):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        if key == pygame.K_F3:
+        if key == pygame.K_F1:
+            self.arena.change_board(BoardType.HELP, help=BoardType.HISCORES)
+        elif key == pygame.K_F3:
             self.arena.config.toggle_lang()
         elif key == pygame.K_ESCAPE:
             self.arena.change_board(BoardType.MENU)

@@ -138,11 +138,11 @@ class Pager:
                 page = Page(elem, resman, lang)
                 self.pages[lang].append(page)
 
-    def activate(self):
+    def activate(self, *args):
         """
         Activate event handler
         """
-        self.current = 0
+        self.current = min(args[0], len(self.pages[self.lang]) - 1) if len(args) > 0 else 0
 
     def change_lang(self, newlang):
         """

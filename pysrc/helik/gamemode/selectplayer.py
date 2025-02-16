@@ -5,7 +5,7 @@ SelectPlayer handler module
 """
 
 import pygame
-from helik.board import BoardType
+from helik.types import BoardType, HelpChapter
 from helik.game import Player
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.platform import AxisValue, AxisType, ButtonType
@@ -79,7 +79,9 @@ class SelectPlayer(Mode):
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_F3:
+        if key == pygame.K_F1:
+            self.arena.change_board(BoardType.HELP, help=HelpChapter.VEHICLESELECTION)
+        elif key == pygame.K_F3:
             self.arena.config.toggle_lang()
         elif key == pygame.K_LEFT:
             if self.viewpos > 0:

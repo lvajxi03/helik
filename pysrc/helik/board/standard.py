@@ -21,9 +21,10 @@ class Board:
         self.images = self.resman.images
         self.audio = self.arena.audio
 
-    def activate(self):
+    def activate(self, **kwargs):
         """
         Board activator
+        :param kwargs: additional parameters, like help or previous board
         """
 
     def deactivate(self):

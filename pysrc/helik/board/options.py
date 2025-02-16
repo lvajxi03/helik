@@ -7,8 +7,8 @@ Options board handler
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.platform import ButtonType, AxisType, AxisValue
+from helik.types import BoardType, HelpChapter
 from .standard import Board
-from .types import BoardType
 
 
 class BoardOptions(Board):
@@ -93,7 +93,9 @@ class BoardOptions(Board):
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_DOWN:
+        if key == pygame.K_F1:
+            self.arena.change_board(BoardType.HELP, help=HelpChapter.OPTIONS)
+        elif key == pygame.K_DOWN:
             if self.menu_pos < 5:
                 self.menu_pos += 1
                 self.audio.play_sfx("arrow")
