@@ -33,11 +33,4 @@ jobs:
     - name: Run
       run: |
         python -m helik -q
-    - name: Archive artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: helik-dist
-        path: |
-          dist/*.whl        
-        overwrite: true
 
