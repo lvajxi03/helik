@@ -77,9 +77,10 @@ class BoardNewScore(Board):
         """
         self.nick = self.nick[:-1]
 
-    def activate(self):
+    def activate(self, **kwargs):
         """
         Activate event handler
+        :param kwargs: additional parameters, like help or previous board
         """
         self.arena.audio.enable_background_music("background-music")
         self.nick = self.arena.config["lastnick"]

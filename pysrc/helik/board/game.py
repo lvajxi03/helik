@@ -68,9 +68,10 @@ class BoardGame(Board):
             self.mode = newmode
             self.modes[self.mode].activate()
 
-    def activate(self):
+    def activate(self, **kwargs):
         """
         Activate event handler
+        :param kwargs: additional parameters, like help or previous board
         """
         self.change_mode(GameMode.INIT)
 

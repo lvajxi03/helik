@@ -80,9 +80,10 @@ class BoardOptions(Board):
         pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32),
                          self.rect_pos, width=5, border_radius=20)
 
-    def activate(self):
+    def activate(self, **kwargs):
         """
         Activate event handler
+        :param kwargs: additional parameters, like help or previous board
         """
         self.option = self.arena.config['option']
         self.menu_pos = self.option

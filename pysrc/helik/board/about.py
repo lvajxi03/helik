@@ -19,9 +19,10 @@ class BoardAbout(Board):
         super().__init__(parent)
         self.pager = Pager(self.resman.pages["about"], self.resman)
 
-    def activate(self):
+    def activate(self, **kwargs):
         """
         Activate event handler
+        :param kwargs: additional parameters, like help or previous board
         """
         self.pager.change_lang(self.arena.config["lang"])
         self.pager.activate()

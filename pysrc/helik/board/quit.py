@@ -11,8 +11,9 @@ class BoardQuit(Board):
     """
     Board quit handler class
     """
-    def activate(self):
+    def activate(self, **kwargs):
         """
         Activate board event handler
+        :param kwargs: additional parameters, like help or previous board
         """
         self.arena.running = False

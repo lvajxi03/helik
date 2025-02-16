@@ -32,9 +32,10 @@ class BoardHiscores(Board):
         self.rectangles = []
         self.rectangles_s = []
 
-    def activate(self):
+    def activate(self, **kwargs):
         """
         Activate event handler
+        :param kwargs: additional parameters, like help or previous board
         """
         self.arena.audio.enable_background_music("background-music")
         self.rectangles = []

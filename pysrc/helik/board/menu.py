@@ -101,9 +101,10 @@ class BoardMenu(Board):
         pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32),
                          self.rect_pos, width=5, border_radius=20)
 
-    def activate(self):
+    def activate(self, **kwargs):
         """
         Activate board event handler
+        :param kwargs: additional parameters, like help or previous board
         """
         self.create_rectangles()
         self.arena.audio.enable_background_music("background-music")

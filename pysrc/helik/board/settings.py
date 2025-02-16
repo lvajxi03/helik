@@ -58,9 +58,10 @@ class BoardSettings(Board):
         """
         self.modes[self.mode].on_mouseup(button, pos)
 
-    def activate(self):
+    def activate(self, **kwargs):
         """
         Board activator
+        :param kwargs: additional parameters, like help or previous board
         """
         self.modes[self.mode].activate()
 

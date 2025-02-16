@@ -82,8 +82,10 @@ class Board:
         self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - STATUS_HEIGHT))
 
         # Lang flags
-        self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
-        self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
+        self.buffer.blit(self.resman.images["flag-pl"],
+                         self.resman.rectangles["lang-rectangles"]["pl"])
+        self.buffer.blit(self.resman.images["flag-en"],
+                         self.resman.rectangles["lang-rectangles"]["en"])
 
     def paint_default_title(self, groupname):
         """
