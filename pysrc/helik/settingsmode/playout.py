@@ -6,6 +6,7 @@ Pad Layout settings mode
 
 import pygame
 from helik.platform import ButtonType, AxisType, AxisValue
+from helik.types import BoardType, HelpChapter
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from .standard import SettingsMode, SettingsModeId
 
@@ -89,7 +90,10 @@ class PadLayoutSettingsMode(SettingsMode):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        if key == pygame.K_F2:
+        if key == pygame.K_F1:
+            self.parent.arena.change_board(BoardType.HELP,
+                                           help=HelpChapter.SETTINGS)
+        elif key == pygame.K_F2:
             self.parent.change_mode(SettingsModeId.GINPUT)
         elif key == pygame.K_F3:
             self.arena.config.toggle_lang()

@@ -7,7 +7,7 @@ Main Settings mode
 import pygame
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
 from helik.platform import AxisValue, AxisType, ButtonType
-from helik.types import BoardType
+from helik.types import BoardType, HelpChapter
 from .standard import SettingsMode, SettingsModeId
 
 
@@ -121,7 +121,10 @@ class MainSettingsMode(SettingsMode):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        if key == pygame.K_DOWN:
+        if key == pygame.K_F1:
+            self.parent.arena.change_board(BoardType.HELP,
+                                           help=HelpChapter.SETTINGS)
+        elif key == pygame.K_DOWN:
             if self.menu_pos < self.maxpos:
                 self.audio.play_sfx("poom")
                 self.menu_pos += 1
