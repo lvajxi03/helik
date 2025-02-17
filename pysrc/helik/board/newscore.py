@@ -130,7 +130,7 @@ class BoardNewScore(Board):
         """
         self.paint_default_bg()
 
-        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["newscore-status"]
+        la, re = self.resman.locale["common"]["newscore-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - STATUS_DX, ARENA_HEIGHT - LETTER_BLOCK_H))
 
         la, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["congrats-shadow"]

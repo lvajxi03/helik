@@ -98,5 +98,5 @@ class Board:
         self.buffer.blit(la, (25, 25))
 
     def paint_default_status(self):
-        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["common-status"]
+        la, re = self.resman.locale["common"]["common-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))

@@ -79,7 +79,7 @@ class BoardMenu(Board):
         Paint event handler
         """
         self.paint_default_bg()
-        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["menu-status"]
+        la, re = self.resman.locale["common"]["menu-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
         la, _ = self.resman.locale[self.arena.config["lang"]]["menu"]["title-shadow"]
@@ -114,7 +114,9 @@ class BoardMenu(Board):
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_DOWN:
+        if key == pygame.K_F1:
+            self.arena.change_board(BoardType.HELP, help=BoardType.HISCORES)
+        elif key == pygame.K_DOWN:
             if self.menu_pos < 6:
                 self.audio.play_sfx("poom")
                 self.menu_pos += 1

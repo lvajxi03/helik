@@ -42,16 +42,16 @@ class BoardHelp(Board):
         self.pager.on_paint(self.buffer)
 
         if self.pager.has_next() and self.pager.has_prev():
-            la, re = self.resman.locale[self.arena.config["lang"]]["common"]["pager-status-full"]
+            la, re = self.resman.locale["common"]["pager-status-full"]
             self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
         elif self.pager.has_next():
-            la, re = self.resman.locale[self.arena.config["lang"]]["common"]["pager-status-next"]
+            la, re = self.resman.locale["common"]["pager-status-next"]
             self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
         elif self.pager.has_prev():
-            la, re = self.resman.locale[self.arena.config["lang"]]["common"]["pager-status-prev"]
+            la, re = self.resman.locale["common"]["pager-status-prev"]
             self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
         else:
-            la, re = self.resman.locale[self.arena.config["lang"]]["common"]["pager-status-none"]
+            la, re = self.resman.locale["common"]["pager-status-none"]
             self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
     def on_keyup(self, key):

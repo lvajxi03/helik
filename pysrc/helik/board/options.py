@@ -62,7 +62,7 @@ class BoardOptions(Board):
         """
         self.paint_default_bg()
 
-        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["settings-status"]
+        la, re = self.resman.locale["common"]["settings-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
         self.paint_default_title("options")

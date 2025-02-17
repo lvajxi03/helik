@@ -71,7 +71,7 @@ class MainSettingsMode(SettingsMode):
         self.paint_default_bg()
         self.paint_default_title("settings")
 
-        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["settings-status"]
+        la, re = self.resman.locale["common"]["settings-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
         for re in self.rectangles_s:
