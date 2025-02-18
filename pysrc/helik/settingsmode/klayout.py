@@ -70,25 +70,27 @@ class KbdLayoutSettingsMode(SettingsMode):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        if key == pygame.K_F1:
-            self.parent.arena.change_board(BoardType.HELP,
-                                           help=HelpChapter.SETTINGS)
-        elif key == pygame.K_F2:
-            self.parent.change_mode(SettingsModeId.KINPUT)
-        elif key == pygame.K_F3:
-            self.arena.config.toggle_lang()
-        elif key in (pygame.K_ESCAPE, pygame.K_LEFT):
-            self.parent.change_mode(SettingsModeId.MAIN)
+        match key:
+            case pygame.K_F1:
+                self.parent.arena.change_board(
+                    BoardType.HELP, help=HelpChapter.SETTINGS)
+            case pygame.K_F2:
+                self.parent.change_mode(SettingsModeId.KINPUT)
+            case pygame.K_F3:
+                self.arena.toggle_lang()
+            case pygame.K_ESCAPE:
+                self.parent.change_mode(SettingsModeId.MAIN)
 
     def on_joybuttonup(self, button):
         """
         Joy Button Up event handler
         :param button: button number
         """
-        if button == ButtonType.START:
-            self.parent.change_mode(SettingsModeId.KINPUT)
-        elif button == ButtonType.B:
-            self.arena.config.toggle_lang()
+        match button:
+            case ButtonType.START:
+                self.parent.change_mode(SettingsModeId.KINPUT)
+            case ButtonType.B:
+                self.arena.toggle_lang()
 
     def on_joyaxismotion(self, axis, value):
         """
@@ -105,15 +107,14 @@ class KbdLayoutSettingsMode(SettingsMode):
         :param button: button number
         :param pos: cursor position
         """
-        if button == 1:
-            rects = self.resman.rectangles["lang-rectangles"]
-            for lang in rects:
-                if rects[lang].collidepoint(pos):
-                    self.arena.config['lang'] = lang
-                    self.audio.play_sfx("arrow")
-        if button in (2, 3):
-            self.parent.change_mode(SettingsModeId.MAIN)
-        elif button == 4:
-            self.on_keyup(pygame.K_UP)
-        elif button == 5:
-            self.on_keyup(pygame.K_DOWN)
+        match button:
+            case 1:
+                rects = self.resman.rectangles["lang-rectangles"]
+                for lang in rects:
+                    if rects[lang].collidepoint(pos):
+                        self.arena.config['lang'] = lang
+                        self.audio.play_sfx("arrow")
+            case 4:
+                self.on_keyup(pygame.K_UP)
+            case 5:
+                self.on_keyup(pygame.K_DOWN)

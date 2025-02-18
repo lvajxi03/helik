@@ -121,41 +121,43 @@ class MainSettingsMode(SettingsMode):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        if key == pygame.K_F1:
-            self.parent.arena.change_board(BoardType.HELP,
-                                           help=HelpChapter.SETTINGS)
-        elif key == pygame.K_F3:
-            self.parent.arena.toggle_lang()
-            self.create_rectangles()
-        elif key == pygame.K_DOWN:
-            if self.menu_pos < self.maxpos:
-                self.audio.play_sfx("poom")
-                self.menu_pos += 1
-        elif key == pygame.K_UP:
-            if self.menu_pos > 0:
-                self.menu_pos -= 1
-                self.audio.play_sfx("poom")
-        elif key == pygame.K_RETURN:
-            if self.menu_pos == 0:
-                self.arena.config["sound"] = 0 if self.arena.config["sound"] == 1 else 1
-            elif self.menu_pos == 1:
-                if self.arena.config["music"] == 1:
-                    self.arena.config["music"] = 0
-                    self.arena.audio.stop_music()
-                    self.arena.audio.stop_background_music()
-                else:
-                    self.arena.config["music"] = 1
-                    self.arena.audio.enable_background_music("background-music")
-            elif self.menu_pos == 2:
-                # Keyboard settings
-                self.parent.change_mode(SettingsModeId.KLAYOUT)
-            elif self.menu_pos == 3:
-                # Gamepad buttons settings
-                self.parent.change_mode(SettingsModeId.GLAYOUT)
-            self.audio.play_sfx("closing-tape")
-        elif key in (pygame.K_q, pygame.K_ESCAPE, pygame.K_LEFT):
-            self.audio.play_sfx("closing-tape")
-            self.arena.change_board(BoardType.MENU)
+        match key:
+            case pygame.K_F1:
+                self.parent.arena.change_board(
+                    BoardType.HELP, help=HelpChapter.SETTINGS)
+            case pygame.K_F3:
+                self.parent.arena.toggle_lang()
+                self.create_rectangles()
+            case pygame.K_DOWN:
+                if self.menu_pos < self.maxpos:
+                    self.audio.play_sfx("poom")
+                    self.menu_pos += 1
+            case pygame.K_UP:
+                if self.menu_pos > 0:
+                    self.menu_pos -= 1
+                    self.audio.play_sfx("poom")
+            case pygame.K_RETURN:
+                self.audio.play_sfx("closing-tape")
+                match self.menu_pos:
+                    case 0:
+                        self.arena.config["sound"] = 0 if self.arena.config["sound"] == 1 else 1
+                    case 1:
+                        if self.arena.config["music"] == 1:
+                            self.arena.config["music"] = 0
+                            self.arena.audio.stop_music()
+                            self.arena.audio.stop_background_music()
+                        else:
+                            self.arena.config["music"] = 1
+                            self.arena.audio.enable_background_music("background-music")
+                    case 2:
+                        # Keyboard settings
+                        self.parent.change_mode(SettingsModeId.KLAYOUT)
+                    case 3:
+                        # Gamepad buttons settings
+                        self.parent.change_mode(SettingsModeId.GLAYOUT)
+            case pygame.K_ESCAPE:
+                self.audio.play_sfx("closing-tape")
+                self.arena.change_board(BoardType.MENU)
         self.recalculate_pos()
 
     def on_mouseup(self, button, pos):
@@ -165,28 +167,27 @@ class MainSettingsMode(SettingsMode):
         :param pos: cursor position
         """
         ch_lang = False
-        if button == 1:
-            rects = self.resman.rectangles["lang-rectangles"]
-            for lang in rects:
-                if rects[lang].collidepoint(pos):
-                    self.arena.set_lang(lang)
-                    ch_lang = True
-                    self.audio.play_sfx("poom")
-                    self.create_rectangles()
-            if not ch_lang:
-                i = 0
-                for elem in self.rectangles:
-                    _, rect = elem
-                    if rect.collidepoint(pos):
-                        self.menu_pos = i
-                        self.on_keyup(pygame.K_RETURN)
-                    i += 1
-        if button in (2, 3):
-            self.arena.change_board(BoardType.MENU)
-        elif button == 4:
-            self.on_keyup(pygame.K_UP)
-        elif button == 5:
-            self.on_keyup(pygame.K_DOWN)
+        match button:
+            case 1:
+                rects = self.resman.rectangles["lang-rectangles"]
+                for lang in rects:
+                    if rects[lang].collidepoint(pos):
+                        self.arena.set_lang(lang)
+                        ch_lang = True
+                        self.audio.play_sfx("poom")
+                        self.create_rectangles()
+                if not ch_lang:
+                    i = 0
+                    for elem in self.rectangles:
+                        _, rect = elem
+                        if rect.collidepoint(pos):
+                            self.menu_pos = i
+                            self.on_keyup(pygame.K_RETURN)
+                        i += 1
+            case 4:
+                self.on_keyup(pygame.K_UP)
+            case 5:
+                self.on_keyup(pygame.K_DOWN)
 
     def on_joyaxismotion(self, axis, value):
         """
@@ -203,11 +204,12 @@ class MainSettingsMode(SettingsMode):
                 self.on_keyup(pygame.K_UP)
 
     def on_joybuttonup(self, button):
-        if button == ButtonType.SELECT:
-            self.on_keyup(pygame.K_RETURN)
-        elif button == ButtonType.B:
-            self.arena.toggle_lang()
-            self.create_rectangles()
+        match button:
+            case ButtonType.SELECT:
+                self.on_keyup(pygame.K_RETURN)
+            case ButtonType.B:
+                self.arena.toggle_lang()
+                self.create_rectangles()
 
     def activate(self):
         """

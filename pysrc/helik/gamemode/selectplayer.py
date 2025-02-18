@@ -79,26 +79,27 @@ class SelectPlayer(Mode):
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_F1:
-            self.arena.change_board(BoardType.HELP, help=HelpChapter.VEHICLESELECTION)
-        elif key == pygame.K_F3:
-            self.arena.config.toggle_lang()
-        elif key == pygame.K_LEFT:
-            if self.viewpos > 0:
-                self.viewpos -= 1
-                self.audio.play_sfx("arrow")
-        elif key == pygame.K_RIGHT:
-            if self.viewpos < len(self.vehicles) - 1:
-                self.viewpos += 1
-                self.audio.play_sfx("arrow")
-        elif key == pygame.K_RETURN:
-            self.game.player = Player(self.game, self.viewpos)
-            self.audio.play_sfx("closing-tape")
-            self.game.change_mode(GameMode.PREPARE)
-        elif key == pygame.K_ESCAPE:
-            self.arena.change_board(BoardType.MENU)
-        elif key == pygame.K_q:
-            self.arena.change_board(BoardType.MENU)
+        match key:
+            case pygame.K_F1:
+                self.arena.change_board(BoardType.HELP, help=HelpChapter.VEHICLESELECTION)
+            case pygame.K_F3:
+                self.arena.toggle_lang()
+            case pygame.K_LEFT:
+                if self.viewpos > 0:
+                    self.viewpos -= 1
+                    self.audio.play_sfx("arrow")
+            case pygame.K_RIGHT:
+                if self.viewpos < len(self.vehicles) - 1:
+                    self.viewpos += 1
+                    self.audio.play_sfx("arrow")
+            case pygame.K_RETURN:
+                self.game.player = Player(self.game, self.viewpos)
+                self.audio.play_sfx("closing-tape")
+                self.game.change_mode(GameMode.PREPARE)
+            case pygame.K_ESCAPE:
+                self.arena.change_board(BoardType.MENU)
+            case pygame.K_q:
+                self.arena.change_board(BoardType.MENU)
 
     def on_joyaxismotion(self, axis, value):
         """
@@ -122,4 +123,4 @@ class SelectPlayer(Mode):
         if button == ButtonType.SELECT:
             self.on_keyup(pygame.K_RETURN)
         elif button == ButtonType.B:
-            self.arena.config.toggle_lang()
+            self.arena.toggle_lang()

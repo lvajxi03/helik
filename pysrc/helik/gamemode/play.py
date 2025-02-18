@@ -146,17 +146,22 @@ class ModePlay(Mode):
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_F1:
-            self.arena.change_board(BoardType.HELP, help=HelpChapter.GAMEPLAY)
-        elif key == pygame.K_ESCAPE:
-            self.game.change_mode(GameMode.PAUSED)
-        elif key == self.arena.config["keys"]["shoot"]:
-            if self.data['bullets-available'] > 0:
-                self.audio.play_sfx("popup")
-                self.game.level.make_bullet(self.game.player)
-                self.data['bullets-available'] -= 1
-        elif key == self.arena.config["keys"]["jump"]:
-            self.game.player.on_jump()
+        match key:
+            case pygame.K_F1:
+                self.arena.change_board(BoardType.HELP, help=HelpChapter.GAMEPLAY)
+            case pygame.K_ESCAPE:
+                self.game.change_mode(GameMode.PAUSED)
+            case _:
+                # if/elif blocks has to be present,
+                # apparently new match/case syntax
+                # doesn't work with dicts.
+                if key == self.arena.config["keys"]["shoot"]:
+                    if self.data['bullets-available'] > 0:
+                        self.audio.play_sfx("popup")
+                        self.game.level.make_bullet(self.game.player)
+                        self.data['bullets-available'] -= 1
+                elif key == self.arena.config["keys"]["jump"]:
+                    self.game.player.on_jump()
 
     def on_joyaxismotion(self, axis, value):
         """

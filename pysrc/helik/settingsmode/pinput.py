@@ -77,31 +77,34 @@ class PadInputSettingsMode(SettingsMode):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        if key in (pygame.K_ESCAPE, pygame.K_LEFT):
-            self.parent.change_mode(SettingsModeId.GLAYOUT)
-        elif key == pygame.K_F3:
-            self.arena.config.toggle_lang()
-        elif key == pygame.K_RETURN:
-            if len(self.defined) == 2:
-                self.arena.config["buttons"]["jump"] = self.defined[0]
-                self.arena.config["buttons"]["shoot"] = self.defined[1]
-                self.parent.change_mode(SettingsModeId.KLAYOUT)
+        match key:
+            case pygame.K_ESCAPE:
+                self.parent.change_mode(SettingsModeId.GLAYOUT)
+            case pygame.K_F3:
+                self.arena.toggle_lang()
+            case pygame.K_RETURN:
+                if len(self.defined) == 2:
+                    self.arena.config["buttons"]["jump"] = self.defined[0]
+                    self.arena.config["buttons"]["shoot"] = self.defined[1]
+                    self.parent.change_mode(SettingsModeId.KLAYOUT)
 
     def on_joybuttonup(self, button):
         """
         JoyButtonUp event handler
         :param button: button number
         """
-        if button == ButtonType.SELECT:
-            if len(self.defined) == 2:
-                self.arena.config["buttons"]["jump"] = self.defined[0]
-                self.arena.config["buttons"]["shoot"] = self.defined[1]
-                self.parent.change_mode(SettingsModeId.GLAYOUT)
-        elif button == ButtonType.START:
-            self.activate()
-        elif button in buttons_allowed and button not in self.defined:
-            self.defined.append(button)
-            self.maxdef += 1
+        match button:
+            case ButtonType.SELECT:
+                if len(self.defined) == 2:
+                    self.arena.config["buttons"]["jump"] = self.defined[0]
+                    self.arena.config["buttons"]["shoot"] = self.defined[1]
+                    self.parent.change_mode(SettingsModeId.GLAYOUT)
+            case ButtonType.START:
+                self.activate()
+            case _:
+                if button in buttons_allowed and button not in self.defined:
+                    self.defined.append(button)
+                    self.maxdef += 1
 
     def on_joyaxismotion(self, axis, value):
         """
@@ -118,18 +121,17 @@ class PadInputSettingsMode(SettingsMode):
         :param button: button number
         :param pos: cursor position
         """
-        if button == 1:
-            rects = self.resman.rectangles["lang-rectangles"]
-            for lang in rects:
-                if rects[lang].collidepoint(pos):
-                    self.arena.set_lang(lang)
-                    self.audio.play_sfx("arrow")
-        if button in (2, 3):
-            self.parent.change_mode(SettingsModeId.GLAYOUT)
-        elif button == 4:
-            self.on_keyup(pygame.K_UP)
-        elif button == 5:
-            self.on_keyup(pygame.K_DOWN)
+        match button:
+            case 1:
+                rects = self.resman.rectangles["lang-rectangles"]
+                for lang in rects:
+                    if rects[lang].collidepoint(pos):
+                        self.arena.set_lang(lang)
+                        self.audio.play_sfx("arrow")
+            case 4:
+                self.on_keyup(pygame.K_UP)
+            case 5:
+                self.on_keyup(pygame.K_DOWN)
 
     def activate(self):
         pygame.time.set_timer(TimerType.SECOND, 250)

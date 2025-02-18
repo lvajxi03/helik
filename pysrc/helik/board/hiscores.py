@@ -125,4 +125,4 @@ class BoardHiscores(Board):
         :param button: button number
         """
         if button == ButtonType.B:
-            self.arena.config.toggle_lang()
+            self.arena.toggle_lang()

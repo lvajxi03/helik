@@ -185,7 +185,7 @@ class BoardMenu(Board):
         """
         match button:
             case ButtonType.B:
-                self.arena.config.toggle_lang()
+                self.arena.toggle_lang()
                 self.create_rectangles()
             case ButtonType.SELECT:
                 self.on_keyup(pygame.K_RETURN)

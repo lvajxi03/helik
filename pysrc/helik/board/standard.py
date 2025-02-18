@@ -98,5 +98,8 @@ class Board:
         self.buffer.blit(la, (25, 25))
 
     def paint_default_status(self):
+        """
+        Paint default status
+        """
         la, re = self.resman["common-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))

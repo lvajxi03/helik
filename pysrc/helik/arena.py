@@ -81,28 +81,29 @@ class Arena:
             # Activate initial board
             self.boards[self.board_id].activate()
 
-        # webbrowser.open("mailto:marcin.bielewicz@gmail.com")
         # Main application loop
         for j in range(pygame.joystick.get_count()):
             pygame.joystick.Joystick(j)
         while self.running:
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.running = False
-                elif event.type == pygame.KEYUP:
-                    self.on_keyup(event.key)
-                elif event.type == pygame.MOUSEBUTTONUP:
-                    self.on_mouseup(event.button, event.pos)
-                elif event.type == pygame.JOYBUTTONUP:
-                    self.on_joybuttonup(event.button)
-                elif event.type == pygame.JOYAXISMOTION:
-                    self.on_joyaxismotion(event.axis, event.value)
-                elif event.type == pygame.JOYDEVICEADDED:
-                    for j in range(pygame.joystick.get_count()):
-                        joy = pygame.joystick.Joystick(j)
-                        joy.init()
-                elif event.type > pygame.USEREVENT:
-                    self.on_timer(event.type)
+                match event.type:
+                    case pygame.QUIT:
+                        self.running = False
+                    case pygame.KEYUP:
+                        self.on_keyup(event.key)
+                    case pygame.MOUSEBUTTONUP:
+                        self.on_mouseup(event.button, event.pos)
+                    case pygame.JOYBUTTONUP:
+                        self.on_joybuttonup(event.button)
+                    case pygame.JOYAXISMOTION:
+                        self.on_joyaxismotion(event.axis, event.value)
+                    case pygame.JOYDEVICEADDED:
+                        for j in range(pygame.joystick.get_count()):
+                            joy = pygame.joystick.Joystick(j)
+                            joy.init()
+                    case _:
+                        if event.type > pygame.USEREVENT:
+                            self.on_timer(event.type)
 
             dt = self.clock.tick(1000)
             self.on_update(dt)

@@ -66,7 +66,7 @@ class BoardHelp(Board):
             case pygame.K_LEFT:
                 self.pager.prev()
             case pygame.K_F3:
-                self.arena.config.toggle_lang()
+                self.arena.toggle_lang()
                 self.pager.change_lang(self.arena.config["lang"])
             case pygame.K_RIGHT:
                 self.pager.next()
@@ -101,7 +101,7 @@ class BoardHelp(Board):
         """
         match button:
             case ButtonType.B:
-                self.arena.config.toggle_lang()
+                self.arena.toggle_lang()
                 self.pager.change_lang(self.arena.config["lang"])
             case ButtonType.A:
                 self.arena.change_board(BoardType.MENU)

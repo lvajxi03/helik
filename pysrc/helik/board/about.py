@@ -98,7 +98,7 @@ class BoardAbout(Board):
         """
         match button:
             case ButtonType.B:
-                self.arena.config.toggle_lang()
+                self.arena.toggle_lang()
             case ButtonType.A:
                 self.arena.change_board(BoardType.MENU)
 

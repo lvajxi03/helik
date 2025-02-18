@@ -91,7 +91,7 @@ class KbdInputSettingsMode(SettingsMode):
                 # Restart defining keys
                 self.activate()
             case pygame.K_F3:
-                self.arena.config.toggle_lang()
+                self.arena.toggle_lang()
             case pygame.K_RETURN:
                 if len(self.defined) == 2:
                     self.arena.config["keys"]["jump"] = self.defined[0]

@@ -40,13 +40,12 @@ class ModeGameOver(Mode):
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_F3:
-            self.arena.config.toggle_lang()
-        elif key == pygame.K_ESCAPE:
-            if self.arena.config.is_hiscore(self.game.data['points']):
-                self.game.arena.change_board(BoardType.NEWSCORE)
-            else:
-                self.game.arena.change_board(BoardType.HISCORES)
+        match key:
+            case pygame.K_F3:
+                self.arena.toggle_lang()
+            case pygame.K_ESCAPE:
+                if self.arena.config.is_hiscore(self.game.data['points']):
+                    self.game.arena.change_board(BoardType.NEWSCORE)
 
     def on_joybuttonup(self, button):
         """
@@ -54,7 +53,7 @@ class ModeGameOver(Mode):
         :param button: button number
         """
         if button == ButtonType.B:
-            self.arena.config.toggle_lang()
+            self.arena.toggle_lang()
 
     def on_joyaxismotion(self, axis, value):
         """

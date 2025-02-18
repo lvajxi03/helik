@@ -114,7 +114,7 @@ class BoardOptions(Board):
                 self.audio.play_sfx("closing-tape")
                 self.arena.change_board(BoardType.MENU)
             case pygame.K_F3:
-                self.arena.config.toggle_lang()
+                self.arena.toggle_lang()
                 self.create_rectangles()
         self.recalculate_pos()
 
@@ -165,5 +165,5 @@ class BoardOptions(Board):
             case ButtonType.SELECT:
                 self.on_keyup(pygame.K_RETURN)
             case ButtonType.B:
-                self.arena.config.toggle_lang()
+                self.arena.toggle_lang()
                 self.create_rectangles()

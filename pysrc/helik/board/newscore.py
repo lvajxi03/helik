@@ -230,7 +230,7 @@ class BoardNewScore(Board):
 
         match key:
             case pygame.K_F3:
-                self.arena.config.toggle_lang()
+                self.arena.toggle_lang()
             case pygame.K_ESCAPE:
                 self.arena.change_board(BoardType.HISCORES)
             case pygame.K_DOWN:
@@ -308,6 +308,6 @@ class BoardNewScore(Board):
         """
         match button:
             case ButtonType.B:
-                self.arena.config.toggle_lang()
+                self.arena.toggle_lang()
             case ButtonType.A:
                 self.on_keyup(pygame.K_ESCAPE)
