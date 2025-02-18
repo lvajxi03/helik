@@ -85,6 +85,8 @@ class Page:
                            elem["action"], resman.colors)
                 self.data["buttons"].append(b)
             else:
+                # Here's probably the one place where .locale[$lang] is present.
+                # and not sure why.
                 elem["label"] = resman.locale[lang]["pages"][elem["label"]]
                 self.data["labels"].append(elem)
 
@@ -98,6 +100,7 @@ class Page:
             if button.contains(x, y):
                 button.execute()
                 return True
+        return False
 
     def on_paint(self, canvas):
         """
@@ -137,19 +140,19 @@ class Pager:
                 page = Page(elem, resman, lang)
                 self.pages[lang].append(page)
 
-    def activate(self):
+    def activate(self, *args):
         """
         Activate event handler
         """
-        self.current = 0
+        self.current = min(args[0], len(self.pages[self.lang]) - 1) if len(args) > 0 else 0
 
     def change_lang(self, newlang):
         """
         Change current language
+        :param newlang: new language id
         """
         self.lang = newlang
-        if self.current > len(self.pages[self.lang]) - 1:
-            self.current = len(self.pages[self.lang]) - 1
+        self.current = min(self.current, len(self.pages[self.lang]) - 1)
 
     def prev(self):
         """

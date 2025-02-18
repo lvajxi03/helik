@@ -8,9 +8,9 @@ Game board for HeliK
 from helik.game import Level
 from helik.gamemode import (Mode, ModeInit, ModeKilled, ModePaused,
                             ModePlay, ModePrepare, ModeNewLevel, SelectPlayer, ModeGameOver)
-from .standard import Board
 from helik.gamemode import GameMode
 from helik.media import SoundPlayState
+from .standard import Board
 
 
 class BoardGame(Board):
@@ -52,7 +52,7 @@ class BoardGame(Board):
         """
         Initialize new level data
         """
-        self.level = Level(self.resman, self.data['level'])
+        self.level = Level(self.resman, self.data['level'], self.arena.config["option"])
 
     def change_mode(self, newmode):
         """
@@ -68,9 +68,10 @@ class BoardGame(Board):
             self.mode = newmode
             self.modes[self.mode].activate()
 
-    def activate(self):
+    def activate(self, **kwargs):
         """
         Activate event handler
+        :param kwargs: additional parameters, like help or previous board
         """
         self.change_mode(GameMode.INIT)
 

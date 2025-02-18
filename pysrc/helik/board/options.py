@@ -7,8 +7,8 @@ Options board handler
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.platform import ButtonType, AxisType, AxisValue
+from helik.types import BoardType, HelpChapter
 from .standard import Board
-from .types import BoardType
 
 
 class BoardOptions(Board):
@@ -41,14 +41,14 @@ class BoardOptions(Board):
         self.rectangles_s = []
 
         i = 0
-        for elem in self.resman.locale[self.arena.config['lang']]["options"]["items"]:
+        for elem in self.resman["options"]["items"]:
             label, rect = elem
             rect.left = 400
             rect.top = 100 + i * 80
             self.rectangles.append((label, rect))
             i += 1
         i = 0
-        for elem in self.resman.locale[self.arena.config['lang']]["options"]["items-shadow"]:
+        for elem in self.resman["options"]["items-shadow"]:
             label, rect = elem
             rect.left = 405
             rect.top = 105 + i * 80
@@ -62,7 +62,7 @@ class BoardOptions(Board):
         """
         self.paint_default_bg()
 
-        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["settings-status"]
+        la, re = self.resman["settings-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
         self.paint_default_title("options")
@@ -80,9 +80,10 @@ class BoardOptions(Board):
         pygame.draw.rect(self.buffer, pygame.Color(207, 229, 32),
                          self.rect_pos, width=5, border_radius=20)
 
-    def activate(self):
+    def activate(self, **kwargs):
         """
         Activate event handler
+        :param kwargs: additional parameters, like help or previous board
         """
         self.option = self.arena.config['option']
         self.menu_pos = self.option
@@ -93,25 +94,28 @@ class BoardOptions(Board):
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_DOWN:
-            if self.menu_pos < 5:
-                self.menu_pos += 1
-                self.audio.play_sfx("arrow")
-        elif key == pygame.K_UP:
-            if self.menu_pos > 0:
-                self.menu_pos -= 1
-                self.audio.play_sfx("arrow")
-        elif key == pygame.K_RETURN:
-            self.option = self.menu_pos
-            self.arena.config['option'] = self.menu_pos
-            self.audio.play_sfx("closing-tape")
-            self.arena.change_board(BoardType.MENU)
-        elif key == pygame.K_ESCAPE:
-            self.audio.play_sfx("closing-tape")
-            self.arena.change_board(BoardType.MENU)
-        elif key == pygame.K_F3:
-            self.arena.config.toggle_lang()
-            self.create_rectangles()
+        match key:
+            case pygame.K_F1:
+                self.arena.change_board(BoardType.HELP, help=HelpChapter.OPTIONS)
+            case pygame.K_DOWN:
+                if self.menu_pos < 5:
+                    self.menu_pos += 1
+                    self.audio.play_sfx("arrow")
+            case pygame.K_UP:
+                if self.menu_pos > 0:
+                    self.menu_pos -= 1
+                    self.audio.play_sfx("arrow")
+            case pygame.K_RETURN:
+                self.option = self.menu_pos
+                self.arena.config['option'] = self.menu_pos
+                self.audio.play_sfx("closing-tape")
+                self.arena.change_board(BoardType.MENU)
+            case pygame.K_ESCAPE:
+                self.audio.play_sfx("closing-tape")
+                self.arena.change_board(BoardType.MENU)
+            case pygame.K_F3:
+                self.arena.toggle_lang()
+                self.create_rectangles()
         self.recalculate_pos()
 
     def on_mouseup(self, button, pos):
@@ -121,32 +125,31 @@ class BoardOptions(Board):
         :param pos: cursor position
         """
         ch_lang = False
-        if button == 1:
-            rects = self.resman.rectangles["lang-rectangles"]
-            for lang in rects:
-                if rects[lang].collidepoint(pos):
-                    self.arena.config['lang'] = lang
-                    ch_lang = True
-                    self.audio.play_sfx("arrow")
-                    self.create_rectangles()
-            if not ch_lang:
-                tpos = -1
-                for elem in self.rectangles:
-                    _, rect = elem
-                    tpos += 1
-                    if rect.collidepoint(pos):
-                        self.menu_pos = tpos
-                        self.option = tpos
-                        self.arena.config['option'] = self.menu_pos
-                        self.recalculate_pos()
-                        self.audio.play_sfx("closing-tape")
-                self.arena.change_board(BoardType.MENU)
-        elif button == 4:
-            self.on_keyup(pygame.K_UP)
-        elif button == 5:
-            self.on_keyup(pygame.K_DOWN)
-        elif button in (2, 3):
-            self.on_keyup(pygame.K_ESCAPE)
+        match button:
+            case 1:
+                rects = self.resman.rectangles["lang-rectangles"]
+                for lang in rects:
+                    if rects[lang].collidepoint(pos):
+                        self.arena.config['lang'] = lang
+                        ch_lang = True
+                        self.audio.play_sfx("arrow")
+                        self.create_rectangles()
+                if not ch_lang:
+                    tpos = -1
+                    for elem in self.rectangles:
+                        _, rect = elem
+                        tpos += 1
+                        if rect.collidepoint(pos):
+                            self.menu_pos = tpos
+                            self.option = tpos
+                            self.arena.config['option'] = self.menu_pos
+                            self.recalculate_pos()
+                            self.audio.play_sfx("closing-tape")
+                    self.arena.change_board(BoardType.MENU)
+            case 4:
+                self.on_keyup(pygame.K_UP)
+            case 5:
+                self.on_keyup(pygame.K_DOWN)
 
     def on_joyaxismotion(self, axis, value):
         if axis == AxisType.VERT:
@@ -158,8 +161,9 @@ class BoardOptions(Board):
             self.on_keyup(pygame.K_ESCAPE)
 
     def on_joybuttonup(self, button):
-        if button == ButtonType.SELECT:
-            self.on_keyup(pygame.K_RETURN)
-        elif button == ButtonType.B:
-            self.arena.config.toggle_lang()
-            self.create_rectangles()
+        match button:
+            case ButtonType.SELECT:
+                self.on_keyup(pygame.K_RETURN)
+            case ButtonType.B:
+                self.arena.toggle_lang()
+                self.create_rectangles()

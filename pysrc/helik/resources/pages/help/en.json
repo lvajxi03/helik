@@ -1,0 +1,406 @@
+{
+  "en": [
+    {
+      "images": [],
+      "labels": [
+        {
+          "label": "help-A-title",
+          "location": [
+            250,
+            70
+          ]
+        },
+        {
+          "label": "help-A1",
+          "location": [
+            250,
+            150
+          ]
+        },
+        {
+          "label": "help-A2",
+          "location": [
+            250,
+            200
+          ]
+        },
+        {
+          "label": "help-A3",
+          "location": [
+            250,
+            250
+          ]
+        },
+        {
+          "label": "help-A4",
+          "location": [
+            250,
+            300
+          ]
+        },
+        {
+          "label": "help-A5",
+          "location": [
+            250,
+            350
+          ]
+        },
+        {
+          "label": "help-A-status",
+          "location": [
+            250,
+            450
+          ]
+        }
+      ]
+    },
+    {
+      "images": [
+        {
+          "image": "status-1",
+          "location": [
+            250,
+            470
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "label": "help-N-title",
+          "location": [
+            250,
+            70
+          ]
+        },
+        {
+          "label": "help-N1",
+          "location": [
+            250,
+            150
+          ]
+        },
+        {
+          "label": "help-N2",
+          "location": [
+            250,
+            200
+          ]
+        },
+        {
+          "label": "help-N3",
+          "location": [
+            250,
+            250
+          ]
+        },
+        {
+          "label": "help-N4",
+          "location": [
+            250,
+            350
+          ]
+        },
+        {
+          "label": "help-N5",
+          "location": [
+            250,
+            400
+          ]
+        },
+        {
+          "label": "help-N6",
+          "location": [
+            950,
+            530
+          ]
+        },
+        {
+          "label": "help-N7",
+          "location": [
+            860,
+            570
+          ]
+        },
+        {
+          "label": "help-N8",
+          "location": [
+            860,
+            610
+          ]
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "label": "help-S-title",
+          "location": [
+            250,
+            70
+          ]
+        },
+        {
+          "label": "help-S1",
+          "location": [
+            250,
+            150
+          ]
+        },
+        {
+          "label": "help-S2",
+          "location": [
+            250,
+            200
+          ]
+        },
+        {
+          "label": "help-S3",
+          "location": [
+            250,
+            250
+          ]
+        },
+        {
+          "label": "help-S4",
+          "location": [
+            250,
+            300
+          ]
+        },
+        {
+          "label": "help-S5",
+          "location": [
+            250,
+            350
+          ]
+        },
+        {
+          "label": "help-S6",
+          "location": [
+            250,
+            400
+          ]
+        },
+        {
+          "label": "help-S7",
+          "location": [
+            250,
+            500
+          ]
+        },
+        {
+          "label": "help-S8",
+          "location": [
+            250,
+            550
+          ]
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "label": "help-O-title",
+          "location": [
+            250,
+            70
+          ]
+        },
+        {
+          "label": "help-O1",
+          "location": [
+            250,
+            150
+          ]
+        },
+        {
+          "label": "help-O2",
+          "location": [
+            250,
+            200
+          ]
+        },
+        {
+          "label": "help-O3",
+          "location": [
+            250,
+            250
+          ]
+        },
+        {
+          "label": "help-O4",
+          "location": [
+            250,
+            300
+          ]
+        },
+        {
+          "label": "help-O5",
+          "location": [
+            250,
+            400
+          ]
+        },
+        {
+          "label": "help-O6",
+          "location": [
+            250,
+            450
+          ]
+        },
+        {
+          "label": "help-O7",
+          "location": [
+            250,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "label": "help-H-title",
+          "location": [
+            250,
+            70
+          ]
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "label": "help-G-title",
+          "location": [
+            250,
+            70
+          ]
+        },
+        {
+          "label": "help-G1",
+          "location": [
+            250,
+            150
+          ]
+        },
+        {
+          "label": "help-G2",
+          "location": [
+            250,
+            200
+          ]
+        },
+        {
+          "label": "help-G3",
+          "location": [
+            250,
+            250
+          ]
+        },
+        {
+          "label": "help-G4",
+          "location": [
+            250,
+            300
+          ]
+        },
+        {
+          "label": "help-G5",
+          "location": [
+            250,
+            350
+          ]
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "label": "help-Ga-title",
+          "location": [
+            250,
+            70
+          ]
+        },
+        {
+          "label": "help-G1a",
+          "location": [250, 170]
+        },
+        {
+          "label": "help-G1c",
+          "location": [250, 220]
+        },
+        {
+          "label": "help-G1e",
+          "location": [250, 270]
+        },
+        {
+          "label": "help-G1f",
+          "location": [250, 370]
+        },
+        {
+          "label": "help-G1g",
+          "location": [250, 420]
+        },
+        {
+          "label": "help-G1h",
+          "location": [250, 520]
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "label": "help-Gb-title",
+          "location": [
+            250,
+            70
+          ]
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "label": "help-Gc-title",
+          "location": [
+            250,
+            70
+          ]
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "label": "help-Gd-title",
+          "location": [
+            250,
+            70
+          ]
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "label": "help-Ge-title",
+          "location": [
+            250,
+            70
+          ]
+        }
+      ]
+    }
+  ]
+}

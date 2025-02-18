@@ -1,7 +1,15 @@
 {
   "fonts": {
+    "really-big": [
+      "kwadraciki-mono.ttf",
+      640
+    ],
     "about": [
       "punkciki-mono.ttf",
+      40
+    ],
+    "about-sans": [
+      "punkciki-sans.ttf",
       40
     ],
     "big-message": [
@@ -65,7 +73,7 @@
       40
     ],
     "pages-small": [
-      "punkciki-mono.ttf",
+      "punkciki-sans.ttf",
       30
     ],
     "pages-smallest": [

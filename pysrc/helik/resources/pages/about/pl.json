@@ -1,0 +1,213 @@
+{
+  "pl": [
+    {
+      "images": [
+        {
+          "image": "helik-default",
+          "location": [
+            200,
+            210
+          ]
+        },
+        {
+          "image": "balloon-default",
+          "location": [
+            230,
+            310
+          ]
+        },
+        {
+          "image": "airship-default",
+          "location": [
+            200,
+            450
+          ]
+        },
+        {
+          "image": "bird-5",
+          "location": [
+            750,
+            180
+          ]
+        },
+        {
+          "image": "bird-5",
+          "location": [
+            850,
+            180
+          ]
+        },
+        {
+          "image": "bird-5",
+          "location": [
+            950,
+            180
+          ]
+        },
+        {
+          "image": "building-2",
+          "location": [
+            550,
+            597
+          ]
+        },
+        {
+          "image": "building-5",
+          "location": [
+            725,
+            386
+          ]
+        },
+        {
+          "image": "building-7",
+          "location": [
+            880,
+            387
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "action": "mailto:marcin@iostream.pl?subject=HeliK!",
+          "image": "email",
+          "location": [
+            200,
+            650
+          ]
+        },
+        {
+          "action": "https://iostream.pl/helik-en",
+          "image": "webpage",
+          "location": [
+            300,
+            630
+          ]
+        },
+        {
+          "label": "about-1s",
+          "location": [
+            205,
+            33
+          ]
+        },
+        {
+          "label": "about-2s",
+          "location": [
+            205,
+            113
+          ]
+        },
+        {
+          "label": "about-3s",
+          "location": [
+            405,
+            193
+          ]
+        },
+        {
+          "label": "about-4s",
+          "location": [
+            405,
+            273
+          ]
+        },
+        {
+          "label": "about-1",
+          "location": [
+            200,
+            30
+          ]
+        },
+        {
+          "label": "about-2",
+          "location": [
+            200,
+            110
+          ]
+        },
+        {
+          "label": "about-3",
+          "location": [
+            400,
+            190
+          ]
+        },
+        {
+          "label": "about-4",
+          "location": [
+            400,
+            270
+          ]
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "label": "about-B1",
+          "location": [
+            200,
+            30
+          ]
+        },
+        {
+          "label": "about-B2",
+          "location": [
+            200,
+            70
+          ]
+        },
+        {
+          "label": "about-B3",
+          "location": [
+            200,
+            110
+          ]
+        },
+        {
+          "label": "about-B4",
+          "location": [
+            200,
+            210
+          ]
+        },
+        {
+          "label": "about-B5",
+          "location": [
+            200,
+            310
+          ]
+        },
+        {
+          "label": "about-B6",
+          "location": [
+            200,
+            410
+          ]
+        },
+        {
+          "label": "about-B7",
+          "location": [
+            200,
+            450
+          ]
+        },
+        {
+          "label": "about-B8",
+          "location": [
+            200,
+            490
+          ]
+        },
+        {
+          "label": "about-B9",
+          "location": [
+            200,
+            530
+          ]
+        }
+      ]
+    }
+  ]
+}

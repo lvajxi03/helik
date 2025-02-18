@@ -8,8 +8,8 @@ import random
 import pygame
 from helik.platform import TimerType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
+from helik.types import BoardType
 from .standard import Board
-from .types import BoardType
 
 
 class BoardWelcome(Board):
@@ -28,7 +28,11 @@ class BoardWelcome(Board):
                 pygame.Color(comp, comp, comp))
             # a = random.randint(0, 255)
 
-    def activate(self):
+    def activate(self, **kwargs):
+        """
+        Activate event handler
+        :param kwargs: additional parameters, like help or previous board
+        """
         pygame.time.set_timer(TimerType.FIRST, 3000)
 
     def on_update(self, delta):

@@ -1,5 +1,32 @@
 {
   "common": {
+    "big-digits": {
+      "color": "yellow-default",
+      "font": "really-big",
+      "labels": [
+        "1",
+        "2",
+        "3"
+      ],
+      "rotate": 0
+    },
+    "digits": {
+      "color": "snowy-white",
+      "font": "about",
+      "labels": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "rotate": 0
+    },
     "common-status": {
       "color": "snowy-white",
       "font": "status",

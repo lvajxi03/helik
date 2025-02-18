@@ -2,7 +2,7 @@
   "help-A-status": {
     "color": "snowy-white",
     "font": "pages-small",
-    "label": "Use arrow keys (←→) or mouse scroll to navigate",
+    "label": "Use arrow keys/dpad (←→) or mouse scroll to navigate",
     "rotate": 0
   },
   "help-A-title": {
@@ -53,6 +53,42 @@
     "label": "a. main goal",
     "rotate": 0
   },
+  "help-G1a": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "rotate": 0,
+    "label": "The main goal is to fly over the city and survive."
+  },
+  "help-G1c": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "rotate": 0,
+    "label": "You have to avoid buildings and clouds, definitely."
+  },
+  "help-G1e": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "rotate": 0,
+    "label": "Also, you have to avoid geese, but you can shoot them instead."
+  },
+  "help-G1f": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "rotate": 0,
+    "label": "You can collect additional hearts (up to 5 total), ammo (unlimited)"
+  },
+  "help-G1g": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "rotate": 0,
+    "label": "and change vehicle direction."
+  },
+  "help-G1h": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "rotate": 0,
+    "label": "Good luck! You gonna need this!"
+  },
   "help-G2": {
     "color": "snowy-white",
     "font": "pages-small",
@@ -77,12 +113,6 @@
     "label": "e. scoring and hearts",
     "rotate": 0
   },
-  "help-G6": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "f. game strategy",
-    "rotate": 0
-  },
   "help-Ga-title": {
     "color": "yellow-default",
     "font": "about",
@@ -98,7 +128,7 @@
   "help-Gc-title": {
     "color": "yellow-default",
     "font": "about",
-    "label": "Mavigation",
+    "label": "Navigation",
     "rotate": 0
   },
   "help-Gd-title": {
@@ -111,30 +141,6 @@
     "color": "yellow-default",
     "font": "about",
     "label": "Scoring and Hearts",
-    "rotate": 0
-  },
-  "help-Gf-title": {
-    "color": "yellow-default",
-    "font": "about",
-    "label": "Game Strategy",
-    "rotate": 0
-  },
-  "help-Gf1": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "Strategy in a pill:",
-    "rotate": 0
-  },
-  "help-Gf2": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "Good luck!",
-    "rotate": 0
-  },
-  "help-Gf3": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "You gonna need this!",
     "rotate": 0
   },
   "help-H-title": {
@@ -152,13 +158,13 @@
   "help-N1": {
     "color": "snowy-white",
     "font": "pages-small",
-    "label": "Wherever possible, use arrow keys (←→) to navigate,",
+    "label": "Wherever possible, use arrow keys or dpad to navigate",
     "rotate": 0
   },
   "help-N2": {
     "color": "snowy-white",
     "font": "pages-small",
-    "label": "ENTER to accept and ESC or Q to leave.",
+    "label": "Enter, Esc, Select, Start F3, Ⓐ or Ⓑ",
     "rotate": 0
   },
   "help-N3": {

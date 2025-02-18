@@ -7,8 +7,8 @@ import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, ALL_CHARS
 from helik.platform import TimerType
 from helik.platform import ButtonType
+from helik.types import BoardType
 from .standard import Board
-from .types import BoardType
 
 
 all_chrows = ['abcdefgh', 'ijklmnop', 'qrstuvwx', 'yz.-_012', '3456789⌫']
@@ -77,9 +77,10 @@ class BoardNewScore(Board):
         """
         self.nick = self.nick[:-1]
 
-    def activate(self):
+    def activate(self, **kwargs):
         """
         Activate event handler
+        :param kwargs: additional parameters, like help or previous board
         """
         self.arena.audio.enable_background_music("background-music")
         self.nick = self.arena.config["lastnick"]
@@ -104,12 +105,12 @@ class BoardNewScore(Board):
                                 LETTER_BLOCK_W, LETTER_BLOCK_H)
                 self.rectangles[all_chrows[i][j]] = r
 
-        _, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["space"]
+        _, re = self.resman["newscore"]["space"]
         re.y = SPACE_Y_OFFSET
         re.x = (ARENA_WIDTH - re.w) // 2
         self.rectangles[' '] = re
 
-        _, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["done"]
+        _, re = self.resman["newscore"]["done"]
         re.y = DONE_Y_OFFSET
         re.x = (ARENA_WIDTH - re.w) // 2
         self.rectangles[';'] = re
@@ -129,21 +130,21 @@ class BoardNewScore(Board):
         """
         self.paint_default_bg()
 
-        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["newscore-status"]
+        la, re = self.resman["newscore-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - STATUS_DX, ARENA_HEIGHT - LETTER_BLOCK_H))
 
-        la, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["congrats-shadow"]
+        la, re = self.resman["newscore"]["congrats-shadow"]
         re.x = (ARENA_WIDTH - re.w) // 2 + HEADING_SHADOW_DX
         re.y = CONGRATS_DY
         self.buffer.blit(la, re)
 
-        la, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["congrats"]
+        la, re = self.resman["newscore"]["congrats"]
         re.x = (ARENA_WIDTH - re.w) // 2
 
         re.y = CONGRATS_S_DY
         self.buffer.blit(la, re)
 
-        la, re = self.resman.locale[self.arena.config["lang"]]["newscore"]["congrats-2"]
+        la, re = self.resman["newscore"]["congrats-2"]
         re.x = (ARENA_WIDTH - re.w) // 2
         re.y = CONGRATS_2_DY
         self.buffer.blit(la, re)
@@ -159,7 +160,7 @@ class BoardNewScore(Board):
                              (ARENA_WIDTH // 2 + i * LETTER_BLOCK_W,
                               CURSOR_DY))
 
-        l, r = self.resman.locale[self.arena.config["lang"]]["newscore"]["enter-nickname"]
+        l, r = self.resman["newscore"]["enter-nickname"]
         r.x = ARENA_WIDTH // 2 - r.w - ENTER_NICKNAME_DX
         r.y = ENTER_NICKNAME_DY
         self.buffer.blit(l, r)
@@ -170,10 +171,10 @@ class BoardNewScore(Board):
                                  (LINE_DX + j * LETTER_BLOCK_DX,
                                   LINE_DY + i * LETTER_BLOCK_DY))
 
-        la, _ = self.resman.locale[self.arena.config["lang"]]["newscore"]["space"]
+        la, _ = self.resman["newscore"]["space"]
         self.buffer.blit(la, self.rectangles[' '])
 
-        la, _ = self.resman.locale[self.arena.config["lang"]]["newscore"]["done"]
+        la, _ = self.resman["newscore"]["done"]
         self.buffer.blit(la, self.rectangles[';'])
 
         if self.y < 5:
@@ -224,46 +225,48 @@ class BoardNewScore(Board):
         :param key: any key pressed
         """
         name = pygame.key.name(key)
-        if key == pygame.K_F3:
-            self.arena.config.toggle_lang()
-        elif name in ALL_CHARS or name == pygame.K_SPACE:
+        if name in ALL_CHARS or name == pygame.K_SPACE:
             self.update_nick(name)
-        elif key == pygame.K_ESCAPE:
-            self.arena.change_board(BoardType.HISCORES)
-        elif key == pygame.K_DOWN:
-            if self.y < 6:
-                self.y += 1
-        elif key == pygame.K_UP:
-            if self.y > 0:
-                self.y -= 1
-        elif key == pygame.K_LEFT:
-            if self.x > 0:
-                self.x -= 1
-        elif key == pygame.K_RIGHT:
-            if self.x < 7 and self.y < 5:
-                self.x += 1
-        elif key == pygame.K_DELETE:
-            self.trim_nick()
-        elif key == pygame.K_BACKSPACE:
-            self.trim_nick()
-        elif key == pygame.K_RETURN:
-            if self.y == 5:
-                self.update_nick(' ')
-            elif self.y == 6:
-                self.nick = self.nick.strip()
-                if self.nick == '':
-                    self.nick = 'no name'
-                self.arena.config.append_hiscore(
-                    self.nick,
-                    self.arena.boards[BoardType.GAME].data['points'])
-                self.arena.config["lastnick"] = self.nick
+
+        match key:
+            case pygame.K_F3:
+                self.arena.toggle_lang()
+            case pygame.K_ESCAPE:
                 self.arena.change_board(BoardType.HISCORES)
-            elif self.y < 5:
-                letter = all_chrows[self.y][self.x]
-                if letter == '⌫':
-                    self.trim_nick()
-                else:
-                    self.update_nick(letter)
+            case pygame.K_DOWN:
+                if self.y < 6:
+                    self.y += 1
+            case pygame.K_UP:
+                if self.y > 0:
+                    self.y -= 1
+            case pygame.K_LEFT:
+                if self.x > 0:
+                    self.x -= 1
+            case pygame.K_RIGHT:
+                if self.x < 7 and self.y < 5:
+                    self.x += 1
+            case pygame.K_DELETE:
+                self.trim_nick()
+            case pygame.K_BACKSPACE:
+                self.trim_nick()
+            case pygame.K_RETURN:
+                if self.y == 5:
+                    self.update_nick(' ')
+                elif self.y == 6:
+                    self.nick = self.nick.strip()
+                    if self.nick == '':
+                        self.nick = 'no name'
+                    self.arena.config.append_hiscore(
+                        self.nick,
+                        self.arena.boards[BoardType.GAME].data['points'])
+                    self.arena.config["lastnick"] = self.nick
+                    self.arena.change_board(BoardType.HISCORES)
+                elif self.y < 5:
+                    letter = all_chrows[self.y][self.x]
+                    if letter == '⌫':
+                        self.trim_nick()
+                    else:
+                        self.update_nick(letter)
         self.recalculate_rectangles()
 
     def on_mouseup(self, button, pos):
@@ -272,39 +275,39 @@ class BoardNewScore(Board):
         :param button: button number
         :param pos: cursor position
         """
-        if button == 1:
-            ch_lang = False
-            rects = self.resman.rectangles["lang-rectangles"]
-            for lang in rects:
-                if rects[lang].collidepoint(pos):
-                    ch_lang = True
-                    self.arena.config['lang'] = lang
-                    self.audio.play_sfx("arrow")
-                    self.recalculate_rectangles()
-            if not ch_lang:
-                for pair in self.rectangles.items():
-                    letter, rect = pair
-                    if rect.collidepoint(pos):
-                        if letter == ';':
-                            self.store_nick()
-                            self.on_keyup(pygame.K_ESCAPE)
-                        elif letter == '⌫':
-                            self.trim_nick()
-                        else:
-                            self.update_nick(letter)
-        elif button == 4:
-            self.on_keyup(pygame.K_UP)
-        elif button == 5:
-            self.on_keyup(pygame.K_DOWN)
-        elif button in (2, 3):
-            self.arena.change_board(BoardType.HISCORES)
+        match button:
+            case 1:
+                ch_lang = False
+                rects = self.resman.rectangles["lang-rectangles"]
+                for lang in rects:
+                    if rects[lang].collidepoint(pos):
+                        ch_lang = True
+                        self.arena.set_lang(lang)
+                        self.audio.play_sfx("arrow")
+                        self.recalculate_rectangles()
+                if not ch_lang:
+                    for pair in self.rectangles.items():
+                        letter, rect = pair
+                        if rect.collidepoint(pos):
+                            if letter == ';':
+                                self.store_nick()
+                                self.on_keyup(pygame.K_ESCAPE)
+                            elif letter == '⌫':
+                                self.trim_nick()
+                            else:
+                                self.update_nick(letter)
+            case 4:
+                self.on_keyup(pygame.K_UP)
+            case 5:
+                self.on_keyup(pygame.K_DOWN)
 
     def on_joybuttonup(self, button):
         """
         Joy Button Up event handler
         :param button: button number
         """
-        if button == ButtonType.B:
-            self.arena.config.toggle_lang()
-        elif button == ButtonType.A:
-            self.on_keyup(pygame.K_ESCAPE)
+        match button:
+            case ButtonType.B:
+                self.arena.toggle_lang()
+            case ButtonType.A:
+                self.on_keyup(pygame.K_ESCAPE)

@@ -7,6 +7,7 @@ Keyboard Layout settings mode
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.platform import ButtonType, AxisType, AxisValue
+from helik.types import BoardType, HelpChapter
 from .standard import SettingsMode, SettingsModeId
 
 
@@ -20,21 +21,17 @@ class KbdLayoutSettingsMode(SettingsMode):
         """
         self.paint_default_bg()
         self.paint_default_title("settings")
-        la, _ = self.resman.locale[self.arena.config["lang"]][
-            "settings"]["klayout-heading-shadow"]
+        la, _ = self.resman["settings"]["klayout-heading-shadow"]
         self.buffer.blit(la, (205, 45))
-        la, _ = self.resman.locale[self.arena.config["lang"]][
-            "settings"]["klayout-heading"]
+        la, _ = self.resman["settings"]["klayout-heading"]
         self.buffer.blit(la, (200, 40))
 
-        la, _ = self.resman.locale[self.arena.config["lang"]][
-            "settings"]["klayout-help-2"]
+        la, _ = self.resman["settings"]["klayout-help-2"]
         self.buffer.blit(la, (200, 180))
 
         keys = ["jump", "shoot"]
         i = 0
-        for elem in self.resman.locale[self.arena.config["lang"]]["settings"][
-            "kinput-items-shadow"]:
+        for elem in self.resman["settings"]["kinput-items-shadow"]:
             la, _ = elem
             self.buffer.blit(la, (205, 285 + i * 80))
             try:
@@ -48,8 +45,7 @@ class KbdLayoutSettingsMode(SettingsMode):
             i += 1
 
         i = 0
-        for elem in self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["kinput-items"]:
+        for elem in self.resman["settings"]["kinput-items"]:
             la, _ = elem
             self.buffer.blit(la, (200, 280 + i * 80))
             try:
@@ -62,12 +58,10 @@ class KbdLayoutSettingsMode(SettingsMode):
                 pass
             i += 1
 
-            la, _ = self.resman.locale[self.arena.config[
-                "lang"]]["settings"]["klayout-help-1"]
+            la, _ = self.resman["settings"]["klayout-help-1"]
             self.buffer.blit(la, (200, 680))
 
-            la, re = self.resman.locale[self.arena.config[
-                "lang"]]["settings"]["klayout-status"]
+            la, re = self.resman["settings"]["klayout-status"]
             self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
     def on_keyup(self, key):
@@ -76,22 +70,27 @@ class KbdLayoutSettingsMode(SettingsMode):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        if key == pygame.K_F2:
-            self.parent.change_mode(SettingsModeId.KINPUT)
-        elif key == pygame.K_F3:
-            self.arena.config.toggle_lang()
-        elif key in (pygame.K_ESCAPE, pygame.K_LEFT):
-            self.parent.change_mode(SettingsModeId.MAIN)
+        match key:
+            case pygame.K_F1:
+                self.parent.arena.change_board(
+                    BoardType.HELP, help=HelpChapter.SETTINGS)
+            case pygame.K_F2:
+                self.parent.change_mode(SettingsModeId.KINPUT)
+            case pygame.K_F3:
+                self.arena.toggle_lang()
+            case pygame.K_ESCAPE:
+                self.parent.change_mode(SettingsModeId.MAIN)
 
     def on_joybuttonup(self, button):
         """
         Joy Button Up event handler
         :param button: button number
         """
-        if button == ButtonType.START:
-            self.parent.change_mode(SettingsModeId.KINPUT)
-        elif button == ButtonType.B:
-            self.arena.config.toggle_lang()
+        match button:
+            case ButtonType.START:
+                self.parent.change_mode(SettingsModeId.KINPUT)
+            case ButtonType.B:
+                self.arena.toggle_lang()
 
     def on_joyaxismotion(self, axis, value):
         """
@@ -108,15 +107,14 @@ class KbdLayoutSettingsMode(SettingsMode):
         :param button: button number
         :param pos: cursor position
         """
-        if button == 1:
-            rects = self.resman.rectangles["lang-rectangles"]
-            for lang in rects:
-                if rects[lang].collidepoint(pos):
-                    self.arena.config['lang'] = lang
-                    self.audio.play_sfx("arrow")
-        if button in (2, 3):
-            self.parent.change_mode(SettingsModeId.MAIN)
-        elif button == 4:
-            self.on_keyup(pygame.K_UP)
-        elif button == 5:
-            self.on_keyup(pygame.K_DOWN)
+        match button:
+            case 1:
+                rects = self.resman.rectangles["lang-rectangles"]
+                for lang in rects:
+                    if rects[lang].collidepoint(pos):
+                        self.arena.config['lang'] = lang
+                        self.audio.play_sfx("arrow")
+            case 4:
+                self.on_keyup(pygame.K_UP)
+            case 5:
+                self.on_keyup(pygame.K_DOWN)

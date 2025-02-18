@@ -8,15 +8,16 @@ import random
 from importlib.resources import files
 import pygame
 from helik.hdefs import APPLICATION_TITLE
-from helik.board import (BoardType, BoardWelcome, BoardAbout, BoardMenu, BoardOptions,
-                         BoardHiscores, BoardHelp, BoardSettings, BoardGame, BoardNewScore, BoardQuit)
-from helik.game import DirCType
-from helik.res import ResourceManager
+from helik.types import BoardType
+from helik.board import (BoardWelcome, BoardAbout, BoardMenu, BoardOptions,
+                         BoardHiscores, BoardHelp, BoardSettings, BoardGame,
+                         BoardNewScore, BoardQuit)
 from helik.config import Config
 from helik.media.audio import AudioController
+from helik.platform import ResourceManager
 
 
-class Application:
+class Arena:
     """
     Helik application
     """
@@ -38,6 +39,7 @@ class Application:
         self.running = True
         self.config = Config()
         self.config.read_default_config()
+        self.resman.change_lang(self.config["lang"])
         self.boards = {
             BoardType.WELCOME: BoardWelcome(self),
             BoardType.MENU: BoardMenu(self),
@@ -51,9 +53,8 @@ class Application:
             BoardType.QUIT: BoardQuit(self)
             }
         self.board_id = BoardType.WELCOME
-        self.dirc = DirCType.DOWN
 
-    def change_board(self, newboard):
+    def change_board(self, newboard, **kwargs):
         """
         Change board to the other one.
         Will change only if the other one is different.
@@ -61,11 +62,12 @@ class Application:
         * .deactivate() method called for the current board
         * .activate() method called for the new board
         :param newboard: other board id
+        :param kwargs: additional parameters, like previous board or help
         """
         if newboard != self.board_id:
             self.boards[self.board_id].deactivate()
             self.board_id = newboard
-            self.boards[self.board_id].activate()
+            self.boards[self.board_id].activate(**kwargs)
 
     def run(self, **kwargs):
         """
@@ -79,28 +81,29 @@ class Application:
             # Activate initial board
             self.boards[self.board_id].activate()
 
-        # webbrowser.open("mailto:marcin.bielewicz@gmail.com")
         # Main application loop
         for j in range(pygame.joystick.get_count()):
             pygame.joystick.Joystick(j)
         while self.running:
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.running = False
-                elif event.type == pygame.KEYUP:
-                    self.on_keyup(event.key)
-                elif event.type == pygame.MOUSEBUTTONUP:
-                    self.on_mouseup(event.button, event.pos)
-                elif event.type == pygame.JOYBUTTONUP:
-                    self.on_joybuttonup(event.button)
-                elif event.type == pygame.JOYAXISMOTION:
-                    self.on_joyaxismotion(event.axis, event.value)
-                elif event.type == pygame.JOYDEVICEADDED:
-                    for j in range(pygame.joystick.get_count()):
-                        joy = pygame.joystick.Joystick(j)
-                        joy.init()
-                elif event.type > pygame.USEREVENT:
-                    self.on_timer(event.type)
+                match event.type:
+                    case pygame.QUIT:
+                        self.running = False
+                    case pygame.KEYUP:
+                        self.on_keyup(event.key)
+                    case pygame.MOUSEBUTTONUP:
+                        self.on_mouseup(event.button, event.pos)
+                    case pygame.JOYBUTTONUP:
+                        self.on_joybuttonup(event.button)
+                    case pygame.JOYAXISMOTION:
+                        self.on_joyaxismotion(event.axis, event.value)
+                    case pygame.JOYDEVICEADDED:
+                        for j in range(pygame.joystick.get_count()):
+                            joy = pygame.joystick.Joystick(j)
+                            joy.init()
+                    case _:
+                        if event.type > pygame.USEREVENT:
+                            self.on_timer(event.type)
 
             dt = self.clock.tick(1000)
             self.on_update(dt)
@@ -110,6 +113,21 @@ class Application:
         # Eventually,
         self.config.save_default_config()
         pygame.quit()
+
+    def toggle_lang(self):
+        """
+        Toggle current lang
+        """
+        self.config.toggle_lang()
+        self.resman.lang = self.config["lang"]
+
+    def set_lang(self, lang):
+        """
+        Set current lang
+        :param lang: new lang to use
+        """
+        self.config["lang"] = lang
+        self.resman.lang = self.config["lang"]
 
     def on_joybuttonup(self, button):
         """

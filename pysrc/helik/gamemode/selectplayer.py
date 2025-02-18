@@ -5,7 +5,7 @@ SelectPlayer handler module
 """
 
 import pygame
-from helik.board import BoardType
+from helik.types import BoardType, HelpChapter
 from helik.game import Player
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.platform import AxisValue, AxisType, ButtonType
@@ -41,13 +41,15 @@ class SelectPlayer(Mode):
         Paint event handler
         """
         self.buffer.blit(self.resman.images["default-background"], (0, 0))
-        for i in range(len(self.rects)):
-            self.buffer.blit(self.vehicles[i], self.rects[i])
+        i = 0
+        for rx in self.rects:
+            self.buffer.blit(self.vehicles[i], rx)
+            i += 1
         r = self.images["viewport"].get_rect()
         r.center = ((self.viewpos + 1) * ARENA_WIDTH // 4, ARENA_HEIGHT // 2)
         self.buffer.blit(self.images["viewport"], r)
 
-        la, re = self.resman.locale[self.arena.config["lang"]]["game"]["choose-vehicle"]
+        la, re = self.resman["game"]["choose-vehicle"]
         re.x = (ARENA_WIDTH - re.w) // 2
         re.y = (ARENA_HEIGHT // 2 - re.h) // 2
         self.buffer.blit(la, re)
@@ -79,24 +81,27 @@ class SelectPlayer(Mode):
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_F3:
-            self.arena.config.toggle_lang()
-        elif key == pygame.K_LEFT:
-            if self.viewpos > 0:
-                self.viewpos -= 1
-                self.audio.play_sfx("arrow")
-        elif key == pygame.K_RIGHT:
-            if self.viewpos < len(self.vehicles) - 1:
-                self.viewpos += 1
-                self.audio.play_sfx("arrow")
-        elif key == pygame.K_RETURN:
-            self.game.player = Player(self.game, self.viewpos)
-            self.audio.play_sfx("closing-tape")
-            self.game.change_mode(GameMode.PREPARE)
-        elif key == pygame.K_ESCAPE:
-            self.arena.change_board(BoardType.MENU)
-        elif key == pygame.K_q:
-            self.arena.change_board(BoardType.MENU)
+        match key:
+            case pygame.K_F1:
+                self.arena.change_board(BoardType.HELP, help=HelpChapter.VEHICLESELECTION)
+            case pygame.K_F3:
+                self.arena.toggle_lang()
+            case pygame.K_LEFT:
+                if self.viewpos > 0:
+                    self.viewpos -= 1
+                    self.audio.play_sfx("arrow")
+            case pygame.K_RIGHT:
+                if self.viewpos < len(self.vehicles) - 1:
+                    self.viewpos += 1
+                    self.audio.play_sfx("arrow")
+            case pygame.K_RETURN:
+                self.game.player = Player(self.game, self.viewpos)
+                self.audio.play_sfx("closing-tape")
+                self.game.change_mode(GameMode.PREPARE)
+            case pygame.K_ESCAPE:
+                self.arena.change_board(BoardType.MENU)
+            case pygame.K_q:
+                self.arena.change_board(BoardType.MENU)
 
     def on_joyaxismotion(self, axis, value):
         """
@@ -120,4 +125,4 @@ class SelectPlayer(Mode):
         if button == ButtonType.SELECT:
             self.on_keyup(pygame.K_RETURN)
         elif button == ButtonType.B:
-            self.arena.config.toggle_lang()
+            self.arena.toggle_lang()

@@ -5,7 +5,6 @@ Initialize board subpackage
 """
 
 
-from .types import BoardType
 from .standard import Board
 from .about import BoardAbout
 from .game import BoardGame

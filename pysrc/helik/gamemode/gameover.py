@@ -6,7 +6,7 @@ GameOver handler module
 
 
 import pygame
-from helik.board import BoardType
+from helik.types import BoardType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.platform import ButtonType
 from .standard import Mode
@@ -22,15 +22,15 @@ class ModeGameOver(Mode):
         """
         self.buffer.blit(self.resman.images["default-background"], (0, 0))
 
-        l, r = self.resman.locale[self.arena.config['lang']]["game"]["gameover-shadow"]
+        l, r = self.resman["game"]["gameover-shadow"]
         r.x = (ARENA_WIDTH - r.w) // 2 + 5
         r.y = (ARENA_HEIGHT - r.h) // 2 + 5
         self.buffer.blit(l, r)
-        l, r = self.resman.locale[self.arena.config['lang']]["game"]["gameover"]
+        l, r = self.resman["game"]["gameover"]
         r.x = (ARENA_WIDTH - r.w) // 2
         r.y = (ARENA_HEIGHT -r.h) // 2
         self.buffer.blit(l, r)
-        l, r = self.resman.locale[self.arena.config['lang']]["game"]["gameover-2"]
+        l, r = self.resman["game"]["gameover-2"]
         r.x = (ARENA_WIDTH - r.w) // 2
         r.y = (ARENA_HEIGHT - r.h) // 2 + 170
         self.buffer.blit(l, r)
@@ -40,13 +40,12 @@ class ModeGameOver(Mode):
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_F3:
-            self.arena.config.toggle_lang()
-        elif key == pygame.K_ESCAPE:
-            if self.arena.config.is_hiscore(self.game.data['points']):
-                self.game.arena.change_board(BoardType.NEWSCORE)
-            else:
-                self.game.arena.change_board(BoardType.HISCORES)
+        match key:
+            case pygame.K_F3:
+                self.arena.toggle_lang()
+            case pygame.K_ESCAPE:
+                if self.arena.config.is_hiscore(self.game.data['points']):
+                    self.game.arena.change_board(BoardType.NEWSCORE)
 
     def on_joybuttonup(self, button):
         """
@@ -54,7 +53,7 @@ class ModeGameOver(Mode):
         :param button: button number
         """
         if button == ButtonType.B:
-            self.arena.config.toggle_lang()
+            self.arena.toggle_lang()
 
     def on_joyaxismotion(self, axis, value):
         """

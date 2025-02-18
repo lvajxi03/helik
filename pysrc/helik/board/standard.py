@@ -21,9 +21,10 @@ class Board:
         self.images = self.resman.images
         self.audio = self.arena.audio
 
-    def activate(self):
+    def activate(self, **kwargs):
         """
         Board activator
+        :param kwargs: additional parameters, like help or previous board
         """
 
     def deactivate(self):
@@ -81,19 +82,24 @@ class Board:
         self.buffer.blit(self.resman.surfaces["status"], (0, ARENA_HEIGHT - STATUS_HEIGHT))
 
         # Lang flags
-        self.buffer.blit(self.resman.images["flag-pl"], self.resman.rectangles["lang-rectangles"]["pl"])
-        self.buffer.blit(self.resman.images["flag-en"], self.resman.rectangles["lang-rectangles"]["en"])
+        self.buffer.blit(self.resman.images["flag-pl"],
+                         self.resman.rectangles["lang-rectangles"]["pl"])
+        self.buffer.blit(self.resman.images["flag-en"],
+                         self.resman.rectangles["lang-rectangles"]["en"])
 
     def paint_default_title(self, groupname):
         """
         Paint default title
         :param groupname: Name of the group/board
         """
-        la, _ = self.resman.locale[self.arena.config["lang"]][groupname]["title-shadow"]
+        la, _ = self.resman[groupname]["title-shadow"]
         self.buffer.blit(la, (30, 30))
-        la, _ = self.resman.locale[self.arena.config["lang"]][groupname]["title"]
+        la, _ = self.resman[groupname]["title"]
         self.buffer.blit(la, (25, 25))
 
     def paint_default_status(self):
-        la, re = self.resman.locale[self.arena.config["lang"]]["common"]["common-status"]
+        """
+        Paint default status
+        """
+        la, re = self.resman["common-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
