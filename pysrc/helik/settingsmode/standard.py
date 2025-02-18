@@ -100,4 +100,7 @@ class SettingsMode:
         self.parent.paint_default_bg()
 
     def paint_default_title(self, groupname):
+        """
+        Paint default title
+        """
         self.parent.paint_default_title(groupname)

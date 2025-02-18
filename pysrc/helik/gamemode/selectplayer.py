@@ -41,8 +41,10 @@ class SelectPlayer(Mode):
         Paint event handler
         """
         self.buffer.blit(self.resman.images["default-background"], (0, 0))
-        for i in range(len(self.rects)):
-            self.buffer.blit(self.vehicles[i], self.rects[i])
+        i = 0
+        for rx in self.rects:
+            self.buffer.blit(self.vehicles[i], rx)
+            i += 1
         r = self.images["viewport"].get_rect()
         r.center = ((self.viewpos + 1) * ARENA_WIDTH // 4, ARENA_HEIGHT // 2)
         self.buffer.blit(self.images["viewport"], r)

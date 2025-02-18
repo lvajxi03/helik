@@ -325,9 +325,8 @@ class ResourceManager:
         try:
             if key in self.locale["common"]:
                 return self.locale["common"][key]
-            else:
-                return self.locale[self.lang][key]
-        except KeyError as ke:
+            return self.locale[self.lang][key]
+        except KeyError:
             return None
 
     def load_resources(self, basepath):
