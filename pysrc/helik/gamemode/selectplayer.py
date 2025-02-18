@@ -47,7 +47,7 @@ class SelectPlayer(Mode):
         r.center = ((self.viewpos + 1) * ARENA_WIDTH // 4, ARENA_HEIGHT // 2)
         self.buffer.blit(self.images["viewport"], r)
 
-        la, re = self.resman.locale[self.arena.config["lang"]]["game"]["choose-vehicle"]
+        la, re = self.resman["game"]["choose-vehicle"]
         re.x = (ARENA_WIDTH - re.w) // 2
         re.y = (ARENA_HEIGHT // 2 - re.h) // 2
         self.buffer.blit(la, re)

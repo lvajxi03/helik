@@ -90,12 +90,13 @@ class BoardHiscores(Board):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        if key == pygame.K_F1:
-            self.arena.change_board(BoardType.HELP, help=BoardType.HISCORES)
-        elif key == pygame.K_F3:
-            self.arena.config.toggle_lang()
-        elif key == pygame.K_ESCAPE:
-            self.arena.change_board(BoardType.MENU)
+        match key:
+            case pygame.K_F1:
+                self.arena.change_board(BoardType.HELP, help=BoardType.HISCORES)
+            case pygame.K_F3:
+                self.arena.toggle_lang()
+            case pygame.K_ESCAPE:
+                self.arena.change_board(BoardType.MENU)
 
     def on_mouseup(self, button, pos):
         """
@@ -107,7 +108,7 @@ class BoardHiscores(Board):
             rects = self.resman.rectangles["lang-rectangles"]
             for lang in rects:
                 if rects[lang].collidepoint(pos):
-                    self.arena.config['lang'] = lang
+                    self.arena.set_lang(lang)
 
     def on_joyaxismotion(self, axis, value):
         """

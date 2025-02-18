@@ -58,7 +58,7 @@ class BoardMenu(Board):
         self.rectangles = []
         self.rectangles_s = []
         i = 0
-        for elem in self.resman.locale[self.arena.config['lang']]["menu"]["items"]:
+        for elem in self.resman["menu"]["items"]:
             label, rect = elem
             rect.left = 400
             rect.top = 100 + i * 80
@@ -66,7 +66,7 @@ class BoardMenu(Board):
             i += 1
 
         i = 0
-        for elem in self.resman.locale[self.arena.config['lang']]["menu"]["items-shadow"]:
+        for elem in self.resman["menu"]["items-shadow"]:
             label, rect = elem
             rect.left = 405
             rect.top = 105 + i * 80
@@ -79,13 +79,13 @@ class BoardMenu(Board):
         Paint event handler
         """
         self.paint_default_bg()
-        la, re = self.resman.locale["common"]["menu-status"]
+        la, re = self.resman["menu-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
-        la, _ = self.resman.locale[self.arena.config["lang"]]["menu"]["title-shadow"]
+        la, _ = self.resman["menu"]["title-shadow"]
         self.buffer.blit(la, (220, 50))
 
-        la, _ = self.resman.locale[self.arena.config["lang"]]["menu"]["title"]
+        la, _ = self.resman["menu"]["title"]
         self.buffer.blit(la, (215, 45))
 
         for re in self.rectangles_s:
@@ -114,23 +114,24 @@ class BoardMenu(Board):
         Key release event handler
         :param key: key code
         """
-        if key == pygame.K_F1:
-            self.arena.change_board(BoardType.HELP, help=BoardType.HISCORES)
-        elif key == pygame.K_DOWN:
-            if self.menu_pos < 6:
-                self.audio.play_sfx("poom")
-                self.menu_pos += 1
-        elif key == pygame.K_UP:
-            if self.menu_pos > 0:
-                self.menu_pos -= 1
-                self.audio.play_sfx("poom")
-        elif key == pygame.K_RETURN:
-            bid = menupos2board(self.menu_pos)
-            self.audio.play_sfx("closing-tape")
-            self.arena.change_board(bid)
-        elif key == pygame.K_F3:
-            self.arena.config.toggle_lang()
-            self.create_rectangles()
+        match key:
+            case pygame.K_F1:
+                self.arena.change_board(BoardType.HELP, help=BoardType.HISCORES)
+            case pygame.K_DOWN:
+                if self.menu_pos < 6:
+                    self.audio.play_sfx("poom")
+                    self.menu_pos += 1
+            case pygame.K_UP:
+                if self.menu_pos > 0:
+                    self.menu_pos -= 1
+                    self.audio.play_sfx("poom")
+            case pygame.K_RETURN:
+                bid = menupos2board(self.menu_pos)
+                self.audio.play_sfx("closing-tape")
+                self.arena.change_board(bid)
+            case pygame.K_F3:
+                self.arena.toggle_lang()
+                self.create_rectangles()
         self.recalculate_pos()
 
     def on_mouseup(self, button, pos):
@@ -140,29 +141,30 @@ class BoardMenu(Board):
         :param pos: cursor position
         """
         ch_lang = False
-        if button == 1:
-            rects = self.resman.rectangles["lang-rectangles"]
-            for lang in rects:
-                if rects[lang].collidepoint(pos):
-                    self.arena.config['lang'] = lang
-                    ch_lang = True
-                    self.audio.play_sfx("poom")
-                    self.create_rectangles()
-            if not ch_lang:
-                tpos = -1
-                for elem in self.rectangles:
-                    _, rect = elem
-                    tpos += 1
-                    if rect.collidepoint(pos):
-                        self.menu_pos = tpos
-                        self.recalculate_pos()
-                        bid = menupos2board(self.menu_pos)
-                        self.audio.play_sfx("closing-tape")
-                        self.arena.change_board(bid)
-        elif button == 4:
-            self.on_keyup(pygame.K_UP)
-        elif button == 5:
-            self.on_keyup(pygame.K_DOWN)
+        match button:
+            case 1:
+                rects = self.resman.rectangles["lang-rectangles"]
+                for lang in rects:
+                    if rects[lang].collidepoint(pos):
+                        self.arena.set_lang(lang)
+                        ch_lang = True
+                        self.audio.play_sfx("poom")
+                        self.create_rectangles()
+                if not ch_lang:
+                    tpos = -1
+                    for elem in self.rectangles:
+                        _, rect = elem
+                        tpos += 1
+                        if rect.collidepoint(pos):
+                            self.menu_pos = tpos
+                            self.recalculate_pos()
+                            bid = menupos2board(self.menu_pos)
+                            self.audio.play_sfx("closing-tape")
+                            self.arena.change_board(bid)
+            case 4:
+                self.on_keyup(pygame.K_UP)
+            case 5:
+                self.on_keyup(pygame.K_DOWN)
 
     def on_joyaxismotion(self, axis, value):
         """
@@ -181,8 +183,9 @@ class BoardMenu(Board):
         Joy Button Up event handler
         :param button: button number
         """
-        if button == ButtonType.B:
-            self.arena.config.toggle_lang()
-            self.create_rectangles()
-        elif button == ButtonType.SELECT:
-            self.on_keyup(pygame.K_RETURN)
+        match button:
+            case ButtonType.B:
+                self.arena.config.toggle_lang()
+                self.create_rectangles()
+            case ButtonType.SELECT:
+                self.on_keyup(pygame.K_RETURN)

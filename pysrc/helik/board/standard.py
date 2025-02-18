@@ -92,11 +92,11 @@ class Board:
         Paint default title
         :param groupname: Name of the group/board
         """
-        la, _ = self.resman.locale[self.arena.config["lang"]][groupname]["title-shadow"]
+        la, _ = self.resman[groupname]["title-shadow"]
         self.buffer.blit(la, (30, 30))
-        la, _ = self.resman.locale[self.arena.config["lang"]][groupname]["title"]
+        la, _ = self.resman[groupname]["title"]
         self.buffer.blit(la, (25, 25))
 
     def paint_default_status(self):
-        la, re = self.resman.locale["common"]["common-status"]
+        la, re = self.resman["common-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))

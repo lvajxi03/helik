@@ -14,6 +14,31 @@ from .buttons import render_buttons_labels
 characters = ['abcdefgh', 'ijklmnop', 'qrstuvwx', 'yz.-_012', '3456789#']
 
 
+def create_surfaces():
+    """
+    Create all necessary surfaces
+    :return: surfaces dict
+    """
+    return {
+        "buffer": pygame.display.set_mode(
+            (ARENA_WIDTH, ARENA_HEIGHT),
+            flags=pygame.FULLSCREEN | pygame.NOFRAME),
+        "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
+    }
+
+
+def create_lang_rectangles():
+    """
+    Create lang rectangles
+    """
+    return {
+        "lang-rectangles": {
+            "pl": pygame.Rect(ARENA_WIDTH - 154, ARENA_HEIGHT - 58, 75, 56),
+            "en": pygame.Rect(ARENA_WIDTH - 77, ARENA_HEIGHT - 58, 75, 56)
+        }
+    }
+
+
 def load_images(basepath):
     """
     Load all the images
@@ -258,6 +283,7 @@ class ResourceManager:
         Create ResourceManager instance
         :param basepath: root directory of all resources
         """
+        self.lang = "en"
         self.misc = {}
         self.resources = {}
         self.fonts = {}
@@ -271,13 +297,12 @@ class ResourceManager:
         self.locale = {}
         self.keylabels = {}
         self.button_labels = {}
-        self.surfaces = {}
-        self.rectangles = {}
 
         # First, surface(s) shall be created,
         # otherwise remaining resources will fail to load
         # (video mode must be set)
-        self.create_surfaces()
+        self.surfaces = create_surfaces()
+        self.rectangles = create_lang_rectangles()
         self.load_resources(basepath)
 
         # Leave this at the end, because we need
@@ -285,23 +310,25 @@ class ResourceManager:
         pygame.draw.rect(self.surfaces["status"],
                          self.colors["status-color"], (0, 0, ARENA_WIDTH, 60))
 
-    def create_surfaces(self):
+    def change_lang(self, newlang: str):
         """
-        Create
+        Change current language
+        :param newlang: new lang to sent
         """
-        self.surfaces = {
-            "buffer": pygame.display.set_mode(
-                (ARENA_WIDTH, ARENA_HEIGHT),
-                flags=pygame.FULLSCREEN | pygame.NOFRAME),
-            "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
-        }
+        self.lang = newlang
 
-        self.rectangles = {
-            "lang-rectangles": {
-                "pl": pygame.Rect(ARENA_WIDTH - 154, ARENA_HEIGHT - 58, 75, 56),
-                "en": pygame.Rect(ARENA_WIDTH - 77, ARENA_HEIGHT - 58, 75, 56)
-            }
-        }
+    def __getitem__(self, key):
+        """
+        Get operator overload
+        :param key: first level locale key
+        """
+        try:
+            if key in self.locale["common"]:
+                return self.locale["common"][key]
+            else:
+                return self.locale[self.lang][key]
+        except KeyError as ke:
+            return None
 
     def load_resources(self, basepath):
         """

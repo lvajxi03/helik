@@ -38,6 +38,7 @@ class Arena:
         self.running = True
         self.config = Config()
         self.config.read_default_config()
+        self.resman.change_lang(self.config["lang"])
         self.boards = {
             BoardType.WELCOME: BoardWelcome(self),
             BoardType.MENU: BoardMenu(self),
@@ -110,6 +111,21 @@ class Arena:
         # Eventually,
         self.config.save_default_config()
         pygame.quit()
+
+    def toggle_lang(self):
+        """
+        Toggle current lang
+        """
+        self.config.toggle_lang()
+        self.resman.lang = self.config["lang"]
+
+    def set_lang(self, lang):
+        """
+        Set current lang
+        :param lang: new lang to use
+        """
+        self.config["lang"] = lang
+        self.resman.lang = self.config["lang"]
 
     def on_joybuttonup(self, button):
         """

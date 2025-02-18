@@ -24,19 +24,15 @@ class PadInputSettingsMode(SettingsMode):
         """
         self.paint_default_bg()
         self.paint_default_title("settings")
-        la, _ = self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["pinput-heading-shadow"]
+        la, _ = self.resman["settings"]["pinput-heading-shadow"]
         self.buffer.blit(la, (205, 45))
-        la, _ = self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["pinput-heading"]
+        la, _ = self.resman["settings"]["pinput-heading"]
         self.buffer.blit(la, (200, 40))
-        la, _ = self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["pinput-help-1"]
+        la, _ = self.resman["settings"]["pinput-help-1"]
         self.buffer.blit(la, (200, 180))
 
         i = 0
-        for elem in self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["pinput-items-shadow"]:
+        for elem in self.resman["settings"]["pinput-items-shadow"]:
             if i < self.maxdef or (i == self.maxdef and self.blink):
                 la, _ = elem
                 self.buffer.blit(la, (205, 285 + i * 80))
@@ -51,8 +47,7 @@ class PadInputSettingsMode(SettingsMode):
                 i += 1
 
         i = 0
-        for elem in self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["pinput-items"]:
+        for elem in self.resman["settings"]["pinput-items"]:
             if i < self.maxdef or (i == self.maxdef and self.blink):
                 la, _ = elem
                 self.buffer.blit(la, (200, 280 + i * 80))
@@ -66,14 +61,14 @@ class PadInputSettingsMode(SettingsMode):
                     pass
                 i += 1
 
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-help-2"]
+        la, _ = self.resman["settings"]["pinput-help-2"]
         self.buffer.blit(la, (200, 500))
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-help-3"]
+        la, _ = self.resman["settings"]["pinput-help-3"]
         self.buffer.blit(la, (200, 560))
-        la, _ = self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-help-4"]
+        la, _ = self.resman["settings"]["pinput-help-4"]
         self.buffer.blit(la, (200, 620))
 
-        la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["pinput-status"]
+        la, re = self.resman["settings"]["pinput-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
     def on_keyup(self, key):
@@ -127,7 +122,7 @@ class PadInputSettingsMode(SettingsMode):
             rects = self.resman.rectangles["lang-rectangles"]
             for lang in rects:
                 if rects[lang].collidepoint(pos):
-                    self.arena.config['lang'] = lang
+                    self.arena.set_lang(lang)
                     self.audio.play_sfx("arrow")
         if button in (2, 3):
             self.parent.change_mode(SettingsModeId.GLAYOUT)

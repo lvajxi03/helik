@@ -21,21 +21,17 @@ class KbdLayoutSettingsMode(SettingsMode):
         """
         self.paint_default_bg()
         self.paint_default_title("settings")
-        la, _ = self.resman.locale[self.arena.config["lang"]][
-            "settings"]["klayout-heading-shadow"]
+        la, _ = self.resman["settings"]["klayout-heading-shadow"]
         self.buffer.blit(la, (205, 45))
-        la, _ = self.resman.locale[self.arena.config["lang"]][
-            "settings"]["klayout-heading"]
+        la, _ = self.resman["settings"]["klayout-heading"]
         self.buffer.blit(la, (200, 40))
 
-        la, _ = self.resman.locale[self.arena.config["lang"]][
-            "settings"]["klayout-help-2"]
+        la, _ = self.resman["settings"]["klayout-help-2"]
         self.buffer.blit(la, (200, 180))
 
         keys = ["jump", "shoot"]
         i = 0
-        for elem in self.resman.locale[self.arena.config["lang"]]["settings"][
-            "kinput-items-shadow"]:
+        for elem in self.resman["settings"]["kinput-items-shadow"]:
             la, _ = elem
             self.buffer.blit(la, (205, 285 + i * 80))
             try:
@@ -49,8 +45,7 @@ class KbdLayoutSettingsMode(SettingsMode):
             i += 1
 
         i = 0
-        for elem in self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["kinput-items"]:
+        for elem in self.resman["settings"]["kinput-items"]:
             la, _ = elem
             self.buffer.blit(la, (200, 280 + i * 80))
             try:
@@ -63,12 +58,10 @@ class KbdLayoutSettingsMode(SettingsMode):
                 pass
             i += 1
 
-            la, _ = self.resman.locale[self.arena.config[
-                "lang"]]["settings"]["klayout-help-1"]
+            la, _ = self.resman["settings"]["klayout-help-1"]
             self.buffer.blit(la, (200, 680))
 
-            la, re = self.resman.locale[self.arena.config[
-                "lang"]]["settings"]["klayout-status"]
+            la, re = self.resman["settings"]["klayout-status"]
             self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
     def on_keyup(self, key):

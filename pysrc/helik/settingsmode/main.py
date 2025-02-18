@@ -40,7 +40,7 @@ class MainSettingsMode(SettingsMode):
         self.rectangles_s = []
 
         i = 0
-        for elem in self.resman.locale[self.arena.config['lang']]["settings"]["items"]:
+        for elem in self.resman["settings"]["items"]:
             label, rect = elem
             rect.left = 400
             rect.top = 100 + i * 80
@@ -48,7 +48,7 @@ class MainSettingsMode(SettingsMode):
             self.rectangles.append((label, rect))
             i += 1
         i = 0
-        for elem in self.resman.locale[self.arena.config['lang']]["settings"]["items-shadow"]:
+        for elem in self.resman["settings"]["items-shadow"]:
             label, rect = elem
             rect.left = 405
             rect.top = 105 + i * 80
@@ -71,7 +71,7 @@ class MainSettingsMode(SettingsMode):
         self.paint_default_bg()
         self.paint_default_title("settings")
 
-        la, re = self.resman.locale["common"]["settings-status"]
+        la, re = self.resman["settings-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
         for re in self.rectangles_s:
@@ -88,31 +88,31 @@ class MainSettingsMode(SettingsMode):
                          self.rect_pos, width=5, border_radius=20)
 
         if self.arena.config["sound"] == 1:
-            la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["checked-shadow"]
+            la, re = self.resman["settings"]["checked-shadow"]
             self.buffer.blit(la, (705, 100))
-            la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["checked"]
+            la, re = self.resman["settings"]["checked"]
             self.buffer.blit(la, (700, 95))
         else:
-            la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["unchecked-shadow"]
+            la, re = self.resman["settings"]["unchecked-shadow"]
             self.buffer.blit(la, (705, 100))
-            la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["unchecked"]
+            la, re = self.resman["settings"]["unchecked"]
             self.buffer.blit(la, (700, 95))
 
         if self.arena.config["music"] == 1:
-            la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["checked-shadow"]
+            la, re = self.resman["settings"]["checked-shadow"]
             self.buffer.blit(la, (705, 175))
-            la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["checked"]
+            la, re = self.resman["settings"]["checked"]
             self.buffer.blit(la, (700, 170))
         else:
-            la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["unchecked-shadow"]
+            la, re = self.resman["settings"]["unchecked-shadow"]
             self.buffer.blit(la, (705, 175))
-            la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["unchecked"]
+            la, re = self.resman["settings"]["unchecked"]
             self.buffer.blit(la, (700, 170))
 
         for i in range(2):
-            la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["grip-shadow"]
+            la, re = self.resman["settings"]["grip-shadow"]
             self.buffer.blit(la, (705, 260 + i * 80))
-            la, re = self.resman.locale[self.arena.config["lang"]]["settings"]["grip"]
+            la, re = self.resman["settings"]["grip"]
             self.buffer.blit(la, (700, 255 + i * 80))
 
     def on_keyup(self, key):
@@ -124,6 +124,9 @@ class MainSettingsMode(SettingsMode):
         if key == pygame.K_F1:
             self.parent.arena.change_board(BoardType.HELP,
                                            help=HelpChapter.SETTINGS)
+        elif key == pygame.K_F3:
+            self.parent.arena.toggle_lang()
+            self.create_rectangles()
         elif key == pygame.K_DOWN:
             if self.menu_pos < self.maxpos:
                 self.audio.play_sfx("poom")
@@ -166,7 +169,7 @@ class MainSettingsMode(SettingsMode):
             rects = self.resman.rectangles["lang-rectangles"]
             for lang in rects:
                 if rects[lang].collidepoint(pos):
-                    self.arena.config['lang'] = lang
+                    self.arena.set_lang(lang)
                     ch_lang = True
                     self.audio.play_sfx("poom")
                     self.create_rectangles()
@@ -202,3 +205,12 @@ class MainSettingsMode(SettingsMode):
     def on_joybuttonup(self, button):
         if button == ButtonType.SELECT:
             self.on_keyup(pygame.K_RETURN)
+        elif button == ButtonType.B:
+            self.arena.toggle_lang()
+            self.create_rectangles()
+
+    def activate(self):
+        """
+        Activate mode event
+        """
+        self.create_rectangles()

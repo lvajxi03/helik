@@ -85,6 +85,8 @@ class Page:
                            elem["action"], resman.colors)
                 self.data["buttons"].append(b)
             else:
+                # Here's probably the one place where .locale[$lang] is present.
+                # and not sure why.
                 elem["label"] = resman.locale[lang]["pages"][elem["label"]]
                 self.data["labels"].append(elem)
 

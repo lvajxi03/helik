@@ -32,20 +32,16 @@ class KbdInputSettingsMode(SettingsMode):
         """
         self.paint_default_bg()
         self.paint_default_title("settings")
-        la, _ = self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["kinput-heading-shadow"]
+        la, _ = self.resman["settings"]["kinput-heading-shadow"]
         self.buffer.blit(la, (205, 45))
-        la, _ = self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["kinput-heading"]
+        la, _ = self.resman["settings"]["kinput-heading"]
         self.buffer.blit(la, (200, 40))
 
-        la, _ = self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["kinput-help-1"]
+        la, _ = self.resman["settings"]["kinput-help-1"]
         self.buffer.blit(la, (200, 180))
 
         i = 0
-        for elem in self.resman.locale[self.arena.config["lang"]][
-            "settings"]["kinput-items-shadow"]:
+        for elem in self.resman["settings"]["kinput-items-shadow"]:
             if i < self.maxdef or (i == self.maxdef and self.blink):
                 la, _ = elem
                 self.buffer.blit(la, (205, 285 + i * 80))
@@ -59,8 +55,7 @@ class KbdInputSettingsMode(SettingsMode):
                 i += 1
 
         i = 0
-        for elem in self.resman.locale[self.arena.config["lang"]][
-            "settings"]["kinput-items"]:
+        for elem in self.resman["settings"]["kinput-items"]:
             if i < self.maxdef or (i == self.maxdef and self.blink):
                 la, _ = elem
                 self.buffer.blit(la, (200, 280 + i * 80))
@@ -73,18 +68,14 @@ class KbdInputSettingsMode(SettingsMode):
                     pass
                 i += 1
 
-        la, _ = self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["kinput-help-2"]
+        la, _ = self.resman["settings"]["kinput-help-2"]
         self.buffer.blit(la, (200, 500))
-        la, _ = self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["kinput-help-3"]
+        la, _ = self.resman["settings"]["kinput-help-3"]
         self.buffer.blit(la, (200, 560))
-        la, _ = self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["kinput-help-4"]
+        la, _ = self.resman["settings"]["kinput-help-4"]
         self.buffer.blit(la, (200, 620))
 
-        la, re = self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["kinput-status"]
+        la, re = self.resman["settings"]["kinput-status"]
         self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
     def on_keyup(self, key):
@@ -93,21 +84,23 @@ class KbdInputSettingsMode(SettingsMode):
         Key code does not matter. Always return to main menu
         :param key: any key pressed
         """
-        if key in (pygame.K_ESCAPE, pygame.K_LEFT):
-            self.parent.change_mode(SettingsModeId.KLAYOUT)
-        elif key == pygame.K_F2:
-            self.activate()
-        elif key == pygame.K_F3:
-            self.arena.config.toggle_lang()
-        elif key == pygame.K_RETURN:
-            if len(self.defined) == 2:
-                self.arena.config["keys"]["jump"] = self.defined[0]
-                self.arena.config["keys"]["shoot"] = self.defined[1]
+        match key:
+            case pygame.K_ESCAPE:
                 self.parent.change_mode(SettingsModeId.KLAYOUT)
-        else:
-            if key in keysallowed and key not in self.defined:
-                self.defined.append(key)
-                self.maxdef += 1
+            case pygame.K_F2:
+                # Restart defining keys
+                self.activate()
+            case pygame.K_F3:
+                self.arena.config.toggle_lang()
+            case pygame.K_RETURN:
+                if len(self.defined) == 2:
+                    self.arena.config["keys"]["jump"] = self.defined[0]
+                    self.arena.config["keys"]["shoot"] = self.defined[1]
+                    self.parent.change_mode(SettingsModeId.KLAYOUT)
+            case _:
+                if key in keysallowed and key not in self.defined:
+                    self.defined.append(key)
+                    self.maxdef += 1
 
     def on_mouseup(self, button, pos):
         """
@@ -115,31 +108,27 @@ class KbdInputSettingsMode(SettingsMode):
         :param button: button number
         :param pos: cursor position
         """
-        if button == 1:
-            rects = self.resman.rectangles["lang-rectangles"]
-            for lang in rects:
-                if rects[lang].collidepoint(pos):
-                    self.arena.config['lang'] = lang
-                    self.audio.play_sfx("arrow")
-        if button in (2, 3):
-            self.parent.change_mode(SettingsModeId.KLAYOUT)
-        elif button == 4:
-            self.on_keyup(pygame.K_UP)
-        elif button == 5:
-            self.on_keyup(pygame.K_DOWN)
+        match button:
+            case 1:
+                rects = self.resman.rectangles["lang-rectangles"]
+                for lang in rects:
+                    if rects[lang].collidepoint(pos):
+                        self.arena.set_lang(lang)
+                        self.audio.play_sfx("arrow")
 
     def on_joybuttonup(self, button):
         """
-        Jou Bytton Up event handler
+        Jou Button Up event handler
         :param button: button number
         """
-        if button == ButtonType.START:
-            self.activate()
-        if button == ButtonType.SELECT:
-            if len(self.defined) == 2:
-                self.arena.config["keys"]["jump"] = self.defined[0]
-                self.arena.config["keys"]["shoot"] = self.defined[1]
-                self.parent.change_mode(SettingsModeId.KLAYOUT)
+        match button:
+            case ButtonType.START:
+                self.activate()
+            case ButtonType.SELECT:
+                if len(self.defined) == 2:
+                    self.arena.config["keys"]["jump"] = self.defined[0]
+                    self.arena.config["keys"]["shoot"] = self.defined[1]
+                    self.parent.change_mode(SettingsModeId.KLAYOUT)
 
     def on_joyaxismotion(self, axis, value):
         """

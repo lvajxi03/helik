@@ -21,21 +21,17 @@ class PadLayoutSettingsMode(SettingsMode):
         """
         self.paint_default_bg()
         self.paint_default_title("settings")
-        la, _ = self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["playout-heading-shadow"]
+        la, _ = self.resman["settings"]["playout-heading-shadow"]
         self.buffer.blit(la, (205, 45))
-        la, _ = self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["playout-heading"]
+        la, _ = self.resman["settings"]["playout-heading"]
         self.buffer.blit(la, (200, 40))
 
-        la, _ = self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["playout-help-2"]
+        la, _ = self.resman["settings"]["playout-help-2"]
         self.buffer.blit(la, (200, 180))
 
         buttons = ["jump", "shoot"]
         i = 0
-        for elem in self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["pinput-items-shadow"]:
+        for elem in self.resman["settings"]["pinput-items-shadow"]:
             la, _ = elem
             self.buffer.blit(la, (205, 285 + i * 80))
             try:
@@ -51,8 +47,7 @@ class PadLayoutSettingsMode(SettingsMode):
             i += 1
 
         i = 0
-        for elem in self.resman.locale[self.arena.config[
-            "lang"]]["settings"]["pinput-items"]:
+        for elem in self.resman["settings"]["pinput-items"]:
             la, _ = elem
             self.buffer.blit(la, (200, 280 + i * 80))
             try:
@@ -66,12 +61,10 @@ class PadLayoutSettingsMode(SettingsMode):
                 pass
             i += 1
 
-            la, _ = self.resman.locale[self.arena.config[
-                "lang"]]["settings"]["playout-help-1"]
+            la, _ = self.resman["settings"]["playout-help-1"]
             self.buffer.blit(la, (200, 680))
 
-            la, re = self.resman.locale[self.arena.config[
-                "lang"]]["settings"]["playout-status"]
+            la, re = self.resman["settings"]["playout-status"]
             self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
 
     def on_joybuttonup(self, button):
@@ -82,7 +75,7 @@ class PadLayoutSettingsMode(SettingsMode):
         if button == ButtonType.START:
             self.parent.change_mode(SettingsModeId.GINPUT)
         if button == ButtonType.B:
-            self.arena.config.toggle_lang()
+            self.arena.toggle_lang()
 
     def on_keyup(self, key):
         """
@@ -96,7 +89,7 @@ class PadLayoutSettingsMode(SettingsMode):
         elif key == pygame.K_F2:
             self.parent.change_mode(SettingsModeId.GINPUT)
         elif key == pygame.K_F3:
-            self.arena.config.toggle_lang()
+            self.arena.toggle_lang()
         elif key in (pygame.K_ESCAPE, pygame.K_LEFT):
             self.parent.change_mode(SettingsModeId.MAIN)
 
@@ -119,7 +112,7 @@ class PadLayoutSettingsMode(SettingsMode):
             rects = self.resman.rectangles["lang-rectangles"]
             for lang in rects:
                 if rects[lang].collidepoint(pos):
-                    self.arena.config['lang'] = lang
+                    self.arena.set_lang(lang)
                     self.audio.play_sfx("arrow")
         if button in (2, 3):
             self.parent.change_mode(SettingsModeId.MAIN)
