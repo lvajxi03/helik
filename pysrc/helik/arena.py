@@ -10,7 +10,8 @@ import pygame
 from helik.hdefs import APPLICATION_TITLE
 from helik.types import BoardType
 from helik.board import (BoardWelcome, BoardAbout, BoardMenu, BoardOptions,
-                         BoardHiscores, BoardHelp, BoardSettings, BoardGame, BoardNewScore, BoardQuit)
+                         BoardHiscores, BoardHelp, BoardSettings, BoardGame,
+                         BoardNewScore, BoardQuit)
 from helik.config import Config
 from helik.media.audio import AudioController
 from helik.platform import ResourceManager
