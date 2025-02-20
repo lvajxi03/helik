@@ -28,7 +28,7 @@ class ModeGameOver(Mode):
         self.buffer.blit(l, r)
         l, r = self.resman["game"]["gameover"]
         r.x = (ARENA_WIDTH - r.w) // 2
-        r.y = (ARENA_HEIGHT -r.h) // 2
+        r.y = (ARENA_HEIGHT - r.h) // 2
         self.buffer.blit(l, r)
         l, r = self.resman["game"]["gameover-2"]
         r.x = (ARENA_WIDTH - r.w) // 2
@@ -46,6 +46,7 @@ class ModeGameOver(Mode):
             case pygame.K_ESCAPE:
                 if self.arena.config.is_hiscore(self.game.data['points']):
                     self.game.arena.change_board(BoardType.NEWSCORE)
+                self.game.arena.change_board(BoardType.HISCORES)
 
     def on_joybuttonup(self, button):
         """
