@@ -285,7 +285,6 @@ class ResourceManager:
         """
         self.lang = "en"
         self.misc = {}
-        self.resources = {}
         self.fonts = {}
         self.colors = {}
         self.pages = {}
