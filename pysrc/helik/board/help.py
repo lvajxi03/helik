@@ -6,7 +6,7 @@ Help board handler
 
 
 import pygame
-from helik.types import BoardType
+from helik.datatypes import BoardType
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
 from helik.core.pages import Pager
 from helik.platform import ButtonType, AxisType, AxisValue

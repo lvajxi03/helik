@@ -7,7 +7,7 @@ import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, ALL_CHARS
 from helik.platform import TimerType
 from helik.platform import ButtonType
-from helik.types import BoardType
+from helik.datatypes import BoardType
 from .standard import Board
 
 

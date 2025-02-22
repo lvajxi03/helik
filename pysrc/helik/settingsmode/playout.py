@@ -6,7 +6,7 @@ Pad Layout settings mode
 
 import pygame
 from helik.platform import ButtonType, AxisType, AxisValue
-from helik.types import BoardType, HelpChapter
+from helik.datatypes import BoardType, HelpChapter
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from .standard import SettingsMode, SettingsModeId
 

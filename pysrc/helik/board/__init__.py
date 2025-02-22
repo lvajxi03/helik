@@ -16,3 +16,4 @@ from .options import BoardOptions
 from .quit import BoardQuit
 from .settings import BoardSettings
 from .welcome import BoardWelcome
+from .viewer import BoardViewer

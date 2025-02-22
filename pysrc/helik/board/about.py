@@ -7,7 +7,7 @@ import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.core.pages import Pager
 from helik.platform import ButtonType, AxisType, AxisValue
-from helik.types import BoardType
+from helik.datatypes import BoardType
 from .standard import Board
 
 

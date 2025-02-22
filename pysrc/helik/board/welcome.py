@@ -8,7 +8,7 @@ import random
 import pygame
 from helik.platform import TimerType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-from helik.types import BoardType
+from helik.datatypes import BoardType
 from .standard import Board
 
 

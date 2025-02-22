@@ -8,7 +8,7 @@ import random
 from importlib.resources import files
 import pygame
 from helik.hdefs import APPLICATION_TITLE
-from helik.types import BoardType
+from helik.datatypes import BoardType
 from helik.board import (BoardWelcome, BoardAbout, BoardMenu, BoardOptions,
                          BoardHiscores, BoardHelp, BoardSettings, BoardGame,
                          BoardNewScore, BoardQuit)
