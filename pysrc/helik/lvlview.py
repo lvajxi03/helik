@@ -17,7 +17,7 @@ class LevelViewer:
     LevelViewer,
     Arena-like viewer
     """
-    def __init__(self, levelfile):
+    def __init__(self, levelfile: str):
         pygame.init()
         self.running = True
         self.clock = pygame.time.Clock()
@@ -27,6 +27,10 @@ class LevelViewer:
         self.board = BoardViewer(self, levelfile)
 
     def run(self):
+        """
+        Run the event loop
+        """
+        self.board.activate()
         while self.running:
             for event in pygame.event.get():
                 match event.type:
@@ -36,6 +40,9 @@ class LevelViewer:
                         self.on_keyup(event.key)
                     case pygame.MOUSEBUTTONUP:
                         self.on_mouseup(event.button, event.pos)
+                    case _:
+                        if event.type > pygame.USEREVENT:
+                            self.on_timer(event.type)
 
             _ = self.clock.tick(1000)
             self.on_paint()
@@ -62,6 +69,13 @@ class LevelViewer:
         """
         self.board.on_mouseup(button, pos)
 
+    def on_timer(self, timer):
+        """
+        Delegate timer event
+        :param timer: timer identifier
+        """
+        self.board.on_timer(timer)
+
 
 if __name__ == "__main__":
     try:
@@ -70,4 +84,3 @@ if __name__ == "__main__":
         print("Usage:")
         print(f"{sys.argv[0]} <level-filename>")
         sys.exit(1)
-
