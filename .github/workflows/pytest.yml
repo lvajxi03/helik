@@ -21,7 +21,7 @@ jobs:
     - name: Install pytest and its dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install pytest pytest-mock pytest-cov
+        python -m pip install pytest pytest-mock pytest-cov pygame
     - name: Running unit tests
       run: |
         PYTHONPATH=pysrc python -m pytest --cov-report html --cov=helik pytests
