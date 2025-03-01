@@ -45,11 +45,7 @@ class Config:
                 if not isinstance(self.data['hiscores'], list):
                     self.data['hiscores'] = []
                 if len(self.data['hiscores']) == 0:
-                    i = 0
-                    for name in ["AAA", "BBB", "CCC", "DDD", "EEE", "FFF",
-                                 "GGG", "HHH", "III", 'JJJ']:
-                        self.data['hiscores'].append((name, i * 10 + 2))
-                        i += 1
+                    self.fake_hiscores()
                 self.data['hiscores'].sort(key=lambda a: a[1], reverse=True)
                 self.data['hiscores'] = self.data['hiscores'][:10]
                 if self.data['keys']['jump'] in (pygame.K_ESCAPE, pygame.K_q,
@@ -69,9 +65,22 @@ class Config:
                     self.data["buttons"]['jump"'] = ButtonType.Y
                     self.data["buttons"]["jump"] = ButtonType.A
         except IOError:
-            pass
+            self.fake_hiscores()
         except json.decoder.JSONDecodeError:
-            pass
+            self.fake_hiscores()
+
+    def fake_hiscores(self):
+        """
+        Create fake hiscores in case of first run
+        """
+        if len(self.data['hiscores']) == 0:
+            i = 0
+            for name in ["ABC", "DEF", "GHI", "JKL", "MNO", "PQR",
+                         "STU", "VWX", "YZA", 'BCD']:
+                self.data['hiscores'].append((name, i * 10 + 2))
+                i += 1
+        self.data['hiscores'].sort(key=lambda a: a[1], reverse=True)
+        self.data['hiscores'] = self.data['hiscores'][:10]
 
     def read_default_config(self):
         """
