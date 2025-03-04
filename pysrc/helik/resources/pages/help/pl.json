@@ -134,6 +134,74 @@
       "images": [],
       "labels": [
         {
+          "label": "help-S-title",
+          "location": [
+            250,
+            70
+          ]
+        },
+        {
+          "label": "help-S1",
+          "location": [
+            250,
+            150
+          ]
+        },
+        {
+          "label": "help-S2",
+          "location": [
+            250,
+            200
+          ]
+        },
+        {
+          "label": "help-S3",
+          "location": [
+            250,
+            250
+          ]
+        },
+        {
+          "label": "help-S4",
+          "location": [
+            250,
+            300
+          ]
+        },
+        {
+          "label": "help-S5",
+          "location": [
+            250,
+            350
+          ]
+        },
+        {
+          "label": "help-S6",
+          "location": [
+            250,
+            400
+          ]
+        },
+        {
+          "label": "help-S7",
+          "location": [
+            250,
+            500
+          ]
+        },
+        {
+          "label": "help-S8",
+          "location": [
+            250,
+            550
+          ]
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
           "label": "help-1",
           "location": [
             350,

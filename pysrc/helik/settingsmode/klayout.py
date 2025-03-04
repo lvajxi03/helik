@@ -112,7 +112,7 @@ class KbdLayoutSettingsMode(SettingsMode):
                 rects = self.resman.rectangles["lang-rectangles"]
                 for lang in rects:
                     if rects[lang].collidepoint(pos):
-                        self.arena.config['lang'] = lang
+                        self.arena.set_lang(lang)
                         self.audio.play_sfx("arrow")
             case 4:
                 self.on_keyup(pygame.K_UP)

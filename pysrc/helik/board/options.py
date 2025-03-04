@@ -130,7 +130,7 @@ class BoardOptions(Board):
                 rects = self.resman.rectangles["lang-rectangles"]
                 for lang in rects:
                     if rects[lang].collidepoint(pos):
-                        self.arena.config['lang'] = lang
+                        self.arena.set_lang(lang)
                         ch_lang = True
                         self.audio.play_sfx("arrow")
                         self.create_rectangles()

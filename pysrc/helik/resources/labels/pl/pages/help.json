@@ -136,5 +136,59 @@
     "font": "pages-small",
     "label": "bieżący język",
     "rotate": 0
+  },
+    "help-S-title": {
+    "color": "yellow-default",
+    "font": "about",
+    "label": "Ustawienia",
+    "rotate": 0
+  },
+  "help-S1": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Możesz włączać albo wyłączać odgłosy i/lub muzykę.",
+    "rotate": 0
+  },
+  "help-S2": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Dostępne są dwie ścieżki dżwiękowe:",
+    "rotate": 0
+  },
+  "help-S3": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "* muzyka w tle, dla wszystkich menu i plansz informacyjnych",
+    "rotate": 0
+  },
+  "help-S4": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "* muzyka w grze",
+    "rotate": 0
+  },
+  "help-S5": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Wszystkie ścieżki zostały wygenerowane w udio.com",
+    "rotate": 0
+  },
+  "help-S6": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "i wierzymy, że się spodobają",
+    "rotate": 0
+  },
+  "help-S7": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Dodatkowo, możesz ustawić inne klawisze lub przyciski na gamepadzie,",
+    "rotate": 0
+  },
+  "help-S8": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "jeśli te domyślne nie spełniają Twoich oczekiwań",
+    "rotate": 0
   }
 }

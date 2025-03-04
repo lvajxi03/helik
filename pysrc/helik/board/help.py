@@ -83,7 +83,7 @@ class BoardHelp(Board):
                 rects = self.resman.rectangles["lang-rectangles"]
                 for lang in rects:
                     if rects[lang].collidepoint(pos):
-                        self.arena.config['lang'] = lang
+                        self.arena.set_lang(lang)
                         self.pager.change_lang(lang)
                         ch_lang = True
                 if not ch_lang:
