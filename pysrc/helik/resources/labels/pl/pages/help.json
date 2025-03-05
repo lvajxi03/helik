@@ -137,6 +137,54 @@
     "label": "bieżący język",
     "rotate": 0
   },
+  "help-O-title": {
+    "color": "yellow-default",
+    "font": "about",
+    "label": "Opcje gry",
+    "rotate": 0
+  },
+  "help-O1": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Tutaj możesz ustawić poziom trudności gry",
+    "rotate": 0
+  },
+  "help-O2": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "(mamy nadzieję, że nazwy poziomów trudności dostały dobrze dobrane)",
+    "rotate": 0
+  },
+  "help-O3": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Im trudniejszy poziom, tym szybciej obiekty się poruszają",
+    "rotate": 0
+  },
+  "help-O4": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Aha, no i mniej serc.",
+    "rotate": 0
+  },
+  "help-O5": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Na poziomie treningowym przysługuje Ci nielimitowana liczba serc,",
+    "rotate": 0
+  },
+  "help-O6": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "a prędkość jest relatywnie niska.",
+    "rotate": 0
+  },
+  "help-O7": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Tak, to dobre miejsce na ćwiczenia.",
+    "rotate": 0
+  },
     "help-S-title": {
     "color": "yellow-default",
     "font": "about",
