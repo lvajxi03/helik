@@ -260,6 +260,35 @@
       ]
     },
     {
+      "images": [
+        {
+        "image" : "help-pl-hiscores",
+        "location": [300, 340]
+        }
+      ],
+      "labels": [
+        {
+          "label": "help-H-title",
+          "location": [
+            250,
+            70
+          ]
+        },
+        {
+          "label": "help-H1",
+          "location": [250, 180]
+        },
+        {
+          "label": "help-H2",
+          "location": [250, 220]
+        },
+        {
+          "label": "help-H3",
+          "location": [250, 260]
+        }
+      ]
+    },
+    {
       "images": [],
       "labels": [
         {

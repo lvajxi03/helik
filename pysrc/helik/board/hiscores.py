@@ -78,6 +78,10 @@ class BoardHiscores(Board):
         if len(self.arena.config['hiscores']) == 0:
             pass
         else:
+            l, _ = self.resman["hiscores"]["intro-shadow"]
+            self.buffer.blit(l, (SCORES_DX + SHADOW_DX, 10 + SHADOW_DY))
+            l, _ = self.resman["hiscores"]["intro"]
+            self.buffer.blit(l, (SCORES_DX, 10))
             for i in range(0, 10):
                 self.buffer.blit(self.rectangles_s[i],
                            (SCORES_DX + SHADOW_DX, SCORES_DY + SHADOW_DY + i * SCORES_DY_SPACE))

@@ -11,6 +11,18 @@
       "font": "heading-kw2",
       "label": "HISCORES",
       "rotate": 90
+    },
+    "intro": {
+      "color": "snowy-white",
+      "font": "letters",
+      "label": "Top 10 scores:",
+      "rotate": 0
+    },
+    "intro-shadow": {
+      "color": "shadow-default",
+      "font": "letters",
+      "label": "Top 10 scores:",
+      "rotate": 0
     }
   }
 }

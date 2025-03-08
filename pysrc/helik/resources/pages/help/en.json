@@ -260,7 +260,12 @@
       ]
     },
     {
-      "images": [],
+      "images": [
+        {
+          "image" : "help-en-hiscores",
+          "location": [300, 340]
+        }
+      ],
       "labels": [
         {
           "label": "help-H-title",
@@ -268,6 +273,14 @@
             250,
             70
           ]
+        },
+        {
+          "label": "help-H1",
+          "location": [250, 180]
+        },
+        {
+          "label": "help-H2",
+          "location": [250, 220]
         }
       ]
     },

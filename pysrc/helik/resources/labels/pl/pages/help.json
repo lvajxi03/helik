@@ -185,6 +185,30 @@
     "label": "Tak, to dobre miejsce na ćwiczenia.",
     "rotate": 0
   },
+  "help-H-title": {
+    "color": "yellow-default",
+    "font": "about",
+    "label": "Najlepsze wyniki",
+    "rotate": 0
+  },
+  "help-H1": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Tutaj znajdziesz 10 najlepszych wyników",
+    "rotate": 0
+  },
+  "help-H2": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Jeśli jesteś naprawdę dobry, Twoje imię któregoś dnia",
+    "rotate": 0
+  },
+  "help-H3": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "się tu znajdzie",
+    "rotate": 0
+  },
     "help-S-title": {
     "color": "yellow-default",
     "font": "about",

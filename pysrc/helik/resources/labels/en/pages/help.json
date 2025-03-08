@@ -149,6 +149,17 @@
     "label": "Hiscores",
     "rotate": 0
   },
+  "help-H1": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "Here you can see top 10 hiscores.",
+    "rotate": 0
+  },
+  "help-H2": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "If you are really good, your name will be in this ranking one day."
+  },
   "help-N-title": {
     "color": "yellow-default",
     "font": "about",
