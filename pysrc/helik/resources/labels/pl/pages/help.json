@@ -1,46 +1,4 @@
 {
-  "help-1": {
-    "color": "snowy-white",
-    "font": "about",
-    "label": "Jak grać w tę grę?",
-    "rotate": 0
-  },
-  "help-2": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "Twoim celem jest przelot nad miastem bez kolizji z budynkiem,",
-    "rotate": 0
-  },
-  "help-3": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "chmurą lub dziką gęsią.",
-    "rotate": 0
-  },
-  "help-4": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "Za każdą szczęśliwie przeżytą sekundę otrzymujesz 10 punktów,",
-    "rotate": 0
-  },
-  "help-5": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "Strzelanie do gęsi lub budynków jest dozwolone, do chmur bezcelowe,",
-    "rotate": 0
-  },
-  "help-6": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "Każdy zestrzelony obiekt to dodatkowy punkt.",
-    "rotate": 0
-  },
-  "help-7": {
-    "color": "snowy-white",
-    "font": "pages-small",
-    "label": "każdy zestrzelony obiekt to dodatkowy punkt.",
-    "rotate": 0
-  },
   "help-A-status": {
     "color": "snowy-white",
     "font": "pages-small",
@@ -183,6 +141,109 @@
     "color": "snowy-white",
     "font": "pages-small",
     "label": "Tak, to dobre miejsce na ćwiczenia.",
+    "rotate": 0
+  },
+  "help-G-title": {
+    "color": "yellow-default",
+    "font": "about",
+    "label": "Rozgrywka",
+    "rotate": 0
+  },
+  "help-G1": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "a. główny cel gry",
+    "rotate": 0
+  },
+  "help-G1a": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "rotate": 0,
+    "label": "Główny cel to tak pokierować lotem nad miastem, aby przeżyć."
+  },
+  "help-G1c": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "rotate": 0,
+    "label": "Musisz omijać budynki i chmury -- to na pewno."
+  },
+  "help-G1e": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "rotate": 0,
+    "label": "Gęsi również powinno się omijać, ale można też do nich strzelać."
+  },
+  "help-G1f": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "rotate": 0,
+    "label": "Można zbierać dodatkowe punkty życia (góra 5r), amunicję"
+  },
+  "help-G1g": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "rotate": 0,
+    "label": " (dowolną ilość) lub zmieniać kierunek... eee. opadania się lub wznoszenia pojazdu."
+  },
+  ""
+  "help-G1h": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "rotate": 0,
+    "label": "Życzymy szczęścia! Będziesz go potrzebować!"
+  },
+  "help-G2": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "b. wybór pojazdu",
+    "rotate": 0
+  },
+  "help-G3": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "c. nawigacja",
+    "rotate": 0
+  },
+  "help-G4": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "d. obiekty w grze",
+    "rotate": 0
+  },
+  "help-G5": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "label": "e. punkty gry i życia",
+    "rotate": 0
+  },
+  "help-Ga-title": {
+    "color": "yellow-default",
+    "font": "about",
+    "label": "Główny cel gry",
+    "rotate": 0
+  },
+  "help-Gb-title": {
+    "color": "yellow-default",
+    "font": "about",
+    "label": "Wybór pojazdu",
+    "rotate": 0
+  },
+  "help-Gc-title": {
+    "color": "yellow-default",
+    "font": "about",
+    "label": "Nawigacja",
+    "rotate": 0
+  },
+  "help-Gd-title": {
+    "color": "yellow-default",
+    "font": "about",
+    "label": "Obiekty w grze",
+    "rotate": 0
+  },
+  "help-Ge-title": {
+    "color": "yellow-default",
+    "font": "about",
+    "label": "Punkty gry i życia",
     "rotate": 0
   },
   "help-H-title": {
