@@ -366,8 +366,12 @@
           "location": [250, 420]
         },
         {
+          "label": "help-G1g2",
+          "location": [250, 470]
+        },
+        {
           "label": "help-G1h",
-          "location": [250, 520]
+          "location": [250, 570]
         }
       ]
     },

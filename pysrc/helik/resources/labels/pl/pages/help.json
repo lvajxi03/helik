@@ -183,9 +183,14 @@
     "color": "snowy-white",
     "font": "pages-small",
     "rotate": 0,
-    "label": " (dowolną ilość) lub zmieniać kierunek... eee. opadania się lub wznoszenia pojazdu."
+    "label": "(dowolną ilość) lub zmieniać kierunek... eee... opadania"
   },
-  ""
+  "help-G1g2": {
+    "color": "snowy-white",
+    "font": "pages-small",
+    "rotate": 0,
+    "label": "lub wznoszenia się pojazdu."
+  },
   "help-G1h": {
     "color": "snowy-white",
     "font": "pages-small",
