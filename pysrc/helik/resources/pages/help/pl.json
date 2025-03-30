@@ -261,10 +261,6 @@
     },
     {
       "images": [
-        {
-        "image" : "help-pl-hiscores",
-        "location": [300, 340]
-        }
       ],
       "labels": [
         {
@@ -276,16 +272,21 @@
         },
         {
           "label": "help-H1",
-          "location": [250, 180]
+          "location": [250, 150]
         },
         {
           "label": "help-H2",
-          "location": [250, 220]
+          "location": [250, 200]
         },
         {
           "label": "help-H3",
-          "location": [250, 260]
+          "location": [250, 250]
+        },
+        {
+          "label": "help-H-title-2",
+          "location": [250, 320]
         }
+
       ]
     },
     {

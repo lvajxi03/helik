@@ -110,7 +110,7 @@
   "help-O2": {
     "color": "snowy-white",
     "font": "pages-small",
-    "label": "(mamy nadzieję, że nazwy poziomów trudności dostały dobrze dobrane)",
+    "label": "(mamy nadzieję, że nazwy poziomów trudności są dobrze dobrane)",
     "rotate": 0
   },
   "help-O3": {
@@ -255,6 +255,12 @@
     "color": "yellow-default",
     "font": "about",
     "label": "Najlepsze wyniki",
+    "rotate": 0
+  },
+  "help-H-title-2": {
+    "color": "yellow-default",
+    "font": "about",
+    "label": "Nowy wynik",
     "rotate": 0
   },
   "help-H1": {

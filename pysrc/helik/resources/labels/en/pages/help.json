@@ -149,6 +149,12 @@
     "label": "Hiscores",
     "rotate": 0
   },
+  "help-H-title-2": {
+    "color": "yellow-default",
+    "font": "about",
+    "label": "New score",
+    "rotate": 0
+  },
   "help-H1": {
     "color": "snowy-white",
     "font": "pages-small",
@@ -157,6 +163,11 @@
   },
   "help-H2": {
     "color": "snowy-white",
+    "font": "pages-small",
+    "label": "If you are really good, your name will be in this ranking one day."
+  },
+  "help-H1a": {
+"color": "snowy-white",
     "font": "pages-small",
     "label": "If you are really good, your name will be in this ranking one day."
   },
