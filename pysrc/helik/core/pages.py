@@ -78,6 +78,7 @@ class Page:
             else:
                 elem["image"] = resman.images[elem["image"]]
                 self.data['images'].append(elem)
+        print(resman.locale[lang]["pages"])
         for elem in data["labels"]:
             if "action" in elem:
                 b = Button(resman.images[elem["image"]],
@@ -113,9 +114,8 @@ class Page:
             canvas.blit(image, (x, y))
 
         for img in self.data['labels']:
-            label, _ = img["label"]
             x, y = img["location"]
-            canvas.blit(label, (x, y))
+            img["label"].paint_at(canvas, x, y)
 
         for b in self.data["buttons"]:
             b.paint(canvas)

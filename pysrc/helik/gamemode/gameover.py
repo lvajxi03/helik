@@ -22,18 +22,12 @@ class ModeGameOver(Mode):
         """
         self.buffer.blit(self.resman.images["default-background"], (0, 0))
 
-        l, r = self.resman["game"]["gameover-shadow"]
-        r.x = (ARENA_WIDTH - r.w) // 2 + 5
-        r.y = (ARENA_HEIGHT - r.h) // 2 + 5
-        self.buffer.blit(l, r)
-        l, r = self.resman["game"]["gameover"]
-        r.x = (ARENA_WIDTH - r.w) // 2
-        r.y = (ARENA_HEIGHT - r.h) // 2
-        self.buffer.blit(l, r)
-        l, r = self.resman["game"]["gameover-2"]
-        r.x = (ARENA_WIDTH - r.w) // 2
-        r.y = (ARENA_HEIGHT - r.h) // 2 + 170
-        self.buffer.blit(l, r)
+        la = self.resman["game"]["gameover-shadow"]
+        la.paint_at(self.buffer, (ARENA_WIDTH - la.w) // 2 + 5, (ARENA_HEIGHT - la.h) // 2 + 5)
+        la = self.resman["game"]["gameover"]
+        la.paint_at(self.buffer, (ARENA_WIDTH - la.w) // 2, (ARENA_HEIGHT - la.h) // 2)
+        la = self.resman["game"]["gameover-2"]
+        la.paint_at(self.buffer, (ARENA_WIDTH -la .w) // 2, (ARENA_HEIGHT - la.h) // 2 + 170)
 
     def on_keyup(self, key):
         """

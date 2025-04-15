@@ -41,18 +41,15 @@ class SelectPlayer(Mode):
         Paint event handler
         """
         self.buffer.blit(self.resman.images["default-background"], (0, 0))
-        i = 0
-        for rx in self.rects:
-            self.buffer.blit(self.vehicles[i], rx)
-            i += 1
+        for counter, rx in enumerate(self.rects):
+            self.buffer.blit(self.vehicles[counter], rx)
         r = self.images["viewport"].get_rect()
         r.center = ((self.viewpos + 1) * ARENA_WIDTH // 4, ARENA_HEIGHT // 2)
         self.buffer.blit(self.images["viewport"], r)
 
-        la, re = self.resman["game"]["choose-vehicle"]
-        re.x = (ARENA_WIDTH - re.w) // 2
-        re.y = (ARENA_HEIGHT // 2 - re.h) // 2
-        self.buffer.blit(la, re)
+        la = self.resman["game"]["choose-vehicle"]
+        la.center(ARENA_WIDTH // 2, ARENA_HEIGHT // 4)
+        la.paint(self.buffer)
 
     def on_mouseup(self, button, pos):
         """

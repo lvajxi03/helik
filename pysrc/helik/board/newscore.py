@@ -105,12 +105,12 @@ class BoardNewScore(Board):
                                 LETTER_BLOCK_W, LETTER_BLOCK_H)
                 self.rectangles[all_chrows[i][j]] = r
 
-        _, re = self.resman["newscore"]["space"]
+        re = self.resman["newscore"]["space"].r
         re.y = SPACE_Y_OFFSET
         re.x = (ARENA_WIDTH - re.w) // 2
         self.rectangles[' '] = re
 
-        _, re = self.resman["newscore"]["done"]
+        re = self.resman["newscore"]["done"].r
         re.y = DONE_Y_OFFSET
         re.x = (ARENA_WIDTH - re.w) // 2
         self.rectangles[';'] = re
@@ -130,52 +130,55 @@ class BoardNewScore(Board):
         """
         self.paint_default_bg()
 
-        la, re = self.resman["newscore-status"]
-        self.buffer.blit(la, (ARENA_WIDTH - re.width - STATUS_DX, ARENA_HEIGHT - LETTER_BLOCK_H))
+        la = self.resman["newscore-status"]
+        la.paint_at(self.buffer, ARENA_WIDTH - la.w - STATUS_DX,
+                    ARENA_HEIGHT - LETTER_BLOCK_H)
 
-        la, re = self.resman["newscore"]["congrats-shadow"]
-        re.x = (ARENA_WIDTH - re.w) // 2 + HEADING_SHADOW_DX
-        re.y = CONGRATS_DY
-        self.buffer.blit(la, re)
+        la = self.resman["newscore"]["congrats-shadow"]
+        la.x = (ARENA_WIDTH - la.w) // 2 + HEADING_SHADOW_DX
+        la.y = CONGRATS_DY
+        la.paint(self.buffer)
 
-        la, re = self.resman["newscore"]["congrats"]
-        re.x = (ARENA_WIDTH - re.w) // 2
+        la = self.resman["newscore"]["congrats"]
+        la.x = (ARENA_WIDTH - la.w) // 2
+        la.y = CONGRATS_S_DY
+        la.paint(self.buffer)
 
-        re.y = CONGRATS_S_DY
-        self.buffer.blit(la, re)
+        la = self.resman["newscore"]["congrats-2"]
+        la.x = (ARENA_WIDTH - la.w) // 2
+        la.y = CONGRATS_2_DY
+        la.paint(self.buffer)
 
-        la, re = self.resman["newscore"]["congrats-2"]
-        re.x = (ARENA_WIDTH - re.w) // 2
-        re.y = CONGRATS_2_DY
-        self.buffer.blit(la, re)
-
-        i = 0
-        for l in self.nick:
-            self.buffer.blit(self.resman.letters[l],
-                             (ARENA_WIDTH // 2 + i * LETTER_BLOCK_W, NICK_DY))
-            i += 1
+        counter = 0
+        for counter, letter in enumerate(self.nick):
+            self.buffer.blit(
+                self.resman.letters[letter],
+                (ARENA_WIDTH // 2 + counter * LETTER_BLOCK_W, NICK_DY))
 
         if self.counter == 0:
             self.buffer.blit(self.resman.images['cursor'],
-                             (ARENA_WIDTH // 2 + i * LETTER_BLOCK_W,
+                             (ARENA_WIDTH // 2 + counter * LETTER_BLOCK_W,
                               CURSOR_DY))
 
-        l, r = self.resman["newscore"]["enter-nickname"]
-        r.x = ARENA_WIDTH // 2 - r.w - ENTER_NICKNAME_DX
-        r.y = ENTER_NICKNAME_DY
-        self.buffer.blit(l, r)
+        la = self.resman["newscore"]["enter-nickname"]
+        la.x = ARENA_WIDTH // 2 - la.w - ENTER_NICKNAME_DX
+        la.y = ENTER_NICKNAME_DY
+        la.paint(self.buffer)
 
         for i in range(5):
             for j in range(8):
-                self.buffer.blit(self.resman.letters[all_chrows[i][j]],
-                                 (LINE_DX + j * LETTER_BLOCK_DX,
-                                  LINE_DY + i * LETTER_BLOCK_DY))
+                self.buffer.blit(
+                    self.resman.letters[all_chrows[i][j]],
+                    (LINE_DX + j * LETTER_BLOCK_DX,
+                     LINE_DY + i * LETTER_BLOCK_DY))
 
-        la, _ = self.resman["newscore"]["space"]
-        self.buffer.blit(la, self.rectangles[' '])
+        la = self.resman["newscore"]["space"]
+        re = self.rectangles[' ']
+        la.paint_at(self.buffer, re.x, re.y)
 
-        la, _ = self.resman["newscore"]["done"]
-        self.buffer.blit(la, self.rectangles[';'])
+        la = self.resman["newscore"]["done"]
+        re = self.rectangles[';']
+        la.paint_at(self.buffer, re.x, re.y)
 
         if self.y < 5:
             r = pygame.Rect(LINE_DX + self.x * LETTER_BLOCK_DX - BUTTON_S_DX,
