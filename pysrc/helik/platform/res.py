@@ -7,6 +7,7 @@ import json
 import os
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, LEVELNO, ALL_CHARS
+from helik.core import Label
 from .keys import render_keys_labels
 from .buttons import render_buttons_labels
 
@@ -243,28 +244,20 @@ def create_labels(fonts, colors, basepath):
                     color = pygame.Color(fd["color"])
                 if "label" in fd:
                     # Single label
-                    su = pygame.transform.rotate(
-                        fonts[fd["font"]].render(
-                            fd["label"],
-                            True,
-                            color),
-                        rotate)
-                    su.set_alpha(color.a)
-                    r = su.get_rect()
-                    data[lang][group][label] = (su, r)
+                    lab = Label(fd["label"],
+                                fonts[fd["font"]],
+                                color,
+                                0, 0, rotate)
+                    data[lang][group][label] = lab
                 elif "labels" in fd:
                     # List of labels
                     data[lang][group][label] = []
                     for fdx in fd["labels"]:
-                        su = pygame.transform.rotate(
-                            fonts[fd["font"]].render(
-                                fdx,
-                                True,
-                                color),
-                            rotate)
-                        su.set_alpha(color.a)
-                        r = su.get_rect()
-                        data[lang][group][label].append((su, r))
+                        lab = Label(fdx,
+                                    fonts[fd["font"]],
+                                    color,
+                                    0, 0, rotate)
+                        data[lang][group][label].append(lab)
     try:
         # move "common/common" to single "common" only
         data["common"] = data["common"]["common"]

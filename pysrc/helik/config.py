@@ -74,11 +74,9 @@ class Config:
         Create fake hiscores in case of first run
         """
         if len(self.data['hiscores']) == 0:
-            i = 0
-            for name in ["ABC", "DEF", "GHI", "JKL", "MNO", "PQR",
-                         "STU", "VWX", "YZA", 'BCD']:
-                self.data['hiscores'].append((name, i * 10 + 2))
-                i += 1
+            for counter, name in enumerate(["ABC", "DEF", "GHI", "JKL",
+                                            "MNO", "PQR", "STU", "VWX", "YZA", 'BCD']):
+                self.data['hiscores'].append((name, counter * 10 + 2))
         self.data['hiscores'].sort(key=lambda a: a[1], reverse=True)
         self.data['hiscores'] = self.data['hiscores'][:10]
 

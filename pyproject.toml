@@ -52,10 +52,8 @@ packages = ["helik",
     "helik.resources.images.vehicles",
     "helik.resources.labels.common",
     "helik.resources.labels.pl",
-    "helik.resources.labels.pl.pages",
     "helik.resources.labels.pl.settings",
     "helik.resources.labels.en",
-    "helik.resources.labels.en.pages",
     "helik.resources.labels.en.settings",
     "helik.resources.levels",
     "helik.resources.pages.about",
@@ -80,10 +78,8 @@ packages = ["helik",
 "helik.resources.images.vehicles" = ["*.png"]
 "helik.resources.labels.common" = ["*.json"]
 "helik.resources.labels.pl" = ["*.json"]
-"helik.resources.labels.pl.pages" = ["*.json"]
 "helik.resources.labels.pl.settings" = ["*.json"]
 "helik.resources.labels.en" = ["*.json"]
-"helik.resources.labels.en.pages" = ["*.json"]
 "helik.resources.labels.en.settings" = ["*.json"]
 "helik.resources.levels" = ["*.json"]
 "helik.resources.pages.about" = ["*.json"]

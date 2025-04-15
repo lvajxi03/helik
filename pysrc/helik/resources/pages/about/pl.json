@@ -84,60 +84,84 @@
           ]
         },
         {
-          "label": "about-1s",
+          "color": "shadow-default",
+          "font": "about",
+          "label": "Gra w stylu Flappy Bird, ale z helikopterem.",
           "location": [
             205,
             33
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-2s",
+          "color": "shadow-default",
+          "font": "about",
+          "label": "Albo balonem. Albo sterowcem.",
           "location": [
             205,
             113
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-3s",
+          "color": "shadow-default",
+          "font": "about",
+          "label": "I strzelaniem.",
           "location": [
             405,
             193
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-4s",
+          "color": "shadow-default",
+          "font": "about",
+          "label": "I paroma innymi rzeczami.",
           "location": [
             405,
             273
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-1",
+          "color": "snowy-white",
+          "font": "about",
+          "label": "Gra w stylu Flappy Bird, ale z helikopterem.",
           "location": [
             200,
             30
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-2",
+          "color": "snowy-white",
+          "font": "about",
+          "label": "Albo balonem. Albo sterowcem.",
           "location": [
             200,
             110
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-3",
+          "color": "snowy-white",
+          "font": "about",
+          "label": "I strzelaniem.",
           "location": [
             400,
             190
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-4",
+          "color": "snowy-white",
+          "font": "about",
+          "label": "I paroma innymi rzeczami.",
           "location": [
             400,
             270
-          ]
+          ],
+          "rotate": 0
         }
       ]
     },
@@ -145,67 +169,94 @@
       "images": [],
       "labels": [
         {
-          "label": "about-B1",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "Autor: Marcin Bielewicz",
           "location": [
             200,
             30
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B2",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "<marcin@iostream.pl>",
           "location": [
             200,
             70
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B3",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "(kod, grafika, muzyka, czcionki)",
           "location": [
             200,
             110
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B4",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "https://iostream.pl/helik",
           "location": [
             200,
             210
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B5",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "Konsultacje: Antoni Bielewicz",
           "location": [
             200,
             310
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B6",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "Zakodowano w Emacsie",
           "location": [
             200,
             410
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B7",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "Grafika: Inkscape & Gimp",
           "location": [
             200,
             450
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B8",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "Muzyka: udio.com, dźwięki: elevenlabs.io",
           "location": [
             200,
             490
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B9",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "Czcionki: Birdfont",
           "location": [
             200,
             530
-          ]
+          ],
+          "rotate": 0
         }
       ]
     }

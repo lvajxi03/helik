@@ -78,15 +78,19 @@ class BoardHiscores(Board):
         if len(self.arena.config['hiscores']) == 0:
             pass
         else:
-            l, _ = self.resman["hiscores"]["intro-shadow"]
-            self.buffer.blit(l, (SCORES_DX + SHADOW_DX, 10 + SHADOW_DY))
-            l, _ = self.resman["hiscores"]["intro"]
-            self.buffer.blit(l, (SCORES_DX, 10))
+            la = self.resman["hiscores"]["intro-shadow"]
+            la.paint_at(self.buffer, SCORES_DX + SHADOW_DX, 10 + SHADOW_DY)
+            la = self.resman["hiscores"]["intro"]
+            la.paint_at(self.buffer, SCORES_DX, 10)
             for i in range(0, 10):
-                self.buffer.blit(self.rectangles_s[i],
-                           (SCORES_DX + SHADOW_DX, SCORES_DY + SHADOW_DY + i * SCORES_DY_SPACE))
-                self.buffer.blit(self.rectangles[i],
-                           (SCORES_DX, SCORES_DY + i * SCORES_DY_SPACE))
+                self.buffer.blit(
+                    self.rectangles_s[i],
+                    (SCORES_DX + SHADOW_DX,
+                        SCORES_DY + SHADOW_DY + i * SCORES_DY_SPACE))
+                self.buffer.blit(
+                    self.rectangles[i],
+                    (SCORES_DX,
+                        SCORES_DY + i * SCORES_DY_SPACE))
 
     def on_keyup(self, key):
         """

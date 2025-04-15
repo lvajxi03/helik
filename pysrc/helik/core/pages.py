@@ -6,6 +6,7 @@ Pages module
 
 import webbrowser
 import pygame
+from helik.core import Label
 
 
 class Button:
@@ -87,8 +88,19 @@ class Page:
             else:
                 # Here's probably the one place where .locale[$lang] is present.
                 # and not sure why.
-                elem["label"] = resman.locale[lang]["pages"][elem["label"]]
-                self.data["labels"].append(elem)
+                rotate = 0
+                if "rotate" in elem:
+                    rotate = elem["rotate"]
+                color = pygame.Color("#ffffff")
+                try:
+                    if elem["color"] in resman.colors:
+                        color = resman.colors[elem["color"]]
+                    else:
+                        color = pygame.Color(elem["color"])
+                except KeyError:
+                    pass  # use default #fff
+                la = Label(elem["label"], resman.fonts[elem["font"]], color, elem["location"][0], elem["location"][1], rotate)
+                self.data["labels"].append(la)
 
     def on_click(self):
         """
@@ -113,9 +125,7 @@ class Page:
             canvas.blit(image, (x, y))
 
         for img in self.data['labels']:
-            label, _ = img["label"]
-            x, y = img["location"]
-            canvas.blit(label, (x, y))
+            img.paint(canvas)
 
         for b in self.data["buttons"]:
             b.paint(canvas)

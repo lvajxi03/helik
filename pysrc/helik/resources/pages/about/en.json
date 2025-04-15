@@ -84,60 +84,84 @@
           ]
         },
         {
-          "label": "about-1s",
+          "color": "shadow-default",
+          "font": "about",
+          "label": "A flappy bird style game, but with a helicopter.",
           "location": [
             205,
             33
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-2s",
+          "color": "shadow-default",
+          "font": "about",
+          "label": "Or a balloon. Or a blimp.",
           "location": [
             205,
             113
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-3s",
+          "color": "shadow-default",
+          "font": "about",
+          "label": "And shooting.",
           "location": [
             405,
             193
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-4s",
+          "color": "shadow-default",
+          "font": "about",
+          "label": "And a few other things.",
           "location": [
             405,
             273
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-1",
+          "color": "snowy-white",
+          "font": "about",
+          "label": "A flappy bird style game, but with a helicopter.",
           "location": [
             200,
             30
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-2",
+          "color": "snowy-white",
+          "font": "about",
+          "label": "Or a balloon. Or a blimp.",
           "location": [
             200,
             110
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-3",
+          "color": "snowy-white",
+          "font": "about",
+          "label": "And shooting.",
           "location": [
             400,
             190
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-4",
+          "color": "snowy-white",
+          "font": "about",
+          "label": "And a few other things.",
           "location": [
             400,
             270
-          ]
+          ],
+          "rotate": 0
         }
       ]
     },
@@ -145,67 +169,94 @@
       "images": [],
       "labels": [
         {
-          "label": "about-B1",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "Author: Marcin Bielewicz",
           "location": [
             200,
             30
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B2",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "<marcin@iostream.pl>",
           "location": [
             200,
             70
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B3",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "(code, graphics, fonts)",
           "location": [
             200,
             110
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B4",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "https://iostream.pl/helik-en",
           "location": [
             200,
             210
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B5",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "Consultant: Antoni Bielewicz",
           "location": [
             200,
             310
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B6",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "Coded in Emacs",
           "location": [
             200,
             410
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B7",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "Graphics: Inkscape & Gimp",
           "location": [
             200,
             450
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B8",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "Music: udio.com, sounds: elevenlabs.io",
           "location": [
             200,
             490
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "about-B9",
+          "color": "snowy-white",
+          "font": "about-sans",
+          "label": "Fonts: Birdfont",
           "location": [
             200,
             530
-          ]
+          ],
+          "rotate": 0
         }
       ]
     }
