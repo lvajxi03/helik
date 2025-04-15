@@ -59,12 +59,10 @@ class SelectPlayer(Mode):
         """
         selected = False
         if button == 1:
-            vpos = -1
-            for r in self.rects:
-                vpos += 1
+            for c, r in enumerate(self.rects):
                 if r.collidepoint(pos):
                     selected = True
-                    self.viewpos = vpos
+                    self.viewpos = c
                     self.on_keyup(pygame.K_RETURN)
             if not selected:
                 self.on_keyup(pygame.K_ESCAPE)

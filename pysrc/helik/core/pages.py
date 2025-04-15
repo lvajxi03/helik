@@ -99,7 +99,6 @@ class Page:
                         color = pygame.Color(elem["color"])
                 except KeyError:
                     pass  # use default #fff
-                print(elem)
                 la = Label(elem["label"], resman.fonts[elem["font"]], color, elem["location"][0], elem["location"][1], rotate)
                 self.data["labels"].append(la)
 
@@ -126,8 +125,7 @@ class Page:
             canvas.blit(image, (x, y))
 
         for img in self.data['labels']:
-            x, y = img["location"]
-            img["label"].paint_at(canvas, x, y)
+            img.paint(canvas)
 
         for b in self.data["buttons"]:
             b.paint(canvas)

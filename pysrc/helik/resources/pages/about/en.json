@@ -94,7 +94,7 @@
           "rotate": 0
         },
         {
-          "color": "snowy-white",
+          "color": "shadow-default",
           "font": "about",
           "label": "Or a balloon. Or a blimp.",
           "location": [

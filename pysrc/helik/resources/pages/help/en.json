@@ -4,53 +4,74 @@
       "images": [],
       "labels": [
         {
-          "label": "help-A-title",
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Table of Contents",
           "location": [
             250,
             70
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-A1",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "1. How to navigate",
           "location": [
             250,
             150
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-A2",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "2. Settings",
           "location": [
             250,
             200
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-A3",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "3. Game options",
           "location": [
             250,
             250
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-A4",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "4. Hiscores",
           "location": [
             250,
             300
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-A5",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "5. Game Play",
           "location": [
             250,
             350
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-A-status",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Use arrow keys/dpad (←→) or mouse scroll to navigate",
           "location": [
             250,
             450
-          ]
+          ],
+          "rotate": 0
         }
       ]
     },
@@ -66,67 +87,94 @@
       ],
       "labels": [
         {
-          "label": "help-N-title",
+          "color": "yellow-default",
+          "font": "about",
+          "label": "How to navigate?",
           "location": [
             250,
             70
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N1",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Wherever possible, use arrow keys or dpad to navigate",
           "location": [
             250,
             150
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N2",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Enter, Esc, Select, Start F3, Ⓐ or Ⓑ",
           "location": [
             250,
             200
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N3",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "All the menus also handle mouse click or scroll.",
           "location": [
             250,
             250
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N4",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "In general, look at the status bar -- all available",
           "location": [
             250,
             350
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N5",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "keys or buttons are listed there:",
           "location": [
             250,
             400
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N6",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "↑   ↑",
           "location": [
             950,
             530
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N7",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "and here you can change",
           "location": [
             860,
             570
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N8",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "current language",
           "location": [
             860,
             610
-          ]
+          ],
+          "rotate": 0
         }
       ]
     },
@@ -134,67 +182,94 @@
       "images": [],
       "labels": [
         {
-          "label": "help-S-title",
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Settings",
           "location": [
             250,
             70
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-S1",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "You can enable or disable sound effects and/or music.",
           "location": [
             250,
             150
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-S2",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "There are two music sets available:",
           "location": [
             250,
             200
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-S3",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* background music set for all the menus and info boards,",
           "location": [
             250,
             250
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-S4",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* game play music set",
           "location": [
             250,
             300
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-S5",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "All music tracks were created in udio.com,",
           "location": [
             250,
             350
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-S6",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "and we believe you gonna love them",
           "location": [
             250,
             400
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-S7",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Also, you can setup custom keys or gamepad buttons",
           "location": [
             250,
             500
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-S8",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "if you're not happy with the defaults.",
           "location": [
             250,
             550
-          ]
+          ],
+          "rotate": 0
         }
       ]
     },
@@ -202,85 +277,84 @@
       "images": [],
       "labels": [
         {
-          "label": "help-O-title",
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Game Options",
           "location": [
             250,
             70
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-O1",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Here you can set how difficult your game will be",
           "location": [
             250,
             150
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-O2",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "(we hope that level names are self-descriptive)",
           "location": [
             250,
             200
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-O3",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "The more difficult level you gonna pick, the faster",
           "location": [
             250,
             250
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-O4",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "all the objects will move. And yes, less hearts.",
           "location": [
             250,
             300
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-O5",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "In the training level, the number of hearts is unlimited",
           "location": [
             250,
             400
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-O6",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "and the speed is relatively slow.",
           "location": [
             250,
             450
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-O7",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "This is the place for you to practice.",
           "location": [
             250,
             500
-          ]
-        }
-      ]
-    },
-    {
-      "images": [
-      ],
-      "labels": [
-        {
-          "label": "help-H-title",
-          "location": [
-            250,
-            70
-          ]
-        },
-        {
-          "label": "help-H1",
-          "location": [250, 150]
-        },
-        {
-          "label": "help-H2",
-          "location": [250, 200]
-        },
-        {
-          "label": "help-H-title-2",
-          "location": [250, 270]
+          ],
+          "rotate": 0
         }
       ]
     },
@@ -288,46 +362,108 @@
       "images": [],
       "labels": [
         {
-          "label": "help-G-title",
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Hiscores",
           "location": [
             250,
             70
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-G1",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Here you can see top 10 hiscores.",
           "location": [
             250,
             150
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-G2",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "If you are really good, your name will be in this ranking one day.",
           "location": [
             250,
             200
           ]
         },
         {
-          "label": "help-G3",
+          "color": "yellow-default",
+          "font": "about",
+          "label": "New score",
+          "location": [
+            250,
+            270
+          ],
+          "rotate": 0
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Game Play",
+          "location": [
+            250,
+            70
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "a. main goal",
+          "location": [
+            250,
+            150
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "b. vehicle selection",
+          "location": [
+            250,
+            200
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "c. navigation",
           "location": [
             250,
             250
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-G4",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "d. game objects",
           "location": [
             250,
             300
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-G5",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "e. scoring and hearts",
           "location": [
             250,
             350
-          ]
+          ],
+          "rotate": 0
         }
       ]
     },
@@ -335,35 +471,74 @@
       "images": [],
       "labels": [
         {
-          "label": "help-Ga-title",
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Main Goal",
           "location": [
             250,
             70
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-G1a",
-          "location": [250, 170]
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "The main goal is to fly over the city and survive.",
+          "location": [
+            250,
+            170
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-G1c",
-          "location": [250, 220]
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "You have to avoid buildings and clouds, definitely.",
+          "location": [
+            250,
+            220
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-G1e",
-          "location": [250, 270]
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Also, you have to avoid geese, but you can shoot them instead.",
+          "location": [
+            250,
+            270
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-G1f",
-          "location": [250, 370]
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "You can collect additional hearts (up to 5 total), ammo (unlimited)",
+          "location": [
+            250,
+            370
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-G1g",
-          "location": [250, 420]
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "and change vehicle direction.",
+          "location": [
+            250,
+            420
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-G1h",
-          "location": [250, 520]
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Good luck! You gonna need this!",
+          "location": [
+            250,
+            520
+          ],
+          "rotate": 0
         }
       ]
     },
@@ -371,11 +546,14 @@
       "images": [],
       "labels": [
         {
-          "label": "help-Gb-title",
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Vehicle selection",
           "location": [
             250,
             70
-          ]
+          ],
+          "rotate": 0
         }
       ]
     },
@@ -383,11 +561,14 @@
       "images": [],
       "labels": [
         {
-          "label": "help-Gc-title",
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Navigation",
           "location": [
             250,
             70
-          ]
+          ],
+          "rotate": 0
         }
       ]
     },
@@ -395,11 +576,14 @@
       "images": [],
       "labels": [
         {
-          "label": "help-Gd-title",
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Game Objects",
           "location": [
             250,
             70
-          ]
+          ],
+          "rotate": 0
         }
       ]
     },
@@ -407,11 +591,14 @@
       "images": [],
       "labels": [
         {
-          "label": "help-Ge-title",
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Scoring and Hearts",
           "location": [
             250,
             70
-          ]
+          ],
+          "rotate": 0
         }
       ]
     }
