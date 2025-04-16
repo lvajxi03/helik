@@ -635,6 +635,42 @@
             70
           ],
           "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Użyj klawiszy lub przycisków zdefiniowanych w Ustawieniach.",
+          "location": [
+            250,
+            170
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Porzebujesz tylko wiedzieć, jak skakać i jak strzelać.",
+          "location": [
+            250,
+            220
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Pojazd podlega prawom grawitacji, więc czasami trzeba",
+          "location": [
+            250,
+            320
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "skakać dość często!",
+          "location": [
+            250,
+            370
+          ]
         }
       ]
     },
