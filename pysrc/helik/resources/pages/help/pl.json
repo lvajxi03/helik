@@ -686,6 +686,96 @@
             70
           ],
           "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Główne obiekty w grze to:",
+          "location": [
+            250,
+            170
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* chmury,",
+          "location": [
+            250,
+            220
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* budynki,",
+          "location": [
+            250,
+            270
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* gęsi",
+          "location": [
+            250,
+            320
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Można strzelać do gęsi, ale pozostałych raczej trzeba unikać.",
+          "location": [
+            250,
+            370
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Ponadto, można zbierać następujące:",
+          "location": [
+            250,
+            470
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* serca - dodają punktów życia (maksymalnie do pięciu),",
+          "location": [
+            250,
+            520
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* amunicja - dodaje więcej pocisków,",
+          "location": [
+            250,
+            570
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* rotatory - zmieniają kierunek grawitacji",
+          "location": [
+            250,
+            620
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Używaj z rozwagą!",
+          "location": [
+            250,
+            670
+          ]
         }
       ]
     },
@@ -695,7 +785,7 @@
         {
           "color": "yellow-default",
           "font": "about",
-          "label": "Punkty gry i życia",
+          "label": "Punktowanie",
           "location": [
             250,
             70

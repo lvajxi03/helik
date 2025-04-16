@@ -665,6 +665,105 @@
             70
           ],
           "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "There are following main objects used in the game:",
+          "location": [
+            250,
+            170
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* clouds,",
+          "location": [
+            250,
+            220
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* buildings,",
+          "location": [
+            250,
+            270
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* birds",
+          "location": [
+            250,
+            320
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "You can shoot birds, but please avoid collisions",
+          "location": [
+            250,
+            370
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "with buildings and clouds.",
+          "location": [
+            250,
+            420
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Also, you can pick the following:",
+          "location": [
+            250,
+            470
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* hearts - will give you more life points (up to five),",
+          "location": [
+            250,
+            520
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* ammo - will give you more bullets,",
+          "location": [
+            250,
+            570
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* rotators - will change gravity",
+          "location": [
+            250,
+            620
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Use with caution!",
+          "location": [
+            250,
+            670
+          ]
         }
       ]
     },
@@ -674,7 +773,7 @@
         {
           "color": "yellow-default",
           "font": "about",
-          "label": "Scoring and Hearts",
+          "label": "Scoring",
           "location": [
             250,
             70
