@@ -62,7 +62,7 @@ class Page:
     """
     Page - mix of static images and labels
     """
-    def __init__(self, data, resman, lang):
+    def __init__(self, data, resman):
         """
         Page constructor
         :param data: initial JSON data
