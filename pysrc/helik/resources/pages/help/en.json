@@ -396,7 +396,47 @@
           "label": "New score",
           "location": [
             250,
-            270
+            320
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Application may ask you to enter your nickname,",
+          "location": [
+            250,
+            420
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "which will appear on the hiscores list",
+          "location": [
+            250,
+            470
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Nickname editor is very simple in use, however please keep in mind",
+          "location": [
+            250,
+            520
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "that Enter actually simulates keypress of the selected character.",
+          "location": [
+            250,
+            570
           ],
           "rotate": 0
         }
@@ -779,6 +819,51 @@
             70
           ],
           "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Scoring is very simple. Here are the rules:",
+          "location": [
+            250,
+            170
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* one point for every second you survived,",
+          "location": [
+            250,
+            220
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* one point for every bird shot",
+          "location": [
+            250,
+            270
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* one hundred points for every level completed",
+          "location": [
+            250,
+            320
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Happy gaming!",
+          "location": [
+            250,
+            420
+          ]
         }
       ]
     }

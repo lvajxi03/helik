@@ -410,6 +410,46 @@
             320
           ],
           "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Program może poprosić Cię o wprowadzenie swojego pseudonimu,",
+          "location": [
+            250,
+            420
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "który - razem z wynikiem - znajdzie się na liście.",
+          "location": [
+            250,
+            470
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Edytor pseudonimu jest bardzo prosty, pamiętaj tylko,",
+          "location": [
+            250,
+            520
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "że Enter symuluje wprowadzenie zaznaczonego znaku.",
+          "location": [
+            250,
+            570
+          ],
+          "rotate": 0
         }
       ]
     },
@@ -524,7 +564,7 @@
         {
           "color": "snowy-white",
           "font": "pages-small",
-          "label": "Można zbierać dodatkowe punkty życia (góra 5r), amunicję",
+          "label": "Można zbierać dodatkowe punkty życia (góra 5), amunicję",
           "location": [
             250,
             370
@@ -791,6 +831,51 @@
             70
           ],
           "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Punktowanie jest bardzo proste. Oto zasady:",
+          "location": [
+            250,
+            170
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* jeden punkt za każdą przeżytą sekundę,",
+          "location": [
+            250,
+            220
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* jeden punkt za każdą zestrzeloną gęś,",
+          "location": [
+            250,
+            270
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* sto punktów za każdy ukończony poziom",
+          "location": [
+            250,
+            320
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Miłej gry!",
+          "location": [
+            250,
+            420
+          ]
         }
       ]
     }
