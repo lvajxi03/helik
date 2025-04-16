@@ -26,7 +26,6 @@ class BoardWelcome(Board):
             comp = random.randint(64, 255)
             self.colors.append(
                 pygame.Color(comp, comp, comp))
-            # a = random.randint(0, 255)
 
     def activate(self, **kwargs):
         """
