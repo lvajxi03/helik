@@ -141,8 +141,8 @@ class Pager:
     def __init__(self, data, resman):
         """
         Pager constructor
-        :param data:
-        :param resman:-+
+        :param data: pager data (json)
+        :param resman: Resource Manager instance
         """
         self.pages = {}
         self.lang = "pl"  # Ok,there has to be something default
@@ -156,6 +156,7 @@ class Pager:
     def activate(self, *args):
         """
         Activate event handler
+        :param args: variable args list of arguments
         """
         self.current = min(args[0], len(self.pages[self.lang]) - 1) if len(args) > 0 else 0
 
