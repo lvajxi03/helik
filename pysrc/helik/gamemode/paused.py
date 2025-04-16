@@ -22,11 +22,14 @@ class ModePaused(Mode):
         """
         self.buffer.blit(self.resman.images["default-background"], (0, 0))
         im = self.resman["game"]["paused-shadow"]
-        im.paint_at(self.buffer, (ARENA_WIDTH - im.w ) // 2 + 5, (ARENA_HEIGHT // 2 - im.h) // 2 + 5)
+        im.paint_at(self.buffer, (ARENA_WIDTH - im.w) // 2 + 5,
+                    (ARENA_HEIGHT // 2 - im.h) // 2 + 5)
         im = self.resman["game"]["paused"]
-        im.paint_at(self.buffer, (ARENA_WIDTH - im.w) // 2, (ARENA_HEIGHT // 2 - im.h) // 2)
+        im.paint_at(self.buffer, (ARENA_WIDTH - im.w) // 2,
+                    (ARENA_HEIGHT // 2 - im.h) // 2)
         im = self.resman["game"]["continue"]
-        im.paint_at(self.buffer, (ARENA_WIDTH - im.w) // 2, (3 * ARENA_HEIGHT // 2 - im.h) // 2)
+        im.paint_at(self.buffer, (ARENA_WIDTH - im.w) // 2,
+                    (3 * ARENA_HEIGHT // 2 - im.h) // 2)
 
     def on_keyup(self, key):
         """
