@@ -49,7 +49,6 @@ class BoardAbout(Board):
             la = self.resman["pager-status-none"]
             la.paint_at(self.buffer, ARENA_WIDTH - la.w - 200, ARENA_HEIGHT - 55)
 
-
     def on_keyup(self, key):
         """
         Key release event handler

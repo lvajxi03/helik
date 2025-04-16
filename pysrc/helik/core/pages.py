@@ -150,7 +150,7 @@ class Pager:
         for lang in data:
             self.pages[lang] = []
             for elem in data[lang]:
-                page = Page(elem, resman, lang)
+                page = Page(elem, resman)
                 self.pages[lang].append(page)
 
     def activate(self, *args):
