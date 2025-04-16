@@ -62,16 +62,16 @@ def render_buttons_labels(misc: dict, fonts: dict, colors: dict) -> dict:
     """
     data = {"shadows": {}, "buttons": {}}
     # do the shadows:
-    for lang in button_names:
+    for lang, vals in button_names.items():
         data["shadows"][lang] = {}
-        for elem in button_names[lang]:
+        for elem, elva in vals.items():
             if misc["keys-and-buttons"]["color"] in colors:
                 color = colors[misc["keys-and-buttons-shadow"]["color"]]
             else:
                 color = pygame.Color(misc["keys-and-buttons-shadow"]["color"])
             su = pygame.transform.rotate(
                 fonts[misc["keys-and-buttons-shadow"]["font"]].render(
-                    button_names[lang][elem],
+                    elva,
                     True,
                     color),
                 misc["keys-and-buttons-shadow"]["rotate"]
@@ -79,16 +79,16 @@ def render_buttons_labels(misc: dict, fonts: dict, colors: dict) -> dict:
             su.set_alpha(color.a)
             data["shadows"][lang][elem] = su
     # do the buttons:
-    for lang in button_names:
+    for lang, vals in button_names.items():
         data["buttons"][lang] = {}
-        for elem in button_names[lang]:
+        for elem, elva in vals.items():
             if misc["keys-and-buttons"]["color"] in colors:
                 color = colors[misc["keys-and-buttons"]["color"]]
             else:
                 color = pygame.Color(misc["keys-and-buttons"]["color"])
             su = pygame.transform.rotate(
                 fonts[misc["keys-and-buttons"]["font"]].render(
-                    button_names[lang][elem],
+                    elva,
                     True,
                     color),
                 misc["keys-and-buttons"]["rotate"]

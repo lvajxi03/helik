@@ -5,7 +5,8 @@ Entry point for Helik package
 """
 
 import sys
-from .arena import Arena
+import cProfile
+from helik.arena import Arena
 
 
 if __name__ == "__main__":
@@ -16,4 +17,4 @@ if __name__ == "__main__":
             vaq = True
     except IndexError:
         pass
-    app.run(validate_and_quit=vaq)
+    cProfile.run("app.run(validate_and_quit=vaq)")

@@ -7,7 +7,7 @@ Main Settings mode
 import pygame
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH
 from helik.platform import AxisValue, AxisType, ButtonType
-from helik.types import BoardType, HelpChapter
+from helik.datatypes import BoardType, HelpChapter
 from .standard import SettingsMode, SettingsModeId
 
 
@@ -39,29 +39,23 @@ class MainSettingsMode(SettingsMode):
         self.rectangles = []
         self.rectangles_s = []
 
-        i = 0
-        for elem in self.resman["settings"]["items"]:
-            label, rect = elem
-            rect.left = 400
-            rect.top = 100 + i * 80
-            rect.width = 750 - rect.left
-            self.rectangles.append((label, rect))
-            i += 1
-        i = 0
-        for elem in self.resman["settings"]["items-shadow"]:
-            label, rect = elem
-            rect.left = 405
-            rect.top = 105 + i * 80
-            rect.width = 750 - rect.left
-            self.rectangles_s.append((label, rect))
-            i += 1
+        for counter, elem in enumerate(self.resman["settings"]["items"]):
+            elem.move(400, 100 + counter * 80)
+            elem.r.w = 750 - elem.x
+            self.rectangles.append(elem)
+
+        for counter, elem in enumerate(self.resman["settings"]["items-shadow"]):
+            elem.move(405, 105 + counter * 80)
+            elem.r.w = 750 - elem.x
+            self.rectangles_s.append(elem)
+
         self.recalculate_pos()
 
     def recalculate_pos(self):
         """
         Re-calculate current selection rectangle
         """
-        _, self.rect_pos = self.rectangles[self.menu_pos]
+        self.rect_pos = self.rectangles[self.menu_pos].r
         self.rect_pos = self.rect_pos.inflate(40, 40)
 
     def on_paint(self):
@@ -71,15 +65,13 @@ class MainSettingsMode(SettingsMode):
         self.paint_default_bg()
         self.paint_default_title("settings")
 
-        la, re = self.resman["settings-status"]
-        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+        la = self.resman["settings-status"]
+        la.paint_at(self.buffer, ARENA_WIDTH - la.w - 200, ARENA_HEIGHT - 55)
 
         for re in self.rectangles_s:
-            label, rect = re
-            self.buffer.blit(label, rect)
+            re.paint(self.buffer)
         for re in self.rectangles:
-            label, rect = re
-            self.buffer.blit(label, rect)
+            re.paint(self.buffer)
 
         self.rect_pos_t = self.rect_pos.move(5, 5)
         pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16),
@@ -88,32 +80,32 @@ class MainSettingsMode(SettingsMode):
                          self.rect_pos, width=5, border_radius=20)
 
         if self.arena.config["sound"] == 1:
-            la, re = self.resman["settings"]["checked-shadow"]
-            self.buffer.blit(la, (705, 100))
-            la, re = self.resman["settings"]["checked"]
-            self.buffer.blit(la, (700, 95))
+            la = self.resman["settings"]["checked-shadow"]
+            la.paint_at(self.buffer, 705, 100)
+            la = self.resman["settings"]["checked"]
+            la.paint_at(self.buffer, 700, 95)
         else:
-            la, re = self.resman["settings"]["unchecked-shadow"]
-            self.buffer.blit(la, (705, 100))
-            la, re = self.resman["settings"]["unchecked"]
-            self.buffer.blit(la, (700, 95))
+            la = self.resman["settings"]["unchecked-shadow"]
+            la.paint_at(self.buffer, 705, 100)
+            la = self.resman["settings"]["unchecked"]
+            la.paint_at(self.buffer, 700, 95)
 
         if self.arena.config["music"] == 1:
-            la, re = self.resman["settings"]["checked-shadow"]
-            self.buffer.blit(la, (705, 175))
-            la, re = self.resman["settings"]["checked"]
-            self.buffer.blit(la, (700, 170))
+            la = self.resman["settings"]["checked-shadow"]
+            la.paint_at(self.buffer, 705, 175)
+            la = self.resman["settings"]["checked"]
+            la.paint_at(self.buffer, 700, 170)
         else:
-            la, re = self.resman["settings"]["unchecked-shadow"]
-            self.buffer.blit(la, (705, 175))
-            la, re = self.resman["settings"]["unchecked"]
-            self.buffer.blit(la, (700, 170))
+            la = self.resman["settings"]["unchecked-shadow"]
+            la.paint_at(self.buffer, 705, 175)
+            la = self.resman["settings"]["unchecked"]
+            la.paint_at(self.buffer, 700, 170)
 
         for i in range(2):
-            la, re = self.resman["settings"]["grip-shadow"]
-            self.buffer.blit(la, (705, 260 + i * 80))
-            la, re = self.resman["settings"]["grip"]
-            self.buffer.blit(la, (700, 255 + i * 80))
+            la = self.resman["settings"]["grip-shadow"]
+            la.paint_at(self.buffer, 705, 260 + i * 80)
+            la = self.resman["settings"]["grip"]
+            la.paint_at(self.buffer, 700, 255 + i * 80)
 
     def on_keyup(self, key):
         """
@@ -177,13 +169,10 @@ class MainSettingsMode(SettingsMode):
                         self.audio.play_sfx("poom")
                         self.create_rectangles()
                 if not ch_lang:
-                    i = 0
-                    for elem in self.rectangles:
-                        _, rect = elem
-                        if rect.collidepoint(pos):
-                            self.menu_pos = i
+                    for counter, elem in enumerate(self.rectangles):
+                        if elem.r.collidepoint(pos):
+                            self.menu_pos = counter
                             self.on_keyup(pygame.K_RETURN)
-                        i += 1
             case 4:
                 self.on_keyup(pygame.K_UP)
             case 5:

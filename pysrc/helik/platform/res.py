@@ -7,6 +7,7 @@ import json
 import os
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT, LEVELNO, ALL_CHARS
+from helik.core import Label
 from .keys import render_keys_labels
 from .buttons import render_buttons_labels
 
@@ -22,7 +23,7 @@ def create_surfaces():
     return {
         "buffer": pygame.display.set_mode(
             (ARENA_WIDTH, ARENA_HEIGHT),
-            flags=pygame.FULLSCREEN | pygame.NOFRAME),
+        ), # flags=pygame.FULLSCREEN | pygame.NOFRAME),
         "status": pygame.Surface((ARENA_WIDTH, 60), pygame.SRCALPHA)
     }
 
@@ -53,17 +54,17 @@ def load_images(basepath):
             data = json.load(f_handle)
             for key in data:
                 value = data[key]
-                if type(value) is list:
+                if isinstance(value, list):
                     images[key] = []
                     for elem in value:
                         images[key].append(pygame.image.load(
                             pa.joinpath(key).joinpath(elem)).convert_alpha())
-                elif type(value) is dict:
+                elif isinstance(value, dict):
                     images[key] = {}
                     for elem in value:
                         images[key][elem] = pygame.image.load(
                             pa.joinpath(key).joinpath(value[elem])).convert_alpha()
-                elif type(value) is str:
+                elif isinstance(value, str):
                     images[key] = pygame.image.load(pa.joinpath(value)).convert_alpha()
     except IOError as ioe:
         print(ioe)
@@ -103,13 +104,13 @@ def load_level_planes(basepath):
             data = json.load(f_handle)
             for key in data:
                 values = data[key]
-                if type(values) is list:
+                if isinstance(values, list):
                     if key not in level_planes:
                         level_planes[key] = []
                     for value in values:
                         level_planes[key].append(
                             pygame.image.load(pa.joinpath(key).joinpath(value)).convert_alpha())
-                elif type(values) is str:
+                elif isinstance(values, str):
                     level_planes[key] = pygame.image.load(pa.joinpath(
                         values)).convert_alpha()
     except IOError as ioe:
@@ -225,15 +226,15 @@ def create_labels(fonts, colors, basepath):
     content = read_labels(trav)
     data = {}
     # 1. Languages
-    for lang in content:
+    for lang, vals in content.items():
         if lang not in data:
             data[lang] = {}
-        for group in content[lang]:
+        for group in vals:
             if group not in data[lang]:
                 data[lang][group] = {}
             for label in content[lang][group]:
                 # Font data
-                fd = content[lang][group][label]
+                fd = vals[group][label]
                 rotate = 0
                 if "rotate" in fd:
                     rotate = int(fd["rotate"])
@@ -243,28 +244,20 @@ def create_labels(fonts, colors, basepath):
                     color = pygame.Color(fd["color"])
                 if "label" in fd:
                     # Single label
-                    su = pygame.transform.rotate(
-                        fonts[fd["font"]].render(
-                            fd["label"],
-                            True,
-                            color),
-                        rotate)
-                    su.set_alpha(color.a)
-                    r = su.get_rect()
-                    data[lang][group][label] = (su, r)
+                    lab = Label(fd["label"],
+                                fonts[fd["font"]],
+                                color,
+                                0, 0, rotate)
+                    data[lang][group][label] = lab
                 elif "labels" in fd:
                     # List of labels
                     data[lang][group][label] = []
                     for fdx in fd["labels"]:
-                        su = pygame.transform.rotate(
-                            fonts[fd["font"]].render(
-                                fdx,
-                                True,
-                                color),
-                            rotate)
-                        su.set_alpha(color.a)
-                        r = su.get_rect()
-                        data[lang][group][label].append((su, r))
+                        lab = Label(fdx,
+                                    fonts[fd["font"]],
+                                    color,
+                                    0, 0, rotate)
+                        data[lang][group][label].append(lab)
     try:
         # move "common/common" to single "common" only
         data["common"] = data["common"]["common"]
@@ -285,7 +278,6 @@ class ResourceManager:
         """
         self.lang = "en"
         self.misc = {}
-        self.resources = {}
         self.fonts = {}
         self.colors = {}
         self.pages = {}

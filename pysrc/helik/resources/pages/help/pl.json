@@ -1,56 +1,77 @@
 {
   "pl": [
-{
+    {
       "images": [],
       "labels": [
         {
-          "label": "help-A-title",
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Spis treści",
           "location": [
             250,
             70
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-A1",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "1. Jak się poruszać?",
           "location": [
             250,
             150
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-A2",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "2. Ustawienia",
           "location": [
             250,
             200
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-A3",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "3. Opcje gry",
           "location": [
             250,
             250
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-A4",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "4. Najlepsze wyniki",
           "location": [
             250,
             300
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-A5",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "5. Rozgrywka",
           "location": [
             250,
             350
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-A-status",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Użyj strzałek/dpad (←→) lub rolki myszy do nawigacji",
           "location": [
             250,
             450
-          ]
+          ],
+          "rotate": 0
         }
       ]
     },
@@ -66,66 +87,578 @@
       ],
       "labels": [
         {
-          "label": "help-N-title",
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Jak się tu poruszać?",
           "location": [
             250,
             70
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N1",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Gdziekolwiek możliwe, użyj klawiszy kursora lub dpad do poruszania,",
           "location": [
             250,
             150
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N2",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Enter, Esc, Select, Start, F3, Ⓐ lub Ⓑ",
           "location": [
             250,
             200
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N3",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Wszystkie menu obsługują też rolkę myszy i klikanie.",
           "location": [
             250,
             250
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N4",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "W ogóle, patrz na pasek statusu -- wszystkie możliwe",
           "location": [
             250,
             350
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N5",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "klawisze lub przyciski są tam wymienione:",
           "location": [
             250,
             400
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N6",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "↑   ↑",
           "location": [
             950,
             530
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N7",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "a tu możesz zmienić",
           "location": [
             860,
             570
-          ]
+          ],
+          "rotate": 0
         },
         {
-          "label": "help-N8",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "bieżący język",
           "location": [
             860,
             610
+          ],
+          "rotate": 0
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Ustawienia",
+          "location": [
+            250,
+            70
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Możesz włączać albo wyłączać odgłosy i/lub muzykę.",
+          "location": [
+            250,
+            150
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Dostępne są dwie ścieżki dżwiękowe:",
+          "location": [
+            250,
+            200
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* muzyka w tle, dla wszystkich menu i plansz informacyjnych",
+          "location": [
+            250,
+            250
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* muzyka w grze",
+          "location": [
+            250,
+            300
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Wszystkie ścieżki zostały wygenerowane w udio.com",
+          "location": [
+            250,
+            350
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "i wierzymy, że się spodobają",
+          "location": [
+            250,
+            400
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Dodatkowo, możesz ustawić inne klawisze lub przyciski na gamepadzie,",
+          "location": [
+            250,
+            500
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "jeśli te domyślne nie spełniają Twoich oczekiwań",
+          "location": [
+            250,
+            550
+          ],
+          "rotate": 0
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Opcje gry",
+          "location": [
+            250,
+            70
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Tutaj możesz ustawić poziom trudności gry",
+          "location": [
+            250,
+            150
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "(mamy nadzieję, że nazwy poziomów trudności są dobrze dobrane)",
+          "location": [
+            250,
+            200
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Im trudniejszy poziom, tym szybciej obiekty się poruszają",
+          "location": [
+            250,
+            250
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Aha, no i mniej serc.",
+          "location": [
+            250,
+            300
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Na poziomie treningowym przysługuje Ci nielimitowana liczba serc,",
+          "location": [
+            250,
+            400
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "a prędkość jest relatywnie niska.",
+          "location": [
+            250,
+            450
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Tak, to dobre miejsce na ćwiczenia.",
+          "location": [
+            250,
+            500
+          ],
+          "rotate": 0
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Najlepsze wyniki",
+          "location": [
+            250,
+            70
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Tutaj znajdziesz 10 najlepszych wyników",
+          "location": [
+            250,
+            150
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Jeśli jesteś naprawdę dobry, Twoje imię któregoś dnia",
+          "location": [
+            250,
+            200
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "się tu znajdzie",
+          "location": [
+            250,
+            250
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Nowy wynik",
+          "location": [
+            250,
+            320
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Program może poprosić Cię o wprowadzenie swojego pseudonimu,",
+          "location": [
+            250,
+            420
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "który - razem z wynikiem - znajdzie się na liście.",
+          "location": [
+            250,
+            470
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Edytor pseudonimu jest bardzo prosty, pamiętaj tylko,",
+          "location": [
+            250,
+            520
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "że Enter symuluje wprowadzenie zaznaczonego znaku.",
+          "location": [
+            250,
+            570
+          ],
+          "rotate": 0
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Rozgrywka",
+          "location": [
+            250,
+            70
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "a. główny cel gry",
+          "location": [
+            250,
+            150
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "b. wybór pojazdu",
+          "location": [
+            250,
+            200
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "c. nawigacja",
+          "location": [
+            250,
+            250
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "d. obiekty w grze",
+          "location": [
+            250,
+            300
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "e. punkty gry i życia",
+          "location": [
+            250,
+            350
+          ],
+          "rotate": 0
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Główny cel gry",
+          "location": [
+            250,
+            70
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Główny cel to tak pokierować lotem nad miastem, aby przeżyć.",
+          "location": [
+            250,
+            170
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Musisz omijać budynki i chmury -- to na pewno.",
+          "location": [
+            250,
+            220
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Gęsi również powinno się omijać, ale można też do nich strzelać.",
+          "location": [
+            250,
+            270
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Można zbierać dodatkowe punkty życia (góra 5), amunicję",
+          "location": [
+            250,
+            370
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "(dowolną ilość) lub zmieniać kierunek... eee... opadania",
+          "location": [
+            250,
+            420
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "lub wznoszenia się pojazdu.",
+          "location": [
+            250,
+            470
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Życzymy szczęścia! Będziesz go potrzebować!",
+          "location": [
+            250,
+            570
+          ],
+          "rotate": 0
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Wybór pojazdu",
+          "location": [
+            250,
+            70
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Możesz wybrać swój pojazd z poniższych:",
+          "location": [
+            250,
+            170
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* helikopter,",
+          "location": [
+            250,
+            220
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* sterowiec,",
+          "location": [
+            250,
+            270
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* balon",
+          "location": [
+            250,
+            320
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Rozmiary pojazdów się różnią, ale zachowanie pozostaje bez zmian.",
+          "location": [
+            250,
+            370
           ]
         }
       ]
@@ -134,52 +667,214 @@
       "images": [],
       "labels": [
         {
-          "label": "help-1",
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Nawigacja",
           "location": [
-            350,
-            50
+            250,
+            70
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Użyj klawiszy lub przycisków zdefiniowanych w Ustawieniach.",
+          "location": [
+            250,
+            170
           ]
         },
         {
-          "label": "help-2",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Porzebujesz tylko wiedzieć, jak skakać i jak strzelać.",
           "location": [
-            150,
-            100
+            250,
+            220
           ]
         },
         {
-          "label": "help-3",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Pojazd podlega prawom grawitacji, więc czasami trzeba",
           "location": [
-            150,
-            150
+            250,
+            320
           ]
         },
         {
-          "label": "help-4",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "skakać dość często!",
           "location": [
-            150,
-            200
+            250,
+            370
+          ]
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Obiekty w grze",
+          "location": [
+            250,
+            70
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Główne obiekty w grze to:",
+          "location": [
+            250,
+            170
           ]
         },
         {
-          "label": "help-5",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* chmury,",
           "location": [
-            150,
-            250
+            250,
+            220
           ]
         },
         {
-          "label": "help-6",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* budynki,",
           "location": [
-            150,
-            300
+            250,
+            270
           ]
         },
         {
-          "label": "help-7",
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* gęsi",
           "location": [
-            150,
-            450
+            250,
+            320
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Można strzelać do gęsi, ale pozostałych raczej trzeba unikać.",
+          "location": [
+            250,
+            370
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Ponadto, można zbierać następujące:",
+          "location": [
+            250,
+            470
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* serca - dodają punktów życia (maksymalnie do pięciu),",
+          "location": [
+            250,
+            520
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* amunicja - dodaje więcej pocisków,",
+          "location": [
+            250,
+            570
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* rotatory - zmieniają kierunek grawitacji",
+          "location": [
+            250,
+            620
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Używaj z rozwagą!",
+          "location": [
+            250,
+            670
+          ]
+        }
+      ]
+    },
+    {
+      "images": [],
+      "labels": [
+        {
+          "color": "yellow-default",
+          "font": "about",
+          "label": "Punktowanie",
+          "location": [
+            250,
+            70
+          ],
+          "rotate": 0
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Punktowanie jest bardzo proste. Oto zasady:",
+          "location": [
+            250,
+            170
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* jeden punkt za każdą przeżytą sekundę,",
+          "location": [
+            250,
+            220
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* jeden punkt za każdą zestrzeloną gęś,",
+          "location": [
+            250,
+            270
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "* sto punktów za każdy ukończony poziom",
+          "location": [
+            250,
+            320
+          ]
+        },
+        {
+          "color": "snowy-white",
+          "font": "pages-small",
+          "label": "Miłej gry!",
+          "location": [
+            250,
+            420
           ]
         }
       ]

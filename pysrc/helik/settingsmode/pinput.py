@@ -24,52 +24,46 @@ class PadInputSettingsMode(SettingsMode):
         """
         self.paint_default_bg()
         self.paint_default_title("settings")
-        la, _ = self.resman["settings"]["pinput-heading-shadow"]
-        self.buffer.blit(la, (205, 45))
-        la, _ = self.resman["settings"]["pinput-heading"]
-        self.buffer.blit(la, (200, 40))
-        la, _ = self.resman["settings"]["pinput-help-1"]
-        self.buffer.blit(la, (200, 180))
+        la = self.resman["settings"]["pinput-heading-shadow"]
+        la.paint_at(self.buffer, 205, 45)
+        la = self.resman["settings"]["pinput-heading"]
+        la.paint_at(self.buffer, 200, 40)
+        la = self.resman["settings"]["pinput-help-1"]
+        la.paint_at(self.buffer, 200, 180)
 
-        i = 0
-        for elem in self.resman["settings"]["pinput-items-shadow"]:
-            if i < self.maxdef or (i == self.maxdef and self.blink):
-                la, _ = elem
-                self.buffer.blit(la, (205, 285 + i * 80))
+        for counter, elem in enumerate(self.resman["settings"]["pinput-items-shadow"]):
+            if counter < self.maxdef or (counter == self.maxdef and self.blink):
+                elem.paint_at(self.buffer, 205, 285 + counter * 80)
                 try:
                     self.buffer.blit(
                         self.resman.button_labels[
                             "shadows"][
-                            self.arena.config["lang"]][self.defined[i]],
-                        (505, 285 + i * 80))
+                            self.arena.config["lang"]][self.defined[counter]],
+                        (505, 285 + counter * 80))
                 except IndexError:
                     pass
-                i += 1
 
-        i = 0
-        for elem in self.resman["settings"]["pinput-items"]:
-            if i < self.maxdef or (i == self.maxdef and self.blink):
-                la, _ = elem
-                self.buffer.blit(la, (200, 280 + i * 80))
+        for counter, elem in enumerate(self.resman["settings"]["pinput-items"]):
+            if counter < self.maxdef or (counter == self.maxdef and self.blink):
+                elem.paint_at(self.buffer, 200, 280 + counter * 80)
                 try:
                     self.buffer.blit(self.resman.button_labels[
                                          "buttons"][
                                          self.arena.config[
-                                             "lang"]][self.defined[i]],
-                                     (500, 280 + i * 80))
+                                             "lang"]][self.defined[counter]],
+                                     (500, 280 + counter * 80))
                 except IndexError:
                     pass
-                i += 1
 
-        la, _ = self.resman["settings"]["pinput-help-2"]
-        self.buffer.blit(la, (200, 500))
-        la, _ = self.resman["settings"]["pinput-help-3"]
-        self.buffer.blit(la, (200, 560))
-        la, _ = self.resman["settings"]["pinput-help-4"]
-        self.buffer.blit(la, (200, 620))
+        la = self.resman["settings"]["pinput-help-2"]
+        la.paint_at(self.buffer, 200, 500)
+        la = self.resman["settings"]["pinput-help-3"]
+        la.paint_at(self.buffer, 200, 560)
+        la = self.resman["settings"]["pinput-help-4"]
+        la.paint_at(self.buffer, 200, 620)
 
-        la, re = self.resman["settings"]["pinput-status"]
-        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+        la = self.resman["settings"]["pinput-status"]
+        la.paint_at(self.buffer, ARENA_WIDTH - la.w - 200, ARENA_HEIGHT - 55)
 
     def on_keyup(self, key):
         """

@@ -7,7 +7,7 @@ Options board handler
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.platform import ButtonType, AxisType, AxisValue
-from helik.types import BoardType, HelpChapter
+from helik.datatypes import BoardType, HelpChapter
 from .standard import Board
 
 
@@ -30,7 +30,7 @@ class BoardOptions(Board):
         """
         Re-calculate current selection rectangle
         """
-        _, self.rect_pos = self.rectangles[self.menu_pos]
+        self.rect_pos = self.rectangles[self.menu_pos].r
         self.rect_pos = self.rect_pos.inflate(40, 40)
 
     def create_rectangles(self):
@@ -40,20 +40,13 @@ class BoardOptions(Board):
         self.rectangles = []
         self.rectangles_s = []
 
-        i = 0
-        for elem in self.resman["options"]["items"]:
-            label, rect = elem
-            rect.left = 400
-            rect.top = 100 + i * 80
-            self.rectangles.append((label, rect))
-            i += 1
-        i = 0
-        for elem in self.resman["options"]["items-shadow"]:
-            label, rect = elem
-            rect.left = 405
-            rect.top = 105 + i * 80
-            self.rectangles_s.append((label, rect))
-            i += 1
+        for counter, elem in enumerate(self.resman["options"]["items"]):
+            elem.move(400, 100 + counter * 80)
+            self.rectangles.append(elem)
+
+        for counter, elem in enumerate(self.resman["options"]["items-shadow"]):
+            elem.move(405, 105 + counter * 80)
+            self.rectangles_s.append(elem)
         self.recalculate_pos()
 
     def on_paint(self):
@@ -62,17 +55,15 @@ class BoardOptions(Board):
         """
         self.paint_default_bg()
 
-        la, re = self.resman["settings-status"]
-        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+        la = self.resman["settings-status"]
+        la.paint_at(self.buffer, ARENA_WIDTH - la.r.w - 200, ARENA_HEIGHT - 55)
 
         self.paint_default_title("options")
 
         for re in self.rectangles_s:
-            label, rect = re
-            self.buffer.blit(label, rect)
+            re.paint(self.buffer)
         for re in self.rectangles:
-            label, rect = re
-            self.buffer.blit(label, rect)
+            re.paint(self.buffer)
 
         self.rect_pos_t = self.rect_pos.move(5, 5)
         pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16),
@@ -130,18 +121,15 @@ class BoardOptions(Board):
                 rects = self.resman.rectangles["lang-rectangles"]
                 for lang in rects:
                     if rects[lang].collidepoint(pos):
-                        self.arena.config['lang'] = lang
+                        self.arena.set_lang(lang)
                         ch_lang = True
                         self.audio.play_sfx("arrow")
                         self.create_rectangles()
                 if not ch_lang:
-                    tpos = -1
-                    for elem in self.rectangles:
-                        _, rect = elem
-                        tpos += 1
-                        if rect.collidepoint(pos):
-                            self.menu_pos = tpos
-                            self.option = tpos
+                    for counter, elem in enumerate(self.rectangles):
+                        if elem.r.collidepoint(pos):
+                            self.menu_pos = counter
+                            self.option = counter
                             self.arena.config['option'] = self.menu_pos
                             self.recalculate_pos()
                             self.audio.play_sfx("closing-tape")

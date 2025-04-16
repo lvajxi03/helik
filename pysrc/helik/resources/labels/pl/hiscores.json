@@ -11,6 +11,18 @@
       "font": "heading-2",
       "label": "NAJLEPSI",
       "rotate": 90
+    },
+    "intro": {
+      "color": "snowy-white",
+      "font": "letters",
+      "label": "Najlepsze 10 wyników:",
+      "rotate": 0
+    },
+    "intro-shadow": {
+      "color": "shadow-default",
+      "font": "letters",
+      "label": "Najlepsze 10 wyników:",
+      "rotate": 0
     }
   }
 }

@@ -7,7 +7,7 @@ Menu board handler
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.platform import ButtonType, AxisType, AxisValue
-from helik.types import BoardType
+from helik.datatypes import BoardType
 from .standard import Board
 
 
@@ -48,7 +48,7 @@ class BoardMenu(Board):
         """
         Re-calculate current selection rectangle
         """
-        _, self.rect_pos = self.rectangles[self.menu_pos]
+        self.rect_pos = self.rectangles[self.menu_pos].r
         self.rect_pos = self.rect_pos.inflate(40, 40)
 
     def create_rectangles(self):
@@ -57,21 +57,15 @@ class BoardMenu(Board):
         """
         self.rectangles = []
         self.rectangles_s = []
-        i = 0
-        for elem in self.resman["menu"]["items"]:
-            label, rect = elem
-            rect.left = 400
-            rect.top = 100 + i * 80
-            self.rectangles.append((label, rect))
-            i += 1
 
-        i = 0
-        for elem in self.resman["menu"]["items-shadow"]:
-            label, rect = elem
-            rect.left = 405
-            rect.top = 105 + i * 80
-            self.rectangles_s.append((label, rect))
-            i += 1
+        for counter, elem, in enumerate(self.resman["menu"]["items"]):
+            elem.move(400, 100 + counter * 80)
+            self.rectangles.append(elem)
+
+        for counter, elem in enumerate(self.resman["menu"]["items-shadow"]):
+            elem.move(405, 105 + counter * 80)
+            self.rectangles_s.append(elem)
+
         self.recalculate_pos()
 
     def on_paint(self):
@@ -79,21 +73,19 @@ class BoardMenu(Board):
         Paint event handler
         """
         self.paint_default_bg()
-        la, re = self.resman["menu-status"]
-        self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+        la = self.resman["menu-status"]
+        la.paint_at(self. buffer, ARENA_WIDTH - la.r.width - 200, ARENA_HEIGHT - 55)
 
-        la, _ = self.resman["menu"]["title-shadow"]
-        self.buffer.blit(la, (220, 50))
+        la = self.resman["menu"]["title-shadow"]
+        la.paint_at(self.buffer, 220, 50)
 
-        la, _ = self.resman["menu"]["title"]
-        self.buffer.blit(la, (215, 45))
+        la = self.resman["menu"]["title"]
+        la.paint_at(self.buffer, 215, 45)
 
         for re in self.rectangles_s:
-            label, rect = re
-            self.buffer.blit(label, rect)
+            re.paint(self.buffer)
         for re in self.rectangles:
-            label, rect = re
-            self.buffer.blit(label, rect)
+            re.paint(self.buffer)
 
         self.rect_pos_t = self.rect_pos.move(5, 5)
         pygame.draw.rect(self.buffer, pygame.Color(16, 16, 16),
@@ -151,12 +143,9 @@ class BoardMenu(Board):
                         self.audio.play_sfx("poom")
                         self.create_rectangles()
                 if not ch_lang:
-                    tpos = -1
-                    for elem in self.rectangles:
-                        _, rect = elem
-                        tpos += 1
-                        if rect.collidepoint(pos):
-                            self.menu_pos = tpos
+                    for counter, elem in enumerate(self.rectangles):
+                        if elem.r.collidepoint(pos):
+                            self.menu_pos = counter
                             self.recalculate_pos()
                             bid = menupos2board(self.menu_pos)
                             self.audio.play_sfx("closing-tape")

@@ -4,10 +4,15 @@ pipeline {
         stage('Install Tools')  {
             steps {
                 bat """
-                python -m pip install pylint pylint_junit
+                python -m pip install pylint pylint_junit pytest pytest-cov pytest-mock pygame
                 """
             }
         }
+	stage('Pytests') {
+		bat """
+		set PYTHONPATH=pysrc
+		python -m pytest --cov-report html --cov=helik pytests -vc
+		"""
         stage('Pylint') {
             steps {
                 bat """
@@ -53,6 +58,7 @@ pipeline {
         always {
             archiveArtifacts artifacts: "dist\\helik-*.whl", fingerprint: true
             junit 'pylint-report.xml'
+	    archiveArtifacts artifacts: "htmlcov", fingerprint: true
             cleanWs()
         }
     }

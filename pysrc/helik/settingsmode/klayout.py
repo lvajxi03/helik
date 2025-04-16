@@ -7,7 +7,7 @@ Keyboard Layout settings mode
 import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.platform import ButtonType, AxisType, AxisValue
-from helik.types import BoardType, HelpChapter
+from helik.datatypes import BoardType, HelpChapter
 from .standard import SettingsMode, SettingsModeId
 
 
@@ -21,48 +21,43 @@ class KbdLayoutSettingsMode(SettingsMode):
         """
         self.paint_default_bg()
         self.paint_default_title("settings")
-        la, _ = self.resman["settings"]["klayout-heading-shadow"]
-        self.buffer.blit(la, (205, 45))
-        la, _ = self.resman["settings"]["klayout-heading"]
-        self.buffer.blit(la, (200, 40))
+        la = self.resman["settings"]["klayout-heading-shadow"]
+        la.paint_at(self.buffer, 205, 45)
+        la = self.resman["settings"]["klayout-heading"]
+        la.paint_at(self.buffer, 200, 40)
 
-        la, _ = self.resman["settings"]["klayout-help-2"]
-        self.buffer.blit(la, (200, 180))
+        la = self.resman["settings"]["klayout-help-2"]
+        la.paint_at(self.buffer, 200, 180)
 
         keys = ["jump", "shoot"]
-        i = 0
-        for elem in self.resman["settings"]["kinput-items-shadow"]:
-            la, _ = elem
-            self.buffer.blit(la, (205, 285 + i * 80))
+        for counter, elem in enumerate(self.resman["settings"]["kinput-items-shadow"]):
+            elem.paint_at(self.buffer, 205, 285 + counter * 80)
             try:
                 self.buffer.blit(self.resman.keylabels[
                                      "shadows"][
                                      self.arena.config["lang"]][
-                                     self.arena.config["keys"][keys[i]]],
-                                 (505, 285 + i * 80))
+                                     self.arena.config["keys"][keys[counter]]],
+                                 (505, 285 + counter * 80))
             except IndexError:
                 pass
-            i += 1
 
-        i = 0
-        for elem in self.resman["settings"]["kinput-items"]:
-            la, _ = elem
-            self.buffer.blit(la, (200, 280 + i * 80))
+        for counter, elem in enumerate(self.resman["settings"]["kinput-items"]):
+
+            elem.paint_at(self.buffer, 200, 280 + counter * 80)
             try:
                 self.buffer.blit(self.resman.keylabels[
                                      "keys"][
                                      self.arena.config["lang"]][
-                                     self.arena.config["keys"][keys[i]]],
-                                 (500, 280 + i * 80))
+                                     self.arena.config["keys"][keys[counter]]],
+                                 (500, 280 + counter * 80))
             except IndexError:
                 pass
-            i += 1
 
-            la, _ = self.resman["settings"]["klayout-help-1"]
-            self.buffer.blit(la, (200, 680))
+            la = self.resman["settings"]["klayout-help-1"]
+            la.paint_at(self.buffer,  200, 680)
 
-            la, re = self.resman["settings"]["klayout-status"]
-            self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+            la = self.resman["settings"]["klayout-status"]
+            la.paint_at(self.buffer, ARENA_WIDTH - la.w - 200, ARENA_HEIGHT - 55)
 
     def on_keyup(self, key):
         """
@@ -112,7 +107,7 @@ class KbdLayoutSettingsMode(SettingsMode):
                 rects = self.resman.rectangles["lang-rectangles"]
                 for lang in rects:
                     if rects[lang].collidepoint(pos):
-                        self.arena.config['lang'] = lang
+                        self.arena.set_lang(lang)
                         self.audio.play_sfx("arrow")
             case 4:
                 self.on_keyup(pygame.K_UP)

@@ -6,7 +6,7 @@ Pad Layout settings mode
 
 import pygame
 from helik.platform import ButtonType, AxisType, AxisValue
-from helik.types import BoardType, HelpChapter
+from helik.datatypes import BoardType, HelpChapter
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from .standard import SettingsMode, SettingsModeId
 
@@ -21,51 +21,46 @@ class PadLayoutSettingsMode(SettingsMode):
         """
         self.paint_default_bg()
         self.paint_default_title("settings")
-        la, _ = self.resman["settings"]["playout-heading-shadow"]
-        self.buffer.blit(la, (205, 45))
-        la, _ = self.resman["settings"]["playout-heading"]
-        self.buffer.blit(la, (200, 40))
+        la = self.resman["settings"]["playout-heading-shadow"]
+        la.paint_at(self.buffer, 205, 45)
+        la = self.resman["settings"]["playout-heading"]
+        la.paint_at(self.buffer, 200, 40)
 
-        la, _ = self.resman["settings"]["playout-help-2"]
-        self.buffer.blit(la, (200, 180))
+        la = self.resman["settings"]["playout-help-2"]
+        la.paint_at(self.buffer, 200, 180)
 
         buttons = ["jump", "shoot"]
-        i = 0
-        for elem in self.resman["settings"]["pinput-items-shadow"]:
-            la, _ = elem
-            self.buffer.blit(la, (205, 285 + i * 80))
+
+        for counter, elem in enumerate(self.resman["settings"]["pinput-items-shadow"]):
+            elem.paint_at(self.buffer, 205, 285 + counter * 80)
             try:
                 self.buffer.blit(self.resman.button_labels[
                                      "shadows"][
                                      self.arena.config[
                                          "lang"]][
                                      self.arena.config[
-                                         "buttons"][buttons[i]]],
-                                 (505, 285 + i * 80))
+                                         "buttons"][buttons[counter]]],
+                                 (505, 285 + counter * 80))
             except IndexError:
                 pass
-            i += 1
 
-        i = 0
-        for elem in self.resman["settings"]["pinput-items"]:
-            la, _ = elem
-            self.buffer.blit(la, (200, 280 + i * 80))
+        for counter, elem in enumerate(self.resman["settings"]["pinput-items"]):
+            elem.paint_at(self.buffer, 200, 280 + counter * 80)
             try:
                 self.buffer.blit(self.resman.button_labels[
                                      "buttons"][
                                      self.arena.config["lang"]][
                                      self.arena.config[
-                                         "buttons"][buttons[i]]],
-                                 (500, 280 + i * 80))
+                                         "buttons"][buttons[counter]]],
+                                 (500, 280 + counter * 80))
             except IndexError:
                 pass
-            i += 1
 
-            la, _ = self.resman["settings"]["playout-help-1"]
-            self.buffer.blit(la, (200, 680))
+            la = self.resman["settings"]["playout-help-1"]
+            la.paint_at(self.buffer, 200, 680)
 
-            la, re = self.resman["settings"]["playout-status"]
-            self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+            la = self.resman["settings"]["playout-status"]
+            la.paint_at(self.buffer, ARENA_WIDTH - la.w - 200, ARENA_HEIGHT - 55)
 
     def on_joybuttonup(self, button):
         """

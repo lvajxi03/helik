@@ -6,7 +6,7 @@ Mode play handler module
 
 
 import pygame
-from helik.types import BoardType, HelpChapter
+from helik.datatypes import BoardType, HelpChapter
 from helik.hdefs import ARENA_HEIGHT, ARENA_WIDTH, STATUS_HEIGHT, SPEED
 from helik.gfx import blitnumber
 from helik.game import Explosion, PlayerDirection, GameObjectType

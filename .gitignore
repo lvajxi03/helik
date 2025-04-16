@@ -13,4 +13,5 @@ obj/
 *.egg-info
 vent/
 *.swp
+.coverage
 

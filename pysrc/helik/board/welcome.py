@@ -8,7 +8,7 @@ import random
 import pygame
 from helik.platform import TimerType
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
-from helik.types import BoardType
+from helik.datatypes import BoardType
 from .standard import Board
 
 
@@ -26,7 +26,6 @@ class BoardWelcome(Board):
             comp = random.randint(64, 255)
             self.colors.append(
                 pygame.Color(comp, comp, comp))
-            # a = random.randint(0, 255)
 
     def activate(self, **kwargs):
         """

@@ -7,7 +7,7 @@ import pygame
 from helik.hdefs import ARENA_WIDTH, ARENA_HEIGHT
 from helik.core.pages import Pager
 from helik.platform import ButtonType, AxisType, AxisValue
-from helik.types import BoardType
+from helik.datatypes import BoardType
 from .standard import Board
 
 
@@ -37,17 +37,17 @@ class BoardAbout(Board):
         self.pager.on_paint(self.buffer)
 
         if self.pager.has_next() and self.pager.has_prev():
-            la, re = self.resman["pager-status-full"]
-            self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+            la = self.resman["pager-status-full"]
+            la.paint_at(self.buffer, ARENA_WIDTH - la.w - 200, ARENA_HEIGHT - 55)
         elif self.pager.has_next():
-            la, re = self.resman["pager-status-next"]
-            self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+            la = self.resman["pager-status-next"]
+            la.paint_at(self.buffer, ARENA_WIDTH - la.w - 200, ARENA_HEIGHT - 55)
         elif self.pager.has_prev():
-            la, re = self.resman["pager-status-prev"]
-            self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+            la = self.resman["pager-status-prev"]
+            la.paint_at(self.buffer, ARENA_WIDTH - la.w - 200, ARENA_HEIGHT - 55)
         else:
-            la, re = self.resman["pager-status-none"]
-            self.buffer.blit(la, (ARENA_WIDTH - re.width - 200, ARENA_HEIGHT - 55))
+            la = self.resman["pager-status-none"]
+            la.paint_at(self.buffer, ARENA_WIDTH - la.w - 200, ARENA_HEIGHT - 55)
 
     def on_keyup(self, key):
         """

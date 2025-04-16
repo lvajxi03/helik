@@ -6,6 +6,7 @@ Pages module
 
 import webbrowser
 import pygame
+from .labels import Label
 
 
 class Button:
@@ -61,7 +62,7 @@ class Page:
     """
     Page - mix of static images and labels
     """
-    def __init__(self, data, resman, lang):
+    def __init__(self, data, resman):
         """
         Page constructor
         :param data: initial JSON data
@@ -87,8 +88,22 @@ class Page:
             else:
                 # Here's probably the one place where .locale[$lang] is present.
                 # and not sure why.
-                elem["label"] = resman.locale[lang]["pages"][elem["label"]]
-                self.data["labels"].append(elem)
+                rotate = 0
+                if "rotate" in elem:
+                    rotate = elem["rotate"]
+                color = pygame.Color("#ffffff")
+                try:
+                    if elem["color"] in resman.colors:
+                        color = resman.colors[elem["color"]]
+                    else:
+                        color = pygame.Color(elem["color"])
+                except KeyError:
+                    pass  # use default #fff
+                la = Label(elem["label"], resman.fonts[elem["font"]],
+                           color,
+                           elem["location"][0],
+                           elem["location"][1], rotate)
+                self.data["labels"].append(la)
 
     def on_click(self):
         """
@@ -113,9 +128,7 @@ class Page:
             canvas.blit(image, (x, y))
 
         for img in self.data['labels']:
-            label, _ = img["label"]
-            x, y = img["location"]
-            canvas.blit(label, (x, y))
+            img.paint(canvas)
 
         for b in self.data["buttons"]:
             b.paint(canvas)
@@ -128,8 +141,8 @@ class Pager:
     def __init__(self, data, resman):
         """
         Pager constructor
-        :param data:
-        :param resman:-+
+        :param data: pager data (json)
+        :param resman: Resource Manager instance
         """
         self.pages = {}
         self.lang = "pl"  # Ok,there has to be something default
@@ -137,12 +150,13 @@ class Pager:
         for lang in data:
             self.pages[lang] = []
             for elem in data[lang]:
-                page = Page(elem, resman, lang)
+                page = Page(elem, resman)
                 self.pages[lang].append(page)
 
     def activate(self, *args):
         """
         Activate event handler
+        :param args: variable args list of arguments
         """
         self.current = min(args[0], len(self.pages[self.lang]) - 1) if len(args) > 0 else 0
 
