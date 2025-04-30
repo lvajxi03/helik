@@ -40,7 +40,8 @@ class ModeGameOver(Mode):
             case pygame.K_ESCAPE:
                 if self.arena.config.is_hiscore(self.game.data['points']):
                     self.game.arena.change_board(BoardType.NEWSCORE)
-                self.game.arena.change_board(BoardType.HISCORES)
+                else:
+                    self.game.arena.change_board(BoardType.HISCORES)
 
     def on_joybuttonup(self, button):
         """

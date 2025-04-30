@@ -156,9 +156,14 @@ class BoardNewScore(Board):
                 (ARENA_WIDTH // 2 + counter * LETTER_BLOCK_W, NICK_DY))
 
         if self.counter == 0:
-            self.buffer.blit(self.resman.images['cursor'],
-                             (ARENA_WIDTH // 2 + counter * LETTER_BLOCK_W,
-                              CURSOR_DY))
+            if len(self.nick) == 0:
+                self.buffer.blit(self.resman.images['cursor'],
+                                 (ARENA_WIDTH // 2 + counter * LETTER_BLOCK_W,
+                                  CURSOR_DY))
+            else:
+                self.buffer.blit(self.resman.images['cursor'],
+                                 (ARENA_WIDTH // 2 + (counter + 1) * LETTER_BLOCK_W,
+                                  CURSOR_DY))
 
         la = self.resman["newscore"]["enter-nickname"]
         la.x = ARENA_WIDTH // 2 - la.w - ENTER_NICKNAME_DX
@@ -234,8 +239,6 @@ class BoardNewScore(Board):
         match key:
             case pygame.K_F3:
                 self.arena.toggle_lang()
-            case pygame.K_ESCAPE:
-                self.arena.change_board(BoardType.HISCORES)
             case pygame.K_DOWN:
                 if self.y < 6:
                     self.y += 1
