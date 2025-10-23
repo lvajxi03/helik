@@ -18,3 +18,4 @@ from .level import Level
 from .planes import Plane
 from .player import Player, PlayerDirection
 from .types import GameObjectType
+from .remaining import RemainingObject

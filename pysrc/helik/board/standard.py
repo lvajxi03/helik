@@ -4,6 +4,7 @@
 Standard board for Helik
 """
 
+import pygame
 from helik.hdefs import ARENA_HEIGHT, STATUS_HEIGHT, ARENA_WIDTH
 
 
@@ -96,6 +97,8 @@ class Board:
         la.paint_at(self.buffer, 30, 30)
         la = self.resman[groupname]["title"]
         la.paint_at(self.buffer, 25, 25)
+        pygame.draw.line(self.buffer, self.resman.colors["yellow-default"],
+                         (160, 0), (160, ARENA_HEIGHT))
 
     def paint_default_status(self):
         """

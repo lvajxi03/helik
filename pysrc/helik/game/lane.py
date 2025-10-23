@@ -13,6 +13,7 @@ from .ammo import ammo_from_images
 from .heart import heart_from_images
 from .birds import bird_from_images
 from .objects import ImageListGameObject
+from .remaining import remaining_from_image
 
 
 class Lane:
@@ -30,6 +31,8 @@ class Lane:
         self.bottom = data["bottom"] == 1
         self.objects = []
 
+        # Flag for checking if REMINDER occurred
+        have_reminder = False
         multiplier = max(multiplier, 1)
         x = ARENA_WIDTH
         # Create objects
@@ -95,10 +98,25 @@ class Lane:
                             self.objects.append(bird_from_images(ims, x, ar[1], fb))
                         x += w
                         fb += 1
+                    elif ar[0] == GameObjectType.REMAINING:
+                        if not have_reminder:
+                            have_reminder = True
+                            im = resman.images["slon"]
+                            if self.bottom:
+                                self.objects.append(remaining_from_image(im, x))
+                            else:
+                                self.objects.append(remaining_from_image(im, x, ar[2]))
+                            w, _ = im.get_size()
+                            x += w + ar[1]
                 except IndexError:
                     pass
                 except KeyError:
                     pass
+        if not have_reminder and self.bottom:
+            im = resman.images["slon"]
+            self.objects.append(remaining_from_image(im, x))
+            w, _ = im.get_size()
+            x += w
 
     def __len__(self):
         return len(self.objects)

@@ -21,3 +21,4 @@ class GameObjectType(enum.IntEnum):
     HEART = 5
     BIRD = 6
     BULLET = 7
+    REMAINING = 8
