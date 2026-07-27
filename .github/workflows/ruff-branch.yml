@@ -1,0 +1,27 @@
+name: Ruff on a branch
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint and format
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Ruff linter
+        uses: astral-sh/ruff-action@v3
+        with:
+          args: check .
+
+      - name: Check Ruff formatting
+        uses: astral-sh/ruff-action@v3
+        with:
+          args: format --check .
