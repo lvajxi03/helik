@@ -18,6 +18,11 @@ class BoardWelcome(Board):
     """
     def __init__(self, parent):
         super().__init__(parent)
+        self.animation_interval = 50
+        self.animation_timer = 0
+        self.board_timer = 0
+        self.board_timeout = 5000
+
         self.rectangles = []
         self.colors = []
         for i in range (0, ARENA_WIDTH // 40):
@@ -32,14 +37,22 @@ class BoardWelcome(Board):
         Activate event handler
         :param kwargs: additional parameters, like help or previous board
         """
-        pygame.time.set_timer(TimerType.FIRST, 3000)
+        self.animation_timer = self.animation_interval
+        self.board_timer = 0
 
     def on_update(self, delta):
         """
         Update event handler
         :param delta: delta time from last frame
         """
-        self.shuffle_colors()
+        self.animation_timer += delta
+        self.board_timer += delta
+        while self.animation_timer >= self.animation_interval:
+            self.animation_timer -= self.animation_interval
+            self.shuffle_colors()
+
+        if self.board_timer >= self.board_timeout:
+            self.arena.change_board(BoardType.MENU)
 
     def deactivate(self):
         """
@@ -60,8 +73,6 @@ class BoardWelcome(Board):
         """
         Handle timer event(s)
         """
-        if timer == TimerType.FIRST:
-            self.arena.change_board(BoardType.MENU)
 
     def on_keyup(self, key):
         """
@@ -76,7 +87,6 @@ class BoardWelcome(Board):
         """
         c = self.colors.pop(0)
         self.colors.append(c)
-        pygame.time.delay(50)
 
     def on_mouseup(self, button, pos):
         """

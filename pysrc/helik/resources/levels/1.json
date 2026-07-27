@@ -192,6 +192,7 @@
       "speed": 1
     },
     {
+      "description": "clouds",
       "bottom": 0,
       "objects": [
         [
@@ -279,6 +280,7 @@
       "speed": 1
     },
     {
+      "description": "birds",
       "bottom": 0,
       "objects": [
         [

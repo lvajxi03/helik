@@ -105,7 +105,7 @@ class Arena:
                         if event.type > pygame.USEREVENT:
                             self.on_timer(event.type)
 
-            dt = self.clock.tick(1000)
+            dt = self.clock.tick(60)
             self.on_update(dt)
             self.on_paint()
             pygame.display.update()
